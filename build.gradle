@@ -1,15 +1,15 @@
-configure(subprojects.findAll {!it.name.contains('theme')}) {
-	dockerDeploy {
-        dependsOn deploy
+// configure(subprojects.findAll {!it.name.contains('theme')}) {
+// 	dockerDeploy {
+//         dependsOn deploy
 
-        doFirst {
-            def props = new Properties()
+//         doFirst {
+//             def props = new Properties()
 
-            file("bnd.bnd").withInputStream { props.load(it) }
+//             file("bnd.bnd").withInputStream { props.load(it) }
 
-            def bundleName = props.getProperty("Bundle-SymbolicName")
+//             def bundleName = props.getProperty("Bundle-SymbolicName")
 
-            commandLine 'docker', 'cp', "${getClientDeployDir()}/" + bundleName + ".jar", "liferay-container-name:${getLiferayHome()}/osgi/modules/"
-        }
-    }
-}
+//             commandLine 'docker', 'cp', "${getClientDeployDir()}/" + bundleName + ".jar", "liferay-container-name:${getLiferayHome()}/osgi/modules/"
+//         }
+//     }
+// }
