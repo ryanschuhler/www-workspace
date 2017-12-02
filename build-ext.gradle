@@ -1,0 +1,10 @@
+subprojects {
+	task dockerDeploy(type:Exec) {
+		if (project.hasProperty('docker.container.name') && project.hasProperty('docker.deploy.src.path') && project.hasProperty('docker.deploy.destination.path')) {
+			commandLine "docker", "cp", "${project.property('docker.deploy.src.path')}", "${project.property('docker.container.name')}" + ":" + "${project.property('docker.deploy.destination.path')}"
+		}
+		else {
+			commandLine "echo", "Skipping docker deploy because gradle properties are missing"
+		}
+	}
+}

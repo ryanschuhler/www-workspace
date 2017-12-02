@@ -1,15 +1,5 @@
-// configure(subprojects.findAll {!it.name.contains('theme')}) {
-// 	dockerDeploy {
-//         dependsOn deploy
+allprojects {
+	apply plugin: "idea"
+}
 
-//         doFirst {
-//             def props = new Properties()
-
-//             file("bnd.bnd").withInputStream { props.load(it) }
-
-//             def bundleName = props.getProperty("Bundle-SymbolicName")
-
-//             commandLine 'docker', 'cp', "${getClientDeployDir()}/" + bundleName + ".jar", "liferay-container-name:${getLiferayHome()}/osgi/modules/"
-//         }
-//     }
-// }
+apply from: "build-ext.gradle"
