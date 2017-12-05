@@ -1,10 +1,36 @@
-subprojects {
-	task dockerDeploy(type:Exec) {
-		if (project.hasProperty('docker.container.name') && project.hasProperty('docker.deploy.src.path') && project.hasProperty('docker.deploy.destination.path')) {
-			commandLine "docker", "cp", "${project.property('docker.deploy.src.path')}", "${project.property('docker.container.name')}" + ":" + "${project.property('docker.deploy.destination.path')}"
+configure(subprojects.findAll {it.getParent().name == ("modules") || it.getParent().name == ("themes")}) {
+	task dockerDeploy(type: Exec) {
+		def bndFile = file("bnd.bnd")
+		def jsonFile = file('package.json')
+		def srcPath = ""
+		def workspace = project.getRootProject()
+
+		if (bndFile.exists()) {
+			def props = new Properties()
+
+			bndFile.withInputStream { props.load(it) }
+
+			def bundleName = props.getProperty("Bundle-SymbolicName")
+			def bundleVersion = props.getProperty("Bundle-Version")
+
+			srcPath = "build/libs/${bundleName}-${bundleVersion}.jar"
+		}
+
+		if (jsonFile.exists()) {
+			def json = new groovy.json.JsonSlurper().parseText(jsonFile.text)
+
+			def name = json.name
+
+			srcPath = "dist/${name}.war"
+		}
+
+		if (srcPath != "") {
+			println "Deploying ${srcPath} to ${workspace.property('docker.container.name')} docker container"
+
+			commandLine "docker", "cp", srcPath, "${workspace.property('docker.container.name')}:${workspace.property('docker.deploy.destination.path')}"
 		}
 		else {
-			commandLine "echo", "Skipping docker deploy because gradle properties are missing"
+			commandLine "echo", "Skipping docker deploy because gradle properties or files are missing"
 		}
 	}
 }
