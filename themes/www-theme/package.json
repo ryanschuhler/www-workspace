@@ -1,23 +1,23 @@
 {
-	"name": "www-theme",
-	"version": "1.0.0",
-	"main": "package.json",
+	"devDependencies": {
+		"gulp": "^3.8.10",
+		"liferay-theme-deps-7.0": "~1.2.1",
+		"liferay-theme-tasks": "^1.4.2"
+	},
 	"keywords": [
 		"liferay-theme"
 	],
 	"liferayTheme": {
 		"baseTheme": "styled",
-		"screenshot": "",
 		"rubySass": false,
+		"screenshot": "",
 		"templateLanguage": "ftl",
 		"version": "7.0"
 	},
-	"devDependencies": {
-		"gulp": "^3.8.10",
-		"liferay-theme-tasks": "^1.4.2",
-		"liferay-theme-deps-7.0": "~1.2.1"
-	},
+	"main": "package.json",
+	"name": "www-theme",
 	"publishConfig": {
 		"tag": "7_0_x"
-	}
+	},
+	"version": "1.0.0"
 }
