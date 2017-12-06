@@ -1,4 +1,4 @@
-configure(subprojects.findAll {it.getParent().name == ("modules") || it.getParent().name == ("themes")}) {
+configure(subprojects.findAll {it.getParent().name == ("apps") || it.getParent().name == ("extensions") || it.getParent().name == ("overrides") ||  it.getParent().name == ("themes")}) {
 	task dockerDeploy(type: Exec) {
 		def bndFile = file("bnd.bnd")
 		def jsonFile = file('package.json')
