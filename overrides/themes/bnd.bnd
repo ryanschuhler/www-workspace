@@ -1,0 +1,3 @@
+Bundle-Name: Themes Override
+Bundle-SymbolicName: com.liferay.osb.www.overrides.themes
+Bundle-Version: 1.0.0

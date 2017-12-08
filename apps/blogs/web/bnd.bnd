@@ -1,0 +1,3 @@
+Bundle-Name: Blogs Web
+Bundle-SymbolicName: com.liferay.osb.www.blogs.web
+Bundle-Version: 1.0.0
