@@ -12,22 +12,23 @@
  * details.
  */
 
-package com.liferay.osb.www.util;
+package com.liferay.osb.www.configuration;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.util.portlet.PortletProps;
+import aQute.bnd.annotation.metatype.Meta;
+
+import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 
 /**
- * @author Joan H. Kim
+ * @author Ryan Schuhler
  */
-public class PortletPropsValues {
+@ExtendedObjectClassDefinition(category = "other")
+@Meta.OCD(id = "com.liferay.osb.www.configuration.VerifyUserConfiguration")
+public interface VerifyUserConfiguration {
 
-	public static final String OSB_WWW_VERIFY_USER_API_TOKEN =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.OSB_WWW_VERIFY_USER_API_TOKEN));
+	@Meta.AD(id = "api.token", required = true)
+	public String apiToken();
 
-	public static final String OSB_WWW_VERIFY_USER_SERVLET_URL =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.OSB_WWW_VERIFY_USER_SERVLET_URL));
+	@Meta.AD(id = "servlet.url", required = true)
+	public String servletURL();
 
 }

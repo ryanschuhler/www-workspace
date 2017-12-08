@@ -1,6 +1,21 @@
 buildscript {
+	repositories {
+		maven {
+			url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+		}
+	}
 	dependencies {
-		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.source.formatter", version: "2.3.18"
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins", version: "latest.release"
+	}
+}
+
+subprojects {
+	buildscript {
+		repositories {
+			maven {
+				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+			}
+		}
 	}
 
 	repositories {
@@ -8,12 +23,6 @@ buildscript {
 			url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
 		}
 	}
-}
-
-apply plugin: "com.liferay.source.formatter"
-
-allprojects {
-	apply plugin: "idea"
 }
 
 apply from: "build-ext.gradle"
