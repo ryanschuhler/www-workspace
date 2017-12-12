@@ -25,9 +25,9 @@ configure(subprojects.findAll {it.getParent().name == ("apps") || it.getParent()
 		}
 
 		if (srcPath != "") {
-			println "Deploying ${srcPath} to ${workspace.property('docker.container.name')} docker container"
+			println "Deploying ${srcPath} to ${workspace.property('docker.liferay.container.name')} docker container"
 
-			commandLine "docker", "cp", srcPath, "${workspace.property('docker.container.name')}:${workspace.property('docker.deploy.destination.path')}"
+			commandLine "docker", "cp", srcPath, "${workspace.property('docker.liferay.container.name')}:${workspace.property('docker.liferay.home')}/deploy"
 		}
 		else {
 			commandLine "echo", "Skipping docker deploy because gradle properties or files are missing"
