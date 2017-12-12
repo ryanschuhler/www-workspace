@@ -1,0 +1,69 @@
+version: '3.3'
+
+networks:
+  www-external:
+    internal: false
+  www-internal:
+    internal: true
+
+services:
+  elasticsearch:
+    build: elasticsearch/.
+    container_name: elasticsearch
+    image: elasticsearch:www-base
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - "elasticsearch:/usr/share/elasticsearch/data"
+  httpd:
+    build: httpd/.
+    container_name: httpd
+    image: httpd:www-base
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "apache:/var/www/html"
+  liferay:
+    build:
+      args:
+        LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/7.0.10.6/liferay-dxp-digital-enterprise-tomcat-7.0-sp6-20171010144253003.zip
+        LIFERAY_FIXPACK_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-32-7010.zip
+      context: liferay/.
+    container_name: liferay
+    depends_on:
+     - "mariadb"
+    environment:
+      - "VIRTUAL_PORT=8080"
+    image: liferay:www-base
+    networks:
+      - "www-external"
+      - "www-internal"
+    volumes:
+      - "liferay:/opt/java/liferay/data"
+  mariadb:
+    build: mariadb/.
+    container_name: mariadb
+    environment:
+      - "MYSQL_DATABASE=lportal"
+      - "MYSQL_ROOT_PASSWORD=passw0rd"
+      - "character-set-server=utf8mb4"
+      - "collation-server=utf8mb4_unicode_ci"
+    image: mariadb:www-base
+    networks:
+      - "www-internal"
+    volumes:
+      - "mariadb:/var/lib/mysql"
+
+volumes:
+  apache:
+  elasticsearch:
+  liferay:
+  mariadb:

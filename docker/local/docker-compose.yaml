@@ -7,22 +7,9 @@ networks:
     internal: true
 
 services:
-  apache:
-    build: apache/.
-    container_name: apache
-    image: apache
-    networks:
-      - "www-external"
-      - "www-internal"
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - "apache:/var/www/html"
   elasticsearch:
-    build: elasticsearch/.
     container_name: elasticsearch
-    image: elasticsearch
+    image: elasticsearch:www-base
     networks:
       - "www-external"
       - "www-internal"
@@ -31,29 +18,34 @@ services:
       - "9300:9300"
     volumes:
       - "elasticsearch:/usr/share/elasticsearch/data"
+  httpd:
+    container_name: httpd
+    image: httpd:www-base
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "apache:/var/www/html"
   liferay:
-    build:
-      args:
-        LIFERAY_HOME_NAME: liferay-dxp-digital-enterprise-7.0-sp6
-        LIFERAY_TOMCAT_URL: http://mirrors/files.liferay.com/private/ee/portal/7.0.10.6/liferay-dxp-digital-enterprise-tomcat-7.0-sp6-20171010144253003.zip
-        WORKSPACE_DIR: /tmp/www-workspace-master
-        WORKSPACE_URL: https://github.com/ryanschuhler/www-workspace/archive/master.zip
-      context: liferay/.
+    build: liferay/.
     container_name: liferay
     depends_on:
      - "mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
-    image: liferay
+    image: liferay:www-local
     networks:
       - "www-external"
       - "www-internal"
     volumes:
-      - "liferay:/opt/liferay/home/data"
+      - "liferay:/opt/java/liferay/data"
   mariadb:
     build:
       args:
-        DB_URL: http://mirrors/files.liferay.com/private/lrdcom/www_lportal-2017-11-27_19-00-PST.sql.gz
+        DB_URL: http://mirrors/files.liferay.com/private/lrdcom/www_lportal-2017-12-10_19-00-PST.sql.gz
       context: mariadb/.
     container_name: mariadb
     environment:
@@ -61,7 +53,7 @@ services:
       - "MYSQL_ROOT_PASSWORD=passw0rd"
       - "character-set-server=utf8mb4"
       - "collation-server=utf8mb4_unicode_ci"
-    image: mariadb
+    image: mariadb:www-local
     networks:
       - "www-internal"
     volumes:
@@ -71,7 +63,7 @@ services:
     container_name: mockmock
     expose:
       - "25"
-    image: mockmock
+    image: mockmock:www-local
     networks:
       - "www-external"
       - "www-internal"
