@@ -1,36 +1,41 @@
-configure(subprojects.findAll {it.getParent().name == ("apps") || it.getParent().name == ("extensions") || it.getParent().name == ("overrides") ||  it.getParent().name == ("themes")}) {
+configure(subprojects.findAll {it.getRootProject().property('liferay.workspace.modules.dir').contains(it.getParent().name)}) { -> project
 	task dockerDeploy(type: Exec) {
-		def bndFile = file("bnd.bnd")
-		def jsonFile = file('package.json')
-		def srcPath = ""
-		def workspace = project.getRootProject()
+		doLast {
+			def bndFile = file("bnd.bnd")
+			def jsonFile = file('package.json')
+			def srcPath = ""
+			def workspace = project.getRootProject()
 
-		if (bndFile.exists()) {
-			def props = new Properties()
+			if (bndFile.exists()) {
+				def props = new Properties()
 
-			bndFile.withInputStream { props.load(it) }
+				bndFile.withInputStream { props.load(it) }
 
-			def bundleName = props.getProperty("Bundle-SymbolicName")
-			def bundleVersion = props.getProperty("Bundle-Version")
+				def bundleName = props.getProperty("Bundle-SymbolicName")
+				def bundleVersion = props.getProperty("Bundle-Version")
 
-			srcPath = "build/libs/${bundleName}-${bundleVersion}.jar"
+				srcPath = "build/libs/${bundleName}-${bundleVersion}.jar"
+			}
+
+			if (jsonFile.exists()) {
+				def json = new groovy.json.JsonSlurper().parseText(jsonFile.text)
+
+				def name = json.name
+
+				srcPath = "dist/${name}.war"
+			}
+
+			if (srcPath != "") {
+				exec {
+					commandLine "docker", "cp", srcPath, "${workspace.property('docker.liferay.container.name')}:${workspace.property('docker.liferay.home')}/deploy"
+				}
+
+				exec {
+					commandLine "echo", "Copying ${srcPath} to ${workspace.property('docker.liferay.container.name')} docker container"
+				}
+			}
 		}
 
-		if (jsonFile.exists()) {
-			def json = new groovy.json.JsonSlurper().parseText(jsonFile.text)
-
-			def name = json.name
-
-			srcPath = "dist/${name}.war"
-		}
-
-		if (srcPath != "") {
-			println "Deploying ${srcPath} to ${workspace.property('docker.liferay.container.name')} docker container"
-
-			commandLine "docker", "cp", srcPath, "${workspace.property('docker.liferay.container.name')}:${workspace.property('docker.liferay.home')}/deploy"
-		}
-		else {
-			commandLine "echo", "Skipping docker deploy because gradle properties or files are missing"
-		}
+		commandLine "echo", "Deploying ${project.name}"
 	}
 }
