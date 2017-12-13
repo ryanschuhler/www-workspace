@@ -12,30 +12,6 @@ ARG LIFERAY_DOWNLOAD_URL
 ARG LIFERAY_FIXPACK_DOWNLOAD_URL
 
 ENV LIFERAY_HOME=/opt/java/liferay
-#ENV LIFERAY_SHARED=/storage/liferay
-#ENV LIFERAY_WEB_SERVER_PROTOCOL=https
-
-ENV GOSU_VERSION="1.7" \
-  GOSU_DOWNLOAD_URL="https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64" \
-  GOSU_DOWNLOAD_SIG="https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64.asc" \
-  GOSU_DOWNLOAD_KEY="0x036A9C25BF357DD4"
-
-RUN buildDeps='gnupg' HOME='/root' \
-  && set -x \
-  && apk add --update $buildDeps \
-  && gpg-agent --daemon \
-  && gpg --keyserver pgp.mit.edu --recv-keys $GOSU_DOWNLOAD_KEY \
-  && echo "trusted-key $GOSU_DOWNLOAD_KEY" >> /root/.gnupg/gpg.conf \
-  && curl -sSL "$GOSU_DOWNLOAD_URL" > gosu-amd64 \
-  && curl -sSL "$GOSU_DOWNLOAD_SIG" > gosu-amd64.asc \
-  && gpg --verify gosu-amd64.asc \
-  && rm -f gosu-amd64.asc \
-  && mv gosu-amd64 /usr/bin/gosu \
-  && chmod +x /usr/bin/gosu \
-  && apk del --purge $buildDeps \
-  && rm -rf /root/.gnupg \
-  && rm -rf /var/cache/apk/* \
-  && gosu nobody true
 
 COPY ./*.zip /opt/java/
 
@@ -70,9 +46,6 @@ EXPOSE 11311/tcp
 
 COPY resources/ /opt/java/liferay/
 
-COPY docker-entrypoint.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN chown -R liferay /opt/java/liferay /usr/local/bin
 
 CMD ["/opt/java/liferay/tomcat/bin/catalina.sh", "run"]

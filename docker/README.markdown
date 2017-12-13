@@ -21,7 +21,7 @@ This is an environment setup for www.liferay.com using both docker and Liferay w
 * For logs run `docker logs -f [CONTAINER_ID|CONTAINER_NAME]` ie `docker logs -f liferay`
 * To navigate the terminal of a container run  `docker exec -it [CONTAINER_ID|CONTAINER_NAME] /bin/sh` ie `docker exec -it mariadb /bin/sh`
 * As you make changes to modules you can either run `gradle dockerDeploy` from your module to hot deploy it. Or you can bring down your containers with `gradle down`, rebuild with `gradle build`, and bring them back up with `gradle up`
-* To copy files from your computer to a docker container run `docker cp [containerName]:[containerPath] [localPath]` ie `docker cp liferay:/usr/local/liferay-dxp-digital-enterprise-7.0-sp6/deploy ~/Desktop/dxp/deploy/`
+* To copy files from your computer to a docker container run `docker cp [localPath] [containerName]:[containerPath]` ie `docker cp -a ~/Desktop/dxp/deploy/ liferay:/opt/java/liferay/deploy`
 
 ## What is installed
 If you look at the docker-compose.yaml you can see all of the containers and settings that are being installed. These include

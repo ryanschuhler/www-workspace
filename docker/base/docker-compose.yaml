@@ -46,6 +46,7 @@ services:
     networks:
       - "www-external"
       - "www-internal"
+    user: liferay
     volumes:
       - "liferay:/opt/java/liferay/data"
   mariadb:
