@@ -67,6 +67,7 @@ public class VerifyUserServlet extends HttpServlet {
 	public void service(
 		HttpServletRequest request, HttpServletResponse response) {
 
+System.out.println("************ verify user service ************");
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -88,30 +89,30 @@ public class VerifyUserServlet extends HttpServlet {
 				return;
 			}
 
-			HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-
-			HttpClient httpClient = httpClientBuilder.build();
-
+//			HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+//
+//			HttpClient httpClient = httpClientBuilder.build();
+//
 			String servletURL = HttpUtil.addParameter(
 				_verifyUserConfiguration.servletURL(), "userUuid",
 				user.getUuid());
 
 			URI uri = new URI(servletURL);
 
-			HttpPost httpPost = new HttpPost(uri);
-
-			httpPost.addHeader(
-				"OSB_Verify_User_API_Token",
-				_verifyUserConfiguration.apiToken());
-
-			HttpResponse httpResponse = httpClient.execute(httpPost);
-
-			if (_log.isDebugEnabled()) {
-				StatusLine statusLine = httpResponse.getStatusLine();
-
-				_log.debug(
-					"Server returned status " + statusLine.getStatusCode());
-			}
+//			HttpPost httpPost = new HttpPost(uri);
+//
+//			httpPost.addHeader(
+//				"OSB_Verify_User_API_Token",
+//				_verifyUserConfiguration.apiToken());
+//
+//			HttpResponse httpResponse = httpClient.execute(httpPost);
+//
+//			if (_log.isDebugEnabled()) {
+//				StatusLine statusLine = httpResponse.getStatusLine();
+//
+//				_log.debug(
+//					"Server returned status " + statusLine.getStatusCode());
+//			}
 		}
 		catch (Exception e) {
 			_log.error(e, e);

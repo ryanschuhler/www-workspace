@@ -22,4 +22,5 @@
 /plugins-sdk/dependencies/**/*.jar
 /plugins-sdk/dist
 /plugins-sdk/lib
+/resources
 test-results
