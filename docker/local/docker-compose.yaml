@@ -56,7 +56,10 @@ services:
       - "collation-server=utf8mb4_unicode_ci"
     image: mariadb:www-local
     networks:
+      - "www-external"
       - "www-internal"
+    ports:
+      - "3307:3306"
     volumes:
       - "mariadb:/var/lib/mysql"
   mockmock:
