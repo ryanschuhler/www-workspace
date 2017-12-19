@@ -46,7 +46,7 @@ services:
   mariadb:
     build:
 #      args:
-#        DB_URL: http://mirrors/files.liferay.com/private/lrdcom/www_lportal-2017-12-10_19-00-PST.sql.gz
+#        DB_URL: http://mirrors/files.liferay.com/private/lrdcom/www_lportal-2017-12-18_19-00-PST.sql.gz
       context: mariadb/.
     container_name: mariadb
     environment:
