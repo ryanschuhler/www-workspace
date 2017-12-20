@@ -1,6 +1,16 @@
 package spicy.tomato;
 
+import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.model.DDMTemplate;
+import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
+import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
+import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
+import com.liferay.journal.model.JournalArticle;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringParser;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 
@@ -8,27 +18,20 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
-import import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
-import import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
-
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Joan H. Kim
@@ -108,6 +111,7 @@ public class IncinerateImpl implements Incinerate {
 					System.out.println("-----" + template.getTemplateName());
 				}
 			}
+			addStructures(structures);
 	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,73 +125,86 @@ public class IncinerateImpl implements Incinerate {
 	public final static String TEMPLATE = "template";
 
 
-	public void addTemplates(String[] templates) {
-		for (String template : templates) {
-			long groupId = ;
-			long resourceClassNameId= ;
-			File script = ;
-			String templateKey = ;
-			long groupId = ;
+	public void addTemplates(Structure structure, DDMStructure ddmStructure) throws PortalException {
+		for (Template template : structure.getTemplates()) {
+			long groupId = getGroupId(structure.getGroupName());
+			
+			long resourceClassNameId= 0;//TODO
+			String script = template.getContent();
+			String templateKey = template.getTemplateName();
 			long classNameId = PortalUtil.getClassNameId(
 				DDMStructure.class.getName());
-			long structureId = ;
+			long structureId = ddmStructure.getStructureId() ;
 
-			DDMTemplate ddmTemplate = DDMTemplateLocalService.fetchTemplate(
-				long groupId, long classNameId, String templateKey);
+			DDMTemplate ddmTemplate = _ddmTemplateLocalService.fetchTemplate(
+				 groupId,  classNameId, templateKey);
 
 			if (ddmTemplate != null) {
-				DDMTemplateLocalService.updateTemplate(
+				_ddmTemplateLocalService.updateTemplate(
 					ddmTemplate.getUserId(), ddmTemplate.getTemplateId(),
-					ddmTemplate.getClassPK(), ddmTemplate.getNameMap,
+					ddmTemplate.getClassPK(), ddmTemplate.getNameMap(),
 					ddmTemplate.getDescriptionMap(), ddmTemplate.getType(),
 					ddmTemplate.getMode(), ddmTemplate.getLanguage(),
 					script, ddmTemplate.getCacheable(),
 					ddmTemplate.getSmallImage(), ddmTemplate.getSmallImageURL(),
-					ddmTemplate.getSmallImageFile(), new ServiceContext())
+					null, new ServiceContext());
 			}
 			else {
-				DDMTemplateLocalService.addTemplate(
+				_ddmTemplateLocalService.addTemplate(
 					_USER_ID, groupId, classNameId, structureId,
 					resourceClassNameId, templateKey, Collections.emptyMap(),
 					Collections.emptyMap(), StringPool.BLANK, StringPool.BLANK,
 					StringPool.BLANK, script, Boolean.TRUE, Boolean.FALSE,
-					StringPool.BLANK, null, serviceContext)
+					StringPool.BLANK, null, new ServiceContext());
 			}
 		}
 	}
 
-	public void addStructures(String[] structures) {
-		for (String structure : structures) {
-			long groupId = ;
+	protected long getGroupId(String groupName) {
+		
+		//TODO: implement
+		return 10;
+	}
+	public void addStructures(List<Structure> structures) throws PortalException {
+		for (Structure structure : structures) {
+			long groupId = getGroupId(structure.getGroupName());
 			long classNameId = PortalUtil.getClassNameId(
 				JournalArticle.class.getName());
-			String structureKey = ;
-			String definition = ;
-			storageType = "json";
+			String structureKey = structure.getStructureKey();
+			String definition = structure.getContent();
+			String storageType = "json";
 
-			DDMStructure ddmStructure = DDMStructureLocalService.fetchStructure(
-				groupId, classNameId,
-				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID);
+			DDMStructure ddmStructure = _ddmStructureLocalService.fetchStructure(
+				groupId, classNameId, structureKey);
+				
 
 			if (ddmStructure != null) {
-				DDMStructureLocalService.updateStructure(
+				_ddmStructureLocalService.updateStructure(
 					ddmStructure.getGroupId(),
 					ddmStructure.getParentStructureId(),
 					ddmStructure.getClassNameId(),
 					ddmStructure.getStructureKey(), ddmStructure.getNameMap(),
 					ddmStructure.getDescriptionMap(), definition,
-					new ServiceContext())
+					new ServiceContext());
 			}
 			else {
-				DDMStructureLocalService.addStructure(
+				ddmStructure = _ddmStructureLocalService.addStructure(
 					_USER_ID, groupId,
 					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 					classNameId, structureKey, Collections.emptyMap(),
 					Collections.emptyMap(), null, null, storageType, -1,
-					new ServiceContext())
+					new ServiceContext());
 			}
+			
+			addTemplates(structure, ddmStructure);
 		}
 	}
+	
+	@Reference
+	private DDMStructureLocalService _ddmStructureLocalService;
 
-	private static final _USER_ID = 20156L;
+	@Reference
+	private DDMTemplateLocalService _ddmTemplateLocalService;
+
+	private static final long _USER_ID = 20156L;
 }
