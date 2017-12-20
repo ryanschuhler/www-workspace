@@ -2,6 +2,7 @@ package spicy.tomato;
 
 import com.liferay.portal.kernel.util.StringParser;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Tuple;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -84,7 +85,6 @@ public class IncinerateImpl implements Incinerate {
 			Map<Tuple, Structure> groupedStructures = structures.stream()
 							  .collect(Collectors.toMap(structure -> new Tuple(structure.getGroupName(), structure.getStructureKey()), structure -> structure));
 					
-			  
 			Enumeration<URL> templateURLs = bundle.findEntries("/ddm", "*.ftl", true);
 			
 			while (templateURLs.hasMoreElements()) {
