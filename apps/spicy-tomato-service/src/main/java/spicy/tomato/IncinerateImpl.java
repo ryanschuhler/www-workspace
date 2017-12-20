@@ -99,8 +99,7 @@ public class IncinerateImpl implements Incinerate {
 					new ServiceContext());
 			}
 
-			System.out.println(
-				"structure: " + ddmStructure.getStructureId());
+			System.out.println("structure: " + ddmStructure.getStructureId());
 
 			addTemplates(structure, ddmStructure);
 		}
@@ -146,8 +145,7 @@ public class IncinerateImpl implements Incinerate {
 					StringPool.BLANK, null, new ServiceContext());
 			}
 
-			System.out.println(
-				"template: " + ddmTemplate.getTemplateId());
+			System.out.println("template: " + ddmTemplate.getTemplateId());
 		}
 	}
 

@@ -1,1 +1,0 @@
-<a href="${url.getData()}" onclick="${onClickJS.getData()}">${ctaText.getData()}</a>

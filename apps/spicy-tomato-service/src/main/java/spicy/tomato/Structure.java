@@ -5,9 +5,7 @@ import java.util.List;
 
 public class Structure {
 
-	public Structure(
-		String groupKey, String structureKey, String content) {
-
+	public Structure(String groupKey, String structureKey, String content) {
 		_content = content;
 		_groupKey = groupKey;
 		_structureKey = structureKey;

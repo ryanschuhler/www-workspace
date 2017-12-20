@@ -5,90 +5,95 @@
 	"defaultLanguageId": "en_US",
 	"fields": [
 		{
+			"dataType": "string",
+			"indexType": "keyword",
 			"label": {
 				"en_US": "Button Text"
 			},
+			"localizable": true,
+			"name": "buttonText",
 			"predefinedValue": {
 				"en_US": ""
 			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
 			"style": {
 				"en_US": ""
 			},
 			"tip": {
 				"en_US": ""
 			},
-			"dataType": "string",
-			"indexType": "keyword",
-			"localizable": true,
-			"name": "buttonText",
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
 			"type": "text"
 		},
 		{
+			"dataType": "string",
+			"indexType": "keyword",
 			"label": {
 				"en_US": "URL"
 			},
+			"localizable": true,
+			"name": "url",
 			"predefinedValue": {
 				"en_US": ""
 			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
 			"style": {
 				"en_US": ""
 			},
 			"tip": {
 				"en_US": ""
 			},
-			"dataType": "string",
-			"indexType": "keyword",
-			"localizable": true,
-			"name": "url",
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
 			"type": "text"
 		},
 		{
+			"dataType": "string",
+			"indexType": "text",
 			"label": {
 				"en_US": "onClick JS"
 			},
+			"localizable": true,
+			"name": "onClickJS",
 			"predefinedValue": {
 				"en_US": ""
 			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
 			"style": {
 				"en_US": ""
 			},
 			"tip": {
 				"en_US": ""
 			},
-			"dataType": "string",
-			"indexType": "text",
-			"localizable": true,
-			"name": "onClickJS",
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
 			"type": "textarea"
 		},
 		{
+			"dataType": "string",
+			"indexType": "keyword",
 			"label": {
 				"en_US": "Color"
 			},
+			"localizable": true,
+			"multiple": false,
+			"name": "color",
 			"options": [
 				{
-					"value": "btn-primary",
 					"label": {
 						"en_US": "Default"
-					}
+					},
+					"value": "btn-primary"
 				},
 				{
-					"value": "btn-light",
 					"label": {
 						"en_US": "Light"
-					}
+					},
+					"value": "btn-light"
 				}
 			],
 			"predefinedValue": {
@@ -96,21 +101,16 @@
 					""
 				]
 			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
 			"style": {
 				"en_US": ""
 			},
 			"tip": {
 				"en_US": ""
 			},
-			"dataType": "string",
-			"indexType": "keyword",
-			"localizable": true,
-			"multiple": false,
-			"name": "color",
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
 			"type": "select"
 		}
 	]

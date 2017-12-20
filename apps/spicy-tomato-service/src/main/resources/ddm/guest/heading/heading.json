@@ -5,26 +5,26 @@
 	"defaultLanguageId": "en_US",
 	"fields": [
 		{
+			"dataType": "string",
+			"indexType": "keyword",
 			"label": {
 				"en_US": "Heading"
 			},
+			"localizable": true,
+			"name": "heading",
 			"predefinedValue": {
 				"en_US": ""
 			},
+			"readOnly": false,
+			"repeatable": false,
+			"required": false,
+			"showLabel": true,
 			"style": {
 				"en_US": ""
 			},
 			"tip": {
 				"en_US": ""
 			},
-			"dataType": "string",
-			"indexType": "keyword",
-			"localizable": true,
-			"name": "heading",
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
 			"type": "text"
 		}
 	]
