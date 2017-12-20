@@ -7,16 +7,19 @@ import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
+import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringParser;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -29,6 +32,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -61,26 +65,40 @@ public class IncinerateImpl implements Incinerate {
 			String definition = structure.getContent();
 			String storageType = "json";
 
+			if (Validator.isNull(definition)) {
+				System.out.println(
+					"Definition is null for structure: " + structureKey);
+				continue;
+			}
+
 			DDMStructure ddmStructure =
 				_ddmStructureLocalService.fetchStructure(
 					groupId, classNameId, structureKey);
 
-			if (ddmStructure != null) {
-				DDMForm ddmForm = _ddmFormJSONDeserializer.deserialize(
-					definition);
+			DDMForm ddmForm = _ddmFormJSONDeserializer.deserialize(definition);
 
-				_ddmStructureLocalService.updateStructure(
-						_ADMIN_USER_ID, ddmStructure.getStructureId(), ddmForm,
+			if (ddmStructure != null) {
+				ddmStructure = _ddmStructureLocalService.updateStructure(
+					_ADMIN_USER_ID, ddmStructure.getStructureId(),
+					ddmForm,
 						ddmStructure.getDDMFormLayout(), new ServiceContext());
 			}
 			else {
+				Map<Locale, String> nameMap = new HashMap<>();
+
+				nameMap.put(LocaleUtil.getDefault(), structure.getName());
+
 				ddmStructure = _ddmStructureLocalService.addStructure(
 					_ADMIN_USER_ID, groupId,
 					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-					classNameId, structureKey, Collections.emptyMap(),
-					Collections.emptyMap(), null, null, storageType, -1,
+					classNameId, structureKey, nameMap, Collections.emptyMap(),
+					ddmForm, DDMUtil.getDefaultDDMFormLayout(ddmForm),
+					storageType, DDMStructureConstants.TYPE_DEFAULT,
 					new ServiceContext());
 			}
+
+			System.out.println(
+				"structure: " + ddmStructure.getStructureId());
 
 			addTemplates(structure, ddmStructure);
 		}
@@ -92,18 +110,19 @@ public class IncinerateImpl implements Incinerate {
 		for (Template template : structure.getTemplates()) {
 			long groupId = getGroupId(structure.getGroupKey());
 
-			long resourceClassNameId = 0;//TODO
 			String script = template.getContent();
 			String templateKey = template.getTemplateName();
 			long classNameId = PortalUtil.getClassNameId(
 				DDMStructure.class.getName());
+			long resourceClassNameId = PortalUtil.getClassNameId(
+				JournalArticle.class.getName());
 			long structureId = ddmStructure.getStructureId();
 
 			DDMTemplate ddmTemplate = _ddmTemplateLocalService.fetchTemplate(
 				groupId, classNameId, templateKey);
 
 			if (ddmTemplate != null) {
-				_ddmTemplateLocalService.updateTemplate(
+				ddmTemplate = _ddmTemplateLocalService.updateTemplate(
 					ddmTemplate.getUserId(), ddmTemplate.getTemplateId(),
 					ddmTemplate.getClassPK(), ddmTemplate.getNameMap(),
 					ddmTemplate.getDescriptionMap(), ddmTemplate.getType(),
@@ -112,13 +131,21 @@ public class IncinerateImpl implements Incinerate {
 					ddmTemplate.getSmallImageURL(), null, new ServiceContext());
 			}
 			else {
-				_ddmTemplateLocalService.addTemplate(
+				Map<Locale, String> nameMap = new HashMap<>();
+
+				nameMap.put(
+					LocaleUtil.getDefault(), template.getTemplateName());
+
+				ddmTemplate = _ddmTemplateLocalService.addTemplate(
 					_ADMIN_USER_ID, groupId, classNameId, structureId,
-					resourceClassNameId, templateKey, Collections.emptyMap(),
+					resourceClassNameId, templateKey, nameMap,
 					Collections.emptyMap(), StringPool.BLANK, StringPool.BLANK,
 					StringPool.BLANK, script, Boolean.TRUE, Boolean.FALSE,
 					StringPool.BLANK, null, new ServiceContext());
 			}
+
+			System.out.println(
+				"template: " + ddmTemplate.getTemplateId());
 		}
 	}
 
@@ -127,6 +154,7 @@ public class IncinerateImpl implements Incinerate {
 		Bundle bundle = bundleContext.getBundle();
 
 		List<Structure> structures = new ArrayList<>();
+
 		try {
 			Enumeration<URL> structureURLs = bundle.findEntries(
 				"/ddm", "*.json", true);
@@ -150,11 +178,14 @@ public class IncinerateImpl implements Incinerate {
 
 			while (templateURLs.hasMoreElements()) {
 				URL templateURL = templateURLs.nextElement();
+
 				Map<String, String> templateParams = getResourceInfo(
-				TEMPLATE, templateURL);
+					TEMPLATE, templateURL);
+
 				Tuple tuple = new Tuple(
-				templateParams.get("groupName"),
-				templateParams.get("structureKey"));
+					templateParams.get("groupKey"),
+					templateParams.get("structureKey"));
+
 				Structure templateStructures = groupedStructures.get(tuple);
 
 				//TODO throw exception if no match?
@@ -210,6 +241,7 @@ public class IncinerateImpl implements Incinerate {
 			"{fileEntry:[^/]+}//{directory:[^/]+}/{ddm:[^/]+}/{groupKey:[^/]+}/{structureKey:[^/]+}/{filename:[^$]+}");
 
 		Map<String, String> params = new HashMap<>();
+
 		stringParser.parse(path.toString(), params);
 
 		params.put("content", content);
@@ -221,7 +253,7 @@ public class IncinerateImpl implements Incinerate {
 	protected Structure getStructure(Map<String, String> params) {
 		Structure structure = new Structure(
 				params.get("groupKey"), params.get("structureKey"),
-				params.get("content"));
+				params.get("filename"), params.get("content"));
 
 		return structure;
 	}
