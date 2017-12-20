@@ -14,6 +14,9 @@
 
 package spicy.tomato;
 
+import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.portal.kernel.exception.PortalException;
+
 import java.util.List;
 
 /**
@@ -21,6 +24,10 @@ import java.util.List;
  */
 public interface Incinerate {
 
-	public void sayHello();
+	public void addStructures(List<Structure> structures)
+		throws PortalException;
+
+	public void addTemplates(Structure structure, DDMStructure ddmStructure)
+		throws PortalException;
 
 }

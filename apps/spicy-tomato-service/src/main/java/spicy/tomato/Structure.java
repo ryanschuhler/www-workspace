@@ -5,26 +5,25 @@ import java.util.List;
 
 public class Structure {
 
-	public Structure(String groupName, String structureKey, String content) {
-		_groupName = groupName;
+	public Structure(String groupKey, String structureKey, String content) {
+		_groupKey = groupKey;
 		_structureKey = structureKey;
-		_templates = new ArrayList<Template>();
-		
+		_templates = new ArrayList<>();
+
 		_content = content;
 	}
-	
+
 	public void addTemplate(Template template) {
 		_templates.add(template);
 	}
-	
+
 	public String getContent() {
 		return _content;
 	}
 
-	public String getGroupName() {
-		return _groupName;
+	public String getGroupKey() {
+		return _groupKey;
 	}
-
 
 	public String getStructureKey() {
 		return _structureKey;
@@ -33,10 +32,10 @@ public class Structure {
 	public List<Template> getTemplates() {
 		return _templates;
 	}
-	
+
 	private String _content;
-	private String _groupName;
+	private String _groupKey;
 	private String _structureKey;
 	private List<Template> _templates;
-	
+
 }
