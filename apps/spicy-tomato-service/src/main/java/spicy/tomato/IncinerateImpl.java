@@ -68,6 +68,7 @@ public class IncinerateImpl implements Incinerate {
 			if (Validator.isNull(definition)) {
 				System.out.println(
 					"Definition is null for structure: " + structureKey);
+
 				continue;
 			}
 
@@ -86,7 +87,8 @@ public class IncinerateImpl implements Incinerate {
 			else {
 				Map<Locale, String> nameMap = new HashMap<>();
 
-				nameMap.put(LocaleUtil.getDefault(), structure.getName());
+				nameMap.put(
+					LocaleUtil.getDefault(), structure.getStructureKey());
 
 				ddmStructure = _ddmStructureLocalService.addStructure(
 					_ADMIN_USER_ID, groupId,
@@ -161,18 +163,18 @@ public class IncinerateImpl implements Incinerate {
 
 			while (structureURLs.hasMoreElements()) {
 				URL structureURL = structureURLs.nextElement();
-				
+
 				Map<String, String> structureParams = getResourceInfo(
 					STRUCTURE, structureURL);
 				structures.add(getStructure(structureParams));
 			}
 
 			Map<Tuple, Structure> groupedStructures = structures.stream()
-							.collect(
-								Collectors.toMap(
-									structure -> new Tuple(
-										structure.getGroupKey(),
-										structure.getStructureKey()), structure -> structure));
+				.collect(
+					Collectors.toMap(
+						structure -> new Tuple(
+							structure.getGroupKey(),
+							structure.getStructureKey()), structure -> structure));
 
 			Enumeration<URL> templateURLs = bundle.findEntries(
 				"/ddm", "*.ftl", true);
@@ -254,7 +256,7 @@ public class IncinerateImpl implements Incinerate {
 	protected Structure getStructure(Map<String, String> params) {
 		Structure structure = new Structure(
 				params.get("groupKey"), params.get("structureKey"),
-				params.get("directory"), params.get("content"));
+				params.get("content"));
 
 		return structure;
 	}
