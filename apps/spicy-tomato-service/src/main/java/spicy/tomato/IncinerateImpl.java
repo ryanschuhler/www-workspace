@@ -161,6 +161,7 @@ public class IncinerateImpl implements Incinerate {
 
 			while (structureURLs.hasMoreElements()) {
 				URL structureURL = structureURLs.nextElement();
+				
 				Map<String, String> structureParams = getResourceInfo(
 					STRUCTURE, structureURL);
 				structures.add(getStructure(structureParams));
@@ -253,7 +254,7 @@ public class IncinerateImpl implements Incinerate {
 	protected Structure getStructure(Map<String, String> params) {
 		Structure structure = new Structure(
 				params.get("groupKey"), params.get("structureKey"),
-				params.get("filename"), params.get("content"));
+				params.get("directory"), params.get("content"));
 
 		return structure;
 	}
