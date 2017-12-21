@@ -1,0 +1,5 @@
+Bundle-Name: GTM Theme Contributor
+Bundle-SymbolicName: com.liferay.osb.www.theme.contributor.gtm
+Bundle-Version: 1.0.0
+Liferay-Theme-Contributor-Type: osb.www.theme.contributor.gtm
+Web-ContextPath: /osb-www-theme-contributor-gtm
