@@ -1,4 +1,0 @@
-Bundle-Name: spicy-tomato-api
-Bundle-SymbolicName: spicy.tomato.api
-Bundle-Version: 1.0.0
-Export-Package: spicy.tomato.api.api

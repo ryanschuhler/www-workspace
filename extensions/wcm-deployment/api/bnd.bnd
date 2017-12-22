@@ -1,0 +1,4 @@
+Bundle-Name: WCM Deployment API
+Bundle-SymbolicName: com.liferay.osb.www.wcm.deployment.api
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.osb.www.wcm.deployment.api

@@ -1,0 +1,3 @@
+Bundle-Name: WCM Deployment Service
+Bundle-SymbolicName: com.liferay.osb.www.wcm.deployment.service
+Bundle-Version: 1.0.0

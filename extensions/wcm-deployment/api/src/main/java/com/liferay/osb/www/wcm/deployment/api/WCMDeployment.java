@@ -12,7 +12,7 @@
  * details.
  */
 
-package spicy.tomato;
+package com.liferay.osb.www.wcm.deployment;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author Joan H. Kim
  */
-public interface Incinerate {
+public interface WCMDeployment {
 
 	public void addStructures(List<Structure> structures)
 		throws PortalException;
