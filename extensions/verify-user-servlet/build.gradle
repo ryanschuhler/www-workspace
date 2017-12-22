@@ -1,6 +1,11 @@
 dependencies {
-	compile group:  "javax.servlet", name: "javax.servlet-api", version: "3.1.0"
-	compile group: "org.apache.httpcomponents", name: "httpclient", version: "4.5.2"
+	compileInclude group:  "javax.servlet", name: "javax.servlet-api", version: "3.1.0"
+	compileInclude group: "org.apache.httpcomponents", name: "httpclient", version: "4.5.2"
+
+//	compileInclude group: "org.apache.httpcomponents", name: "httpcore", version: "4.4.4"
+//	compileInclude group: 'org.apache.avalon.framework', name: 'avalon-framework-api', version: '4.3.1'
+//	compileInclude group: 'log4j', name: 'log4j', version: '1.2.17'
+
 
 	compileInclude group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileInclude group: "com.liferay", name: "com.liferay.portal.configuration.metatype", version: "2.0.0"
