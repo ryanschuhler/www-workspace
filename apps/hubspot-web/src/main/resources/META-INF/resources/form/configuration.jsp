@@ -24,7 +24,7 @@
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="hubspot-form-options">
 			<aui:fieldset>
-				<aui:input name="preferences--guid--" value="<%= hubSpotFormDisplayContext.getGUID() %>"/>
+				<aui:input name="preferences--guid--" value="<%= hubSpotFormDisplayContext.getGUID() %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 

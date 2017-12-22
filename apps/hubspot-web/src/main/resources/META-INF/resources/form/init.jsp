@@ -16,8 +16,15 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.hubspot.web.internal.display.context.HubSpotFormDisplayContext" %>
+<%@ page import="com.liferay.hubspot.web.internal.display.context.HubSpotFormDisplayContext" %><%@
+    page import="com.liferay.hubspot.model.HSForm" %><%@
+    page import="com.liferay.hubspot.model.HSFormDisplay" %><%@
+    page import="com.liferay.hubspot.model.HSFormFieldDisplay" %><%@
+    page import="com.liferay.hubspot.web.internal.constants.HubSpotWebKeys" %><%@
+    page import="com.liferay.portal.kernel.json.JSONArray" %>
 
 <%
 HubSpotFormDisplayContext hubSpotFormDisplayContext = new HubSpotFormDisplayContext(portletPreferences);
+		 
+HSForm hsForm = (HSForm)request.getAttribute(HubSpotWebKeys.HUBSPOT_FORM);
 %>

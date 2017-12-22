@@ -12,21 +12,16 @@
  * details.
  */
 
-package com.liferay.hubspot.web.internal.portlet.action;
-
-import com.liferay.hubspot.web.internal.constants.HubSpotPortletKeys;
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
-import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
-
-import org.osgi.service.component.annotations.Component;
+package com.liferay.hubspot.web.internal.constants;
 
 /**
  * @author Allen Ziegenfus
  */
-@Component(
-	immediate = true,
-	property = {"javax.portlet.name=" + HubSpotPortletKeys.HUBSPOT_FORM},
-	service = ConfigurationAction.class
-)
-public class HubSpotFormConfigurationAction extends DefaultConfigurationAction {
+public class HubSpotWebKeys {
+
+	public static final String HUBSPOT_FORM = "HUBSPOT_FORM";
+	
+	public static final String HUBSPOT_FORM_DISPLAY_CONTEXT =
+		"HUBSPOT_FORM_DISPLAY_CONTEXT";
+
 }

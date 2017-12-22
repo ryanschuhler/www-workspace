@@ -1,0 +1,14 @@
+Bundle-Name: hubspot-api
+Bundle-SymbolicName: com.liferay.hubspot.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.hubspot.exception,\
+	com.liferay.hubspot.model,\
+	com.liferay.hubspot.service.persistence,\
+	com.liferay.hubspot.converter,\
+	com.liferay.hubspot.exception,\
+	com.liferay.hubspot.model,\
+	com.liferay.hubspot.server,\
+	com.liferay.hubspot.service,\
+	com.liferay.hubspot.util
+-includeresource: META-INF/service.xml=../hubspot-service/service.xml
