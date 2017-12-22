@@ -1,0 +1,4 @@
+Bundle-Name: hubspot-web
+Bundle-SymbolicName: hubspot.web
+Bundle-Version: 1.0.0
+Export-Package: hubspot.web.constants
