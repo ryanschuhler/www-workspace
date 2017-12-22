@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -12,19 +11,22 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+package com.liferay.hubspot.web.internal.portlet.action;
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+import com.liferay.hubspot.web.constants.HubSpotPortletKeys;
+import com.liferay.portal.kernel.portlet.ConfigurationAction;
+import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
-taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
-taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
-taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+import org.osgi.service.component.annotations.Component;
 
-<liferay-theme:defineObjects />
-
-<portlet:defineObjects />
-
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+/**
+ * @author Peter Fellwock
+ */
+@Component(
+	immediate = true,
+	property = {"javax.portlet.name=" + HubSpotPortletKeys.HUBSPOT_FORM},
+	service = ConfigurationAction.class
+)
+public class HubSpotFormConfigurationAction extends DefaultConfigurationAction {
+}
