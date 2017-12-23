@@ -62,7 +62,7 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 			return null;
 		}
 
-		String uri = HubSpotURIUtil.get("forms/" + encodedGUID);
+		String uri = HubSpotURIUtil.get("forms", "forms/" + encodedGUID);
 		Map<String, String> headers = getHeaders(ContentTypes.APPLICATION_JSON);
 
 		Message message = _hubSpotServer.executeGet(uri, headers);
@@ -112,7 +112,7 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 			return null;
 		}
 
-		String uri = HubSpotURIUtil.get("forms/" + encodedGUID);
+		String uri = HubSpotURIUtil.get("forms", "forms/" + encodedGUID);
 		Map<String, String> headers = getHeaders(ContentTypes.APPLICATION_JSON);
 
 		Message message = _hubSpotServer.executeGet(uri, headers);

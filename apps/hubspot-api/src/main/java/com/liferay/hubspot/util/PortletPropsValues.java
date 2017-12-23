@@ -34,28 +34,28 @@ public class PortletPropsValues {
 	public static final String DOSSIERA_DATABASE_USER = "";
 //		PortletPropsKeys.DOSSIERA_DATABASE_USER
 
-	public static final int HTTP_CLIENT_MAX_CONNECTIONS_PER_HOST = 0;
+	public static final int HTTP_CLIENT_MAX_CONNECTIONS_PER_HOST = 1;
 //		PortletPropsKeys.HTTP_CLIENT_MAX_CONNECTIONS_PER_HOST
 
-	public static final int HTTP_CLIENT_MAX_TOTAL_CONNECTIONS = 0;
+	public static final int HTTP_CLIENT_MAX_TOTAL_CONNECTIONS = 1;
 //		PortletPropsKeys.HTTP_CLIENT_MAX_TOTAL_CONNECTIONS
 
 	public static final int HTTP_CLIENT_TIMEOUT = 0;
 //		PortletProps.get(PortletPropsKeys.HTTP_CLIENT_TIMEOUT
 
-	public static final String HUBSPOT_API_DOMAIN = "";
+	public static final String HUBSPOT_API_DOMAIN = "http://hubspot";
 //		PortletPropsKeys.HUBSPOT_API_DOMAIN
 
-	public static final String HUBSPOT_API_VERSION = "";
+	public static final String HUBSPOT_API_VERSION = "v2";
 //		PortletPropsKeys.HUBSPOT_API_VERSION
 
-	public static final String HUBSPOT_FORMS_DOMAIN = "";
+	public static final String HUBSPOT_FORMS_DOMAIN = "http://hubspot";
 //		PortletPropsKeys.HUBSPOT_FORMS_DOMAIN
 
-	public static final String HUBSPOT_FORMS_SUBDOMAIN = "";
+	public static final String HUBSPOT_FORMS_SUBDOMAIN = "uploads/forms";
 //		PortletPropsKeys.HUBSPOT_FORMS_SUBDOMAIN
 
-	public static final String HUBSPOT_FORMS_VERSION = "";
+	public static final String HUBSPOT_FORMS_VERSION = "v2";
 //		PortletPropsKeys.HUBSPOT_FORMS_VERSION
 
 	public static final String HUBSPOT_RENEWAL_COUNTRY_CODES = "";
@@ -79,10 +79,10 @@ public class PortletPropsValues {
 	public static final String HUBSPOT_RENEWAL_USER_ID = "";
 //		PortletPropsKeys.HUBSPOT_RENEWAL_USER_ID
 
-	public static final String HUBSPOT_SETTINGS_HAPIKEY = "";
+	public static final String HUBSPOT_SETTINGS_HAPIKEY = "apikey";
 //		PortletPropsKeys.HUBSPOT_SETTINGS_HAPIKEY
 
-	public static final String HUBSPOT_SETTINGS_PORTAL_ID = "";
+	public static final String HUBSPOT_SETTINGS_PORTAL_ID = "myportalid";
 //		PortletPropsKeys.HUBSPOT_SETTINGS_PORTAL_ID
 
 	public static final int HUBSPOT_VID_SYNC_INTERVAL = 0;

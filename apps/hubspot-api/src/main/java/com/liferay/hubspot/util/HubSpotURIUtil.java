@@ -14,6 +14,7 @@
 
 package com.liferay.hubspot.util;
 
+import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -43,9 +44,9 @@ public class HubSpotURIUtil {
 		sb.append(apiEndpoint);
 
 		String url = sb.toString();
-
-		return HttpUtil.addParameter(
-			url, "hapikey", PortletPropsValues.HUBSPOT_SETTINGS_HAPIKEY);
+		return url;
+		//return HttpUtil.addParameter(
+		//	url, "hapikey", PortletPropsValues.HUBSPOT_SETTINGS_HAPIKEY);
 	}
 
 	public static String getSubmitForm(String guid) {
