@@ -44,9 +44,9 @@ public class HubSpotURIUtil {
 		sb.append(apiEndpoint);
 
 		String url = sb.toString();
-		return url;
-		//return HttpUtil.addParameter(
-		//	url, "hapikey", PortletPropsValues.HUBSPOT_SETTINGS_HAPIKEY);
+		
+		return HttpUtil.addParameter(
+			url, "hapikey", PortletPropsValues.HUBSPOT_SETTINGS_HAPIKEY);
 	}
 
 	public static String getSubmitForm(String guid) {

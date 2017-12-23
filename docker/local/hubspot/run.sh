@@ -2,7 +2,7 @@
 
 args="$@"
 
-args="$@ -p 80"
+args="$@ -p 80 --id guid"
 
 file=/data/routes.json
 if [ -f $file ]; then

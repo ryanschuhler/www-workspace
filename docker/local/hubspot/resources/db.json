@@ -1,5 +1,6 @@
 {
 	"forms": [{
+		"hapikey": "apikey",
 		"portalId": 62515,
 		"guid": "1eae3941-9ce8-411d-8b91-87a92c0c9d5c",
 		"name": "Example Test Form",
@@ -11,122 +12,108 @@
 		"followUpId": "",
 		"notifyRecipients": "",
 		"leadNurturingCampaignId": "",
-		"formFieldGroups": [{
-			"fields": [{
-				"name": "firstname",
-				"label": "First Name",
-				"type": "string",
-				"fieldType": "text",
-				"description": "",
-				"groupName": "contactinformation",
-				"displayOrder": -1,
-				"required": false,
-				"selectedOptions": [
+		"fields": [{
+			"name": "firstname",
+			"label": "First Name",
+			"type": "string",
+			"fieldType": "text",
+			"description": "",
+			"groupName": "contactinformation",
+			"displayOrder": -1,
+			"required": false,
+			"selectedOptions": [
 
-				],
-				"options": [
+			],
+			"options": [
 
-				],
-				"validation": {
-					"name": "",
-					"message": "",
-					"data": "",
-					"useDefaultBlockList": false,
-					"blockedEmailAddresses": [
+			],
+			"validation": {
+				"name": "",
+				"message": "",
+				"data": "",
+				"useDefaultBlockList": false,
+				"blockedEmailAddresses": [
 
-					]
-				},
-				"enabled": true,
-				"hidden": false,
-				"defaultValue": "",
-				"isSmartField": false,
-				"unselectedLabel": "",
-				"placeholder": "",
-				"dependentFieldFilters": [
+				]
+			},
+			"enabled": true,
+			"hidden": false,
+			"defaultValue": "",
+			"isSmartField": false,
+			"unselectedLabel": "",
+			"placeholder": "",
+			"dependentFieldFilters": [
 
-				],
-				"labelHidden": false
-			}, {
-				"name": "lastname",
-				"label": "Last Name",
-				"type": "string",
-				"fieldType": "text",
-				"description": "",
-				"groupName": "contactinformation",
-				"displayOrder": -1,
-				"required": false,
-				"selectedOptions": [
-
-				],
-				"options": [
-
-				],
-				"validation": {
-					"name": "",
-					"message": "",
-					"data": "",
-					"useDefaultBlockList": false,
-					"blockedEmailAddresses": [
-
-					]
-				},
-				"enabled": true,
-				"hidden": false,
-				"defaultValue": "",
-				"isSmartField": false,
-				"unselectedLabel": "",
-				"placeholder": "",
-				"dependentFieldFilters": [
-
-				],
-				"labelHidden": false
-			}],
-			"default": true,
-			"isSmartGroup": false,
-			"richText": {
-				"content": ""
-			}
+			],
+			"labelHidden": false
 		}, {
-			"fields": [{
+			"name": "lastname",
+			"label": "Last Name",
+			"type": "string",
+			"fieldType": "text",
+			"description": "",
+			"groupName": "contactinformation",
+			"displayOrder": -1,
+			"required": false,
+			"selectedOptions": [
+
+			],
+			"options": [
+
+			],
+			"validation": {
+				"name": "",
+				"message": "",
+				"data": "",
+				"useDefaultBlockList": false,
+				"blockedEmailAddresses": [
+
+				]
+			},
+			"enabled": true,
+			"hidden": false,
+			"defaultValue": "",
+			"isSmartField": false,
+			"unselectedLabel": "",
+			"placeholder": "",
+			"dependentFieldFilters": [
+
+			],
+			"labelHidden": false
+		}, {
+			"name": "email",
+			"label": "Email",
+			"type": "string",
+			"fieldType": "text",
+			"description": "",
+			"groupName": "contactinformation",
+			"displayOrder": -1,
+			"required": true,
+			"selectedOptions": [
+
+			],
+			"options": [
+
+			],
+			"validation": {
 				"name": "email",
-				"label": "Email",
-				"type": "string",
-				"fieldType": "text",
-				"description": "",
-				"groupName": "contactinformation",
-				"displayOrder": -1,
-				"required": true,
-				"selectedOptions": [
+				"message": "Please enter a valid email address",
+				"data": "",
+				"useDefaultBlockList": false,
+				"blockedEmailAddresses": [
 
-				],
-				"options": [
+				]
+			},
+			"enabled": true,
+			"hidden": false,
+			"defaultValue": "",
+			"isSmartField": false,
+			"unselectedLabel": "",
+			"placeholder": "",
+			"dependentFieldFilters": [
 
-				],
-				"validation": {
-					"name": "email",
-					"message": "Please enter a valid email address",
-					"data": "",
-					"useDefaultBlockList": false,
-					"blockedEmailAddresses": [
-
-					]
-				},
-				"enabled": true,
-				"hidden": false,
-				"defaultValue": "",
-				"isSmartField": false,
-				"unselectedLabel": "",
-				"placeholder": "",
-				"dependentFieldFilters": [
-
-				],
-				"labelHidden": false
-			}],
-			"default": true,
-			"isSmartGroup": false,
-			"richText": {
-				"content": ""
-			}
+			],
+			"labelHidden": false
 		}],
 		"createdAt": 1479855093627,
 		"updatedAt": 1479855101085,
@@ -144,21 +131,5 @@
 		"cloneable": true,
 		"editable": true,
 		"formType": "HUBSPOT"
-	}],
-	"posts": [{
-		"id": 1,
-		"body": "foo"
-	}, {
-		"id": 2,
-		"body": "bar"
-	}],
-	"comments": [{
-		"id": 1,
-		"body": "baz",
-		"postId": 1
-	}, {
-		"id": 2,
-		"body": "qux",
-		"postId": 2
 	}]
 }
