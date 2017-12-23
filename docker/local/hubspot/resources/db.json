@@ -106,7 +106,7 @@
 			},
 			"enabled": true,
 			"hidden": false,
-			"defaultValue": "",
+			"defaultValue": "test@deathray.com",
 			"isSmartField": false,
 			"unselectedLabel": "",
 			"placeholder": "",
@@ -131,5 +131,17 @@
 		"cloneable": true,
 		"editable": true,
 		"formType": "HUBSPOT"
+	}],
+	"contacts": [{
+		"hapikey": "apikey",
+		"guid": "testuser",
+		"properties": {
+			"firstname": {
+				"value": "death"
+			},
+			"lastname": {
+				"value": "ray"
+			}
+		}
 	}]
 }

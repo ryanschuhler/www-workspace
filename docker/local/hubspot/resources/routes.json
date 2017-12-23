@@ -1,4 +1,6 @@
 {
 	"/forms/v2/forms/:guid": "/forms/:guid",
-	"/forms/v1/forms/:guid": "/forms/:guid"
+	"/forms/v1/forms/:guid": "/forms/:guid",
+	"/contacts/v2/contact/utk/:utk/profile": "/contacts/:utk",
+	"/contacts/v2/contact/utk/:utk/profile/\\?hapikey=:hapikey": "/contacts/:utk"
 }
