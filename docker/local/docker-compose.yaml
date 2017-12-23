@@ -75,6 +75,17 @@ services:
       - "8282:8282"
     volumes:
       - "mockmock:/home"
+  hubspot:
+    build: hubspot/.
+    container_name: hubspot 
+    image: hubspot:www-local
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8000:80"
+    volumes:
+      - "hubspot:/data"
 
 volumes:
   apache:
@@ -82,3 +93,4 @@ volumes:
   liferay:
   mariadb:
   mockmock:
+  hubspot:

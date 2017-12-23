@@ -1,0 +1,4 @@
+{
+	"/forms/v2/forms/:guid": "/forms?guid=:guid",
+	"/forms/v2/forms/:guid\\?hapikey=:hapikey": "/forms?guid=:guid"
+}

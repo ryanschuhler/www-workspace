@@ -1,5 +1,5 @@
 configure(subprojects.findAll {it.getRootProject().property('liferay.workspace.modules.dir').contains(it.getParent().name)}) { -> project
-	task dockerDeploy(type: Exec) {
+	task dockerDeploy(type: Exec, dependsOn: 'build') {
 		doLast {
 			def bndFile = file("bnd.bnd")
 			def jsonFile = file('package.json')
