@@ -54,8 +54,8 @@ public class HSFormLocalServiceWrapper implements HSFormLocalService,
 
 	@Override
 	public com.liferay.hubspot.model.HSFormDisplay getHSFormDisplay(
-		java.lang.String guid) {
-		return _hsFormLocalService.getHSFormDisplay(guid);
+		java.lang.String guid, java.lang.String userToken) {
+		return _hsFormLocalService.getHSFormDisplay(guid, userToken);
 	}
 
 	/**

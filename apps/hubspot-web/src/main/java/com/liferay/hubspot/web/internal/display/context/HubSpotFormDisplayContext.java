@@ -14,24 +14,30 @@
 
 package com.liferay.hubspot.web.internal.display.context;
 
-import com.liferay.hubspot.model.HSForm;
 import com.liferay.hubspot.model.HSFormDisplay;
+import com.liferay.hubspot.service.HSContactLocalService;
 import com.liferay.hubspot.service.HSFormLocalService;
-import com.liferay.hubspot.service.HSFormLocalServiceUtil;
-import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.hubspot.web.internal.constants.HubSpotWebKeys;
 import com.liferay.portal.kernel.util.StringPool;
 
 import javax.portlet.PortletPreferences;
-
-import org.osgi.service.component.annotations.Reference;
+import javax.portlet.RenderRequest;
 
 /**
  * @author Allen Ziegenfus
  */
 public class HubSpotFormDisplayContext {
 
-	public HubSpotFormDisplayContext(PortletPreferences portletPreferences) {
+	public HubSpotFormDisplayContext(RenderRequest renderRequest,
+			PortletPreferences portletPreferences,
+			HSFormLocalService hsFormLocalService,
+			HSContactLocalService hsContactLocalService) {
+		
+		_renderRequest = renderRequest;		
 		_portletPreferences = portletPreferences;
+		
+		_hsContactLocalService = hsContactLocalService;
+		_hsFormLocalService = hsFormLocalService;
 	}
 
 	public String getGUID() {
@@ -45,12 +51,17 @@ public class HubSpotFormDisplayContext {
 	}
 	
 	public HSFormDisplay getHSFormDisplay() {
-		return HSFormLocalServiceUtil.getHSFormDisplay(_guid);		
+		
+		String userToken = 
+			(String)_renderRequest.getAttribute(
+				HubSpotWebKeys.OSB_WWW_HUBSPOT_UTK);
+		
+		return _hsFormLocalService.getHSFormDisplay(_guid, userToken);		
 	}
 	
 	private String _guid;
+	private final HSFormLocalService _hsFormLocalService;
+	private final HSContactLocalService _hsContactLocalService;
 	private final PortletPreferences _portletPreferences;
-
-	@Reference
-	private HSFormLocalService _hsFormLocalService;
+	private final RenderRequest _renderRequest;
 }

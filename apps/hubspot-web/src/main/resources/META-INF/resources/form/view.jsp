@@ -24,7 +24,10 @@
 	for (HSFormFieldDisplay hsFormFieldDisplay : hsFormDisplay.getFormFieldDisplays()) {
 		%>
 			<div>
-			<%= hsFormFieldDisplay.getName()  %>: <%= hsFormFieldDisplay.getFieldType()  %> 
+				<label class="field-label" for="<%= hsFormFieldDisplay.getName() %>"><%= hsFormFieldDisplay.getLabel() %></label>
+				<input name="<%= hsFormFieldDisplay.getName() %>" 
+						type="<%= hsFormFieldDisplay.getFieldType() %>"
+						value="<%= hsFormFieldDisplay.getValue() %>" />
 			</div>
 		<% 	
 		

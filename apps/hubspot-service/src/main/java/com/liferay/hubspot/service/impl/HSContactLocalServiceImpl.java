@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http.Body;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.model.User;
@@ -808,7 +809,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 		return hsContact;
 	}
 
-	@Reference
+	@ServiceReference(type = HubSpotServer.class)
 	private HubSpotServer _hubSpotServer;
 
 }

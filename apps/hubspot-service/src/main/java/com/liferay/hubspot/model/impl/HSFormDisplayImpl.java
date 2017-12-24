@@ -14,6 +14,7 @@
 
 package com.liferay.hubspot.model.impl;
 
+import com.liferay.hubspot.model.HSContact;
 import com.liferay.hubspot.model.HSForm;
 import com.liferay.hubspot.model.HSFormDisplay;
 import com.liferay.hubspot.model.HSFormFieldDisplay;
@@ -32,7 +33,7 @@ public class HSFormDisplayImpl implements HSFormDisplay {
 		_formFieldDisplays = new ArrayList<>();
 	}
 	
-	public HSFormDisplayImpl(HSForm hsForm) {
+	public HSFormDisplayImpl(HSForm hsForm, HSContact hsContact) {
 		_hsForm = hsForm;
 				
 		_formFieldDisplays = new ArrayList<>();
@@ -45,7 +46,7 @@ public class HSFormDisplayImpl implements HSFormDisplay {
 			for (int i = 0; i < fields.length(); i++) {
 				JSONObject field = fields.getJSONObject(i);
 				
-				HSFormFieldDisplay hsFormFieldDisplay = new HSFormFieldDisplayImpl(field);
+				HSFormFieldDisplay hsFormFieldDisplay = new HSFormFieldDisplayImpl(field, hsContact);
 				
 				_formFieldDisplays.add(hsFormFieldDisplay);
 			}

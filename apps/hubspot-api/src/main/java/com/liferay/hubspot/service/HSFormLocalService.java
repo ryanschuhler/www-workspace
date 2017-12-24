@@ -61,7 +61,8 @@ public interface HSFormLocalService extends BaseLocalService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public HSFormDisplay getHSFormDisplay(java.lang.String guid);
+	public HSFormDisplay getHSFormDisplay(java.lang.String guid,
+		java.lang.String userToken);
 
 	/**
 	* Returns the OSGi service identifier.

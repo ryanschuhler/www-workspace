@@ -23,5 +23,8 @@ public class HubSpotWebKeys {
 	
 	public static final String HUBSPOT_FORM_DISPLAY_CONTEXT =
 		"HUBSPOT_FORM_DISPLAY_CONTEXT";
+	
+	public static final String OSB_WWW_HUBSPOT_UTK = "OSB_WWW_HUBSPOT_UTK";
+
 
 }

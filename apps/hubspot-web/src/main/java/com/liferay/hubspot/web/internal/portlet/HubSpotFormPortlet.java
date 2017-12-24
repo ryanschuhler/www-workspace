@@ -15,6 +15,7 @@
 package com.liferay.hubspot.web.internal.portlet;
 
 import com.liferay.hubspot.model.HSForm;
+import com.liferay.hubspot.service.HSContactLocalService;
 import com.liferay.hubspot.service.HSFormLocalService;
 import com.liferay.hubspot.web.internal.constants.HubSpotPortletKeys;
 import com.liferay.hubspot.web.internal.constants.HubSpotWebKeys;
@@ -68,8 +69,14 @@ public class HubSpotFormPortlet extends MVCPortlet {
 	protected void setRenderRequestAttributes(RenderRequest renderRequest) {
 		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
+		// TODO: test this some other way
+		renderRequest.setAttribute(
+				HubSpotWebKeys.OSB_WWW_HUBSPOT_UTK,
+				"testuser");
+		
 		HubSpotFormDisplayContext hubSpotFormDisplayContext =
-			new HubSpotFormDisplayContext(portletPreferences);
+			new HubSpotFormDisplayContext(renderRequest, portletPreferences,
+			_hsFormLocalService, _hsContactLocalService);
 
 		renderRequest.setAttribute(
 			HubSpotWebKeys.HUBSPOT_FORM_DISPLAY_CONTEXT,
@@ -77,6 +84,10 @@ public class HubSpotFormPortlet extends MVCPortlet {
 	}
 	
 	@Reference
+	private HSContactLocalService _hsContactLocalService;
+	
+	@Reference
 	private HSFormLocalService _hsFormLocalService;
+	
 
 }

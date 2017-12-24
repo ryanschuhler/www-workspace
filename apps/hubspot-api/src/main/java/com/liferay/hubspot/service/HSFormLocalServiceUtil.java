@@ -59,8 +59,8 @@ public class HSFormLocalServiceUtil {
 	}
 
 	public static com.liferay.hubspot.model.HSFormDisplay getHSFormDisplay(
-		java.lang.String guid) {
-		return getService().getHSFormDisplay(guid);
+		java.lang.String guid, java.lang.String userToken) {
+		return getService().getHSFormDisplay(guid, userToken);
 	}
 
 	/**

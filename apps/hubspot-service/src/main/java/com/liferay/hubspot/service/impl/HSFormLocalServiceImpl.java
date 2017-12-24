@@ -16,11 +16,13 @@ package com.liferay.hubspot.service.impl;
 
 import com.liferay.hubspot.exception.HubSpotServerException;
 import com.liferay.hubspot.exception.NoSuchHSFormException;
+import com.liferay.hubspot.model.HSContact;
 import com.liferay.hubspot.model.HSForm;
 import com.liferay.hubspot.model.HSFormDisplay;
 import com.liferay.hubspot.model.impl.HSFormDisplayImpl;
 import com.liferay.hubspot.model.impl.HSFormImpl;
 import com.liferay.hubspot.server.HubSpotServer;
+import com.liferay.hubspot.service.HSContactLocalServiceUtil;
 import com.liferay.hubspot.service.base.HSFormLocalServiceBaseImpl;
 import com.liferay.hubspot.util.HubSpotURIUtil;
 import com.liferay.hubspot.util.HubSpotUtil;
@@ -47,7 +49,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.httpclient.HttpStatus;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Peter Shin
@@ -129,11 +130,18 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 			JSONFactoryUtil.createJSONObject(message.getString("response")));
 	}
 
-	public HSFormDisplay getHSFormDisplay(String guid) {
+	public HSFormDisplay getHSFormDisplay(String guid, String userToken) {
 		try {
+			HSContact hsContact = null;
+			
+			if (Validator.isNotNull(userToken)) {
+				hsContact = 
+					HSContactLocalServiceUtil.fetchHSContactByUserToken(userToken);
+			}
+			
 			HSForm hsForm = fetchHSFormByGUID(guid);
-		
-			return new HSFormDisplayImpl(hsForm);
+			
+			return new HSFormDisplayImpl(hsForm, hsContact);
 		}
 		catch (PortalException pe) {
 			
