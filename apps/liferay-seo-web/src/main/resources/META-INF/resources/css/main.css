@@ -1,0 +1,52 @@
+
+#seo-snippet a.seo-title-text {
+	color: rgb(26, 13, 171);
+	cursor: pointer;
+	font-family: arial,sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 21.6px;
+	text-align: left;
+	text-decoration: none;
+	text-decoration-color: rgb(26, 13, 171);
+	text-decoration-line: none;
+	text-decoration-style: solid;
+	white-space: nowrap;
+}
+
+#seo-snippet h3 {
+	
+	margin: 0;
+}
+
+#seo-snippet cite.seo-url-text {
+	color: rgb(0, 102, 33);
+	font-family: arial,sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+	text-align: left;
+	white-space: nowrap;
+}
+
+#seo-snippet .seo-description {
+	line-height: 18px;
+}
+#seo-snippet span.seo-description-text {
+	
+color: #545454;
+font-family: arial,sans-serif;
+font-size: 13px;
+font-weight: 400;
+line-height: 1.4;
+overflow-wrap: break-word;
+text-align: left;
+	
+}
+
+#seo-snippet {
+max-width: 624px;
+text-align: left;
+color: #222;
+}

@@ -1,0 +1,11 @@
+.seo-sitemap-portlet { 	
+	padding: 2em;
+}
+
+.seo-sitemap-portlet table, .seo-sitemap-portlet td, .seo-sitemap-portlet th {
+	border: 1px solid black;
+}
+	
+.seo-sitemap-portlet td,  .seo-sitemap-portlet th {
+	padding: 5px;
+}
