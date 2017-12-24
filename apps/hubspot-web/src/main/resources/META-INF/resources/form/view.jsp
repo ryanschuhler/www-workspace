@@ -19,17 +19,19 @@
 <h1> Showing form for guid <%= hubSpotFormDisplayContext.getGUID() %></h1>
 
 <%
-	HSFormDisplay hsFormDisplay = hubSpotFormDisplayContext.getHSFormDisplay();
-		
-	for (HSFormFieldDisplay hsFormFieldDisplay : hsFormDisplay.getFormFieldDisplays()) {
-		%>
-			<div>
-				<label class="field-label" for="<%= hsFormFieldDisplay.getName() %>"><%= hsFormFieldDisplay.getLabel() %></label>
-				<input name="<%= hsFormFieldDisplay.getName() %>" 
-						type="<%= hsFormFieldDisplay.getFieldType() %>"
-						value="<%= hsFormFieldDisplay.getValue() %>" />
-			</div>
-		<% 	
-		
-	}	
+HSFormDisplay hsFormDisplay = hubSpotFormDisplayContext.getHSFormDisplay();
+
+for (HSFormFieldDisplay hsFormFieldDisplay : hsFormDisplay.getFormFieldDisplays()) {
+%>
+
+	<div>
+		<label class="field-label" for="<%= hsFormFieldDisplay.getName() %>"><%= hsFormFieldDisplay.getLabel() %></label>
+		<input name="<%= hsFormFieldDisplay.getName() %>"
+			type="<%= hsFormFieldDisplay.getFieldType() %>"
+			value="<%= hsFormFieldDisplay.getValue() %>"
+		/>
+	</div>
+
+<%
+	}
 %>

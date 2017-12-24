@@ -22,7 +22,6 @@ import com.liferay.hubspot.web.internal.display.context.HubSpotFormDisplayContex
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
@@ -31,6 +30,7 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
@@ -71,29 +71,31 @@ public class HubSpotFormPortlet extends MVCPortlet {
 	protected void setRenderRequestAttributes(RenderRequest renderRequest) {
 		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
-		HttpServletRequest request = _portal.getHttpServletRequest(renderRequest);
-		
+		HttpServletRequest request = _portal.getHttpServletRequest(
+			renderRequest);
+
 		String hubspotUtk = CookieKeys.getCookie(request, "hubspotutk");
-		
+
 		renderRequest.setAttribute(
 			HubSpotWebKeys.OSB_WWW_HUBSPOT_UTK, hubspotUtk);
-		
+
 		HubSpotFormDisplayContext hubSpotFormDisplayContext =
-			new HubSpotFormDisplayContext(renderRequest, portletPreferences,
-			_hsFormLocalService, _hsContactLocalService);
+			new HubSpotFormDisplayContext(
+				renderRequest, portletPreferences, _hsFormLocalService,
+				_hsContactLocalService);
 
 		renderRequest.setAttribute(
 			HubSpotWebKeys.HUBSPOT_FORM_DISPLAY_CONTEXT,
 			hubSpotFormDisplayContext);
 	}
-	
+
 	@Reference
 	private HSContactLocalService _hsContactLocalService;
-	
+
 	@Reference
 	private HSFormLocalService _hsFormLocalService;
-	
+
 	@Reference
 	private Portal _portal;
-	
+
 }

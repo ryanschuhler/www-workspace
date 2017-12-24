@@ -28,16 +28,17 @@ import javax.portlet.RenderRequest;
  */
 public class HubSpotFormDisplayContext {
 
-	public HubSpotFormDisplayContext(RenderRequest renderRequest,
-			PortletPreferences portletPreferences,
-			HSFormLocalService hsFormLocalService,
-			HSContactLocalService hsContactLocalService) {
-		
-		_renderRequest = renderRequest;		
+	public HubSpotFormDisplayContext(
+		RenderRequest renderRequest, PortletPreferences portletPreferences,
+		HSFormLocalService hsFormLocalService,
+		HSContactLocalService hsContactLocalService) {
+
+		_renderRequest = renderRequest;
 		_portletPreferences = portletPreferences;
-		
-		_hsContactLocalService = hsContactLocalService;
+
 		_hsFormLocalService = hsFormLocalService;
+
+		_hsContactLocalService = hsContactLocalService;
 	}
 
 	public String getGUID() {
@@ -49,19 +50,18 @@ public class HubSpotFormDisplayContext {
 
 		return _guid;
 	}
-	
+
 	public HSFormDisplay getHSFormDisplay() {
-		
-		String userToken = 
-			(String)_renderRequest.getAttribute(
-				HubSpotWebKeys.OSB_WWW_HUBSPOT_UTK);
-		
-		return _hsFormLocalService.getHSFormDisplay(_guid, userToken);		
+		String userToken = (String)_renderRequest.getAttribute(
+			HubSpotWebKeys.OSB_WWW_HUBSPOT_UTK);
+
+		return _hsFormLocalService.getHSFormDisplay(_guid, userToken);
 	}
-	
+
 	private String _guid;
-	private final HSFormLocalService _hsFormLocalService;
 	private final HSContactLocalService _hsContactLocalService;
+	private final HSFormLocalService _hsFormLocalService;
 	private final PortletPreferences _portletPreferences;
 	private final RenderRequest _renderRequest;
+
 }

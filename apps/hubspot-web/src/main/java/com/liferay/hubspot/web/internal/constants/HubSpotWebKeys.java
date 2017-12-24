@@ -20,11 +20,10 @@ package com.liferay.hubspot.web.internal.constants;
 public class HubSpotWebKeys {
 
 	public static final String HUBSPOT_FORM = "HUBSPOT_FORM";
-	
+
 	public static final String HUBSPOT_FORM_DISPLAY_CONTEXT =
 		"HUBSPOT_FORM_DISPLAY_CONTEXT";
-	
-	public static final String OSB_WWW_HUBSPOT_UTK = "OSB_WWW_HUBSPOT_UTK";
 
+	public static final String OSB_WWW_HUBSPOT_UTK = "OSB_WWW_HUBSPOT_UTK";
 
 }
