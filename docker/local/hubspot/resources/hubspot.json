@@ -1,6 +1,5 @@
 {
 	"forms": [{
-		"hapikey": "apikey",
 		"portalId": 62515,
 		"guid": "1eae3941-9ce8-411d-8b91-87a92c0c9d5c",
 		"name": "Example Test Form",
@@ -133,7 +132,6 @@
 		"formType": "HUBSPOT"
 	}],
 	"contacts": [{
-		"hapikey": "apikey",
 		"guid": "testuser",
 		"properties": {
 			"firstname": {

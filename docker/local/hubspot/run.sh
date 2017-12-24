@@ -10,10 +10,10 @@ if [ -f $file ]; then
     args="$args --routes routes.json"
 fi
 
-file=/data/db.json
+file=/data/hubspot.json
 if [ -f $file ]; then
-    echo "Found db.json, trying to open"
-    args="$args db.json"
+    echo "Found hubspot.json, trying to open"
+    args="$args hubspot.json"
 fi
 
 file=/data/file.js

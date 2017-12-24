@@ -1,6 +1,5 @@
 {
-	"/forms/v2/forms/:guid": "/forms/:guid",
-	"/forms/v1/forms/:guid": "/forms/:guid",
-	"/contacts/v2/contact/utk/:utk/profile": "/contacts/:utk",
-	"/contacts/v2/contact/utk/:utk/profile/\\?hapikey=:hapikey": "/contacts/:utk"
+	"/forms/v2/forms/:guid?hapikey=apikey": "/forms/:guid",
+	"/forms/v1/forms/:guid?hapikey=apikey": "/forms/:guid",
+	"/contacts/v2/contact/utk/:utk/profile?hapikey=apikey": "/contacts/:utk"
 }
