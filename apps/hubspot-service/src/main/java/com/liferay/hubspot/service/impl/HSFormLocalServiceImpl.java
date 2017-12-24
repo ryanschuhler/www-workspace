@@ -97,7 +97,7 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
 			message.getString("response"));
 
-		List<HSForm> hsForms = new ArrayList<HSForm>();
+		List<HSForm> hsForms = new ArrayList<>();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			hsForms.add(new HSFormImpl(jsonArray.getJSONObject(i)));
@@ -133,23 +133,22 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 	public HSFormDisplay getHSFormDisplay(String guid, String userToken) {
 		try {
 			HSContact hsContact = null;
-			
+
 			if (Validator.isNotNull(userToken)) {
-				hsContact = 
-					HSContactLocalServiceUtil.fetchHSContactByUserToken(userToken);
+				hsContact = HSContactLocalServiceUtil.fetchHSContactByUserToken(
+					userToken);
 			}
-			
+
 			HSForm hsForm = fetchHSFormByGUID(guid);
-			
+
 			return new HSFormDisplayImpl(hsForm, hsContact);
 		}
 		catch (PortalException pe) {
-			
 		}
-		
-		return new HSFormDisplayImpl();	
+
+		return new HSFormDisplayImpl();
 	}
-	
+
 	public HSForm submitHSForm(
 			String guid, String userToken, String ipAddress, String pageURL,
 			String pageName, String redirectURL, String salesforceCampaignId,
@@ -268,7 +267,7 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 	}
 
 	protected Map<String, String> getHeaders(String contentType) {
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 
 		headers.put(HttpHeaders.CONTENT_TYPE, contentType);
 		headers.put(HttpHeaders.USER_AGENT, "HS_Forms");
@@ -276,14 +275,13 @@ public class HSFormLocalServiceImpl extends HSFormLocalServiceBaseImpl {
 		return headers;
 	}
 
-	private static final int[] _HTTP_STATUS_CODES_SUCCESS = {
-		HttpStatus.SC_MOVED_TEMPORARILY, HttpStatus.SC_NO_CONTENT
-	};
+	private static final int[] _HTTP_STATUS_CODES_SUCCESS =
+		{HttpStatus.SC_MOVED_TEMPORARILY, HttpStatus.SC_NO_CONTENT};
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		HSFormLocalServiceImpl.class);
 
 	@ServiceReference(type = HubSpotServer.class)
 	private HubSpotServer _hubSpotServer;
-
-	private static Log _log = LogFactoryUtil.getLog(
-		HSFormLocalServiceImpl.class);
 
 }

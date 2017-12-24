@@ -54,8 +54,7 @@ public class HSContactLocalServiceUtil {
 		java.lang.String sfLeadIndustry, java.lang.String sfLeadCompany,
 		java.lang.String sfLeadDepartment, java.lang.String sfLeadRole,
 		java.lang.String sfLeadSource)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addHSContact(companyId, className, classPK, emailAddress,
 			firstName, lastName, phoneNumber, street, city, region, postalCode,
@@ -66,8 +65,7 @@ public class HSContactLocalServiceUtil {
 
 	public static void deleteHSContact(long companyId, long userId,
 		long visitorId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteHSContact(companyId, userId, visitorId);
 	}
 
@@ -143,8 +141,7 @@ public class HSContactLocalServiceUtil {
 		java.lang.String postalCode, java.lang.String country,
 		java.lang.String jobTitle, java.lang.String twitterUserName,
 		java.lang.String websiteURL, java.lang.String persona)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateHSContact(companyId, className, classPK, visitorId,
 			firstName, lastName, phoneNumber, street, city, region, postalCode,
@@ -164,8 +161,7 @@ public class HSContactLocalServiceUtil {
 		java.lang.String sfLeadCountry, java.lang.String sfLeadIndustry,
 		java.lang.String sfLeadCompany, java.lang.String sfLeadDepartment,
 		java.lang.String sfLeadRole, java.lang.String sfLeadSource)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateHSContact(companyId, className, classPK, visitorId,
 			emailAddress, firstName, lastName, phoneNumber, street, city,

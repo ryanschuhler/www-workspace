@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
 
-<service-builder package-path="com.liferay.hubspot" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.hubspot">
 	<author>Peter Shin</author>
 	<namespace>HubSpot</namespace>
-	<entity name="HSContact" local-service="true" remote-service="false">
+	<entity local-service="true" name="HSContact" remote-service="false">
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
+		<reference entity="ExpandoValue" package-path="com.liferay.portlet.expando" />
 	</entity>
-	<entity name="HSForm" local-service="true" remote-service="true" />
+	<entity local-service="true" name="HSForm" remote-service="true" />
 	<exceptions>
 		<exception>HubSpotServer</exception>
 		<exception>NoSuchHSContact</exception>

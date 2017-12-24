@@ -32,34 +32,34 @@ public class HSFormDisplayImpl implements HSFormDisplay {
 	public HSFormDisplayImpl() {
 		_formFieldDisplays = new ArrayList<>();
 	}
-	
+
 	public HSFormDisplayImpl(HSForm hsForm, HSContact hsContact) {
 		_hsForm = hsForm;
-				
+
 		_formFieldDisplays = new ArrayList<>();
 
 		if (hsForm != null) {
 			JSONObject jsonObject = hsForm.getHSFormJSONObject();
-	
-			JSONArray fields = jsonObject.getJSONArray("fields"); 
-	
+
+			JSONArray fields = jsonObject.getJSONArray("fields");
+
 			for (int i = 0; i < fields.length(); i++) {
 				JSONObject field = fields.getJSONObject(i);
-				
-				HSFormFieldDisplay hsFormFieldDisplay = new HSFormFieldDisplayImpl(field, hsContact);
-				
+
+				HSFormFieldDisplay hsFormFieldDisplay =
+					new HSFormFieldDisplayImpl(field, hsContact);
+
 				_formFieldDisplays.add(hsFormFieldDisplay);
 			}
 		}
-		
 	}
-	
+
 	@Override
 	public List<HSFormFieldDisplay> getFormFieldDisplays() {
 		return _formFieldDisplays;
 	}
 
-	private List<HSFormFieldDisplay> _formFieldDisplays;
+	private final List<HSFormFieldDisplay> _formFieldDisplays;
 	private HSForm _hsForm;
-	
+
 }

@@ -17,17 +17,16 @@ package com.liferay.hubspot.service.impl;
 import com.liferay.hubspot.model.HSForm;
 import com.liferay.hubspot.service.base.HSFormServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ClassUtil;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
+import com.liferay.portal.kernel.util.ClassUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,7 +40,7 @@ public class HSFormServiceImpl extends HSFormServiceBaseImpl {
 			String guid, String userToken, String ipAddress, String pageURL,
 			String pageName, String redirectURL, String salesforceCampaignId,
 			String[] fields)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
@@ -78,6 +77,7 @@ public class HSFormServiceImpl extends HSFormServiceBaseImpl {
 		return ClassUtil.getClassName(this);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(HSFormServiceImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		HSFormServiceImpl.class);
 
 }

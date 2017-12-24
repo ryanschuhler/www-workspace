@@ -64,5 +64,5 @@ public interface HSFormService extends BaseService {
 		java.lang.String userToken, java.lang.String ipAddress,
 		java.lang.String pageURL, java.lang.String pageName,
 		java.lang.String redirectURL, java.lang.String salesforceCampaignId,
-		java.lang.String[] fields) throws PortalException, SystemException;
+		java.lang.String[] fields) throws PortalException;
 }

@@ -1,9 +1,8 @@
 Bundle-Name: hubspot-service
 Bundle-SymbolicName: com.liferay.hubspot.service
 Bundle-Version: 1.0.0
+Export-Package: 	com.liferay.hubspot.server.impl,\
+	com.liferay.hubspot.service.impl
 Liferay-Require-SchemaVersion: 1.0.0
-Liferay-Service: true
 
-Export-Package: \
-	com.liferay.hubspot.service.impl,\
-	com.liferay.hubspot.server.impl
+Liferay-Service: true

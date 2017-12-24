@@ -47,8 +47,7 @@ public class HSContactLocalServiceWrapper implements HSContactLocalService,
 		java.lang.String sfLeadIndustry, java.lang.String sfLeadCompany,
 		java.lang.String sfLeadDepartment, java.lang.String sfLeadRole,
 		java.lang.String sfLeadSource)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _hsContactLocalService.addHSContact(companyId, className,
 			classPK, emailAddress, firstName, lastName, phoneNumber, street,
 			city, region, postalCode, country, jobTitle, twitterUserName,
@@ -59,8 +58,7 @@ public class HSContactLocalServiceWrapper implements HSContactLocalService,
 
 	@Override
 	public void deleteHSContact(long companyId, long userId, long visitorId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_hsContactLocalService.deleteHSContact(companyId, userId, visitorId);
 	}
 
@@ -148,8 +146,7 @@ public class HSContactLocalServiceWrapper implements HSContactLocalService,
 		java.lang.String postalCode, java.lang.String country,
 		java.lang.String jobTitle, java.lang.String twitterUserName,
 		java.lang.String websiteURL, java.lang.String persona)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _hsContactLocalService.updateHSContact(companyId, className,
 			classPK, visitorId, firstName, lastName, phoneNumber, street, city,
 			region, postalCode, country, jobTitle, twitterUserName, websiteURL,
@@ -170,8 +167,7 @@ public class HSContactLocalServiceWrapper implements HSContactLocalService,
 		java.lang.String sfLeadIndustry, java.lang.String sfLeadCompany,
 		java.lang.String sfLeadDepartment, java.lang.String sfLeadRole,
 		java.lang.String sfLeadSource)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _hsContactLocalService.updateHSContact(companyId, className,
 			classPK, visitorId, emailAddress, firstName, lastName, phoneNumber,
 			street, city, region, postalCode, country, jobTitle,

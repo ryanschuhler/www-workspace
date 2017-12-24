@@ -24,58 +24,73 @@ import com.liferay.portal.kernel.util.GetterUtil;
  * @author Allen Ziegenfus
  */
 public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
-	
+
 	public HSFormFieldDisplayImpl(JSONObject field, HSContact hsContact) {
 		_defaultValue = field.getString("defaultValue");
 		_dependentFieldFilters = field.getJSONArray("dependentFieldFilters");
 		_description = field.getString("description");
 		_fieldType = field.getString("fieldType");
 		_hidden = GetterUtil.getBoolean(field.getString("hidden"));
-		_label = field.getString("label"); 
+		_label = field.getString("label");
 		_name = field.getString("name");
 		_required = GetterUtil.getBoolean(field.getString("required"));
 		_selectedOptions = field.getJSONArray("selectedOptions");
 		_smartField = GetterUtil.getBoolean(field.getString("isSmartField"));
 		_unselectedLabel = field.getString("unselectedLabel");
-		
+
 		setValue(hsContact);
 	}
-	
+
 	@Override
 	public String getDefaultValue() {
 		return _defaultValue;
 	}
-	
-	@Override
-	public String getDescription() {
-		return _description;
-	}
-	
+
 	@Override
 	public JSONArray getDependentFieldFilters() {
 		return _dependentFieldFilters;
 	}
-	
+
+	@Override
+	public String getDescription() {
+		return _description;
+	}
+
 	@Override
 	public String getFieldType() {
 		return _fieldType;
 	}
 
-	@Override 
+	@Override
 	public String getLabel() {
 		return _label;
 	}
-	
+
 	@Override
 	public String getName() {
 		return _name;
 	}
 
 	@Override
+	public JSONArray getSelectedOptions() {
+		return _selectedOptions;
+	}
+
+	@Override
+	public String getUnselectedLabel() {
+		return _unselectedLabel;
+	}
+
+	@Override
+	public String getValue() {
+		return _value;
+	}
+
+	@Override
 	public boolean isHidden() {
 		return _hidden;
 	}
-	
+
 	@Override
 	public boolean isRequired() {
 		return _required;
@@ -85,51 +100,40 @@ public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 	public boolean isSmartField() {
 		return _smartField;
 	}
-	
-	@Override
-	public JSONArray getSelectedOptions() {
-		return _selectedOptions;
-	}
-	
-	@Override
-	public String getUnselectedLabel() {
-		return _unselectedLabel;
-	}
-	
-	@Override
-	public String getValue() {
-		return _value;
-	}
-	
+
 	protected void setValue(HSContact hsContact) {
 		_value = _defaultValue;
-		
+
 		if (_selectedOptions != null && _selectedOptions.length() > 0) {
 			_value = _selectedOptions.getString(0);
 		}
-		
+
 		if (!_hidden && hsContact != null) {
 			JSONObject hsContactObject = hsContact.getHSContactJSONObject();
-			JSONObject hsContactProperties = hsContactObject.getJSONObject("properties");
-			
+
+			JSONObject hsContactProperties = hsContactObject.getJSONObject(
+				"properties");
+
 			if (hsContactProperties.has(_name)) {
-				JSONObject hsContactProperty = hsContactProperties.getJSONObject(_name);
-				_value = hsContactProperty.getString("value");	
+				JSONObject hsContactProperty =
+					hsContactProperties.getJSONObject(_name);
+
+				_value = hsContactProperty.getString("value");
 			}
 		}
 	}
-	
-	private String _defaultValue;
-	private JSONArray _dependentFieldFilters;
-	private String _description;
-	private String _fieldType;
-	private boolean _hidden;
-	private boolean _smartField;
-	private String _name;
-	private String _label;
-	private boolean _required;
-	private JSONArray _selectedOptions;
-	private String _unselectedLabel;
+
+	private final String _defaultValue;
+	private final JSONArray _dependentFieldFilters;
+	private final String _description;
+	private final String _fieldType;
+	private final boolean _hidden;
+	private final String _label;
+	private final String _name;
+	private final boolean _required;
+	private final JSONArray _selectedOptions;
+	private final boolean _smartField;
+	private final String _unselectedLabel;
 	private String _value;
-	
+
 }

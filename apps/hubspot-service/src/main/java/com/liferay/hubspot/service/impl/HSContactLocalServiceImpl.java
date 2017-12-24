@@ -14,12 +14,9 @@
 
 package com.liferay.hubspot.service.impl;
 
-import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.hubspot.converter.DropDownValueConverter;
 import com.liferay.hubspot.exception.HubSpotServerException;
 import com.liferay.hubspot.exception.NoSuchHSContactException;
-import com.liferay.hubspot.converter.DropDownValueConverter;
 import com.liferay.hubspot.model.HSContact;
 import com.liferay.hubspot.model.HSContactCache;
 import com.liferay.hubspot.model.HSContactCacheConstants;
@@ -27,24 +24,25 @@ import com.liferay.hubspot.model.HSContactConstants;
 import com.liferay.hubspot.model.impl.HSContactCacheImpl;
 import com.liferay.hubspot.model.impl.HSContactImpl;
 import com.liferay.hubspot.server.HubSpotServer;
-import com.liferay.hubspot.server.HubSpotServer;
 import com.liferay.hubspot.service.base.HSContactLocalServiceBaseImpl;
 import com.liferay.hubspot.util.HubSpotURIUtil;
 import com.liferay.hubspot.util.HubSpotUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http.Body;
-import com.liferay.portal.spring.extender.service.ServiceReference;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,7 +51,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.httpclient.HttpStatus;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Peter Shin
@@ -70,7 +67,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 			String persona, String sfLeadCountry, String sfLeadIndustry,
 			String sfLeadCompany, String sfLeadDepartment, String sfLeadRole,
 			String sfLeadSource)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!HubSpotUtil.isEnabled()) {
 			return null;
@@ -98,7 +95,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 
 	@Override
 	public void deleteHSContact(long companyId, long userId, long visitorId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!HubSpotUtil.isEnabled()) {
 			return;
@@ -200,13 +197,12 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 		String uri = HubSpotURIUtil.get("lists/all/contacts/all");
 		Map<String, String> headers = getHeaders(ContentTypes.APPLICATION_JSON);
 
-		Map<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<>();
 
 		parameters.put("count", String.valueOf(count));
 		parameters.put("vidOffset", String.valueOf(contactOffset));
 
-		Message message = _hubSpotServer.executeGet(
-			uri, headers, parameters);
+		Message message = _hubSpotServer.executeGet(uri, headers, parameters);
 
 		if (message.getInteger("statusCode") != HttpStatus.SC_OK) {
 			throw new HubSpotServerException(message);
@@ -304,7 +300,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 			"lists/recently_updated/contacts/recent");
 		Map<String, String> headers = getHeaders(ContentTypes.APPLICATION_JSON);
 
-		Map<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<>();
 
 		parameters.put("count", String.valueOf(count));
 
@@ -313,8 +309,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 			parameters.put("vidOffset", String.valueOf(contactOffset));
 		}
 
-		Message message = _hubSpotServer.executeGet(
-			uri, headers, parameters);
+		Message message = _hubSpotServer.executeGet(uri, headers, parameters);
 
 		if (message.getInteger("statusCode") != HttpStatus.SC_OK) {
 			throw new HubSpotServerException(message);
@@ -345,14 +340,13 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 		String uri = HubSpotURIUtil.get("search/query");
 		Map<String, String> headers = getHeaders(ContentTypes.APPLICATION_JSON);
 
-		Map<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<>();
 
 		parameters.put("count", String.valueOf(count));
 		parameters.put("offset", String.valueOf(offset));
 		parameters.put("q", query);
 
-		Message message = _hubSpotServer.executeGet(
-			uri, headers, parameters);
+		Message message = _hubSpotServer.executeGet(uri, headers, parameters);
 
 		if (message.getInteger("statusCode") != HttpStatus.SC_OK) {
 			throw new HubSpotServerException(message);
@@ -378,7 +372,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 			String street, String city, String region, String postalCode,
 			String country, String jobTitle, String twitterUserName,
 			String websiteURL, String persona)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String emailAddress = null;
 		String notes = null;
@@ -408,7 +402,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 			String lifeCycleStage, String persona, String sfLeadCountry,
 			String sfLeadIndustry, String sfLeadCompany,
 			String sfLeadDepartment, String sfLeadRole, String sfLeadSource)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!HubSpotUtil.isEnabled()) {
 			return null;
@@ -551,7 +545,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 	}
 
 	protected Map<String, String> getHeaders(String contentType) {
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 
 		headers.put(HttpHeaders.CONTENT_TYPE, contentType);
 		headers.put(HttpHeaders.USER_AGENT, "HS_Contacts");
@@ -562,7 +556,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 	protected List<HSContact> getHSContacts(JSONObject jsonObject) {
 		JSONArray contactsJSONArray = jsonObject.getJSONArray("contacts");
 
-		List<HSContact> hsContacts = new ArrayList<HSContact>();
+		List<HSContact> hsContacts = new ArrayList<>();
 
 		for (int i = 0; i < contactsJSONArray.length(); i++) {
 			JSONObject contactJSONObject = contactsJSONArray.getJSONObject(i);
@@ -794,7 +788,7 @@ public class HSContactLocalServiceImpl extends HSContactLocalServiceBaseImpl {
 
 	protected HSContact updateHSContactCache(
 			long companyId, String className, long classPK, HSContact hsContact)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.equals(className, User.class.getName())) {
 			HSContactCache hsContactCache = new HSContactCacheImpl(hsContact);

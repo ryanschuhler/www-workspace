@@ -59,10 +59,10 @@ public interface HSContactLocalService extends BaseLocalService {
 		java.lang.String sfLeadCountry, java.lang.String sfLeadIndustry,
 		java.lang.String sfLeadCompany, java.lang.String sfLeadDepartment,
 		java.lang.String sfLeadRole, java.lang.String sfLeadSource)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void deleteHSContact(long companyId, long userId, long visitorId)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public HSContact fetchHSContactByEmailAddress(java.lang.String emailAddress)
@@ -115,7 +115,7 @@ public interface HSContactLocalService extends BaseLocalService {
 		java.lang.String postalCode, java.lang.String country,
 		java.lang.String jobTitle, java.lang.String twitterUserName,
 		java.lang.String websiteURL, java.lang.String persona)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public HSContact updateHSContact(long companyId,
 		java.lang.String className, long classPK, long visitorId,
@@ -129,5 +129,5 @@ public interface HSContactLocalService extends BaseLocalService {
 		java.lang.String persona, java.lang.String sfLeadCountry,
 		java.lang.String sfLeadIndustry, java.lang.String sfLeadCompany,
 		java.lang.String sfLeadDepartment, java.lang.String sfLeadRole,
-		java.lang.String sfLeadSource) throws PortalException, SystemException;
+		java.lang.String sfLeadSource) throws PortalException;
 }

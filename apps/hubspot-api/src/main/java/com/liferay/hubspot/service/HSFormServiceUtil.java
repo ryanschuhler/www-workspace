@@ -56,8 +56,7 @@ public class HSFormServiceUtil {
 		java.lang.String ipAddress, java.lang.String pageURL,
 		java.lang.String pageName, java.lang.String redirectURL,
 		java.lang.String salesforceCampaignId, java.lang.String[] fields)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .submitHSForm(guid, userToken, ipAddress, pageURL, pageName,
 			redirectURL, salesforceCampaignId, fields);

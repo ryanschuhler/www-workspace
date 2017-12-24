@@ -14,9 +14,6 @@
 
 package com.liferay.hubspot.server.impl;
 
-import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.hubspot.exception.HubSpotServerException;
 import com.liferay.hubspot.server.HubSpotServer;
 import com.liferay.hubspot.util.PortletPropsValues;
@@ -26,7 +23,10 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.Http.Body;
 import com.liferay.portal.kernel.util.Http.Method;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -47,16 +47,14 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.RequestEntity;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Peter Shin
  * @author Weston Hancock
  */
-@Component(
-	immediate = true,
-	service = HubSpotServer.class
-)
+@Component(immediate = true, service = HubSpotServer.class)
 public class HubSpotServerImpl implements HubSpotServer {
 
 	public void afterPropertiesSet() {
@@ -318,8 +316,9 @@ public class HubSpotServerImpl implements HubSpotServer {
 	private static final String[] _SKIP_URI_PARAMETERS =
 		{"$request.attributes.OSB_HUBSPOT_UTK"};
 
-	private static Log _log = LogFactoryUtil.getLog(HubSpotServerImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		HubSpotServerImpl.class);
 
-	private HttpClient _httpClient = new HttpClient();
+	private final HttpClient _httpClient = new HttpClient();
 
 }
