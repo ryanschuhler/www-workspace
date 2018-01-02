@@ -19,6 +19,10 @@ import com.liferay.hubspot.model.HSFormFieldDisplay;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.KeyValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Allen Ziegenfus
@@ -26,6 +30,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 
 	public HSFormFieldDisplayImpl(JSONObject field, HSContact hsContact) {
+		//TODO: other way of doing deserialization...
+		//TODO: do null checking?
 		_defaultValue = field.getString("defaultValue");
 		_dependentFieldFilters = field.getJSONArray("dependentFieldFilters");
 		_description = field.getString("description");
@@ -33,11 +39,13 @@ public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 		_hidden = GetterUtil.getBoolean(field.getString("hidden"));
 		_label = field.getString("label");
 		_name = field.getString("name");
+		_options = new ArrayList<>();
 		_required = GetterUtil.getBoolean(field.getString("required"));
 		_selectedOptions = field.getJSONArray("selectedOptions");
 		_smartField = GetterUtil.getBoolean(field.getString("isSmartField"));
 		_unselectedLabel = field.getString("unselectedLabel");
 
+		setOptions(field.getJSONArray("options"));
 		setValue(hsContact);
 	}
 
@@ -70,6 +78,12 @@ public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 	public String getName() {
 		return _name;
 	}
+	
+	@Override
+	public List<KeyValuePair> getOptions() {
+		return _options;
+	}
+
 
 	@Override
 	public JSONArray getSelectedOptions() {
@@ -101,6 +115,17 @@ public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 		return _smartField;
 	}
 
+	protected void setOptions(JSONArray options) {
+		
+		for (int i = 0; i < options.length(); i++) {
+			JSONObject option = options.getJSONObject(i);
+			
+			KeyValuePair optionKVP = new KeyValuePair();
+			optionKVP.setKey(option.getString("value"));
+			optionKVP.setValue(option.getString("label"));
+			_options.add(optionKVP);
+		}
+	}
 	protected void setValue(HSContact hsContact) {
 		_value = _defaultValue;
 
@@ -113,6 +138,7 @@ public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 
 			JSONObject hsContactProperties = hsContactObject.getJSONObject(
 				"properties");
+			
 
 			if (hsContactProperties.has(_name)) {
 				JSONObject hsContactProperty =
@@ -130,6 +156,7 @@ public class HSFormFieldDisplayImpl implements HSFormFieldDisplay {
 	private final boolean _hidden;
 	private final String _label;
 	private final String _name;
+	private final List<KeyValuePair> _options; 
 	private final boolean _required;
 	private final JSONArray _selectedOptions;
 	private final boolean _smartField;

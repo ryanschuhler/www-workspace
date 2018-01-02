@@ -15,6 +15,9 @@
 package com.liferay.hubspot.model;
 
 import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.util.KeyValuePair;
+
+import java.util.List;
 
 /**
  * @author Allen Ziegenfus
@@ -44,5 +47,7 @@ public interface HSFormFieldDisplay {
 	public boolean isSmartField();
 
 	String getValue();
+
+	List<KeyValuePair> getOptions();
 	
 }

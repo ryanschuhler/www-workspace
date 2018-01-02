@@ -26,10 +26,28 @@ for (HSFormFieldDisplay hsFormFieldDisplay : hsFormDisplay.getFormFieldDisplays(
 
 	<div>
 		<label class="field-label" for="<%= hsFormFieldDisplay.getName() %>"><%= hsFormFieldDisplay.getLabel() %></label>
-		<input name="<%= hsFormFieldDisplay.getName() %>"
-			type="<%= hsFormFieldDisplay.getFieldType() %>"
-			value="<%= hsFormFieldDisplay.getValue() %>"
-		/>
+
+		<c:choose>
+			<c:when test='<%= StringUtil.equalsIgnoreCase(hsFormFieldDisplay.getFieldType(), "select") %>'>
+				<select class="${field_input_css_class}" name="${field_name}" ${required_attr}>
+					<option ${disabled_select_option} ${default_selected}></option>
+					<% for (KeyValuePair option : hsFormFieldDisplay.getOptions()) { %>
+
+						<option value="<%= option.getKey() %>" ${selected}><%= option.getValue() %></option>
+
+					<%
+						}
+					%>
+
+				</select>
+			</c:when>
+			<c:otherwise>
+				<input name="<%= hsFormFieldDisplay.getName() %>"
+				type="<%= hsFormFieldDisplay.getFieldType() %>"
+				value="<%= hsFormFieldDisplay.getValue() %>"
+				/>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 <%

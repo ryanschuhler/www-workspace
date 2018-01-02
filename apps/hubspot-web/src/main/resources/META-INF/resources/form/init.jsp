@@ -22,7 +22,9 @@
 	page import="com.liferay.hubspot.model.HSFormDisplay" %><%@
 	page import="com.liferay.hubspot.model.HSFormFieldDisplay" %><%@
 	page import="com.liferay.hubspot.web.internal.constants.HubSpotWebKeys" %><%@
-	page import="com.liferay.portal.kernel.json.JSONArray" %>
+	page import="com.liferay.portal.kernel.json.JSONArray" %><%@
+	page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+	page import="com.liferay.portal.kernel.util.KeyValuePair" %>
 
 <%
 HubSpotFormDisplayContext hubSpotFormDisplayContext = (HubSpotFormDisplayContext)request.getAttribute(HubSpotWebKeys.HUBSPOT_FORM_DISPLAY_CONTEXT);
