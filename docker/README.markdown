@@ -4,11 +4,12 @@ This is an environment setup for www.liferay.com using both docker and Liferay w
 ## Getting Started
 * Intall Docker (https://docs.docker.com/engine/installation/)
 	* Increase memory in docker (in app preferences)
-* Navigate to `/www-workspace/docker/local` folder
-* Run `gradle build`
+* Make sure that [gradle](https://gradle.org/install/) is installed and your `PATH` environment variable is updated
+* From any folder you can run `gradle dockerBuild`
   * This should take around 10 minutes the first time you run it. After that it caches many of the files so subsequent builds should be faster depending on what you have changed.
-* Run `gradle up`
-* Go to http://localhost in your browser
+* Run `gradle dockerUp`
+* Go to [localhost](http://localhost) in your browser
+* To shut down your containers you can run `gradle dockerDown`
 
 ### Notes
 * You need to be on the office network or vpnd into the office in order to download some of the files form mirrors.liferay
@@ -16,7 +17,7 @@ This is an environment setup for www.liferay.com using both docker and Liferay w
 * If you are seeing errors with scripts on Windows it might be an issue with line endings and bash. You can use dos2unix to correct or set the config for line endings in git (ie `dos2unix liferay/entrypoint.sh` or `git config --global autocrlf input`)
 
 ## Useful commands
-* Run `gradle tasks --all` in your `/www-workspace/docker/local` folder
+* Run `gradle tasks --all` to see all available tasks in any given folder
 * You can run `docker ps -a` to see the containers and their statuses
 * For logs run `docker logs -f [CONTAINER_ID|CONTAINER_NAME]` ie `docker logs -f liferay`
 * To navigate the terminal of a container run  `docker exec -it [CONTAINER_ID|CONTAINER_NAME] /bin/sh` ie `docker exec -it mariadb /bin/sh`
