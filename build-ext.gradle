@@ -2,7 +2,7 @@ configure(subprojects.findAll {it.getRootProject().property('liferay.workspace.m
 	task dockerDeploy(type: Exec, dependsOn: 'build') {
 		doLast {
 			def bndFile = file("bnd.bnd")
-			def jsonFile = file('package.json')
+			def packageFile = file('package.json')
 			def srcPath = ""
 			def workspace = project.getRootProject()
 
@@ -17,8 +17,8 @@ configure(subprojects.findAll {it.getRootProject().property('liferay.workspace.m
 				srcPath = "build/libs/${bundleName}-${bundleVersion}.jar"
 			}
 
-			if (jsonFile.exists()) {
-				def json = new groovy.json.JsonSlurper().parseText(jsonFile.text)
+			if (packageFile.exists()) {
+				def json = new groovy.json.JsonSlurper().parseText(packageFile.text)
 
 				def name = json.name
 

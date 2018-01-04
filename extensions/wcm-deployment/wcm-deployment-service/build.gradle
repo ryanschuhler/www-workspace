@@ -6,5 +6,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "6.0.0"
 	compileOnly group: "org.osgi", name: "osgi.cmpn", version: "6.0.0"
 
-	compileOnly project(":extensions:wcm-deployment:api")
+	compileOnly project(":extensions:wcm-deployment:wcm-deployment-api")
 }
