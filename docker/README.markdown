@@ -15,7 +15,7 @@ This is an environment setup for www.liferay.com using both docker and Liferay w
 * You need to be on the office network or vpnd into the office in order to download some of the files form mirrors.liferay
 * If you are seeing issues with apache and conflicting ports on *Mac* you may be running apache already and can stop it by running `sudo apachectl stop`
 * If you are seeing errors with scripts on *Windows* it might be an issue with line endings and bash. You can use dos2unix to correct or set the config for line endings in git (ie `dos2unix liferay/entrypoint.sh` or `git config --global autocrlf input`)
-* *Linux* does not currently have a desktop client. You will have to download the server client and set up a docker-machine. This causes some issues with downloading from mirrors.liferay, so you will have to download the bundle and/or database and include them in the respective folders to use. 
+* *Linux* does not currently have a desktop client. You will have to download the server client and set up a docker-machine. This causes some issues with downloading from mirrors.liferay, so you will have to download the bundle and/or database and include them in the respective folders to use. Here are a few [helpful](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu) [links](https://docs.docker.com/engine/installation/linux/linux-postinstall/). 
 
 ## Useful commands
 * Run `gradle tasks --all` to see all available tasks in any given folder
