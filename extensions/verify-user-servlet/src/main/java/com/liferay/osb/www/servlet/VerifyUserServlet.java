@@ -67,7 +67,6 @@ public class VerifyUserServlet extends HttpServlet {
 	public void service(
 		HttpServletRequest request, HttpServletResponse response) {
 
-System.out.println("************ verify user service ************");
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

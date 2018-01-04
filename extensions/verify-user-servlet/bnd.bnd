@@ -1,3 +1,8 @@
 Bundle-Name: Verify User Servlet
 Bundle-SymbolicName: com.liferay.osb.www.verify.user.servlet
 Bundle-Version: 1.0.0
+Import-Package:\
+	!org.apache.avalon.framework.logger,\
+	!org.apache.log,\
+	\
+	*
