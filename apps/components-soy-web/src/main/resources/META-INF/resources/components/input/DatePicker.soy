@@ -1,0 +1,47 @@
+{namespace DatePicker}
+
+/**
+ * DatePicker component
+ */
+{template .render}
+  {@param id: string}
+  {@param? dateFormat: string}
+  {@param? maxDate: string}
+  {@param? minDate: string}
+  {@param? cssClass: string}
+  {@param? value: string}
+  {@param? focusOnInput: any|null}
+
+
+  {let $inputAttributes kind="attributes"}
+    {if $cssClass}
+      class="{$cssClass}"
+    {/if}
+
+    {if $dateFormat}
+      data-date-format="{$dateFormat}"
+    {/if}
+
+    {if $maxDate}
+      data-max-date="{$maxDate}"
+    {/if}
+
+
+    {if $minDate}
+      data-min-date="{$minDate}"
+    {/if}
+
+    id="{$id}"
+    name="{$id}"
+    ref="input"
+    type="text"
+    value="{isNonnull($value) ? $value : ''}"
+  {/let}
+  <div class="date-picker">
+    <i class="material-icons date-icon" onClick="{$focusOnInput}">insert_invitation</i>
+    <input {$inputAttributes}/>
+    <span class="arrow"></span>
+  </div>
+{/template}
+
+

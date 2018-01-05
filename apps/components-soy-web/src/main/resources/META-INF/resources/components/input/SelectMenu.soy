@@ -1,0 +1,56 @@
+{namespace SelectMenu}
+
+/**
+ * SelectMenu component
+ */
+{template .render}
+  {@param name: string}
+  {@param options: list<[
+  label: string,
+  value: any
+  ]>}
+  {@param? value: any}
+
+  {let $none kind="text"}
+    {msg desc=""}none{/msg}
+  {/let}
+
+  {let $selectMenuAttributes kind="attributes"}
+    class="mdc-select"
+    id="{$name}"
+    name="{$name}"
+    ref="selectMenu"
+    role="listbox"
+    tabindex="0"
+    value="{$value}"
+  {/let}
+
+  <div {$selectMenuAttributes}>
+    <span class="mdc-select__selected-text"></span>
+    <div class="mdc-simple-menu mdc-select__menu">
+      <ul class="mdc-list mdc-simple-menu__items">
+        {foreach $option in $options }
+          {let $attr kind="attributes"}
+            {if $value == $option.value}
+              aria-selected="true"
+            {/if}
+
+            class="mdc-list-item"
+            id="{$option.value}"
+            label="{$option.label}"
+            onClick="handleOnClick_"
+            role="option"
+            tabindex="0"
+            value="{$option.value}"
+          {/let}
+
+          <li {$attr}>
+            <span class="padded-menu-span">
+              {$option.label}
+            </span>
+          </li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+{/template}

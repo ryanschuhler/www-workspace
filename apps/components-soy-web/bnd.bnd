@@ -1,0 +1,9 @@
+Bundle-Name: Pario - Liferay Frontend Material Components Soy Web
+Bundle-SymbolicName: com.google.education.glms.liferay.components.soy.web
+Bundle-Version: 0.0.1
+Web-ContextPath: /components-soy-web
+Liferay-JS-Config: /META-INF/resources/config.js
+Provide-Capability:\
+	soy;\
+		type="components-soy-web";\
+		version:Version="1.0.0"

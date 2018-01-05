@@ -1,0 +1,38 @@
+{namespace MaterialChip}
+
+/**
+ * MaterialChip component
+ */
+{template .render}
+  {@param label: string}
+  {@param? deletable: bool}
+  {@param? deleteButtonClicked_: any}
+  {@param? elementClasses: string}
+
+  {let $classes kind="text"}
+    mdl-chip
+
+    {if $deletable}
+      {sp}mdl-chip--deletable
+    {/if}
+
+    {if $elementClasses}
+      {sp}{$elementClasses}
+    {/if}
+  {/let}
+
+  <span class="{$classes}">
+    <span class="mdl-chip__text">{$label}</span>
+
+    {if $deletable}
+      <button type="button" class="mdl-chip__action" onClick="{$deleteButtonClicked_}">
+        {call Icon.render}
+          {param isMaterialIcon: true /}
+          {param symbol: 'cancel' /}
+        {/call}
+      </button>
+    {/if}
+  </span>
+{/template}
+
+

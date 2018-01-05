@@ -1,0 +1,124 @@
+{namespace InputText}
+
+/**
+ * InputText component
+ */
+{template .render}
+  {@param name: string}
+  {@param? containerCssClass: string}
+  {@param? currentInputLength: number}
+  {@param? disabled: bool}
+  {@param? cssClass: string}
+  {@param? invalid: bool}
+  {@param? isInputInvalid: bool}
+  {@param? invalidMessage: string}
+  {@param? label: string}
+  {@param? maxLength: number}
+  {@param? placeholder: string}
+  {@param? pristine: bool}
+  {@param? required: bool}
+  {@param? type: string}
+  {@param? value: string}
+
+  {let $containerAttributes kind="attributes"}
+    class="
+    {if $containerCssClass}
+      {$containerCssClass}
+    {/if}
+
+    {if $isInputInvalid or $invalid}
+      {sp}invalid
+    {/if}
+    "
+  {/let}
+
+  {let $inputAttributes kind="attributes"}
+    {if $disabled}
+      {sp}disabled
+    {/if}
+
+    class="pristine
+    {if $cssClass}
+      {sp}{$cssClass}
+    {/if}
+    "
+
+    id="{$name}"
+    name="{$name}"
+    onBlur="handleBlur_"
+    onInput="handleInput_"
+
+    {if $placeholder}
+      {sp}placeholder="{$placeholder}"
+    {/if}
+
+    ref="input"
+
+    {if $required}
+      required="true"
+    {/if}
+
+    value="{$value ?: ''}"
+
+    {if not $type}
+      {sp}type="text"
+    {else}
+      type="{$type}"
+    {/if}
+  {/let}
+
+  <div {$containerAttributes}>
+    {if $label}
+      <label for="{$name}">
+        {$label}
+      </label>
+    {/if}
+
+    <input {$inputAttributes} />
+
+    {call .validation}
+      {param currentInputLength: $currentInputLength ?: 0 /}
+      {param invalid: $invalid ?: false /}
+      {param invalidMessage: $invalidMessage ?: '' /}
+      {param maxLength: $maxLength ?: 0 /}
+      {param pristine: $pristine ?: true /}
+      {param required: $required ?: false /}
+    {/call}
+  </div>
+{/template}
+
+/**
+ * Validations
+ */
+{template .validation}
+  {@param currentInputLength: number}
+  {@param invalid : bool}
+  {@param invalidMessage : string}
+  {@param maxLength: number}
+  {@param pristine: bool}
+  {@param required: bool}
+
+  <div class="mdc-layout-grid__inner">
+    {let $invalidLength : $maxLength > 0 and $currentInputLength > $maxLength /}
+
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-11 invalid">
+      {if $required and not $pristine and $currentInputLength == 0}
+        <div>{msg desc=""}this-field-is-required{/msg}</div>
+      {/if}
+      {if $invalidLength}
+        <div>{msg desc=""}you-are-over-the-character-limit{/msg}</div>
+      {/if}
+      {if $invalid}
+        <div>{$invalidMessage}</div>
+      {/if}
+    </div>
+
+    {if $maxLength > 0}
+      <div
+          class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1 text-align-right {$invalidLength ? 'invalid' : ''}">
+        {$currentInputLength}/{$maxLength}
+      </div>
+    {/if}
+  </div>
+
+{/template}

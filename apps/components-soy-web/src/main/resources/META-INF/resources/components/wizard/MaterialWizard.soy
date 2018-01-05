@@ -1,0 +1,190 @@
+{namespace MaterialWizard}
+
+/**
+ * Renders the MaterialWizard component.
+ */
+{template .render}
+  {@param? ariaDescribedBy: string}
+  {@param? ariaLabeledBy: string}
+  {@param? back: any}
+  {@param? cancel: any}
+  {@param? containerElementClasses: string}
+  {@param? containerId: string}
+  {@param? contentElementClasses: string}
+  {@param? contentId: string}
+  {@param? currentPageIndex: number}
+  {@param? footerElementClasses: string}
+  {@param? headerElementClasses: string}
+  {@param? isFormValid: bool}
+  {@param? next: any}
+  {@param? headerId: string}
+  {@param pages: list<[
+  content: html|string,
+  title: string,
+  validate: any|null
+  ]>}
+  {@param? scrollable: bool}
+  {@param? showHeader: bool}
+  {@param? visible: bool}
+
+  {let $modalAttributes kind="attributes"}
+    aria-describedby="{$ariaDescribedBy}"
+    aria-labelledby="{$ariaLabeledBy}"
+    class="mdc-dialog
+
+    {if $containerElementClasses}
+      {sp}{$containerElementClasses}
+    {/if}
+
+    {if $visible}
+      {sp}mdc-dialog--open mdc-dialog--animating
+    {/if}
+    "
+    {if $containerId}
+      id="{$containerId}"
+    {/if}
+
+    role="alertdialog"
+  {/let}
+
+  <aside {$modalAttributes}>
+    <div class="mdc-dialog__surface" data-current-page="{$currentPageIndex}">
+      {foreach $page in $pages}
+        <div class="{index($page) == $currentPageIndex ? '' : 'hide'}" data-page="{index($page)}">
+          {if $showHeader}
+            {call ._modalHeader}
+              {param elementClasses: $headerElementClasses /}
+              {param id: $headerId /}
+              {param title: $page.title /}
+            {/call}
+          {/if}
+
+          {call ._modalContent}
+            {param content: $page.content /}
+            {param elementClasses: $contentElementClasses /}
+            {param id: $contentId /}
+            {param scrollable: $scrollable /}
+          {/call}
+
+          {call ._modalFooter}
+            {param back: $back /}
+            {param cancel: $cancel /}
+            {param currentPageIndex: $currentPageIndex /}
+            {param elementClasses: $footerElementClasses /}
+            {param isFormValid: $isFormValid /}
+            {param next: $next /}
+            {param pageCount: length($pages) /}
+          {/call}
+        </div>
+      {/foreach}
+    </div>
+
+    <div class="mdc-dialog__backdrop"></div>
+  </aside>
+{/template}
+
+/**
+ * Renders the MaterialWizard component header.
+ */
+{template ._modalHeader}
+  {@param? title: string}
+  {@param? elementClasses: string}
+  {@param? id: string}
+
+  {let $attributes kind="attributes"}
+    class="mdc-dialog__header
+
+    {if $elementClasses}
+      {sp}{$elementClasses}
+    {/if}
+    "
+  {/let}
+
+  <header {$attributes}>
+    <h2 id="{$id}" class="mdc-dialog__header__title">
+      {$title}
+    </h2>
+  </header>
+{/template}
+
+/**
+ * Renders the MaterialWizard component content.
+ */
+{template ._modalContent}
+  {@param? content: html|string}
+  {@param? elementClasses: string}
+  {@param? id: string}
+  {@param? scrollable: bool}
+
+  {if $content}
+    {let $attributes kind="attributes"}
+      class="mdc-dialog__body
+
+      {if $scrollable}
+        {sp}mdc-dialog__body--scrollable
+      {/if}
+
+      {if $elementClasses}
+        {sp}{$elementClasses}
+      {/if}
+      "
+
+      id="{$id}"
+    {/let}
+
+    <section {$attributes}>{$content}</section>
+  {/if}
+{/template}
+
+/**
+ * Renders the MaterialWizard component footer.
+ */
+{template ._modalFooter}
+  {@param? back: any}
+  {@param? currentPageIndex: number}
+  {@param? cancel: any}
+  {@param? elementClasses: string}
+  {@param? isFormValid: bool}
+  {@param? next: any}
+  {@param? pageCount: number}
+
+  <footer class="mdc-dialog__footer {$elementClasses}">
+    <button class="mdc-button mdc-dialog__footer__button cancel-button" type="button"
+            onClick="{$cancel}">
+      {msg desc=""}cancel{/msg}
+    </button>
+
+    {if $currentPageIndex > 0}
+      <button class="mdc-button mdc-dialog__footer__button back-button" type="button"
+              onClick="{$back}">
+        {msg desc=""}back{/msg}
+      </button>
+    {/if}
+
+    {let $lastPage : $currentPageIndex == ($pageCount - 1) /}
+
+    {let $wizardControlButtonAttributes kind="attributes"}
+      class="mdc-button mdc-dialog__footer__button
+      {if $lastPage}
+        {sp}done-button
+      {else}
+        {sp}next-button
+      {/if}
+      "
+      type="button"
+      onClick="{$next}"
+
+      {if not $isFormValid}
+        {sp}disabled
+      {/if}
+    {/let}
+
+    <button {$wizardControlButtonAttributes} ref="wizzardControlButton">
+      {if $lastPage}
+        {msg desc=""}done{/msg}
+      {else}
+        {msg desc=""}next{/msg}
+      {/if}
+    </button>
+  </footer>
+{/template}

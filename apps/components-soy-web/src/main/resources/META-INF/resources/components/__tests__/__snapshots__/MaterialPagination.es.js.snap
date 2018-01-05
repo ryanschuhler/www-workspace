@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaterialPagination should render 1`] = `
+<div class="pario-pagination-container ">
+  <span class="pario-pagination-previous pario-pagination-url">
+    <i class="material-icons material-icons-middle">chevron_left</i>
+  </span>0 - 10 of 20
+  <span class="pario-pagination-next pario-pagination-url">
+    <i class="material-icons material-icons-middle">chevron_right</i>
+  </span>
+</div>
+`;

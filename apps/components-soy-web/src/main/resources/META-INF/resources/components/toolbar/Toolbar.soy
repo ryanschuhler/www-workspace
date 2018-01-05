@@ -1,0 +1,50 @@
+{namespace Toolbar}
+
+/**
+ * Toolbar
+ */
+{template .render}
+  {@param? elementClasses: string}
+  {@param? items: list<?>}
+
+  <header class="mdc-toolbar {$elementClasses}">
+    {if $items}
+      <div class="mdc-toolbar__row">
+        {foreach $item in $items}
+          {call ._toolbarSection}
+            {param align: $item.align /}
+            {param content: $item.content /}
+            {param elementClasses: $item.elementClasses /}
+          {/call}
+        {/foreach}
+      </div>
+    {/if}
+  </header>
+{/template}
+
+/**
+ * MaterialModal
+ */
+{template ._toolbarSection}
+  {@param? align: string}
+  {@param? content: html|string}
+  {@param? elementClasses: string}
+
+  {let $attributes kind="attributes"}
+    class="mdc-toolbar__section
+    {if $align == 'start'}
+      {sp}mdc-toolbar__section--align-start
+    {elseif $align == 'end'}
+      {sp}mdc-toolbar__section--align-end
+    {/if}
+
+    {if isNonnull($elementClasses)}
+      {sp}{$elementClasses}
+    {/if}
+    "
+  {/let}
+
+  <section {$attributes}>
+    {$content}
+  </section>
+{/template}

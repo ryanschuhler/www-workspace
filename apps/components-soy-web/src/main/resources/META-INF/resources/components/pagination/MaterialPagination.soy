@@ -1,0 +1,61 @@
+{namespace MaterialPagination}
+
+/**
+ * MaterialPagination
+ */
+{template .render}
+  {@param end: string|null}
+  {@param portletNamespace: string}
+  {@param start: string|null}
+  {@param total: string|null}
+  {@param? cssClass: string}
+  {@param? nextURL: string|null}
+  {@param? previousURL: string|null}
+  {@param? tooltipCssClass: string}
+
+  {let $namespace: $portletNamespace + randomInt(1000) /}
+
+  <div class="pario-pagination-container {$cssClass ?: ''}">
+		<span class="pario-pagination-previous pario-pagination-url">
+			{if $previousURL}
+      <a href="{$previousURL}" id="{$namespace}_previous">
+      {/if}
+
+      <i class="material-icons material-icons-middle">chevron_left</i>
+
+      {if $previousURL}
+      </a>
+
+        <div class="mdl-tooltip {$tooltipCssClass ?: ''}" data-mdl-for="{$namespace}_previous">
+          {msg desc=""}previous-page{/msg}
+        </div>
+      {/if}
+		</span>
+
+    {$start}{sp}-{sp}{$end}
+
+    {sp}
+
+    {msg desc=""}of{/msg}
+
+    {sp}
+
+    {$total}
+
+    <span class="pario-pagination-next pario-pagination-url">
+			{if $nextURL}
+      <a href="{$nextURL}" id="{$namespace}_next">
+      {/if}
+
+      <i class="material-icons material-icons-middle">chevron_right</i>
+
+      {if $nextURL}
+      </a>
+
+        <div class="mdl-tooltip {$tooltipCssClass ?: ''}" data-mdl-for="{$namespace}_next">
+          {msg desc=""}next-page{/msg}
+        </div>
+      {/if}
+		</span>
+  </div>
+{/template}

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar should render with items 1`] = `
+<header class="mdc-toolbar undefined">
+  <div class="mdc-toolbar__row">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start item-1">&lt;h1&gt;Item One&lt;/h1&gt;</section>
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-end item-2">&lt;h1&gt;Item Two&lt;/h1&gt;</section>
+    <section class="mdc-toolbar__section item-3">&lt;h1&gt;Item Three&lt;/h1&gt;</section>
+  </div>
+</header>
+`;

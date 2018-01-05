@@ -1,0 +1,190 @@
+{namespace MaterialModal}
+
+/**
+ * Renders the MaterialModal component.
+ */
+{template .render}
+  {@param? ariaDescribedBy: string}
+  {@param? ariaLabeledBy: string}
+  {@param? buttons: list<?>}
+  {@param? cancel_message: string}
+  {@param? containerElementClasses: string}
+  {@param? containerId: string}
+  {@param? content: html}
+  {@param? contentElementClasses: string}
+  {@param? contentId: string}
+  {@param? footerElementClasses: string}
+  {@param? headerElementClasses: string}
+  {@param? headerId: string}
+  {@param? scrollable: bool}
+  {@param? showHeader: bool}
+  {@param? title: string}
+  {@param? visible: bool}
+  {@param? descriptiveText: html|string}
+
+  {let $modalAttributes kind="attributes"}
+    aria-describedby="{$ariaDescribedBy}"
+    aria-labelledby="{$ariaLabeledBy}"
+    class="mdc-dialog
+
+    {if $containerElementClasses}
+      {sp}{$containerElementClasses}
+    {/if}
+
+    {if $visible}
+      {sp}mdc-dialog--open mdc-dialog--animating
+    {/if}
+    "
+
+    {if $cancel_message}
+      data-cancel-message="{$cancel_message}"
+    {/if}
+
+    {if $containerId}
+      id="{$containerId}"
+    {/if}
+
+    role="alertdialog"
+  {/let}
+
+  <aside {$modalAttributes}>
+    <div class="mdc-dialog__surface">
+      {if $showHeader}
+        {call ._modalHeader}
+          {param elementClasses: $headerElementClasses /}
+          {param id: $headerId /}
+          {param title: $title /}
+          {param descriptiveText: $descriptiveText /}
+        {/call}
+      {/if}
+
+      {call ._modalContent}
+        {param content: $content /}
+        {param elementClasses: $contentElementClasses /}
+        {param id: $contentId /}
+        {param scrollable: $scrollable /}
+      {/call}
+
+      {call ._modalFooter}
+        {param buttons: $buttons /}
+        {param elementClasses: $footerElementClasses /}
+      {/call}
+    </div>
+
+    <div class="mdc-dialog__backdrop"></div>
+  </aside>
+{/template}
+
+/**
+ * Renders the MaterialModal component header.
+ */
+{template ._modalHeader}
+  {@param? title: string}
+  {@param? elementClasses: string}
+  {@param? id: string}
+  {@param? descriptiveText: html|string}
+
+  {let $attributes kind="attributes"}
+    class="mdc-dialog__header
+
+    {if $elementClasses}
+      {sp}{$elementClasses}
+    {/if}
+    "
+  {/let}
+
+  <header {$attributes}>
+    <div id="{$id}" class="mdc-dialog__header__title">
+      {$title}
+    </div>
+    {if $descriptiveText}
+      <div class="modal-descriptive-text">{$descriptiveText}</div>
+    {/if}
+  </header>
+{/template}
+
+/**
+ * Renders the MaterialModal component content.
+ */
+{template ._modalContent}
+  {@param? content: html|string}
+  {@param? elementClasses: string}
+  {@param? id: string}
+  {@param? scrollable: bool}
+
+  {if $content}
+    {let $attributes kind="attributes"}
+      class="mdc-dialog__body
+
+      {if $scrollable}
+        {sp}mdc-dialog__body--scrollable
+      {/if}
+
+      {if $elementClasses}
+        {sp}{$elementClasses}
+      {/if}
+      "
+
+      id="{$id}"
+    {/let}
+
+    <section {$attributes}>{$content}</section>
+  {/if}
+{/template}
+
+/**
+ * Renders the MaterialModal component footer.
+ */
+{template ._modalFooter}
+  {@param? buttons: list<?>}
+  {@param? elementClasses: string}
+
+  <footer class="mdc-dialog__footer {$elementClasses}">
+    {if $buttons}
+      {foreach $button in $buttons}
+        {if not $button.hide}
+
+          {let $attributes kind="attributes"}
+            class="mdc-button mdc-dialog__footer__button
+
+            {if $button.cssClass}
+              {sp}{$button.cssClass}
+            {/if}
+            "
+
+            {if $button.href}
+              href="{$button.href}"
+            {/if}
+
+            {if $button.id}
+              id="{$button.id}"
+            {/if}
+
+            {if $button.handleOnClickFn}
+              onClick="{$button.handleOnClickFn}"
+            {/if}
+
+            {if $button.type != 'link'}
+              type="{$button.type}"
+            {/if}
+
+            {if $button.disabled}
+              disabled="disabled"
+            {/if}
+
+            {if $button.title and $button.title != ''}
+              title="{$button.title}"
+            {/if}
+          {/let}
+
+          {if $button.type == 'link'}
+            <a {$attributes}>{$button.label}</a>
+          {else}
+            <button {$attributes}>{$button.label}</button>
+          {/if}
+
+        {/if}
+      {/foreach}
+    {/if}
+  </footer>
+{/template}

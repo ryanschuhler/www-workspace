@@ -1,0 +1,95 @@
+{namespace CheckBox}
+
+/**
+ * CheckBox component
+ */
+{template .render}
+  {@param id: string}
+  {@param? checked: bool}
+  {@param? disabled: bool}
+  {@param? elementClasses: string}
+  {@param? label: string|html}
+  {@param? name: string}
+  {@param? object: any}
+  {@param? onChange_: any}
+  {@param? onClick_: any}
+  {@param? required: bool}
+  {@param? value: string}
+
+  {let $inputAttributes kind="attributes"}
+    {if $checked}
+      checked="checked"
+    {/if}
+
+    class="mdc-checkbox__native-control
+    {if $elementClasses}
+      {sp}{$elementClasses}
+    {/if}
+    "
+
+    {if $disabled}
+      {sp}disabled{sp}
+    {/if}
+
+    id="{$id}"
+
+    {if $name}
+      name="{$name}"
+    {/if}
+
+    onchange="{$onChange_}"
+    onClick="{$onClick_}"
+    ref="input"
+
+    {if $required}
+      required="true"
+    {/if}
+
+    type="checkbox"
+
+    {if $value}
+      value="{$value}"
+    {/if}
+  {/let}
+
+  {let $classes kind="text"}
+    mdc-checkbox
+
+    {if $checked}
+      {sp}checked
+    {/if}
+
+    {if $disabled}
+      {sp}mdc-checkbox--disabled
+    {/if}
+  {/let}
+
+  <div class="mdc-form-field">
+
+    <div class="{$classes}">
+
+      <input {$inputAttributes} />
+
+      <div class="mdc-checkbox__background">
+        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+          <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white"
+                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+        </svg>
+        <div class="mdc-checkbox__mixedmark"></div>
+      </div>
+
+    </div>
+
+    {if $label}
+      <label for="{$id}" id="{$id}-label" class="mdc-checkbox-label">
+        {$label}
+      </label>
+    {/if}
+
+  </div>
+
+  {if $object}{/if} // object passed on events
+
+{/template}
+
+

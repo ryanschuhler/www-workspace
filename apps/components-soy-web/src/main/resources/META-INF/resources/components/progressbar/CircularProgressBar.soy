@@ -1,0 +1,32 @@
+{namespace CircularProgressBar}
+
+/**
+ * Circular Progress bar
+ */
+{template .render}
+  {@param? calculatedProgress: int}
+
+  <svg width="24" height="24" viewport="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle
+      class="progress-indicator progress-circle"
+      cx="12"
+      cy="12"
+      fill="none"
+      r="6"
+      stroke-dasharray="37.70"
+      stroke-dashoffset="0"
+      stroke-width="4"
+    />
+
+    <circle
+      class="progress-indicator background-circle"
+      cx="12"
+      cy="12"
+      fill="none"
+      r="6"
+      stroke-dasharray="37.70"
+      stroke-dashoffset="-{$calculatedProgress ?: 0}"
+      stroke-width="4"
+    />
+  </svg>
+{/template}

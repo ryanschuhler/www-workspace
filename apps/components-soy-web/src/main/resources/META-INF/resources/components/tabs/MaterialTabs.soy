@@ -1,0 +1,37 @@
+{namespace MaterialTabs}
+
+/**
+ * Toolbar
+ */
+{template .render}
+  {@param items: list<[
+  active: bool,
+  label: string,
+  url: string
+  ]>}
+
+  <nav id="basic-tab-bar" class="mdc-tab-bar">
+    {foreach $item in $items}
+      {call ._tabItem}
+        {param item: $item /}
+      {/call}
+    {/foreach}
+    <span class="mdc-tab-bar__indicator"></span>
+  </nav>
+{/template}
+
+/**
+ * Toolbar item.
+ */
+{template ._tabItem}
+  {@param item: [
+  active: bool,
+  label: string,
+  url: string
+  ]}
+
+  <a
+      class="mdc-tab {if $item.active}mdc-tab--active{/if}"
+      href="{$item.url}"
+  >{$item.label}</a>
+{/template}

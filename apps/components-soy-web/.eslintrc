@@ -1,0 +1,19 @@
+{
+  "extends": "google",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "object-curly-spacing": "off",
+    "camelcase": "off",
+    "eol-last": [
+      "error",
+      "never"
+    ],
+    "no-trailing-spaces": "error"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}

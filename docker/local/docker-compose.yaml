@@ -77,7 +77,7 @@ services:
       - "mockmock:/home"
   hubspot:
     build: hubspot/.
-    container_name: hubspot 
+    container_name: hubspot
     image: hubspot:www-local
     networks:
       - "www-external"

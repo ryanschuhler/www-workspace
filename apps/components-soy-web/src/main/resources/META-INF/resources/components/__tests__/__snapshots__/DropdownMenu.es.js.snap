@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownMenu should render with three items 1`] = `
+<div class="mdc-menu-anchor ">
+  <button class="mdc-button mdc-menu-toggle" type="button" ref="mdcMenuToggle">test-button-content</button>
+  <div class="mdc-simple-menu" data-mdc-auto-init="MDCSimpleMenu" ref="mdcSimpleMenu">
+    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+      <li class="mdc-list-item" role="menuitem" tabindex="0">&lt;p&gt;item1&lt;/p&gt;</li>
+      <li class="mdc-list-item" role="menuitem" tabindex="0">&lt;p&gt;item2&lt;/p&gt;</li>
+      <li class="mdc-list-item" role="menuitem" tabindex="0">&lt;p&gt;item3&lt;/p&gt;</li>
+    </ul>
+  </div>
+</div>
+`;
