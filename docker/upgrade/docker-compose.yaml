@@ -1,0 +1,53 @@
+version: '3.3'
+
+networks:
+  www-external:
+    internal: false
+  www-internal:
+    internal: true
+
+services:
+  liferay:
+    build: liferay/.
+    container_name: liferay
+    depends_on:
+     - "mariadb"
+    environment:
+      - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
+    image: liferay:upgrade
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    user: root
+    volumes:
+      - "liferay:/opt/java/liferay/data"
+      - "liferay-tools:/opt/java/liferay/tools"
+  mariadb:
+    build:
+      args:
+        DB_URL: http://mirrors/files.liferay.com/private/lrdcom/www_lportal-2018-01-03_19-00-PST.sql.gz
+      context: mariadb/.
+    container_name: mariadb
+    environment:
+      - "MYSQL_DATABASE=lportal"
+      - "MYSQL_ROOT_PASSWORD=passw0rd"
+      - "character-set-server=utf8mb4"
+      - "collation-server=utf8mb4_unicode_ci"
+    image: mariadb:upgrade
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "3307:3306"
+    volumes:
+      - "mariadb:/var/lib/mysql"
+
+volumes:
+  liferay:
+  liferay-tools:
+  mariadb:
