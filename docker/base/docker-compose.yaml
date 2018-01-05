@@ -52,11 +52,8 @@ services:
   mariadb:
     build: mariadb/.
     container_name: mariadb
-    environment:
-      - "MYSQL_DATABASE=lportal"
-      - "MYSQL_ROOT_PASSWORD=passw0rd"
-      - "character-set-server=utf8mb4"
-      - "collation-server=utf8mb4_unicode_ci"
+    env_file:
+      - "mariadb/mariadb.env"
     image: mariadb:www-base
     networks:
       - "www-internal"

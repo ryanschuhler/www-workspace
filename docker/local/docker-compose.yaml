@@ -30,14 +30,13 @@ services:
     volumes:
       - "apache:/var/www/html"
   liferay:
-    build: liferay/.
     container_name: liferay
     depends_on:
      - "mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
       - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
-    image: liferay:www-local
+    image: liferay:www-base
     networks:
       - "www-external"
       - "www-internal"
@@ -46,18 +45,13 @@ services:
     user: root
     volumes:
       - "liferay:/opt/java/liferay/data"
+      - "./liferay/resources:/tmp/liferay"
+#      - "./liferay/resources/deploy:/opt/java/liferay/deploy"
   mariadb:
-    build:
-#      args:
-#        DB_URL: http://mirrors/files.liferay.com/private/lrdcom/www_lportal-2017-12-18_19-00-PST.sql.gz
-      context: mariadb/.
     container_name: mariadb
-    environment:
-      - "MYSQL_DATABASE=lportal"
-      - "MYSQL_ROOT_PASSWORD=passw0rd"
-      - "character-set-server=utf8mb4"
-      - "collation-server=utf8mb4_unicode_ci"
-    image: mariadb:www-local
+    env_file:
+      - "mariadb/mariadb.env"
+    image: mariadb:www-base
     networks:
       - "www-external"
       - "www-internal"
@@ -80,7 +74,7 @@ services:
       - "mockmock:/home"
   hubspot:
     build: hubspot/.
-    container_name: hubspot 
+    container_name: hubspot
     image: hubspot:www-local
     networks:
       - "www-external"

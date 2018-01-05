@@ -44,8 +44,13 @@ RUN if [ "$LIFERAY_FIXPACK_DOWNLOAD_URL" != "" ] \
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
-COPY resources/ /opt/java/liferay/
+COPY ./entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-RUN chown -R liferay /opt/java/liferay /usr/local/bin
+COPY ./resources/ /opt/java/liferay/
 
+RUN mkdir -p /tmp/liferay
+RUN chown -R liferay /opt/java/liferay /usr/local/bin /tmp/liferay
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/opt/java/liferay/tomcat/bin/catalina.sh", "run"]
