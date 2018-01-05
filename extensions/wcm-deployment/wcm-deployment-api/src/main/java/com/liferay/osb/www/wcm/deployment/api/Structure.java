@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osb.www.wcm.deployment;
+package com.liferay.osb.www.wcm.deployment.api;
 
 import java.util.ArrayList;
 import java.util.List;

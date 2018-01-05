@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osb.www.wcm.deployment;
+package com.liferay.osb.www.wcm.deployment.api;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.portal.kernel.exception.PortalException;

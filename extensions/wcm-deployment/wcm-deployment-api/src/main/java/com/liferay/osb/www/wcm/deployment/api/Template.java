@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osb.www.wcm.deployment;
+package com.liferay.osb.www.wcm.deployment.api;
 
 public class Template {
 

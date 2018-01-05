@@ -16,7 +16,7 @@ package com.liferay.osb.www.wcm.deployment;
 
 import com.liferay.osb.www.wcm.deployment.api.Structure;
 import com.liferay.osb.www.wcm.deployment.api.Template;
-import com.liferay.osb.www.wcm.deployment.WCMDeployment;
+import com.liferay.osb.www.wcm.deployment.api.WCMDeployment;
 import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
