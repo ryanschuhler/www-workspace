@@ -36,10 +36,13 @@ services:
      - "mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
+      - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
     image: liferay:www-local
     networks:
       - "www-external"
       - "www-internal"
+    ports:
+      - "8000:8000"
     user: root
     volumes:
       - "liferay:/opt/java/liferay/data"
@@ -83,7 +86,7 @@ services:
       - "www-external"
       - "www-internal"
     ports:
-      - "8000:80"
+      - "8080:80"
 
 volumes:
   apache:
