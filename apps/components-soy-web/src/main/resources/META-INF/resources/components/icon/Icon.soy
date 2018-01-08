@@ -1,0 +1,33 @@
+{namespace Icon}
+
+/**
+ * Icon
+ */
+{template .render}
+  {@param isMaterialIcon: bool}
+  {@param symbol: string}
+  {@param? cssClass: string}
+  {@param? pathThemeImages: string}
+
+  {let $classes kind="text"}
+    icon-root
+    {sp}pario-icon
+    {sp}lexicon-icon
+
+    {if $isMaterialIcon}
+      {sp}material-icons
+    {/if}
+
+    {if $cssClass}
+      {sp}{$cssClass}
+    {/if}
+  {/let}
+
+  {if $isMaterialIcon}
+    <i class="{$classes}">{$symbol}</i>
+  {else}
+    <svg class="{$classes}">
+      <use xlink:href="{$pathThemeImages}/pario/icons.svg#{$symbol}"></use>
+    </svg>
+  {/if}
+{/template}

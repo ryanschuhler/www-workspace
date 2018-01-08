@@ -1,0 +1,47 @@
+{namespace Fab}
+
+/**
+ * FAB icon
+ */
+{template .render}
+  {@param label: string}
+  {@param? cssClass: string}
+  {@param? handleOnClickFn: any|null}
+  {@param? icon: string}
+  {@param? id: string}
+  {@param? url: string}
+
+  {let $buttonAttributes kind="attributes"}
+    aria-label="{$label}"
+    class="app-fab--absolute mdc-fab material-icons
+
+    {if $cssClass}
+      {sp}{$cssClass}
+    {/if}
+    "
+
+    data-mdc-auto-init="MDCRipple"
+
+    {if $url}
+      href="{$url}"
+    {else}
+      href="javascript:;"
+    {/if}
+
+    {if $id}
+      id="{$id}"
+    {/if}
+
+    {if $handleOnClickFn}
+      onClick="{$handleOnClickFn}"
+    {/if}
+
+    title="{$label}"
+  {/let}
+
+  <a {$buttonAttributes}>
+    <span class="mdc-fab__icon">
+      {$icon}
+    </span>
+  </a>
+{/template}

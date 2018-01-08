@@ -1,0 +1,93 @@
+{namespace Breadcrumb}
+
+/**
+ * Breadcrumb component
+ */
+{template .render}
+  {@param items: list<[
+  name: string,
+  url: string
+  ]>}
+  {@param? cssClass: string}
+  {@param? maxNumber: number}
+  {@param? hideSite: bool}
+
+  {let $itemsLength: length($items) /}
+  {let $maxNumberOfItems: $maxNumber ?: 6 /}
+
+  {let $shouldCollapse: $itemsLength > $maxNumberOfItems /}
+
+  {let $collapseStartIndex: $shouldCollapse ? 1 : -1 /}
+  {let $collapseStopIndex: $shouldCollapse ? ($itemsLength - ($maxNumberOfItems - 1)) : -1 /}
+
+  <ul class="breadcrumbs {$cssClass ?: ''}">
+    {foreach $item in $items}
+      {let $itemIndex: index($item) /}
+      {let $isNotLast: not isLast($item) /}
+
+      {let $firstItemCollapsed: $itemIndex == $collapseStartIndex /}
+      {let $isItemCollapsed: ($shouldCollapse and ($itemIndex >= $collapseStartIndex))
+      and ($itemIndex <= $collapseStopIndex) /}
+
+      {let $showItem: (not $hideSite) or ($hideSite and $itemIndex > 0) /}
+
+      {if $showItem}
+        {if $isNotLast and $item.url != ''}
+          {let $linkAttributes kind="attributes"}
+            href="{$item.url}"
+          {/let}
+
+          {if $isItemCollapsed}
+            {if $firstItemCollapsed}
+              <li class="breadcrumb no-overflow">
+                <div class="mdc-menu-anchor site-menu">
+                  <button class="mdc-button mdc-menu-toggle site-menu-menu-toggle" onClick="handleOpenMenu_" type="button" ref="mdcMenuToggle">
+                    {call Icon.render}
+                      {param elementClasses: 'vertical-align' /}
+                      {param isMaterialIcon: true /}
+                      {param symbol: 'more_horiz' /}
+                    {/call}
+                  </button>
+
+                  <div class="mdc-simple-menu" data-mdc-auto-init="MDCSimpleMenu"
+                       ref="mdcSimpleMenu">
+                    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                      {for $number in range($collapseStartIndex, $collapseStopIndex + 1)}
+                        {let $collapsedItem: $items[$number] /}
+
+                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                          <a class="site-menu-action-item" href="{$collapsedItem.url}">
+                            {$collapsedItem.name}
+                          </a>
+                        </li>
+                      {/for}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            {/if}
+          {else}
+            <li class="breadcrumb">
+              <a {$linkAttributes}>
+                {$item.name}
+              </a>
+            </li>
+          {/if}
+        {else}
+          <li class="breadcrumb">
+            {$item.name}
+          </li>
+        {/if}
+
+        {if $isNotLast and (not $isItemCollapsed or $firstItemCollapsed)}
+          <span class="breadcrumb-separator">
+            {call Icon.render}
+              {param isMaterialIcon: true /}
+              {param symbol: 'chevron_right' /}
+            {/call}
+          </span>
+        {/if}
+      {/if}
+    {/foreach}
+  </ul>
+{/template}

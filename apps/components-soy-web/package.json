@@ -1,0 +1,52 @@
+{
+	"dependencies": {
+		"flatpickr": "4.0.6",
+		"metal": "2.13.2",
+		"metal-component": "2.13.2",
+		"metal-datatable": "2.1.1",
+		"metal-dom": "2.13.2",
+		"metal-events": "2.13.2",
+		"metal-soy": "2.13.2",
+		"metal-state": "2.13.2"
+	},
+	"devDependencies": {
+		"babel-cli": "6.26.0",
+		"babel-core": "6.26.0",
+		"babel-jest": "20.0.3",
+		"babel-loader": "7.1.2",
+		"babel-plugin-transform-node-env-inline": "0.2.0",
+		"babel-preset-metal": "4.1.0",
+		"eslint": "4.1.1",
+		"eslint-config-google": "0.9.1",
+		"find-package-json": "1.0.0",
+		"jest": "20.0.4",
+		"liferay-metal-jest-resolver": "1.0.0",
+		"liferay-module-config-generator": "1.2.1",
+		"metal-cli": "4.3.3",
+		"metal-jest-serializer": "1.0.1",
+		"metal-soy-critic": "2.1.0",
+		"metal-tools-soy": "5.0.0",
+		"prettier": "1.5.2"
+	},
+	"scripts": {
+		"lint": "eslint src/**/*.js --fix && mcritic src",
+		"test": "metalsoy && jest"
+	},
+	"jest": {
+		"resolver": "liferay-metal-jest-resolver",
+		"roots": [
+			"src"
+		],
+		"snapshotSerializers": [
+			"metal-jest-serializer"
+		],
+		"testURL": "http://liferay.com",
+		"timers": "fake",
+		"transformIgnorePatterns": [
+			"<rootDir>.*(node_modules)(?!.*metal.*).*$"
+		]
+	},
+	"jsnext:main": "components/main.js",
+	"name": "components-soy-web",
+	"version": "0.0.1"
+}

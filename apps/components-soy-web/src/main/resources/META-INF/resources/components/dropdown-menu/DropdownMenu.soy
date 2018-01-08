@@ -1,0 +1,39 @@
+{namespace DropdownMenu}
+
+/**
+ * DropdownMenu component
+ */
+{template .render}
+  {@param buttonInnerHtml: html}
+  {@param items: list<html|string>}
+  {@param? cssClass: string}
+  {@param? buttonCssClass: string}
+
+  {let $buttonAttributes kind="attributes"}
+    class="mdc-button
+      {sp}mdc-menu-toggle
+
+      {if $buttonCssClass}
+        {sp}{$buttonCssClass}
+      {/if}
+    "
+
+    onClick="handleOpenMenu_"
+    type="button"
+    ref="mdcMenuToggle"
+  {/let}
+
+  <div class="mdc-menu-anchor {$cssClass ?: ''}">
+    <button {$buttonAttributes}>{$buttonInnerHtml}</button>
+
+    <div class="mdc-simple-menu" data-mdc-auto-init="MDCSimpleMenu" ref="mdcSimpleMenu">
+      <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+        {foreach $htmlItem in $items}
+          <li class="mdc-list-item" role="menuitem" tabindex="0">
+            {$htmlItem}
+          </li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+{/template}

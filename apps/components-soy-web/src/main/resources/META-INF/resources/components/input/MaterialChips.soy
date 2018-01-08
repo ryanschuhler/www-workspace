@@ -1,0 +1,93 @@
+{namespace MaterialChips}
+
+/**
+ * MaterialChips component
+ */
+{template .render}
+  {@param chips: list<string>}
+  {@param? inputId: string}
+  {@param? inputName: string}
+  {@param? maxChipLength: number}
+  {@param? placeholder: string}
+  {@param? selectedIndex: number}
+  {@param? readonly: bool}
+
+  {@param? onChipDeleteClicked_: any}
+
+  {if $readonly}
+    <div class="chips">
+      <span>
+        {foreach $chip in $chips}
+          {if $chip != ''}
+            {let $index: index($chip) /}
+
+            {call MaterialChip.render}
+              {param events: ['chipDeleteClicked': $onChipDeleteClicked_] /}
+              {param deletable: not $readonly /}
+              {param elementClasses: $index == $selectedIndex ? 'selected' : '' /}
+              {param label: $chip /}
+            {/call}
+          {/if}
+        {/foreach}
+      </span>
+    </div>
+  {else}
+    <div class="chips chips-editable">
+
+    <span>
+      {foreach $chip in $chips}
+        {if $chip != ''}
+          {let $index: index($chip) /}
+
+          {call MaterialChip.render}
+            {param events: ['chipDeleteClicked': $onChipDeleteClicked_] /}
+            {param deletable: true /}
+            {param elementClasses: $index == $selectedIndex ? 'selected' : '' /}
+            {param label: $chip /}
+          {/call}
+        {/if}
+      {/foreach}
+    </span>
+
+      {let $fakeLinkAttributes kind="attributes"}
+        href=""
+        onBlur="unselectChip_"
+        onKeydown="onFakeLinkKeyDown_"
+        onKeyup="onFakeLinkKeyUp_"
+        ref="anchor"
+        tabindex="-1"
+      {/let}
+
+      <a {$fakeLinkAttributes}></a>
+
+      {let $inputAttributes kind="attributes"}
+        class="chips-input"
+        onChange="onInputChange_"
+        onInput="onInputChange_"
+        onKeydown="onInputKeyDown_"
+        onKeypress="onInputKeyPress_"
+        onKeyup="onInputKeyUp_"
+        onMouseup="onInputChange_"
+        onPaste="onInputChange_"
+        maxlength="{$maxChipLength}"
+
+        {if $placeholder and length($chips) == 0}
+          placeholder="{$placeholder}"
+        {/if}
+
+        ref="input"
+        type="text"
+      {/let}
+
+      <input {$inputAttributes} />
+
+      {if $inputId or $inputName}
+        <input id="{$inputId}" name="{$inputName}" type="hidden" value="{$chips}"/>
+      {/if}
+    </div>
+
+  {/if}
+
+{/template}
+
+

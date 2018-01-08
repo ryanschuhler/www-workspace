@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaterialTabs should render 1`] = `
+<nav id="basic-tab-bar" class="mdc-tab-bar">
+  <a class="mdc-tab mdc-tab--active" href="javascript:;">Current Tab</a>
+  <a class="mdc-tab " href="javascript:;">button 2</a>
+  <span class="mdc-tab-bar__indicator"></span>
+</nav>
+`;

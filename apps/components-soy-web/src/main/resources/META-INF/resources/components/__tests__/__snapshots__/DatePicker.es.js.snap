@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker should render 1`] = `
+<div class="date-picker">
+  <i class="material-icons date-icon">insert_invitation</i>
+  <input id="foo" name="foo" ref="input" type="text" value="" class="flatpickr-input" readonly="readonly">
+  <span class="arrow"></span>
+</div>
+`;

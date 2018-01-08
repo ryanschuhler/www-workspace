@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputText should render 1`] = `
+<div class="">
+  <input class="pristine" id="test" name="test" ref="input" value="" type="text">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-11 invalid"></div>
+  </div>
+</div>
+`;

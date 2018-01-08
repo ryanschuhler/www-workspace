@@ -1,0 +1,67 @@
+{namespace RadioButton}
+
+/**
+ * RadioButton component
+ */
+{template .render}
+  {@param id: string}
+  {@param name: string}
+  {@param? checked: bool}
+  {@param? disabled: bool}
+  {@param? label: string}
+  {@param? onChange: any}
+  {@param? onClick: any}
+  {@param? required: bool}
+
+  {let $inputAttributes kind="attributes"}
+    {if $checked}
+      checked="checked"
+    {/if}
+
+    {if $disabled}
+      {sp}disabled{sp}
+    {/if}
+
+    class="mdc-radio__native-control"
+    id="{$id}"
+    name="{$name}"
+
+    onClick="{$onClick}"
+    onchange="{$onChange}"
+
+    {if $required}
+      required="true"
+    {/if}
+
+    type="radio"
+  {/let}
+
+  {let $radioClasses kind="text"}
+    mdc-radio
+
+    {if $checked}
+      {sp}checked
+    {/if}
+
+    {if $disabled}
+      {sp}mdc-radio--disabled
+    {/if}
+  {/let}
+
+  <div class="mdc-form-field">
+    <div class="{$radioClasses}">
+      <input {$inputAttributes}/>
+
+      <div class="mdc-radio__background">
+        <div class="mdc-radio__outer-circle"></div>
+        <div class="mdc-radio__inner-circle"></div>
+      </div>
+    </div>
+
+    {if $label}
+      <label for="{$id}" id="{$id}-label" class="mdc-radio-label">{$label}</label>
+    {/if}
+  </div>
+{/template}
+
+

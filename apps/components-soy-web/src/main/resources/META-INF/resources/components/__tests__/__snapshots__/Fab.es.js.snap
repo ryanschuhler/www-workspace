@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fab should render 1`] = `
+<a aria-label="Add Site" class="app-fab--absolute mdc-fab material-icons" data-mdc-auto-init="MDCRipple" href="javascript:;" title="Add Site">
+  <span class="mdc-fab__icon">add</span>
+</a>
+`;
+
+exports[`Fab should render with url 1`] = `
+<a aria-label="Add Site" class="app-fab--absolute mdc-fab material-icons" data-mdc-auto-init="MDCRipple" href="https://www.google.com/" title="Add Site">
+  <span class="mdc-fab__icon">add</span>
+</a>
+`;

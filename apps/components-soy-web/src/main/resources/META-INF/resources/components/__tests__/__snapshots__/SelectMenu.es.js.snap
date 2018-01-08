@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectMenu should render 1`] = `
+<div class="mdc-select" id="foo" name="foo" ref="selectMenu" role="listbox" tabindex="0">
+  <span class="mdc-select__selected-text"></span>
+  <div class="mdc-simple-menu mdc-select__menu">
+    <ul class="mdc-list mdc-simple-menu__items">
+      <li class="mdc-list-item" id="bar" label="foo" role="option" tabindex="0" value="bar">
+        <span class="padded-menu-span">foo</span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

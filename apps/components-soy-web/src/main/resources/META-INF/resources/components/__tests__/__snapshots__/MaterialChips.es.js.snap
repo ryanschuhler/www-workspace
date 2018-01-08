@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaterialChips should render 1`] = `
+<div class="chips chips-editable">
+  <span>
+    <span class="mdl-chip mdl-chip--deletable">
+      <span class="mdl-chip__text">chip1</span>
+      <button type="button" class="mdl-chip__action">
+        <i class="icon-root pario-icon lexicon-icon material-icons">cancel</i>
+      </button>
+    </span>
+    <span class="mdl-chip mdl-chip--deletable">
+      <span class="mdl-chip__text">chip2</span>
+      <button type="button" class="mdl-chip__action">
+        <i class="icon-root pario-icon lexicon-icon material-icons">cancel</i>
+      </button>
+    </span>
+    <span class="mdl-chip mdl-chip--deletable">
+      <span class="mdl-chip__text">chip3</span>
+      <button type="button" class="mdl-chip__action">
+        <i class="icon-root pario-icon lexicon-icon material-icons">cancel</i>
+      </button>
+    </span>
+  </span>
+  <a href="" ref="anchor" tabindex="-1"></a>
+  <input class="chips-input" ref="input" type="text">
+</div>
+`;

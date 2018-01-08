@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb should render with three items 1`] = `
+<ul class="breadcrumbs ">
+  <li class="breadcrumb">
+    <a href="javascript:;">item-1</a>
+  </li>
+  <span class="breadcrumb-separator">
+    <i class="icon-root pario-icon lexicon-icon material-icons">chevron_right</i>
+  </span>
+  <li class="breadcrumb">
+    <a href="javascript:;">item-2</a>
+  </li>
+  <span class="breadcrumb-separator">
+    <i class="icon-root pario-icon lexicon-icon material-icons">chevron_right</i>
+  </span>
+  <li class="breadcrumb">item-3</li>
+</ul>
+`;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaterialModal should render 1`] = `
+<aside class="mdc-dialog" role="alertdialog" style="display: none;">
+  <div class="mdc-dialog__surface">
+    <footer class="mdc-dialog__footer undefined"></footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>
+`;
