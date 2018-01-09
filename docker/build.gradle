@@ -12,26 +12,11 @@ configure (subprojects) { project ->
     commandLine "echo", "Emptied /www-workspace/docker/${project.name}/liferay/resources/osgi/modules"
   }
 
-  task cleanWorkspace(type:Exec) {
-    group "Docker"
-    description "Deletes all modules and wars from workspace /resources folder"
-
-    doLast {
-      exec {
-        workingDir "../.."
-        commandLine "rm", "-r", "-f", "resources/"
-      }
-    }
-
-    commandLine "echo", "Emptied /www-workspace/resources"
-  }
-
   task compile(type:Exec) {
     group "Docker"
     description "Compiles all modules listed for deploy.modules in gradle.properties for project"
 
     dependsOn cleanProject
-    dependsOn cleanWorkspace
 
     def String[] modules = project.property('deploy.modules').split(',')
 
@@ -45,15 +30,6 @@ configure (subprojects) { project ->
         exec {
           commandLine "echo", "Ran gradle deploy for ${module}"
         }
-      }
-
-      exec {
-        workingDir "../../"
-        commandLine "cp", "-R", "resources/", "docker/${project.name}/liferay/resources/"
-      }
-
-      exec {
-        commandLine "echo", "Copies resources folder to /www-workspace/docker/${project.name}/liferay/resources/"
       }
     }
 
