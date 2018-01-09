@@ -4,7 +4,6 @@
 **/.project
 **/.sass-cache
 **/.settings
-**/bin
 **/build
 **/build_gradle
 **/node_modules
@@ -13,15 +12,6 @@
 **/.web_bundle_build
 .gradle
 .idea
-/bundles
 /docker/local/liferay/resources/deploy
 /docker/local/liferay/resources/osgi/modules
-/gradle-*.properties
-/plugins-sdk/**/classes
-/plugins-sdk/**/ivy.xml.MD5
-/plugins-sdk/**/liferay-hook.xml.processed
-/plugins-sdk/build.*.properties
-/plugins-sdk/dependencies/**/*.jar
-/plugins-sdk/dist
-/plugins-sdk/lib
 test-results
