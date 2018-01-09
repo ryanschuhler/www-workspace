@@ -46,7 +46,8 @@ services:
     volumes:
       - "liferay:/opt/java/liferay/data"
       - "./liferay/resources:/tmp/liferay"
-#      - "./liferay/resources/deploy:/opt/java/liferay/deploy"
+      - "./liferay/resources/deploy:/opt/java/liferay/deploy"
+      - "./liferay/resources/osgi/modules:/opt/java/liferay/osgi/modules"
   mariadb:
     container_name: mariadb
     env_file:
