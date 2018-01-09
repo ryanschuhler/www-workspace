@@ -1,0 +1,317 @@
+{
+	"availableLanguageIds": ["en_US"],
+	"defaultLanguageId": "en_US",
+	"fields": [{
+		"dataType": "string",
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"readOnly": false,
+		"label": {
+			"en_US": "Block"
+		},
+		"type": "text",
+		"required": false,
+		"showLabel": true,
+		"nestedFields": [{
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"readOnly": false,
+			"label": {
+				"en_US": "Embedded Article URL Title"
+			},
+			"type": "text",
+			"required": false,
+			"showLabel": true,
+			"nestedFields": [{
+				"indexType": "",
+				"repeatable": false,
+				"dataType": "boolean",
+				"predefinedValue": {
+					"en_US": "true"
+				},
+				"name": "copy",
+				"localizable": true,
+				"readOnly": false,
+				"tip": {
+					"en_US": "Check this if the corresponding article should be duplicated if this article is copied"
+				},
+				"label": {
+					"en_US": "Copy"
+				},
+				"type": "checkbox",
+				"required": false,
+				"showLabel": true
+			}],
+			"indexType": "",
+			"repeatable": true,
+			"name": "article_url_title",
+			"localizable": true,
+			"tip": {
+				"en_US": "This field can be used to embed another article into the current block."
+			}
+		}, {
+			"indexType": "",
+			"repeatable": true,
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"name": "article_id",
+			"localizable": true,
+			"readOnly": false,
+			"tip": {
+				"en_US": "This field can be used to embed another article into the current block."
+			},
+			"label": {
+				"en_US": "Embedded Article ID"
+			},
+			"type": "text",
+			"required": false,
+			"showLabel": true
+		}, {
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Background Color"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "background_color",
+			"options": [{
+				"label": {
+					"en_US": "None"
+				},
+				"value": "transparent-background"
+			}, {
+				"label": {
+					"en_US": "Teal (accent color)"
+				},
+				"value": "accent-background"
+			}, {
+				"label": {
+					"en_US": "Orange (complementary color)"
+				},
+				"value": "complementary-background"
+			}, {
+				"label": {
+					"en_US": "Blue (primary color)"
+				},
+				"value": "primary-background"
+			}, {
+				"label": {
+					"en_US": "Blue (alternative primary color)"
+				},
+				"value": "alt-primary-background"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (secondary color)"
+				},
+				"value": "secondary-background"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (alternative secondary color)"
+				},
+				"value": "alt-secondary-background"
+			}, {
+				"label": {
+					"en_US": "Light Gray (element color)"
+				},
+				"value": "element-background"
+			}, {
+				"label": {
+					"en_US": "Gray (alternative text color)"
+				},
+				"value": "alt-font-background"
+			}],
+			"localizable": false,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"dataType": "document-library",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"readOnly": false,
+			"label": {
+				"en_US": "Background Media"
+			},
+			"type": "ddm-documentlibrary",
+			"required": false,
+			"showLabel": true,
+			"nestedFields": [{
+				"indexType": "",
+				"repeatable": false,
+				"dataType": "string",
+				"predefinedValue": {
+					"en_US": ""
+				},
+				"name": "video_type",
+				"localizable": true,
+				"readOnly": false,
+				"tip": {
+					"en_US": "Filling this in will tell the template this document is a video. The content should look like video/mp4 (or whatever file type it should be)"
+				},
+				"label": {
+					"en_US": "Video Type"
+				},
+				"type": "text",
+				"required": false,
+				"showLabel": true
+			}],
+			"fieldNamespace": "ddm",
+			"indexType": "",
+			"repeatable": true,
+			"name": "media",
+			"localizable": true,
+			"tip": {
+				"en_US": "Select a video or image to be displayed as the background of the current block. You can select multiple to allow for fallbacks."
+			}
+		}, {
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"w100\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Width"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "width",
+			"options": [{
+				"label": {
+					"en_US": "20%"
+				},
+				"value": "w20"
+			}, {
+				"label": {
+					"en_US": "30%"
+				},
+				"value": "w30"
+			}, {
+				"label": {
+					"en_US": "33%"
+				},
+				"value": "w33"
+			}, {
+				"label": {
+					"en_US": "40%"
+				},
+				"value": "w40"
+			}, {
+				"label": {
+					"en_US": "50%"
+				},
+				"value": "w50"
+			}, {
+				"label": {
+					"en_US": "60%"
+				},
+				"value": "w60"
+			}, {
+				"label": {
+					"en_US": "66%"
+				},
+				"value": "w66"
+			}, {
+				"label": {
+					"en_US": "70%"
+				},
+				"value": "w70"
+			}, {
+				"label": {
+					"en_US": "80%"
+				},
+				"value": "w80"
+			}, {
+				"label": {
+					"en_US": "100%"
+				},
+				"value": "w100"
+			}],
+			"localizable": false,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"indexType": "",
+			"repeatable": false,
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"name": "block_class",
+			"localizable": true,
+			"readOnly": false,
+			"tip": {
+				"en_US": "Insert custom css class names you want included on the block level."
+			},
+			"label": {
+				"en_US": "Block Class"
+			},
+			"type": "text",
+			"required": false,
+			"showLabel": true
+		}],
+		"indexType": "",
+		"repeatable": true,
+		"name": "block",
+		"localizable": true,
+		"tip": {
+			"en_US": "This will create a new block which you can give a width and background to. You can also fill in the field with html attributes and it will be added into the tag. For example: id=\"myBlock\" or data-attribute=\"example\"."
+		}
+	}, {
+		"indexType": "",
+		"repeatable": false,
+		"dataType": "string",
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"name": "article_class",
+		"localizable": true,
+		"readOnly": false,
+		"tip": {
+			"en_US": "Insert custom css class names you want included on the article level."
+		},
+		"label": {
+			"en_US": "Article Class"
+		},
+		"type": "text",
+		"required": false,
+		"showLabel": true
+	}, {
+		"indexType": "",
+		"repeatable": false,
+		"dataType": "string",
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"name": "css",
+		"localizable": true,
+		"readOnly": false,
+		"tip": {
+			"en_US": "Insert your custom css here."
+		},
+		"label": {
+			"en_US": "CSS"
+		},
+		"type": "textarea",
+		"required": false,
+		"showLabel": true
+	}]
+}
