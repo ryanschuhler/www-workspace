@@ -22,7 +22,7 @@ This is an environment setup for www.liferay.com using both docker and Liferay w
 * You can run `docker ps -a` to see the containers and their statuses
 * For logs run `docker logs -f [CONTAINER_ID|CONTAINER_NAME]` ie `docker logs -f liferay`
 * To navigate the terminal of a container run  `docker exec -it [CONTAINER_ID|CONTAINER_NAME] /bin/sh` ie `docker exec -it mariadb /bin/sh`
-* As you make changes to modules you can either run `gradle dockerDeploy` from your module to hot deploy it. Or you can bring down your containers with `gradle down`, rebuild with `gradle build`, and bring them back up with `gradle up`
+* As you make changes to modules you can run `gradle deploy` and it will automaically deploy them to your containers.
 * To copy files from your computer to a docker container run `docker cp [localPath] [containerName]:[containerPath]` ie `docker cp -a ~/Desktop/dxp/deploy/ liferay:/opt/java/liferay/deploy`
 
 ## What is installed

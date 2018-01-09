@@ -10,9 +10,8 @@ Modules are categoried and live in their respective folders
 
 # Running Docker
 * See [Docker README](docker/README.markdown) for install instructions
-* Once set up simply run `gradle dockerUp` and `gradle dockerDown` control your containers
+* Once set up simply navigate to the `docker/local` directory and run `gradle up` and `gradle down` to control your containers
 
 # Deploy to Docker
-* Start up your docker instance
-* Make sure to configure `docker.container.name`, `docker.deploy.destination.path`, and `docker.deploy.src.path` in the settings.gradle of your module
-* Run the command `gradle dockerDeploy` and it will deploy the module to your docker instance
+* Make sure your docker instance is running (`gradle up`)
+* From the directory of the module you want to deploy run the command `gradle deploy` and it will deploy the module to the `docker/local/liferay` directory which is automatically synced to your docker instance
