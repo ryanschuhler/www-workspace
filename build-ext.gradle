@@ -16,8 +16,7 @@ configure(subprojects.findAll {it.getRootProject().property('liferay.workspace.m
 
 				srcPath = "build/libs/${bundleName}-${bundleVersion}.jar"
 			}
-
-			if (packageFile.exists()) {
+			else if (packageFile.exists()) {
 				def json = new groovy.json.JsonSlurper().parseText(packageFile.text)
 
 				def name = json.name
