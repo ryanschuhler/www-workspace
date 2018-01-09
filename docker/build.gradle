@@ -7,16 +7,18 @@ configure (subprojects) { project ->
       exec {
         commandLine "rm", "-r", "-f", "liferay/resources/osgi/modules/"
       }
+
+      exec {
+        commandLine "rm", "-r", "-f", "liferay/resources/deploy/"
+      }
     }
 
-    commandLine "echo", "Emptied /www-workspace/docker/${project.name}/liferay/resources/osgi/modules"
+    commandLine "echo", "Emptied /www-workspace/docker/${project.name}/liferay/resources/osgi/modules and /www-workspace/docker/${project.name}/liferay/resources/deploy"
   }
 
   task compile(type:Exec) {
     group "Docker"
     description "Compiles all modules listed for deploy.modules in gradle.properties for project"
-
-    dependsOn cleanProject
 
     def String[] modules = project.property('deploy.modules').split(',')
 
@@ -88,6 +90,23 @@ configure (subprojects) { project ->
     }
 
     commandLine "echo", "Running docker-compose down"
+  }
+
+  task restart(type:Exec) {
+    group "Docker"
+    description "Restarts up all docker instances for project"
+
+    doLast {
+      exec {
+        commandLine "docker-compose", "stop"
+      }
+
+      exec {
+        commandLine "docker-compose", "start"
+      }
+    }
+
+    commandLine "echo", "Running docker-compose stop and then docker-compose start"
   }
 
   task start(type:Exec) {

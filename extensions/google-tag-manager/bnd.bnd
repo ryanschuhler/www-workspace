@@ -1,0 +1,3 @@
+Bundle-Name: Google Tag Manager
+Bundle-SymbolicName: com.liferay.osb.www.gtm
+Bundle-Version: 1.0.0

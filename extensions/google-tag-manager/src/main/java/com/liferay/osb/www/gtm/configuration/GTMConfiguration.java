@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osb.www.configuration;
+package com.liferay.osb.www.gtm.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -22,13 +22,10 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  * @author Ryan Schuhler
  */
 @ExtendedObjectClassDefinition(category = "other")
-@Meta.OCD(id = "com.liferay.osb.www.VerifyUserConfiguration")
-public interface VerifyUserConfiguration {
+@Meta.OCD(id = "com.liferay.osb.www.gtm.GTMConfiguration")
+public interface GTMConfiguration {
 
-	@Meta.AD(id = "api.token", required = true)
-	public String apiToken();
-
-	@Meta.AD(id = "servlet.url", required = true)
-	public String servletURL();
+	@Meta.AD(id = "container.id", required = false)
+	public String containerId();
 
 }
