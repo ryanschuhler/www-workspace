@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.osb.www.gtm.servlet;
+package com.liferay.osb.www.hubspot.analytics.servlet;
 
-import com.liferay.osb.www.gtm.configuration.GTMConfiguration;
+import com.liferay.osb.www.hubspot.analytics.configuration.HubspotAnalyticsConfiguration;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.servlet.taglib.BaseDynamicInclude;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
@@ -36,10 +36,10 @@ import org.osgi.service.component.annotations.Modified;
  * @author Ryan Schuhler
  */
 @Component(
-	configurationPid = "com.liferay.osb.www.gtm.configuration.GTMConfiguration",
+	configurationPid = "com.liferay.osb.www.hubspot.analytics.configuration.HubspotAnalyticsConfiguration",
 	immediate = true, service = DynamicInclude.class
 )
-public class GTMTopHeadDynamicInclude extends BaseDynamicInclude {
+public class HubspotAnalyticsTopHeadDynamicInclude extends BaseDynamicInclude {
 
 	@Override
 	public void include(
@@ -52,9 +52,10 @@ public class GTMTopHeadDynamicInclude extends BaseDynamicInclude {
 		StringBundler sb = new StringBundler(3);
 
 		sb.append(
-			"<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-");
-		sb.append(_gtmConfiguration.containerId());
-		sb.append("');</script>");
+			"<script>(function(d,s,i,r) { if (d.getElementById(i)){return;} var n=d.createElement(s),e=d.getElementsByTagName(s)[0]; n.id=i;n.src='//js.hubspot.com/analytics/'+(Math.ceil(new Date()/r)*r)+'/");
+		sb.append(_hubspotAnalyticsConfiguration.hubspotId());
+		sb.append(
+			".js'; e.parentNode.insertBefore(n, e); })(document,'script','hs-analytics',300000);');</script>");
 
 		printWriter.println(sb.toString());
 	}
@@ -68,10 +69,10 @@ public class GTMTopHeadDynamicInclude extends BaseDynamicInclude {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		_gtmConfiguration = ConfigurableUtil.createConfigurable(
-			GTMConfiguration.class, properties);
+		_hubspotAnalyticsConfiguration = ConfigurableUtil.createConfigurable(
+			HubspotAnalyticsConfiguration.class, properties);
 	}
 
-	private GTMConfiguration _gtmConfiguration;
+	private HubspotAnalyticsConfiguration _hubspotAnalyticsConfiguration;
 
 }
