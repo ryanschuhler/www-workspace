@@ -1,0 +1,414 @@
+{
+	"availableLanguageIds": ["en_US"],
+	"defaultLanguageId": "en_US",
+	"fields": [{
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"readOnly": false,
+		"label": {
+			"en_US": "Default Article"
+		},
+		"type": "ddm-separator",
+		"required": false,
+		"showLabel": true,
+		"nestedFields": [{
+			"indexType": "",
+			"repeatable": false,
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"name": "default_article_id",
+			"localizable": false,
+			"readOnly": false,
+			"tip": {
+				"en_US": ""
+			},
+			"label": {
+				"en_US": "Article ID"
+			},
+			"type": "text",
+			"required": true,
+			"showLabel": true
+		}],
+		"fieldNamespace": "ddm",
+		"indexType": "",
+		"repeatable": false,
+		"name": "default_article",
+		"localizable": false,
+		"tip": {
+			"en_US": ""
+		}
+	}, {
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"readOnly": false,
+		"label": {
+			"en_US": "Region"
+		},
+		"type": "ddm-separator",
+		"required": false,
+		"showLabel": true,
+		"nestedFields": [{
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"\"]"
+			},
+			"multiple": true,
+			"readOnly": false,
+			"label": {
+				"en_US": "Countries"
+			},
+			"type": "select",
+			"required": true,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "countries",
+			"options": [{
+				"label": {
+					"en_US": "United States"
+				},
+				"value": "US"
+			}, {
+				"label": {
+					"en_US": "Australia"
+				},
+				"value": "AU"
+			}, {
+				"label": {
+					"en_US": "Albania"
+				},
+				"value": "AL"
+			}, {
+				"label": {
+					"en_US": "Armenia"
+				},
+				"value": "AM"
+			}, {
+				"label": {
+					"en_US": "Azerbaijan"
+				},
+				"value": "AZ"
+			}, {
+				"label": {
+					"en_US": "Bahrain"
+				},
+				"value": "BH"
+			}, {
+				"label": {
+					"en_US": "Belarus"
+				},
+				"value": "BY"
+			}, {
+				"label": {
+					"en_US": "Bosnia and Herzegovina"
+				},
+				"value": "BA"
+			}, {
+				"label": {
+					"en_US": "Brazil"
+				},
+				"value": "BR"
+			}, {
+				"label": {
+					"en_US": "Bulgaria"
+				},
+				"value": "BG"
+			}, {
+				"label": {
+					"en_US": "China"
+				},
+				"value": "CN"
+			}, {
+				"label": {
+					"en_US": "Croatia"
+				},
+				"value": "HR"
+			}, {
+				"label": {
+					"en_US": "Cyprus"
+				},
+				"value": "CY"
+			}, {
+				"label": {
+					"en_US": "Czech Republic"
+				},
+				"value": "CZ"
+			}, {
+				"label": {
+					"en_US": "Denmark"
+				},
+				"value": "DK"
+			}, {
+				"label": {
+					"en_US": "Egypt"
+				},
+				"value": "EG"
+			}, {
+				"label": {
+					"en_US": "Estonia"
+				},
+				"value": "EE"
+			}, {
+				"label": {
+					"en_US": "Finland"
+				},
+				"value": "FI"
+			}, {
+				"label": {
+					"en_US": "Georgia"
+				},
+				"value": "GE"
+			}, {
+				"label": {
+					"en_US": "Germany"
+				},
+				"value": "DE"
+			}, {
+				"label": {
+					"en_US": "Greece"
+				},
+				"value": "GR"
+			}, {
+				"label": {
+					"en_US": "Hungary"
+				},
+				"value": "HU"
+			}, {
+				"label": {
+					"en_US": "Iceland"
+				},
+				"value": "IS"
+			}, {
+				"label": {
+					"en_US": "Iran"
+				},
+				"value": "IR"
+			}, {
+				"label": {
+					"en_US": "Iraq"
+				},
+				"value": "IQ"
+			}, {
+				"label": {
+					"en_US": "Ireland"
+				},
+				"value": "IE"
+			}, {
+				"label": {
+					"en_US": "Italy"
+				},
+				"value": "IT"
+			}, {
+				"label": {
+					"en_US": "Japan"
+				},
+				"value": "JP"
+			}, {
+				"label": {
+					"en_US": "Jordan"
+				},
+				"value": "JO"
+			}, {
+				"label": {
+					"en_US": "Kazakhstan"
+				},
+				"value": "KZ"
+			}, {
+				"label": {
+					"en_US": "Kosovo"
+				},
+				"value": "XK"
+			}, {
+				"label": {
+					"en_US": "Kuwait"
+				},
+				"value": "KW"
+			}, {
+				"label": {
+					"en_US": "Latvia"
+				},
+				"value": "LV"
+			}, {
+				"label": {
+					"en_US": "Lebanon"
+				},
+				"value": "LB"
+			}, {
+				"label": {
+					"en_US": "Liechtenstein"
+				},
+				"value": "LI"
+			}, {
+				"label": {
+					"en_US": "Lithuania"
+				},
+				"value": "LT"
+			}, {
+				"label": {
+					"en_US": "Macedonia"
+				},
+				"value": "MK"
+			}, {
+				"label": {
+					"en_US": "Malta"
+				},
+				"value": "MT"
+			}, {
+				"label": {
+					"en_US": "Moldova"
+				},
+				"value": "MD"
+			}, {
+				"label": {
+					"en_US": "Montenegro"
+				},
+				"value": "ME"
+			}, {
+				"label": {
+					"en_US": "Morocco"
+				},
+				"value": "MA"
+			}, {
+				"label": {
+					"en_US": "Netherlands"
+				},
+				"value": "NL"
+			}, {
+				"label": {
+					"en_US": "Norway"
+				},
+				"value": "NO"
+			}, {
+				"label": {
+					"en_US": "Oman"
+				},
+				"value": "OM"
+			}, {
+				"label": {
+					"en_US": "Palestine"
+				},
+				"value": "PS"
+			}, {
+				"label": {
+					"en_US": "Poland"
+				},
+				"value": "PL"
+			}, {
+				"label": {
+					"en_US": "Qatar"
+				},
+				"value": "QA"
+			}, {
+				"label": {
+					"en_US": "Romania"
+				},
+				"value": "RO"
+			}, {
+				"label": {
+					"en_US": "Russia"
+				},
+				"value": "RU"
+			}, {
+				"label": {
+					"en_US": "San Marino"
+				},
+				"value": "SM"
+			}, {
+				"label": {
+					"en_US": "Saudi Arabia"
+				},
+				"value": "SA"
+			}, {
+				"label": {
+					"en_US": "Serbia"
+				},
+				"value": "RS"
+			}, {
+				"label": {
+					"en_US": "Slovakia"
+				},
+				"value": "SK"
+			}, {
+				"label": {
+					"en_US": "Slovenia"
+				},
+				"value": "SI"
+			}, {
+				"label": {
+					"en_US": "Spain"
+				},
+				"value": "SP"
+			}, {
+				"label": {
+					"en_US": "Sweden"
+				},
+				"value": "SE"
+			}, {
+				"label": {
+					"en_US": "Syria"
+				},
+				"value": "SY"
+			}, {
+				"label": {
+					"en_US": "Turkey"
+				},
+				"value": "TR"
+			}, {
+				"label": {
+					"en_US": "Ukraine"
+				},
+				"value": "UA"
+			}, {
+				"label": {
+					"en_US": "United Arab Emirates"
+				},
+				"value": "AE"
+			}, {
+				"label": {
+					"en_US": "United Kingdom"
+				},
+				"value": "GB"
+			}, {
+				"label": {
+					"en_US": "Yemen"
+				},
+				"value": "YE"
+			}],
+			"localizable": false,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"indexType": "",
+			"repeatable": false,
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": ""
+			},
+			"name": "article_id",
+			"localizable": false,
+			"readOnly": false,
+			"tip": {
+				"en_US": ""
+			},
+			"label": {
+				"en_US": "Article ID"
+			},
+			"type": "text",
+			"required": false,
+			"showLabel": true
+		}],
+		"fieldNamespace": "ddm",
+		"indexType": "",
+		"repeatable": true,
+		"name": "region",
+		"localizable": false,
+		"tip": {
+			"en_US": ""
+		}
+	}]
+}

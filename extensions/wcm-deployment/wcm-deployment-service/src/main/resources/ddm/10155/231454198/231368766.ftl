@@ -115,6 +115,7 @@
 
 		<#if layout?has_content>
 			<#assign VOID = theme_display_object.setLayout(layout)>
+			<#assign VOID = theme_display_object.setLayoutSet(layout.getLayoutSet())>
 		</#if>
 
 		<#assign view_mode = get_view_mode()>
