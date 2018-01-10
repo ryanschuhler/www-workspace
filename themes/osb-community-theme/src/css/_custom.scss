@@ -1,24 +1,15 @@
-@import "bourbon";
-@import "compass/css3/user-interface";
-@import "mixins";
-
-@import "custom_mixins";
-@import "variables";
-
 html {
-	@import "base";
-
-	@import "banner";
-	@import "blogs";
-	@import "buttons";
-	@import "colors";
-	@import "footer";
-	@import "forms";
-	@import "headings";
-	@import "modules";
-	@import "scroll_nav";
-	@import "transitions";
-	@import "utilities";
-
-	@import "extras";
+    @import "base";
+    @import "banner";
+    @import "blogs";
+    @import "buttons";
+    @import "colors";
+    @import "footer";
+    @import "forms";
+    @import "headings";
+    @import "modules";
+    @import "scroll_nav";
+    @import "transitions";
+    @import "utilities";
+    @import "extras";
 }

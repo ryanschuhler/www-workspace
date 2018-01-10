@@ -32,6 +32,8 @@
 
 	<title>${page_title}</title>
 
+	<#-- TODO -->
+	<@liferay_util["include"] page=top_head_include />
 	<@liferay_util["include"] page=top_head_ext_include />
 
 	<#assign locale_util = staticUtil["com.liferay.portal.kernel.util.LocaleUtil"] />
