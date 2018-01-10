@@ -60,6 +60,7 @@ services:
       - "3307:3306"
     volumes:
       - "mariadb:/var/lib/mysql"
+      - "./mariadb/resources/docker-entrypoint-initdb.d:/tmp/mariadb"
   mockmock:
     build: mockmock/.
     container_name: mockmock
