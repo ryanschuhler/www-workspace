@@ -1,5 +1,0 @@
-Bundle-Name: Hubspot Analytics Theme Contributor
-Bundle-SymbolicName: com.liferay.osb.www.theme.contributor.hubspot.analytics
-Bundle-Version: 1.0.0
-Liferay-Theme-Contributor-Type: osb.www.theme.contributor.hubspot.analytics
-Web-ContextPath: /osb-www-theme-contributor-hubspot-analytics
