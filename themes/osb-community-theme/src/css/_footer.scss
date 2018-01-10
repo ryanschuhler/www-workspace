@@ -1,0 +1,115 @@
+#footer {
+	background: lighten($element-color, 5%);
+
+	&, a {
+		color: $font-color;
+	}
+
+	a:hover {
+		color: $alt-font-color;
+		text-decoration: none;
+	}
+
+	h4 {
+		font-size: 1.15em;
+		font-weight: 400;
+		margin: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	ul {
+		margin: 0;
+	}
+
+	.company-info {
+		max-width: 100%;
+		width: 230px;
+	}
+
+	.contact-info {
+		text-align: right;
+
+		@include respond-to(phone) {
+			text-align: left;
+		}
+	}
+
+	.fine-print {
+		font-size: 0.9em;
+		padding-bottom: 5em;
+		padding-top: 2em;
+
+		&, a {
+			color: $alt-font-color;
+		}
+
+		a:hover {
+			color: $font-color;
+		}
+	}
+
+	.footer-content {
+		padding-bottom: $large-spacing;
+		padding-top: 4em;
+	}
+
+	.navigation {
+		a {
+			display: block;
+			padding: $small-spacing 0;
+		}
+
+		div:first-child {
+			padding-right: $large-spacing;
+		}
+
+		h4 a {
+			padding-top: 0;
+
+			@include respond-to(phone) {
+				padding-top: $standard-spacing;
+			}
+		}
+	}
+
+	.social-nav {
+		@include respond-to(phone) {
+			padding-top: $standard-spacing;
+		}
+
+		svg {
+			fill: $alt-font-color;
+			height: 20px;
+			width: 20px;
+
+			@include transition(all 0.25s ease-in-out);
+		}
+
+		.facebook:hover svg {
+			fill: #3B5998;
+		}
+
+		.github:hover svg {
+			fill: #181717;
+		}
+
+		.instagram:hover svg {
+			fill: #125688;
+		}
+
+		.linkedin:hover svg {
+			fill: #0077B5;
+		}
+
+		.twitter:hover svg {
+			fill: #55ACEE;
+		}
+
+		.youtube:hover svg {
+			fill: #CD201F;
+		}
+	}
+}

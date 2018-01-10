@@ -1,0 +1,39 @@
+/* ---------- Borders ---------- */
+
+$border-radius: 4px;
+
+/* ---------- Colors ---------- */
+
+$accent-color: #00B8B9;
+$alt-font-color: #909295;
+$alt-primary-color: #005B96;
+$alt-secondary-color: #1B3A6A;
+$complementary-color: #F5A11D;
+$dxp-primary-color: #46718A;
+$element-color: #E3E4E5;
+$font-color: #4C4C4E;
+$form-field-color: #F1F2F3;
+$primary-color: #1C75B9;
+$secondary-color: #124680;
+$shadow-blur-color: RGBA(76, 76, 76, 0.16);
+$shadow-main-color: RGBA(76, 76, 76, 0.80);
+
+/* ---------- Elevation ---------- */
+
+$elevation-1: 0 0 0.625em 0 $shadow-blur-color, 0 0.25em 0.5em -0.375em $shadow-main-color;
+$elevation-2: 0 0 0.75em 0 $shadow-blur-color, 0 0.375em 1em -0.5em $shadow-main-color;
+$elevation-3: 0 0 0.875em 0 $shadow-blur-color, 0 0.5em 1.125em -0.5em $shadow-main-color;
+$elevation-4: 0 0 1em 0 $shadow-blur-color, 0 0.625em 0.875em -0.375em $shadow-main-color;
+$elevation-5: 0 0 1.125em 0 $shadow-blur-color, 0 0.75em 1em -0.375em $shadow-main-color;
+$elevation-reset: 0 0 0 0 $shadow-blur-color, 0 0 0 0 $shadow-main-color;
+
+/* ---------- Spacing ---------- */
+
+$large-spacing: 3em;
+$small-spacing: 0.5em;
+$standard-spacing: 1em;
+
+/* ---------- Transform ---------- */
+
+$hover-translate: translateY(calc(-3px + -1%));
+$hover-translate-reset: translateY(0);

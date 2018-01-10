@@ -1,0 +1,75 @@
+html {
+    &.ios {
+        input {
+            max-width: 100% !important;
+        }
+        .main-banner {
+            background-attachment: inherit;
+        }
+    }
+    &.webkit {
+        .w33 {
+            width: 33.333%;
+        }
+        .w66 {
+            width: 66.666%;
+        }
+    }
+}
+
+#mainSearchContent {
+    @include transition-duration(0.5s);
+    @include transition-property(width);
+}
+
+#mainSearchContent input[type=search]::-webkit-search-cancel-button,
+#mainSearchContent input[type=search]::-webkit-search-decoration,
+#mainSearchContent input[type=search]::-webkit-search-results-button,
+#mainSearchContent input[type=search]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+#mainSearchContent input[type=search] {
+    -webkit-appearance: textfield;
+    @include box-sizing(content-box);
+}
+
+img.lazy-load {
+    width: 28px;
+    &.lazy-loaded {
+        width: auto;
+    }
+}
+
+.google-search-appliance-search {
+    padding-left: $standard-spacing;
+    padding-right: $standard-spacing;
+}
+
+.loading-animation {
+    background-size: 28px;
+}
+
+.portlet {
+    .portlet-content {
+        @include border-bottom-radius($border-radius);
+    }
+    .portlet-topper {
+        @include border-top-radius($border-radius);
+    }
+}
+
+.portlet-column {
+    &.portlet-column-only {
+        width: 100%;
+    }
+    &.yui3-dd-drop-active-valid {
+        background: #FFF;
+        border: 1px solid $alt-font-color;
+        margin: -1px;
+        min-height: 20px;
+    }
+    &.yui3-dd-drop-over {
+        background: $element-color;
+    }
+}

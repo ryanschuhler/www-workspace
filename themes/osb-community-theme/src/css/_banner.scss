@@ -1,0 +1,493 @@
+#banner, #menuToggle {
+	@include transform(translateY(0));
+	@include transition(right 0.5s, transform 0.25s);
+}
+
+#banner, #sideMenu {
+	a {
+		text-decoration: none;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	li {
+		list-style: none;
+	}
+
+	ul {
+		margin: 0;
+	}
+
+	.nav-item {
+		font-weight: 400;
+		list-style: none;
+
+		&.selected > a {
+			color: $primary-color;
+		}
+
+		a {
+			display: block;
+		}
+	}
+}
+
+#banner {
+	background: rgba(255, 255, 255, 0.9);
+	border-bottom: 1px solid $element-color;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+
+	a {
+		color: $font-color;
+		padding: 0.75em $standard-spacing;
+
+		@include respond-to(tablet) {
+			padding: 0.75em $small-spacing;
+
+		}
+		@include respond-to(phone) {
+			padding: $small-spacing;
+		}
+	}
+
+	.doc-heading {
+		line-height: 0;
+		min-width: 100px;
+		max-width: 160px;
+		width: 100%;
+	}
+
+	.main-banner-section {
+		@include flex-wrap(nowrap);
+
+		height: 60px;
+		padding-right: 56px;
+		white-space: nowrap;
+
+		nav {
+			margin-left: auto;
+
+			ul {
+				@include flex-wrap(nowrap);
+			}
+		}
+	}
+}
+
+#childNavigation {
+	border-top: 1px solid $element-color;
+	position: relative;
+	width: 100%;
+}
+
+#mainSearch {
+	cursor: pointer;
+	margin: 1.5em 1.5em $standard-spacing;
+	position: relative;
+
+	input[title="Search"], .doc-search-input {
+		background: transparent;
+		border: 1px solid $element-color;
+		box-shadow: none;
+		color: #FFF;
+		cursor: text;
+		font-size: 1em;
+		height: 2.5em;
+		padding-left: $small-spacing;
+		width: 100%;
+
+		border-radius: $border-radius;
+		@include box-sizing(border-box);
+	}
+
+	.submit-search {
+		bottom: 0;
+		padding: 0 $small-spacing;
+		position: absolute;
+		right: 0;
+		top: 0;
+
+		@include align-items(center);
+		@include display(flex);
+	}
+}
+
+#menuToggle {
+	position: fixed;
+	right: 0;
+	top: $small-spacing;
+	z-index: 102;
+
+	&.menu-toggle {
+		color: $font-color;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	svg .nav-line {
+		@include transition(all 0.5s ease 0.5s);
+	}
+
+	.nav-line-center {
+		@include transition(opacity 0.2s ease);
+	}
+}
+
+#sectionNavToggle {
+	display: none;
+	width: 320px;
+}
+
+#sideMenu {
+	background-color: $font-color;
+	bottom: 0;
+	position: fixed;
+	right: -320px;
+	top: 0;
+	width: 320px;
+	z-index: 101;
+
+	@include box-sizing(border-box);
+
+	&.show-account-links .account .account-links, &.show-verification-message .account .verification-prompt {
+		max-height: 25em;
+	}
+
+	&.show-account-links svg.more-links {
+		padding-left: 5px;
+
+		@include transform(rotate(90deg));
+	}
+
+	a {
+		color: $element-color;
+		padding: 8px 24px;
+
+		&:hover {
+			color: #FFF;
+		}
+
+		.welcome-text {
+			padding-left: 5px;
+		}
+	}
+
+	.account {
+		&, .verification-prompt {
+			overflow: hidden;
+		}
+
+		.account-links, .verification-prompt {
+			max-height: 0;
+
+			@include transition(max-height 0.5s);
+		}
+
+		.account-links {
+			font-size: 0.9em;
+
+			a {
+				display: block;
+			}
+
+			li:last-child {
+				padding-bottom: $standard-spacing;
+			}
+		}
+
+		.notification {
+			display: block;
+		}
+
+		.verification-prompt {
+			h4, p {
+				margin: 0;
+				padding-left: 1.5em;
+				padding-right: 1.5em;
+			}
+
+			.dismiss-btn {
+				color: rgba(255, 255, 255, 0.5);
+			}
+
+			.prompt-body {
+				padding: $standard-spacing 0 1.5em;
+			}
+
+			.verify-user-btn {
+				color: #FFF;
+				margin-left: 1.5em;
+				padding: 0.2em 0.6em;
+
+				&:active, &:hover {
+					background-color: #FFF;
+					color: $font-color;
+				}
+			}
+		}
+	}
+
+	.account-avatar {
+		height: 2em;
+		vertical-align: middle;
+		width: 2em;
+
+		&.img-circle {
+			margin-left: 1.5em;
+			object-fit: cover;
+		}
+	}
+
+	.account-user {
+		height: 60px;
+	}
+
+	.external-links {
+		a:hover span:after {
+			background: url(../images/custom/external_link.svg) no-repeat center center;
+			content: "";
+			display: inline-block;
+			height: 10px;
+			width: 20px;
+		}
+
+		img {
+			width: 16px;
+		}
+
+		ul:after {
+			border-bottom: 1px solid $alt-font-color;
+			content: "";
+			display: block;
+			margin: 0.75em 1.5em;
+		}
+	}
+
+	.language {
+		a, span {
+			display: block;
+		}
+
+		span {
+			color: #FFF;
+			padding: $small-spacing $standard-spacing;
+		}
+
+		.taglib-language-list-text {
+			border-right-width: 0;
+		}
+	}
+
+	.nav-logo {
+		display: block;
+
+		#liferayLogo {
+			color: $alt-font-color;
+		}
+	}
+
+	.notification {
+		padding: 0;
+		right: 1.25em;
+		top: $small-spacing;
+	}
+
+	.visible-xs .nav-item {
+		font-size: 20px;
+	}
+}
+
+.collided {
+	&#childNavigation {
+		height: 44px;
+		@include user-select(none);
+
+		nav {
+			margin-bottom: -20px;
+			overflow-x: auto;
+			overflow-y: hidden;
+
+			ul {
+				display: inline-block;
+				white-space: nowrap;
+			}
+
+			li {
+				display: inline-block;
+			}
+		}
+	}
+
+	&.show-section-nav {
+		#sectionNavigation {
+			width: 320px;
+
+			#sectionNavToggle {
+				span {
+					display: inline;
+				}
+
+				svg {
+					@include transform(scale(1.2));
+				}
+			}
+
+			.section-dropdown {
+				max-height: 450px;
+			}
+		}
+	}
+
+	#sectionNavigation {
+		position: relative;
+		width: 44px;
+
+		@include transition(width 0.5s);
+
+		#sectionNavToggle {
+			border-left: 1px solid $element-color;
+			padding: 0;
+
+			@include display(flex);
+
+			span {
+				display: none;
+			}
+		}
+
+		.nav-item {
+			&:hover a {
+				background-color: $primary-color;
+				color: rgba(255, 255, 255, 0.9);
+			}
+
+			a {
+				background-color: rgba(255, 255, 255, 0.9);
+				padding-left: 2em;
+
+				@include transition(background-color 0.5s);
+			}
+		}
+
+		.section-dropdown {
+			border: 1px solid $element-color;
+			border-top-width: 0;
+			max-height: 0;
+			overflow: hidden;
+			position: absolute;
+			right: 0;
+			top: 43px;
+
+			@include transition(max-height 0.3s);
+
+			li {
+				width: 100%;
+			}
+		}
+	}
+
+	.secondary-nav-wrapper {
+		height: 100%;
+		overflow: hidden;
+	}
+}
+
+.hide-banner {
+	#banner, #menuToggle {
+		@include transform(translateY(-60px));
+	}
+}
+
+.logo-border {
+	fill: transparent;
+	stroke: #939598;
+}
+
+.logo-gradient-dark {
+	fill: #1D396B;
+}
+
+.logo-gradient-darkest {
+	fill: #051E3C;
+}
+
+.logo-gradient-light {
+	fill: #79B3E1;
+}
+
+.notification {
+	background-color: #D0021B;
+	height: $small-spacing;
+	position: absolute;
+	width: $small-spacing;
+	z-index: 103;
+
+	border-radius: $small-spacing;
+}
+
+.show-side-nav {
+	#banner {
+		@include transform(translateY(0));
+	}
+
+	#menuToggle {
+		position: absolute;
+
+		&.menu-toggle {
+			color: $element-color;
+
+			&:hover {
+				color: #FFF;
+			}
+		}
+
+		.nav-line-bottom {
+			@include transform(translate(-10.5px, 6.5px) rotate(-45deg));
+		}
+
+		.nav-line-center {
+			opacity: 0;
+
+			@include transform(translate(-4.5px, 12.5px) rotate(-45deg));
+		}
+
+		.nav-line-top {
+			@include transform(translate(6.5px, 1px) rotate(45deg));
+		}
+
+		.notification {
+			display: none;
+		}
+	}
+
+	#sideMenu .notification {
+		left: $large-spacing;
+		top: 0;
+	}
+}
+
+&.ie .show-side-nav #menuToggle .nav-line-center {
+	opacity: 1;
+}
+
+&.ie8, &.ie9, &.ie10 {
+	#banner .doc-heading {
+		margin: $small-spacing $standard-spacing;
+	}
+
+	#mainNavigation {
+		margin-top: $small-spacing;
+	}
+}
+
+&.ie8 #banner {
+	background: #FFF;
+}

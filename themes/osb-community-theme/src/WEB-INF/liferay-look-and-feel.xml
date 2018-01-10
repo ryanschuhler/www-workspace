@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 7.0.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_7_0_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>7.0.0+</version>
+	</compatibility>
+	<theme id="osb-community" name="OSB Community">
+		<root-path>/</root-path>
+		<templates-path>${root-path}/templates</templates-path>
+		<images-path>${root-path}/images</images-path>
+		<template-extension>ftl</template-extension>
+		<settings>
+			<setting configurable="true" key="custom-head-code" type="textarea" value="" />
+			<setting configurable="true" key="custom-navigation-article-id-json" type="text" value="" />
+			<setting configurable="true" key="custom-navigation-friendly-url" value="" />
+			<setting configurable="true" key="footer-contact-article-id-json" value="" />
+			<setting configurable="true" key="footer-navigation-friendly-url" value="" />
+			<setting configurable="true" key="footer-social-media-article-id-json" value="" />
+			<setting key="portlet-setup-show-borders-default" value="false" />
+			<setting configurable="true" key="site-admin-role-names" value="Asset Uploader,Content Editor,DDL Administrator,Marketing Events Administrator,Site Administrator" />
+			<setting configurable="true" key="sites-user-group-ids" value="" />
+			<setting configurable="true" key="verification-url" value="/delegate/verify_user" />
+		</settings>
+		<layout-templates>
+			<custom>
+				<layout-template id="dynamic_columns" name="Dynamic Columns">
+					<template-path>/layouttpl/custom/dynamic_columns.tpl</template-path>
+					<thumbnail-path>/layouttpl/custom/dynamic_columns.png</thumbnail-path>
+				</layout-template>
+			</custom>
+		</layout-templates>
+	</theme>
+</look-and-feel>

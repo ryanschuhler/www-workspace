@@ -1,0 +1,310 @@
+form {
+	margin: 0;
+}
+
+input, select, textarea {
+	display: inline-block;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+
+.lrdcom-form {
+	&.form-light {
+		color: #FFF;
+
+		input[type='email'], input[type='password'], input[type='text'], select, textarea {
+			border-color: #FFF;
+			color: #FFF;
+		}
+
+		input[type="submit"] {
+			&.btn-complementary {
+				&:active, &:focus, &:hover {
+					background-color: $complementary-color;
+				}
+			}
+
+			&.btn-light {
+				&:active, &:focus, &:hover {
+					background-color: #FFF;
+				}
+			}
+		}
+
+		.field-select select {
+			background-position: right -10px;
+		}
+
+		.field-wrapper {
+			&.error.field-filled.field-focused, &.error.field-focused, &.field-filled.field-focused, &.field-focused {
+				color: lighten($primary-color, 30%);
+
+				input, select, textarea {
+					color: lighten($primary-color, 30%);
+				}
+
+				input[type='email'], input[type='password'], input[type='text'], select, textarea {
+					border-color: lighten($primary-color, 30%);
+				}
+			}
+		}
+	}
+
+	&.form-multi-col .form-col {
+		flex-basis: 50%;
+		max-width: 300px;
+		padding-right: $standard-spacing;
+
+		@include respond-to(phone) {
+			flex-basis: 100%;
+			padding-right: 0;
+		}
+	}
+
+	input[type='email'], input[type='password'], input[type='text'], select, textarea {
+		background-color: $form-field-color;
+		border: 1px solid transparent;
+		color: $font-color;
+		font-size: 1em;
+		height: 1.7em;
+		max-width: none !important;
+		outline: none;
+		padding: 10px 8px;
+		width: 92%;
+
+		@include appearance(none);
+		border-radius: $border-radius;
+		box-shadow: 0 0 10px transparent;
+		@include box-sizing(content-box);
+		@include transition(all 0.25s);
+	}
+
+	input[type='checkbox'], input[type='radio'] {
+		margin: 2px 8px 4px 0;
+		width: auto;
+	}
+
+	label, .form-validator-stack {
+		font-weight: normal;
+		pointer-events: none;
+		position: absolute;
+		z-index: 1;
+	}
+
+	label {
+		left: 8px;
+		top: 15px;
+
+		@include transition(all 0.25s);
+	}
+
+	textarea {
+		min-height: 5em;
+		resize: vertical;
+
+		@include appearance(textarea);
+	}
+
+	.field {
+		margin-bottom: 0;
+	}
+
+	.field-booleancheckbox, .field-checkbox, .field-radio {
+		label {
+			border: 1px solid transparent;
+			display: block;
+			pointer-events: auto;
+			position: static;
+		}
+	}
+
+	.field-select select {
+		background: url(../images/custom/form_dropdowns.svg) no-repeat right -42px;
+		background-color: $form-field-color;
+	}
+
+	.field-textarea label {
+		top: 7px;
+	}
+
+	.field-wrapper {
+		display: block;
+		font-weight: normal;
+		margin-bottom: $standard-spacing;
+		max-width: 500px;
+		position: relative;
+
+		&.error {
+			&.field-focused {
+				input, option, select, textarea {
+					background-color: #FFF;
+					color: $font-color;
+				}
+
+				option {
+					color: $primary-color;
+				}
+			}
+
+			label {
+				display: none;
+			}
+
+			select {
+				background-position: right -10px;
+			}
+		}
+
+		&.error, &.error.field-filled {
+			color: #FFF;
+
+			input, select, textarea {
+				background-color: $complementary-color;
+				border-color: $complementary-color;
+				color: #FFF;
+			}
+
+			.form-validator-stack {
+				text-align: left;
+			}
+		}
+
+		&.error, &.field-filled {
+			input[type='email'], input[type='password'], input[type='text'], select, textarea {
+				padding: 18px 8px 2px;
+			}
+		}
+
+		&.error.field-filled.field-focused, &.error.field-focused, &.field-filled.field-focused, &.field-focused {
+			input[type='email'], input[type='password'], input[type='text'], select, textarea {
+				border-color: transparent;
+				padding: 18px 8px 2px;
+			}
+
+			label {
+				color: $primary-color;
+			}
+
+			select {
+				background-position: right -70px;
+			}
+		}
+
+		&.field-booleancheckbox, &.field-checkbox, &.field-radio {
+			&.error {
+				&.field-focused label {
+					color: $primary-color;
+				}
+
+				input {
+					background-color: transparent;
+				}
+
+				label {
+					color: $complementary-color;
+				}
+			}
+
+			label {
+				@include transition(none);
+			}
+		}
+
+		&.field-booleancheckbox {
+			&.error {
+				label {
+					display: block;
+				}
+
+				.form-validator-stack {
+					display: none;
+				}
+			}
+
+			&.field-filled, &.field-focused {
+				label {
+					background-color: #FAFBFC;
+					border: 1px solid #F8F8F9;
+					color: $font-color;
+					font-size: 1em;
+				}
+			}
+
+			input[type='checkbox'] {
+				left: 10px;
+				position: absolute;
+				top: 12px;
+			}
+
+			label {
+				background: $form-field-color;
+				font-size: 1em;
+				padding: 10px 8px;
+				text-indent: 20px;
+				width: 92%;
+
+				border-radius: $border-radius;
+				@include box-sizing(content-box);
+			}
+
+			.field-desc {
+				font-size: 14px;
+			}
+		}
+
+		&.field-filled {
+			color: $alt-font-color;
+
+			input[type='email'], input[type='password'], input[type='text'], select, textarea {
+				background-color: #FAFBFC;
+				border: 1px solid #F8F8F9;
+			}
+
+			select {
+				background-position: right -100px;
+			}
+		}
+
+		&.field-focused {
+			input[type='email'], input[type='password'], input[type='text'], select, textarea {
+				background-color: #FFF;
+
+				box-shadow: 0 0.2em 1em -0.5em #909295;
+			}
+		}
+
+		&.field-filled, &.field-focused {
+			label {
+				display: block;
+				font-size: 12px;
+				left: 9px;
+				top: 3px;
+			}
+
+			.form-validator-stack {
+				display: none;
+			}
+		}
+
+		&.field-filled.field-focused {
+			input[type='email'], input[type='password'], input[type='text'], select, textarea {
+				background-color: #FFF;
+			}
+		}
+	}
+
+	.form-validator-stack {
+		background: transparent;
+		clip: auto;
+		color: inherit;
+		left: 10px;
+		margin: 0;
+		padding: 0;
+		right: 10px;
+		text-align: right;
+		top: 12px;
+		width: auto;
+
+		@include transition(top 0.5s);
+	}
+}

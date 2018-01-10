@@ -1,0 +1,92 @@
+blockquote {
+	font-size: 1.25em;
+	line-height: 1.25;
+}
+
+h1, h2, h3, h4, h5, h6, .section-heading p, .subheading {
+	font-weight: 200;
+	line-height: 1.25;
+	margin: 0 0 0.3em;
+}
+
+h1 {
+	font-size: 3em;
+	line-height: 1.05;
+}
+
+h2 {
+	font-size: 2.25em;
+}
+
+h3, .page-heading p {
+	font-size: 1.75em;
+}
+
+h4, .section-heading p, .subheading {
+	font-size: 1.125em;
+	font-weight: 300;
+}
+
+.heading, .section-heading h2 {
+	color: $font-color;
+}
+
+.page-heading .preheading, .preheading {
+	font-size: 1em;
+}
+
+.portlet-title {
+	color: #FFF;
+	font-size: 1.1em;
+	margin: 0;
+}
+
+.section-heading p, .subheading {
+	color: $alt-font-color;
+	margin: 1.5em auto;
+	max-width: 720px;
+}
+
+@include respond-to(phone, tablet) {
+	&.responsive {
+		blockquote {
+			font-size: 1.5em;
+			line-height: 1.5;
+		}
+
+		h1 {
+			font-size: 2.5em;
+			line-height: 1.125;
+		}
+
+		h2 {
+			font-size: 2em;
+		}
+
+		h3 {
+			font-size: 1.5em;
+		}
+
+		.page-heading {
+			p:lang(ja-JP), p:lang(zh-CN) {
+				line-height: 1.125em;
+			}
+		}
+	}
+}
+
+@include respond-to(phone) {
+	&.responsive {
+		h1 {
+			font-size: 2em;
+		}
+
+		h2 {
+			font-size: 1.625em;
+		}
+
+		h3 {
+			font-size: 1.375em;
+		}
+	}
+}

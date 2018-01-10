@@ -1,0 +1,143 @@
+@import "variables";
+html {
+    &.ja_JP body {
+        &,
+        input,
+        select,
+        textarea,
+        .drop-cap:first-child::first-letter {
+            font-family: "Source Sans Pro", "Noto Sans Japanese", Arial, Helvetica, sans-serif;
+        }
+        .long-form ol,
+        .long-form p:not(.small-caps),
+        .long-form ul {
+            font-family: "Source Serif Pro", "Noto Sans Japanese", Georgia, Cambria, "Times New Roman", Times, serif !important;
+        }
+    }
+    &.zh_CN body {
+        &,
+        input,
+        select,
+        textarea,
+        .drop-cap:first-child::first-letter {
+            font-family: "Source Sans Pro", "Noto Sans SC Sliced", Arial, Helvetica, sans-serif;
+        }
+        .long-form ol,
+        .long-form p:not(.small-caps),
+        .long-form ul {
+            font-family: "Source Serif Pro", "Noto Sans SC Sliced", Georgia, Cambria, "Times New Roman", Times, serif !important;
+        }
+    }
+}
+
+body {
+    color: $font-color;
+    font: 400 16px/1.5 "Source Sans Pro", Arial, Helvetica, sans-serif;
+    position: relative;
+    right: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    &,
+    #sideMenu {
+        @include transition(right 0.5s);
+    }
+    &.show-side-nav {
+        &,
+        #banner {
+            right: 320px;
+            .banner-section {
+                padding-right: 0;
+            }
+        }
+        #sideMenu {
+            overflow: auto;
+            right: 0;
+        }
+    }
+}
+
+b,
+strong {
+    font-weight: 700;
+}
+
+#main-content {
+    margin: 20px auto;
+    max-width: 1200px;
+    min-height: 60vh;
+    padding-top: 106px;
+    &.columns-1 {
+        margin: 0;
+        max-width: none;
+        .portlet-boundary {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+    }
+    .portlet-borderless-container {
+        min-height: 0;
+    }
+}
+
+#wrapper {
+    min-width: 320px;
+    padding: 0;
+}
+
+.controls-hidden.dockbar-split {
+    .nav-account-controls,
+    .nav-add-controls li {
+        display: none;
+    }
+    .dockbar .navbar-inner .nav-add-controls li.toggle-controls {
+        display: block;
+        &,
+        a.toggle-controls-link {
+            background-color: transparent;
+        }
+    }
+}
+
+.dockbar-split .dockbar .navbar-inner .nav-account-controls {
+    right: 0;
+    text-align: right;
+    top: 100px;
+    li {
+        float: none;
+    }
+    ul {
+        text-align: left;
+    }
+    .dropdown-menu {
+        left: auto;
+        right: 0;
+        &:before,
+        &:after {
+            left: auto;
+            right: 10px;
+        }
+    }
+}
+
+.nav-overlay #main-content {
+    padding-top: 0;
+    .google-search-appliance-search {
+        padding-top: 106px;
+    }
+}
+
+.root #main-content {
+    padding-top: 60px;
+}
+
+@include respond-to(phone, tablet) {
+    &.responsive {
+        body {
+            line-height: 1.675em;
+            padding: 0;
+        }
+        .dockbar-split .dockbar .navbar-inner {
+            display: none;
+        }
+    }
+}

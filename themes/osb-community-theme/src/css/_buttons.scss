@@ -1,0 +1,223 @@
+a {
+	color: $primary-color;
+
+	&:hover, :focus {
+		color: darken($primary-color, 20%);
+	}
+}
+
+a.btn, input.btn, input[type="button"], input[type="submit"], .btn btn-default, .field-input-button {
+	background: $primary-color;
+	border-width: 0;
+	color: #FFF;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1em;
+	font-weight: 400;
+	height: auto;
+	line-height: 1.5em;
+	margin: 0.25em 0 0.375em;
+	padding: 0.5em 1.5em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: top;
+	z-index: 1;
+
+	border-radius: $border-radius;
+	box-shadow: $elevation-2;
+	text-shadow: none;
+	@include transition(all 0.2s);
+
+	&:focus, &:hover {
+		background: lighten($primary-color, 16%);
+		color: #FFF;
+		outline: none;
+
+		box-shadow: $elevation-3;
+		@include transform($hover-translate);
+		@include transition(all 0.2s);
+	}
+
+	&:active {
+		background: lighten($primary-color, 8%);
+		color: #FFF;
+		top: 0.1em;
+
+		box-shadow: $elevation-2;
+		@include transform($hover-translate-reset);
+		@include transition(all 0.1s);
+	}
+
+	&:disabled {
+		background: $element-color;
+		box-shadow: $elevation-reset;
+		color: $alt-font-color;
+	}
+
+	&.btn-accent {
+		background: $accent-color;
+
+		&:focus, &:hover {
+			background: lighten($accent-color, 16%);
+		}
+
+		&:active {
+			background: lighten($accent-color, 8%);
+		}
+	}
+
+	&.btn-alt-font {
+		background: $alt-font-color;
+
+		&:focus, &:hover {
+			background: lighten($alt-font-color, 16%);
+		}
+
+		&:active {
+			background: lighten($alt-font-color, 8%);
+		}
+	}
+
+	&.btn-alt-primary {
+		background: $alt-primary-color;
+
+		&:focus, &:hover {
+			background: lighten($alt-primary-color, 16%);
+		}
+
+		&:active {
+			background: lighten($alt-primary-color, 8%);
+		}
+	}
+
+	&.btn-alt-secondary {
+		background: $alt-secondary-color;
+
+		&:focus, &:hover {
+			background: lighten($alt-secondary-color, 16%);
+		}
+
+		&:active {
+			background: lighten($alt-secondary-color, 8%);
+		}
+	}
+
+	&.btn-complementary {
+		background: $complementary-color;
+
+		&:focus, &:hover {
+			background: lighten($complementary-color, 16%);
+		}
+
+		&:active {
+			background: lighten($complementary-color, 8%);
+		}
+	}
+
+	&.btn-font {
+		background: $font-color;
+
+		&:focus, &:hover {
+			background: lighten($font-color, 16%);
+		}
+
+		&:active {
+			background: lighten($font-color, 8%);
+		}
+	}
+
+	&.btn-lg {
+		font-size: 18px;
+		padding: 1.25em 2.5em;
+	}
+
+	&.btn-light {
+		background: #FFF;
+		color: $font-color;
+
+		&:focus, &:hover {
+			color: lighten($font-color, 16%);
+		}
+
+		&:active {
+			color: lighten($font-color, 8%);
+		}
+	}
+
+	&.btn-secondary {
+		background: $secondary-color;
+
+		&:focus, &:hover {
+			background: lighten($secondary-color, 16%);
+		}
+
+		&:active {
+			background: lighten($secondary-color, 8%);
+		}
+	}
+
+	&.btn-sm {
+		padding: 0.2em 0.6em;
+	}
+
+	@include respond-to(phone, tablet) {
+		margin: $small-spacing auto;
+	}
+}
+
+.cta {
+	color: $font-color;
+	font-weight: 600;
+
+	&:active, &:hover {
+		color: darken($font-color, 20%);
+		cursor: pointer;
+		text-decoration: none;
+
+		.cta-icon {
+			@include transform(translateX($small-spacing));
+		}
+	}
+
+	&.cta-alt {
+		color: $alt-font-color;
+
+		&:active, &:hover {
+			color: darken($alt-font-color, 20%);
+		}
+	}
+
+	&.cta-inline {
+		padding-right: $small-spacing;
+	}
+
+	&.cta-light {
+		color: #FFF;
+
+		&:active, &:hover {
+			color: darken(#FFF, 20%);
+		}
+	}
+
+	&.cta-primary {
+		color: $primary-color;
+
+		&:active, &:hover {
+			color: darken($primary-color, 20%);
+		}
+	}
+
+	&.cta-thin {
+		font-weight: normal;
+	}
+
+	.cta-icon {
+		@include transition(transform 0.5s);
+	}
+}
+
+.input-group button {
+	border: 1px solid $element-color;
+	padding: 4px 12px;
+}
