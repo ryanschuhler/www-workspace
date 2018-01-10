@@ -17,12 +17,16 @@ package com.liferay.osb.www.wcm.deployment.api;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Allen R. Ziegenfus
+ */
 public class Structure {
 
 	public Structure(String groupKey, String structureKey, String content) {
-		_content = content;
 		_groupKey = groupKey;
 		_structureKey = structureKey;
+		_content = content;
+
 		_templates = new ArrayList<>();
 	}
 
@@ -46,9 +50,9 @@ public class Structure {
 		return _templates;
 	}
 
-	private String _content;
-	private String _groupKey;
-	private String _structureKey;
-	private List<Template> _templates;
+	private final String _content;
+	private final String _groupKey;
+	private final String _structureKey;
+	private final List<Template> _templates;
 
 }

@@ -22,7 +22,9 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  * @author Allen Ziegenfus
  */
 @ExtendedObjectClassDefinition(category = "other")
-@Meta.OCD(id = "com.liferay.osb.www.wcm.deployment.service.WCMDeploymentConfiguration")
+@Meta.OCD(
+	id = "com.liferay.osb.www.wcm.deployment.service.WCMDeploymentConfiguration"
+)
 public interface WCMDeploymentConfiguration {
 
 	@Meta.AD(deflt = "20156", required = false)

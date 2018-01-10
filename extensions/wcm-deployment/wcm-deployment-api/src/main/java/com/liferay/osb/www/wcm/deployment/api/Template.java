@@ -14,6 +14,9 @@
 
 package com.liferay.osb.www.wcm.deployment.api;
 
+/**
+ * @author Allen R. Ziegenfus
+ */
 public class Template {
 
 	public Template(String templateName, String content) {
@@ -30,7 +33,7 @@ public class Template {
 		return _templateName;
 	}
 
-	private String _content;
-	private String _templateName;
+	private final String _content;
+	private final String _templateName;
 
 }

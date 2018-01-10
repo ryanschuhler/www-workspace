@@ -14,9 +14,6 @@
 
 package com.liferay.osb.www.wcm.deployment.service;
 
-import com.liferay.osb.www.wcm.deployment.api.Structure;
-import com.liferay.osb.www.wcm.deployment.api.Template;
-import com.liferay.osb.www.wcm.deployment.api.WCMDeployment;
 import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
@@ -26,6 +23,9 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
 import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.osb.www.wcm.deployment.api.Structure;
+import com.liferay.osb.www.wcm.deployment.api.Template;
+import com.liferay.osb.www.wcm.deployment.api.WCMDeployment;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -33,8 +33,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringParser;
@@ -71,22 +70,24 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.osb.www.wcm.deployment.service.WCMDeploymentConfiguration",
-	immediate = true, 
-	service = WCMDeployment.class)
+	immediate = true, service = WCMDeployment.class
+)
 public class WCMDeploymentImpl implements WCMDeployment {
 
 	//TODO: check first if template / structure needs updating so we do not create extra versions..
-	
+
 	public static final String STRUCTURE = "structure";
 
 	public static final String TEMPLATE = "template";
 
 	public void addStructures(List<Structure> structures)
 		throws PortalException {
-		
+
 		if (_log.isDebugEnabled()) {
-			_log.debug("Using adminUserId " + _wcmDeploymentConfiguration.adminUserId());
-			_log.debug("Using guestGroupId " + _wcmDeploymentConfiguration.guestGroupId());
+			_log.debug(
+				"Using adminUserId " + _wcmDeploymentConfiguration.adminUserId());
+			_log.debug(
+				"Using guestGroupId " + _wcmDeploymentConfiguration.guestGroupId());
 		}
 
 		for (Structure structure : structures) {
@@ -98,11 +99,11 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			String storageType = "json";
 
 			if (Validator.isNull(definition)) {
-				
 				if (_log.isDebugEnabled()) {
-					_log.debug("Definition is null for structure: " + structureKey);
+					_log.debug(
+						"Definition is null for structure: " + structureKey);
 				}
-				
+
 				continue;
 			}
 
@@ -113,15 +114,14 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			DDMForm ddmForm = _ddmFormJSONDeserializer.deserialize(definition);
 
 			if (ddmStructure != null) {
-				
 				if (_log.isDebugEnabled()) {
-					_log.debug("Updating structure: " + structureKey);					
+					_log.debug("Updating structure: " + structureKey);
 				}
-				
+
 				ddmStructure = _ddmStructureLocalService.updateStructure(
-					_wcmDeploymentConfiguration.adminUserId(), ddmStructure.getStructureId(),
-					ddmForm,
-						ddmStructure.getDDMFormLayout(), new ServiceContext());
+					_wcmDeploymentConfiguration.adminUserId(),
+					ddmStructure.getStructureId(), ddmForm,
+					ddmStructure.getDDMFormLayout(), new ServiceContext());
 			}
 			else {
 				Map<Locale, String> nameMap = new HashMap<>();
@@ -130,9 +130,9 @@ public class WCMDeploymentImpl implements WCMDeployment {
 					LocaleUtil.getDefault(), structure.getStructureKey());
 
 				if (_log.isDebugEnabled()) {
-					_log.debug("Adding structure: " + structureKey);					
+					_log.debug("Adding structure: " + structureKey);
 				}
-				
+
 				ddmStructure = _ddmStructureLocalService.addStructure(
 					_wcmDeploymentConfiguration.adminUserId(), groupId,
 					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
@@ -164,11 +164,10 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				groupId, classNameId, templateKey);
 
 			if (ddmTemplate != null) {
-
 				if (_log.isDebugEnabled()) {
-					_log.debug("Updating template: " + templateKey);					
+					_log.debug("Updating template: " + templateKey);
 				}
-				
+
 				ddmTemplate = _ddmTemplateLocalService.updateTemplate(
 					ddmTemplate.getUserId(), ddmTemplate.getTemplateId(),
 					ddmTemplate.getClassPK(), ddmTemplate.getNameMap(),
@@ -184,27 +183,29 @@ public class WCMDeploymentImpl implements WCMDeployment {
 					LocaleUtil.getDefault(), template.getTemplateName());
 
 				if (_log.isDebugEnabled()) {
-					_log.debug("Adding template: " + templateKey);					
+					_log.debug("Adding template: " + templateKey);
 				}
-				
+
 				ddmTemplate = _ddmTemplateLocalService.addTemplate(
-					_wcmDeploymentConfiguration.adminUserId(), groupId, classNameId, structureId,
-					resourceClassNameId, templateKey, nameMap,
-					Collections.emptyMap(), StringPool.BLANK, StringPool.BLANK,
-					StringPool.BLANK, script, Boolean.TRUE, Boolean.FALSE,
-					StringPool.BLANK, null, new ServiceContext());
+					_wcmDeploymentConfiguration.adminUserId(), groupId,
+					classNameId, structureId, resourceClassNameId, templateKey,
+					nameMap, Collections.emptyMap(), StringPool.BLANK,
+					StringPool.BLANK, StringPool.BLANK, script, Boolean.TRUE,
+					Boolean.FALSE, StringPool.BLANK, null,
+					new ServiceContext());
 			}
 		}
 	}
 
 	@Activate
-	protected void activate(Map<String, Object> properties, BundleContext bundleContext) {
-		
+	protected void activate(
+		Map<String, Object> properties, BundleContext bundleContext) {
+
 		_wcmDeploymentConfiguration = ConfigurableUtil.createConfigurable(
-				WCMDeploymentConfiguration.class, properties);
-		
+			WCMDeploymentConfiguration.class, properties);
+
 		Bundle bundle = bundleContext.getBundle();
-		
+
 		List<Structure> structures = new ArrayList<>();
 
 		try {
@@ -216,15 +217,15 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 				Map<String, String> structureParams = getResourceInfo(
 					STRUCTURE, structureURL);
+
 				structures.add(getStructure(structureParams));
 			}
 
-			Map<Tuple, Structure> groupedStructures = structures.stream()
-				.collect(
+			Map<Tuple, Structure> groupedStructures = structures.stream().
+				collect(
 					Collectors.toMap(
-						structure -> new Tuple(
-							structure.getGroupKey(),
-							structure.getStructureKey()), structure -> structure));
+						structure -> new Tuple(structure.getGroupKey(), structure.getStructureKey()),
+						structure -> structure));
 
 			Enumeration<URL> templateURLs = bundle.findEntries(
 				"/ddm", "*.ftl", true);
@@ -244,21 +245,19 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				//TODO throw exception if no match?
 
 				if (templateStructures != null) {
-						templateStructures.addTemplate(
-				new Template(	
-					StringUtil.split(templateParams.get("filename"), CharPool.PERIOD)[0],
-					templateParams.get("content")));
+					templateStructures.addTemplate(
+						new Template(
+							FileUtil.stripExtension(templateParams.get("filename")),
+							templateParams.get("content")));
 				}
 			}
 
-			
 			if (_log.isDebugEnabled()) {
-				
 				_log.debug("Found following structures and templates:");
-				
+
 				for (Structure structure : structures) {
 					_log.debug(structure.getStructureKey());
-	
+
 					for (Template template : structure.getTemplates()) {
 						_log.debug("-----" + template.getTemplateName());
 					}
@@ -266,8 +265,8 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			}
 
 			addStructures(structures);
-
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			_log.error(e);
 		}
 	}
@@ -278,8 +277,12 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 		if (group == null) {
 			try {
-				group = _groupLocalService.getGroup(_wcmDeploymentConfiguration.guestGroupId());
-			} catch (PortalException e) {
+				group = _groupLocalService.getGroup(
+					_wcmDeploymentConfiguration.guestGroupId());
+			}
+			catch (PortalException pe) {
+				_log.error(pe);
+
 				return 0;
 			}
 		}
@@ -295,7 +298,8 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		String content = StringUtil.read(inputStream);
 
 		StringParser stringParser = StringParser.create(
-			"{fileEntry:[^/]+}//{directory:[^/]+}/{ddm:[^/]+}/{groupKey:[^/]+}/{structureKey:[^/]+}/{filename:[^$]+}");
+			"{fileEntry:[^/]+}//{directory:[^/]+}/{ddm:[^/]+}/{groupKey:[^/]+}/{structureKey:[^/]+}" +
+				"/{filename:[^$]+}");
 
 		Map<String, String> params = new HashMap<>();
 
@@ -309,11 +313,14 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 	protected Structure getStructure(Map<String, String> params) {
 		Structure structure = new Structure(
-				params.get("groupKey"), params.get("structureKey"),
-				params.get("content"));
+			params.get("groupKey"), params.get("structureKey"),
+			params.get("content"));
 
 		return structure;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WCMDeploymentImpl.class);
 
 	@Reference
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
@@ -326,9 +333,7 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 	@Reference
 	private GroupLocalService _groupLocalService;
-	
-	private volatile WCMDeploymentConfiguration  _wcmDeploymentConfiguration;
-	
-	private static Log _log = LogFactoryUtil.getLog(WCMDeploymentImpl.class);
+
+	private volatile WCMDeploymentConfiguration _wcmDeploymentConfiguration;
 
 }
