@@ -3,11 +3,15 @@
 <#assign service_context = staticUtil["com.liferay.portal.kernel.service.ServiceContextThreadLocal"].getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 
-<#assign theme_display = request["theme-display"] />
-<#assign plid = theme_display["plid"]?number />
-<#assign layout_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
-<#assign layout = layout_service.getLayout(plid)! />
-<#assign has_update_permissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
+ <#assign has_update_permissons = false />
+ 
+<#if request.attributes??>
+    <#assign theme_display = request["theme-display"]! {"plid": 0, "company-id": 10155} />
+    <#assign plid = theme_display["plid"]?number />
+    <#assign layout_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
+    <#assign layout = layout_service.getLayout(plid)! />
+    <#assign has_update_permissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
+</#if>
 
 <div class="lego-article ${article_class.data}" id="article-${.vars['reserved-article-id'].data}">
 	<#list section.siblings as cur_section>
@@ -64,7 +68,7 @@
 
 <#macro get_article_content article>
 	<#if article?has_content>
-		${journalContentUtil.getContent(groupId, article.getArticleId(), "", locale, xmlRequest)!}
+		${journalContentUtil.getContent(groupId, article.getArticleId(), "", locale)!}
 
 		<#if has_update_permissons>
 			<#assign current_url = request.attributes.CURRENT_COMPLETE_URL! />

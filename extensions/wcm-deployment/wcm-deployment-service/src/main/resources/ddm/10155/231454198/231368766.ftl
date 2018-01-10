@@ -97,33 +97,11 @@
 
 <#macro get_journal_article_content article>
 	<#if article?has_content>
-		<#assign company_local_service = serviceLocator.findService("com.liferay.portal.kernel.service.CompanyLocalService") />
-
-        <#assign theme_display_object = staticUtil["com.liferay.portal.kernel.util.InstanceFactory"].newInstance("com.liferay.portal.kernel.theme.ThemeDisplay")>
-		<#assign VOID = theme_display_object.setPermissionChecker(permissionChecker) >
-		<#assign VOID = theme_display_object.setPathImage(theme_display["path-image"])>
-		<#assign VOID = theme_display_object.setLocale(locale)>
-		<#assign VOID = theme_display_object.setSecure(getterUtil.getBoolean(theme_display["secure"]))>
-		<#assign VOID = theme_display_object.setPathFriendlyURLPublic(theme_display["path-friendly-url-public"])>
-		<#assign VOID = theme_display_object.setPathThemeImages(theme_display["path-theme-images"])>
-		<#assign VOID = theme_display_object.setServerPort(getterUtil.getInteger(theme_display["server-port"]))>
-		<#assign VOID = theme_display_object.setServerName(theme_display["server-name"])>
-		<#assign VOID = theme_display_object.setPathFriendlyURLPrivateGroup(theme_display["path-friendly-url-private-group"])>
-		<#assign VOID = theme_display_object.setURLPortal(theme_display["url-portal"])>
-		<#assign VOID = theme_display_object.setCompany(company_local_service.getCompanyById(getterUtil.getLong(theme_display["company-id"])))>
-		<#assign VOID = theme_display_object.setLifecycleRender(getterUtil.getBoolean(true))>
-
-		<#if layout?has_content>
-			<#assign VOID = theme_display_object.setLayout(layout)>
-			<#assign VOID = theme_display_object.setLayoutSet(layout.getLayoutSet())>
-		</#if>
 
 		<#assign view_mode = get_view_mode()>
-		<#assign articleDisplay = (journalContentUtil.getDisplay(groupId?long, article.getArticleId(), view_mode, locale, getterUtil.getInteger("1")?int, theme_display_object)!)>
 
-		<#if articleDisplay.getContent??>
-			${articleDisplay.getContent()}
-		</#if>
+		${journalContentUtil.getContent(groupId?long, article.getArticleId(),  view_mode, locale.getLanguage())!}
+
 	</#if>
 </#macro>
 

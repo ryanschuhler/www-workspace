@@ -29,6 +29,7 @@ services:
       - "443:443"
     volumes:
       - "apache:/var/www/html"
+      - "./httpd/resources/:/tmp/httpd"
   liferay:
     container_name: liferay
     depends_on:
