@@ -1,8 +1,7 @@
-<#assign layout_service = serviceLocator.findService("com.liferay.portal.service.LayoutLocalService") />
-<#assign theme_display = request["theme-display"] />
-<#assign plid = theme_display["plid"] />
-<#assign layout = layout_service.getLayout(plid?number) />
-<#assign hasUpdatePermissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
+<#assign hasUpdatePermissons = false />
+<#if layout?? && layout.getPlid() != 0> 
+    <#assign hasUpdatePermissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
+</#if>
 
 <#assign css_class = ""/>
 
