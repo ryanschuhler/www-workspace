@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osb.www.wcm.deployment;
+package com.liferay.osb.www.wcm.deployment.service;
 
 import com.liferay.osb.www.wcm.deployment.api.Structure;
 import com.liferay.osb.www.wcm.deployment.api.Template;
@@ -26,10 +26,15 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
 import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringParser;
@@ -64,15 +69,25 @@ import org.osgi.service.component.annotations.Reference;
  * @author Allen R. Ziegenfus
  * @author Ryan Schuhler
  */
-@Component(immediate = true, service = WCMDeployment.class)
+@Component(
+	configurationPid = "com.liferay.osb.www.wcm.deployment.service.WCMDeploymentConfiguration",
+	immediate = true, 
+	service = WCMDeployment.class)
 public class WCMDeploymentImpl implements WCMDeployment {
 
+	//TODO: check first if template / structure needs updating so we do not create extra versions..
+	
 	public static final String STRUCTURE = "structure";
 
 	public static final String TEMPLATE = "template";
 
 	public void addStructures(List<Structure> structures)
 		throws PortalException {
+		
+		if (_log.isDebugEnabled()) {
+			_log.debug("Using adminUserId " + _wcmDeploymentConfiguration.adminUserId());
+			_log.debug("Using guestGroupId " + _wcmDeploymentConfiguration.guestGroupId());
+		}
 
 		for (Structure structure : structures) {
 			long groupId = getGroupId(structure.getGroupKey());
@@ -83,9 +98,11 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			String storageType = "json";
 
 			if (Validator.isNull(definition)) {
-				System.out.println(
-					"Definition is null for structure: " + structureKey);
-
+				
+				if (_log.isDebugEnabled()) {
+					_log.debug("Definition is null for structure: " + structureKey);
+				}
+				
 				continue;
 			}
 
@@ -96,8 +113,13 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			DDMForm ddmForm = _ddmFormJSONDeserializer.deserialize(definition);
 
 			if (ddmStructure != null) {
+				
+				if (_log.isDebugEnabled()) {
+					_log.debug("Updating structure: " + structureKey);					
+				}
+				
 				ddmStructure = _ddmStructureLocalService.updateStructure(
-					_ADMIN_USER_ID, ddmStructure.getStructureId(),
+					_wcmDeploymentConfiguration.adminUserId(), ddmStructure.getStructureId(),
 					ddmForm,
 						ddmStructure.getDDMFormLayout(), new ServiceContext());
 			}
@@ -107,16 +129,18 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				nameMap.put(
 					LocaleUtil.getDefault(), structure.getStructureKey());
 
+				if (_log.isDebugEnabled()) {
+					_log.debug("Adding structure: " + structureKey);					
+				}
+				
 				ddmStructure = _ddmStructureLocalService.addStructure(
-					_ADMIN_USER_ID, groupId,
+					_wcmDeploymentConfiguration.adminUserId(), groupId,
 					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 					classNameId, structureKey, nameMap, Collections.emptyMap(),
 					ddmForm, DDMUtil.getDefaultDDMFormLayout(ddmForm),
 					storageType, DDMStructureConstants.TYPE_DEFAULT,
 					new ServiceContext());
 			}
-
-			System.out.println("structure: " + ddmStructure.getStructureId());
 
 			addTemplates(structure, ddmStructure);
 		}
@@ -140,6 +164,11 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				groupId, classNameId, templateKey);
 
 			if (ddmTemplate != null) {
+
+				if (_log.isDebugEnabled()) {
+					_log.debug("Updating template: " + templateKey);					
+				}
+				
 				ddmTemplate = _ddmTemplateLocalService.updateTemplate(
 					ddmTemplate.getUserId(), ddmTemplate.getTemplateId(),
 					ddmTemplate.getClassPK(), ddmTemplate.getNameMap(),
@@ -154,22 +183,28 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				nameMap.put(
 					LocaleUtil.getDefault(), template.getTemplateName());
 
+				if (_log.isDebugEnabled()) {
+					_log.debug("Adding template: " + templateKey);					
+				}
+				
 				ddmTemplate = _ddmTemplateLocalService.addTemplate(
-					_ADMIN_USER_ID, groupId, classNameId, structureId,
+					_wcmDeploymentConfiguration.adminUserId(), groupId, classNameId, structureId,
 					resourceClassNameId, templateKey, nameMap,
 					Collections.emptyMap(), StringPool.BLANK, StringPool.BLANK,
 					StringPool.BLANK, script, Boolean.TRUE, Boolean.FALSE,
 					StringPool.BLANK, null, new ServiceContext());
 			}
-
-			System.out.println("template: " + ddmTemplate.getTemplateId());
 		}
 	}
 
 	@Activate
-	protected void activate(BundleContext bundleContext) {
+	protected void activate(Map<String, Object> properties, BundleContext bundleContext) {
+		
+		_wcmDeploymentConfiguration = ConfigurableUtil.createConfigurable(
+				WCMDeploymentConfiguration.class, properties);
+		
 		Bundle bundle = bundleContext.getBundle();
-
+		
 		List<Structure> structures = new ArrayList<>();
 
 		try {
@@ -210,26 +245,30 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 				if (templateStructures != null) {
 						templateStructures.addTemplate(
-				new Template(
-					templateParams.get("filename"),
+				new Template(	
+					StringUtil.split(templateParams.get("filename"), CharPool.PERIOD)[0],
 					templateParams.get("content")));
 				}
 			}
 
-			for (Structure structure : structures) {
-				System.out.println(structure.getStructureKey());
-
-				for (Template template : structure.getTemplates()) {
-					System.out.println("-----" + template.getTemplateName());
+			
+			if (_log.isDebugEnabled()) {
+				
+				_log.debug("Found following structures and templates:");
+				
+				for (Structure structure : structures) {
+					_log.debug(structure.getStructureKey());
+	
+					for (Template template : structure.getTemplates()) {
+						_log.debug("-----" + template.getTemplateName());
+					}
 				}
 			}
 
 			addStructures(structures);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.toString());
-			System.out.println("yowzers");
+			_log.error(e);
 		}
 	}
 
@@ -239,7 +278,7 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 		if (group == null) {
 			try {
-				group = _groupLocalService.getGroup(_GUEST_GROUP_ID);
+				group = _groupLocalService.getGroup(_wcmDeploymentConfiguration.guestGroupId());
 			} catch (PortalException e) {
 				return 0;
 			}
@@ -276,10 +315,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		return structure;
 	}
 
-	private static final long _ADMIN_USER_ID = 20156;
-
-	private static final long _GUEST_GROUP_ID = 20143;
-
 	@Reference
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
 
@@ -291,5 +326,9 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 	@Reference
 	private GroupLocalService _groupLocalService;
+	
+	private volatile WCMDeploymentConfiguration  _wcmDeploymentConfiguration;
+	
+	private static Log _log = LogFactoryUtil.getLog(WCMDeploymentImpl.class);
 
 }
