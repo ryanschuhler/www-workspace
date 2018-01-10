@@ -1,11 +1,11 @@
-<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
-<#assign service_context = staticUtil["com.liferay.portal.service.ServiceContextThreadLocal"].getServiceContext() />
+<#assign service_context = staticUtil["com.liferay.portal.kernel.service.ServiceContextThreadLocal"].getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 
 <#assign theme_display = request["theme-display"] />
 <#assign plid = theme_display["plid"]?number />
-<#assign layout_service = serviceLocator.findService("com.liferay.portal.service.LayoutLocalService") />
+<#assign layout_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
 <#assign layout = layout_service.getLayout(plid)! />
 <#assign has_update_permissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
 
@@ -37,7 +37,7 @@
 						</${cur_element_tag}>
 					</#list>
 
-					<#if cur_block.article_url_title?has_content>
+					<#if cur_block.article_url_title?has_content && cur_block.article_url_title.data?has_content>
 						<#list cur_block.article_url_title.siblings as article_url_title>
 							<#assign article = journal_article_local_service.getArticleByUrlTitle(groupId, article_url_title.data)! />
 
@@ -47,7 +47,7 @@
 						</#list>
 					</#if>
 
-					<#if cur_block.article_id?has_content>
+					<#if cur_block.article_id?has_content && cur_block.article_id.data?has_content>
 						<#list cur_block.article_id.siblings as article_id>
 							<#assign article = journal_article_local_service.getArticle(groupId, article_id.data)! />
 

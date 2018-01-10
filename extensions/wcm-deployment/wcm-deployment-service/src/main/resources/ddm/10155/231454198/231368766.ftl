@@ -1,12 +1,12 @@
 <#assign theme_display = request["theme-display"]! {"plid": 0, "company-id": 10155} />
 <#assign plid = theme_display["plid"]?number />
-<#assign layout_local_service = serviceLocator.findService("com.liferay.portal.service.LayoutLocalService") />
+<#assign layout_local_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
 <#assign layout = layout_local_service.getLayout(plid)! />
 
-<#assign service_context = objectUtil("com.liferay.portal.service.ServiceContextThreadLocal").getServiceContext() />
+<#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 
-<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 <#assign runtime_id = 1>
 
@@ -97,9 +97,9 @@
 
 <#macro get_journal_article_content article>
 	<#if article?has_content>
-		<#assign company_local_service = serviceLocator.findService("com.liferay.portal.service.CompanyLocalService") />
+		<#assign company_local_service = serviceLocator.findService("com.liferay.portal.kernel.service.CompanyLocalService") />
 
-		<#assign theme_display_object = staticUtil["com.liferay.portal.theme.ThemeDisplayFactory"].create()>
+        <#assign theme_display_object = staticUtil["com.liferay.portal.kernel.util.InstanceFactory"].newInstance("com.liferay.portal.kernel.theme.ThemeDisplay")>
 		<#assign VOID = theme_display_object.setPermissionChecker(permissionChecker) >
 		<#assign VOID = theme_display_object.setPathImage(theme_display["path-image"])>
 		<#assign VOID = theme_display_object.setLocale(locale)>
@@ -118,7 +118,7 @@
 		</#if>
 
 		<#assign view_mode = get_view_mode()>
-		<#assign articleDisplay = (journalContentUtil.getDisplay(groupId?long, article.getArticleId(), article.getVersion()?double, article.getTemplateId(), view_mode, locale, theme_display_object, getterUtil.getInteger("1")?int, xmlRequest)!)>
+		<#assign articleDisplay = (journalContentUtil.getDisplay(groupId?long, article.getArticleId(), view_mode, locale, getterUtil.getInteger("1")?int, theme_display_object)!)>
 
 		<#if articleDisplay.getContent??>
 			${articleDisplay.getContent()}
