@@ -75,7 +75,11 @@ strong {
     }
     .portlet-borderless-container {
         min-height: 0;
-    }
+	}
+	
+	.portlet-title-text {
+		display: none;
+	}
 }
 
 #wrapper {
