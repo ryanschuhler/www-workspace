@@ -22,7 +22,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  * @author Ryan Schuhler
  */
 @ExtendedObjectClassDefinition(category = "other")
-@Meta.OCD(id = "com.liferay.osb.www.VerifyUserConfiguration")
+@Meta.OCD(id = "com.liferay.osb.www.configuration.VerifyUserConfiguration")
 public interface VerifyUserConfiguration {
 
 	@Meta.AD(id = "api.token", required = true)

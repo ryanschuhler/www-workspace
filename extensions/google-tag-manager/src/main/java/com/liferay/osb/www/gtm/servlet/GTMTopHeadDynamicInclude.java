@@ -35,7 +35,12 @@ import org.osgi.service.component.annotations.Modified;
 /**
  * @author Ryan Schuhler
  */
-@Component(immediate = true, service = DynamicInclude.class)
+@Component(
+	configurationPid = "com.liferay.osb.www.gtm.configuration.GTMConfiguration",
+	immediate = true,
+	service = DynamicInclude.class
+)
+
 public class GTMTopHeadDynamicInclude extends BaseDynamicInclude {
 
 	@Override
@@ -63,16 +68,8 @@ public class GTMTopHeadDynamicInclude extends BaseDynamicInclude {
 	}
 
 	@Activate
-	protected void activate(Map<String, Object> properties) {
-		replaceConfiguration(properties);
-	}
-
 	@Modified
-	protected void modified(Map<String, Object> properties) throws Exception {
-		replaceConfiguration(properties);
-	}
-
-	protected void replaceConfiguration(Map<String, Object> properties) {
+	protected void activate(Map<String, Object> properties) {
 		_gtmConfiguration = ConfigurableUtil.createConfigurable(
 			GTMConfiguration.class, properties);
 	}

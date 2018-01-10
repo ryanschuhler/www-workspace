@@ -22,10 +22,10 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  * @author Ryan Schuhler
  */
 @ExtendedObjectClassDefinition(category = "other")
-@Meta.OCD(id = "com.liferay.osb.www.gtm.GTMConfiguration")
+@Meta.OCD(id = "com.liferay.osb.www.gtm.configuration.GTMConfiguration")
 public interface GTMConfiguration {
 
-	@Meta.AD(id = "container.id", required = false)
+	@Meta.AD(id = "container.id", required = true)
 	public String containerId();
 
 }
