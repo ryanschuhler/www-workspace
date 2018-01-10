@@ -1,0 +1,432 @@
+{
+	"availableLanguageIds": ["en_US"],
+	"defaultLanguageId": "en_US",
+	"fields": [{
+		"dataType": "string",
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"readOnly": false,
+		"label": {
+			"en_US": "Preheading"
+		},
+		"type": "text",
+		"required": false,
+		"showLabel": true,
+		"nestedFields": [{
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"font-color\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Preheading Color"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "preheading_color",
+			"options": [{
+				"label": {
+					"en_US": "Orange (complementary color)"
+				},
+				"value": "complementary-color"
+			}, {
+				"label": {
+					"en_US": "Teal (accent color)"
+				},
+				"value": "accent-color"
+			}, {
+				"label": {
+					"en_US": "Blue (primary color)"
+				},
+				"value": "primary-color"
+			}, {
+				"label": {
+					"en_US": "Blue (alternative primary color)"
+				},
+				"value": "alt-primary-color"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (secondary color)"
+				},
+				"value": "secondary-color"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (alternative secondary color)"
+				},
+				"value": "alt-secondary-color"
+			}, {
+				"label": {
+					"en_US": "Light Gray (element color)"
+				},
+				"value": "element-color"
+			}, {
+				"label": {
+					"en_US": "Gray (alternative text color)"
+				},
+				"value": "alt-font-color"
+			}, {
+				"label": {
+					"en_US": "Dark Gray (text color)"
+				},
+				"value": "font-color"
+			}, {
+				"label": {
+					"en_US": "White"
+				},
+				"value": "light-color"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Preheading Alignment"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "preheading_alignment",
+			"options": [{
+				"label": {
+					"en_US": "Left"
+				},
+				"value": "text-left"
+			}, {
+				"label": {
+					"en_US": "Center"
+				},
+				"value": "text-center"
+			}, {
+				"label": {
+					"en_US": "Right"
+				},
+				"value": "text-right"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}],
+		"indexType": "keyword",
+		"repeatable": false,
+		"name": "preheading",
+		"localizable": true,
+		"tip": {
+			"en_US": ""
+		}
+	}, {
+		"dataType": "string",
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"readOnly": false,
+		"label": {
+			"en_US": "Heading"
+		},
+		"type": "text",
+		"required": false,
+		"showLabel": true,
+		"nestedFields": [{
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Heading Type"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "heading_type",
+			"options": [{
+				"label": {
+					"en_US": "Page Heading"
+				},
+				"value": "page-heading"
+			}, {
+				"label": {
+					"en_US": "Section Heading"
+				},
+				"value": "section-heading"
+			}, {
+				"label": {
+					"en_US": "h1"
+				},
+				"value": "h1"
+			}, {
+				"label": {
+					"en_US": "h2"
+				},
+				"value": "h2"
+			}, {
+				"label": {
+					"en_US": "h3"
+				},
+				"value": "h3"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"font-color\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Heading Color"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "heading_color",
+			"options": [{
+				"label": {
+					"en_US": "Orange (complementary color)"
+				},
+				"value": "complementary-color"
+			}, {
+				"label": {
+					"en_US": "Teal (accent color)"
+				},
+				"value": "accent-color"
+			}, {
+				"label": {
+					"en_US": "Blue (primary color)"
+				},
+				"value": "primary-color"
+			}, {
+				"label": {
+					"en_US": "Blue (alternative primary color)"
+				},
+				"value": "alt-primary-color"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (secondary color)"
+				},
+				"value": "secondary-color"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (alternative secondary color)"
+				},
+				"value": "alt-secondary-color"
+			}, {
+				"label": {
+					"en_US": "Light Gray (element color)"
+				},
+				"value": "element-color"
+			}, {
+				"label": {
+					"en_US": "Gray (alternative text color)"
+				},
+				"value": "alt-font-color"
+			}, {
+				"label": {
+					"en_US": "Dark Gray (text color)"
+				},
+				"value": "font-color"
+			}, {
+				"label": {
+					"en_US": "White"
+				},
+				"value": "light-color"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Heading Alignment"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "heading_alignment",
+			"options": [{
+				"label": {
+					"en_US": "Left"
+				},
+				"value": "text-left"
+			}, {
+				"label": {
+					"en_US": "Center"
+				},
+				"value": "text-center"
+			}, {
+				"label": {
+					"en_US": "Right"
+				},
+				"value": "text-right"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}],
+		"indexType": "keyword",
+		"repeatable": false,
+		"name": "heading",
+		"localizable": true,
+		"tip": {
+			"en_US": ""
+		}
+	}, {
+		"dataType": "string",
+		"predefinedValue": {
+			"en_US": ""
+		},
+		"readOnly": false,
+		"label": {
+			"en_US": "Subheading"
+		},
+		"type": "textarea",
+		"required": false,
+		"showLabel": true,
+		"nestedFields": [{
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"font-color\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Subheading Color"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "subheading_color",
+			"options": [{
+				"label": {
+					"en_US": "Orange (complementary color)"
+				},
+				"value": "complementary-color"
+			}, {
+				"label": {
+					"en_US": "Teal (accent color)"
+				},
+				"value": "accent-color"
+			}, {
+				"label": {
+					"en_US": "Blue (primary color)"
+				},
+				"value": "primary-color"
+			}, {
+				"label": {
+					"en_US": "Blue (alternative primary color)"
+				},
+				"value": "alt-primary-color"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (secondary color)"
+				},
+				"value": "secondary-color"
+			}, {
+				"label": {
+					"en_US": "Dark Blue (alternative secondary color)"
+				},
+				"value": "alt-secondary-color"
+			}, {
+				"label": {
+					"en_US": "Light Gray (element color)"
+				},
+				"value": "element-color"
+			}, {
+				"label": {
+					"en_US": "Gray (alternative text color)"
+				},
+				"value": "alt-font-color"
+			}, {
+				"label": {
+					"en_US": "Dark Gray (text color)"
+				},
+				"value": "font-color"
+			}, {
+				"label": {
+					"en_US": "White"
+				},
+				"value": "light-color"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}, {
+			"dataType": "string",
+			"predefinedValue": {
+				"en_US": "[\"\"]"
+			},
+			"multiple": false,
+			"readOnly": false,
+			"label": {
+				"en_US": "Subheading Alignment"
+			},
+			"type": "select",
+			"required": false,
+			"showLabel": true,
+			"indexType": "",
+			"repeatable": false,
+			"name": "subheading_alignment",
+			"options": [{
+				"label": {
+					"en_US": "Left"
+				},
+				"value": "text-left"
+			}, {
+				"label": {
+					"en_US": "Center"
+				},
+				"value": "text-center"
+			}, {
+				"label": {
+					"en_US": "Right"
+				},
+				"value": "text-right"
+			}],
+			"localizable": true,
+			"tip": {
+				"en_US": ""
+			}
+		}],
+		"indexType": "keyword",
+		"repeatable": false,
+		"name": "subheading",
+		"localizable": true,
+		"tip": {
+			"en_US": ""
+		}
+	}]
+}
