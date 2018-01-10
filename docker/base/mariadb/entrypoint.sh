@@ -2,6 +2,6 @@
 
 set -x
 
-cp -rv /tmp/mariadb/. /docker-entrypoint-initdb.d
+cp -rv /tmp/mariadb/. /
 
 exec /docker-entrypoint.sh "$@"
