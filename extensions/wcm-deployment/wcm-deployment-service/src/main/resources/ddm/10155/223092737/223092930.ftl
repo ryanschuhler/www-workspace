@@ -2,11 +2,11 @@
 <#assign user_country = "" />
 
 <#if request.attributes??>
-    <#assign user_country = request.attributes.OSB_WWW_COUNTRY />
+    <#assign user_country = request.attributes.OSB_WWW_COUNTRY!"US" />
 <#else>
-    <#assign service_context = objectUtil("com.liferay.portal.service.ServiceContextThreadLocal").getServiceContext() />
+    <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
     <#assign http_servlet_request = service_context.getRequest() />
-    <#assign user_country = http_servlet_request.getAttribute("OSB_WWW_COUNTRY") />
+    <#assign user_country = http_servlet_request.getAttribute("OSB_WWW_COUNTRY")!"US" />
 </#if>
 
 <#-- Get the Article ID based on the Country-->
@@ -25,14 +25,14 @@
 </#if>
 
 <#-- Display the Article-->
-<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
-<#assign service_context = staticUtil["com.liferay.portal.service.ServiceContextThreadLocal"].getServiceContext() />
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
+<#assign service_context = staticUtil["com.liferay.portal.kernel.service.ServiceContextThreadLocal"].getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 
 <#if request.attributes??>
 	<#assign theme_display = request["theme-display"] />
 	<#assign plid = theme_display["plid"]?number />
-	<#assign layout_service = serviceLocator.findService("com.liferay.portal.service.LayoutLocalService") />
+	<#assign layout_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
 	<#assign layout = layout_service.getLayout(plid)! />
 	<#assign has_update_permissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
 </#if>
@@ -45,7 +45,7 @@
 
 <#macro get_article_content article>
 	<#if article?has_content>
-		${journalContentUtil.getContent(groupId, article.getArticleId(), "", locale, xmlRequest)!}
+		${journalContentUtil.getContent(groupId, article.getArticleId(), "", locale)!}
 
 		<#if has_update_permissons?? && has_update_permissons>
 			<#assign current_url = request.attributes.CURRENT_COMPLETE_URL! />
