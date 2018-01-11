@@ -1,0 +1,3 @@
+Bundle-Name: UTM
+Bundle-SymbolicName: com.liferay.osb.www.utm.service.preaction
+Bundle-Version: 1.0.0
