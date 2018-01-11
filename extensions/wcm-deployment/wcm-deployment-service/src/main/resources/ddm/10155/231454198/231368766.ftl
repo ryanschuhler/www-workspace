@@ -43,7 +43,7 @@
 				<#assign ddm_structure_name = "">
 
 				<#if latest_article.getStructureId()??>
-					<#assign ddm_structure_local_service = serviceLocator.findService("com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService") />
+					<#assign ddm_structure_local_service = serviceLocator.findService("com.liferay.dynamic.data.mapping.service.DDMStructureLocalService") />
 
 					<#assign ddm_structure = ddm_structure_local_service.getStructure(latest_article.getGroupId(), 10109, latest_article.getStructureId(),true)!>
 
@@ -106,14 +106,14 @@
 </#macro>
 
 <#function get_edit_url article>
-	<#assign edit_url = portletURLFactory.create(http_servlet_request, "15", plid, "0") />
-
+	<#assign edit_url = portletURLFactory.create(http_servlet_request, "com_liferay_journal_web_portlet_JournalPortlet", plid, "0") />
 	<#assign VOID = edit_url.setParameter("p_p_state", "maximized") />
 	<#assign VOID = edit_url.setParameter("p_p_lifecycle", "0") />
 	<#assign VOID = edit_url.setParameter("groupId", "${groupId}") />
-	<#assign VOID = edit_url.setParameter("struts_action", "/journal/edit_article") />
+	<#assign VOID = edit_url.setParameter("mvcPath", "/edit_article.jsp") />
 	<#assign VOID = edit_url.setParameter("redirect", "${request.attributes.CURRENT_COMPLETE_URL!}") />
 	<#assign VOID = edit_url.setParameter("articleId", "${article.getArticleId()?string}") />
+	<#assign VOID = edit_url.setParameter("version", "${article.getVersion()?string}") />
 
 	<#return edit_url>
 </#function>
