@@ -4,16 +4,18 @@ MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 
 RUN apk update \
   && apk upgrade \
-  && apk add --no-cache bash curl openjdk8 tree unzip \
+  && apk add --no-cache bash curl openjdk8 tree unzip zip \
   && addgroup -S liferay \
-  && adduser -S -g liferay liferay
+  && adduser -S -G liferay liferay 
 
 ARG LIFERAY_DOWNLOAD_URL
 ARG LIFERAY_FIXPACK_DOWNLOAD_URL
 
-ENV LIFERAY_HOME=/opt/java/liferay
+ENV LIFERAY_HOME /opt/java/liferay
 
-COPY ./*.zip /opt/java/
+USER liferay:liferay
+
+COPY --chown=liferay:liferay ./*.zip /opt/java/
 
 RUN if [ ! -f "/opt/java/liferay.zip" ] && [ "$LIFERAY_DOWNLOAD_URL" != "" ] \
   ; then \
@@ -44,13 +46,12 @@ RUN if [ "$LIFERAY_FIXPACK_DOWNLOAD_URL" != "" ] \
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
-COPY ./entrypoint.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY --chown=liferay:liferay ./*.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/*.sh
 
-COPY ./resources/ /opt/java/liferay/
+COPY --chown=liferay:liferay ./resources/ ${LIFERAY_HOME}/
 
 RUN mkdir -p /tmp/liferay
-RUN chown -R liferay /opt/java/liferay /usr/local/bin /tmp/liferay
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/opt/java/liferay/tomcat/bin/catalina.sh", "run"]

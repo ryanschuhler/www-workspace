@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/bin/bash -x
 
-set -x
+cp -rv /tmp/liferay/* ${LIFERAY_HOME}
 
-cp -rv /tmp/liferay/* /opt/java/liferay
+for script in ${LIFERAY_HOME}/bin/*.sh; do 
+    if [ -f ${script} ]; then
+        bash -x "${script}"
+    fi 
+done
 
 exec "$@"
