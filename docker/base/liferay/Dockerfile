@@ -36,7 +36,7 @@ RUN if [[ ! -f "/opt/java/*.zip" ]] \
 RUN if [ "$LIFERAY_FIXPACK_DOWNLOAD_URL" != "" ] \
   ; then \
     set -x \
-    && if [[ ! -f "/opt/java/liferay/patching-tool/patches/*.zip" ]]; then rm /opt/java/liferay/patching-tool/patches/*.zip; fi \
+    && rm -fv /opt/java/liferay/patching-tool/patches/*.zip \
     && cd /opt/java/liferay/patching-tool/patches/ \
     && curl -fSL -O "$LIFERAY_FIXPACK_DOWNLOAD_URL" \
     && sed -i 's/tomcat[^\/]*/tomcat/g' /opt/java/liferay/patching-tool/default.properties \

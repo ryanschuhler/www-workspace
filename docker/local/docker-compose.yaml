@@ -43,7 +43,7 @@ services:
       - "www-internal"
     ports:
       - "8000:8000"
-    user: root
+    user: liferay
     volumes:
       - "liferay:/opt/java/liferay/data"
       - "./liferay/resources:/tmp/liferay"
