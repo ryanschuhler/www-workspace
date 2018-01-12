@@ -19,8 +19,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.List;
 
+import org.osgi.framework.Bundle;
+
 /**
  * @author Joan H. Kim
+ * @author Allen Ziegenfus
  */
 public interface WCMDeployment {
 
@@ -28,6 +31,12 @@ public interface WCMDeployment {
 		throws PortalException;
 
 	public void addTemplates(Structure structure, DDMStructure ddmStructure)
+		throws PortalException;
+	
+	public void deploy(Bundle bundle)
+		throws PortalException;
+
+	public void dumpToFilesystem(String directory)
 		throws PortalException;
 
 }

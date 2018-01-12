@@ -197,15 +197,9 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		}
 	}
 
-	@Activate
-	protected void activate(
-		Map<String, Object> properties, BundleContext bundleContext) {
-
-		_wcmDeploymentConfiguration = ConfigurableUtil.createConfigurable(
-			WCMDeploymentConfiguration.class, properties);
-
-		Bundle bundle = bundleContext.getBundle();
-
+	@Override
+	public void deploy(Bundle bundle) {
+		
 		List<Structure> structures = new ArrayList<>();
 
 		try {
@@ -268,6 +262,26 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		}
 		catch (Exception e) {
 			_log.error(e);
+		}
+	}
+	
+	@Override
+	public void dumpToFilesystem(String directory) {
+		
+		
+	}
+	
+	@Activate
+	protected void activate(
+		Map<String, Object> properties, BundleContext bundleContext) {
+
+		_wcmDeploymentConfiguration = ConfigurableUtil.createConfigurable(
+			WCMDeploymentConfiguration.class, properties);
+
+		Bundle bundle = bundleContext.getBundle();
+
+		if (_wcmDeploymentConfiguration.autoDeploy()) {
+			deploy(bundle);
 		}
 	}
 

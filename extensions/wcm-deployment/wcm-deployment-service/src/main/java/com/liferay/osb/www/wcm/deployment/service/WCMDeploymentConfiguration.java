@@ -29,6 +29,12 @@ public interface WCMDeploymentConfiguration {
 
 	@Meta.AD(deflt = "20156", required = false)
 	public long adminUserId();
+	
+	@Meta.AD(deflt = "true", required = false)
+	public boolean autoDeploy();
+
+	@Meta.AD(deflt = "/opt/java/liferay/dump", required = false)
+	public String dumpDirectory();
 
 	@Meta.AD(deflt = "20143", required = false)
 	public long guestGroupId();
