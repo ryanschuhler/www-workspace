@@ -33,7 +33,7 @@ public interface WCMDeploymentConfiguration {
 	@Meta.AD(deflt = "true", required = false)
 	public boolean autoDeploy();
 
-	@Meta.AD(deflt = "/opt/java/liferay/dump", required = false)
+	@Meta.AD(deflt = "/tmp/liferay/dump", required = false)
 	public String dumpDirectory();
 
 	@Meta.AD(deflt = "20143", required = false)
