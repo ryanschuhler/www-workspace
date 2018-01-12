@@ -1,7 +1,7 @@
 <#assign theme_display = request["theme-display"]! {"plid": 0, "company-id": 10155} />
 <#assign plid = theme_display["plid"]?number />
 <#assign layout_local_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
-<#assign layout = layout_local_service.getLayout(plid)! />
+<#assign layout = layout_local_service.fetchLayout(plid)! />
 
 <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />

@@ -35,7 +35,7 @@
 				</video>
 			</#if>
 
-            <#if block.article_url_title.data?has_content>
+            <#if block.article_url_title?has_content && block.article_url_title.data?has_content>
 				<#list block.article_url_title.siblings as article_url_title>
 			        <#if article_url_title.data?has_content>
     					<@article_utilities.embed_journal_article_by_url_title article_url_title.data />
@@ -43,7 +43,7 @@
 				</#list>
 			</#if>
 
-            <#if block.article_id.data?has_content>
+            <#if block.article_id?has_content && block.article_id.data?has_content>
 				<#list block.article_id.siblings as article_id>
 			        <#if article_id.data?has_content>
     					<@article_utilities.embed_journal_article_by_article_id article_id.data />
