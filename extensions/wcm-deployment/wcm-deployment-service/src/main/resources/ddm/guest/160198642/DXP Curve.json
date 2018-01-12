@@ -1,0 +1,174 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"top\"]"},
+            "readOnly": false,
+            "label": {"en_US": "Curve Position"},
+            "type": "radio",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "inline": false,
+            "repeatable": false,
+            "name": "curve_position",
+            "options": [
+                {
+                    "label": {"en_US": "Top"},
+                    "value": "top"
+                },
+                {
+                    "label": {"en_US": "Bottom"},
+                    "value": "bottom"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": ""
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"#EEF3F5\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Curve Background Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "curve_background_color",
+            "options": [
+                {
+                    "label": {"en_US": "Blue"},
+                    "value": "#1c75b9"
+                },
+                {
+                    "label": {"en_US": "DXP Yellow"},
+                    "value": "#E8C41E"
+                },
+                {
+                    "label": {"en_US": "DXP Blue"},
+                    "value": "#575C78"
+                },
+                {
+                    "label": {"en_US": "DXP Dark Blue"},
+                    "value": "#0F0F12"
+                },
+                {
+                    "label": {"en_US": "DXP Darker Blue"},
+                    "value": "#22386D"
+                },
+                {
+                    "label": {"en_US": "DXP Red"},
+                    "value": "#D74817"
+                },
+                {
+                    "label": {"en_US": "DXP Gray"},
+                    "value": "#EEF2F5"
+                },
+                {
+                    "label": {"en_US": "DXP Grey"},
+                    "value": "#F1F5F7"
+                },
+                {
+                    "label": {"en_US": "DXP Quote Gray"},
+                    "value": "#EEF3F5"
+                },
+                {
+                    "label": {"en_US": "DXP Primary Color"},
+                    "value": "#46718A"
+                },
+                {
+                    "label": {"en_US": "White"},
+                    "value": "#FFF"
+                },
+                {
+                    "label": {"en_US": "None"},
+                    "value": "none"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"none\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Curve Border Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "curve_border_color",
+            "options": [
+                {
+                    "label": {"en_US": "Blue"},
+                    "value": "#1c75b9"
+                },
+                {
+                    "label": {"en_US": "DXP Yellow"},
+                    "value": "#E8C41E"
+                },
+                {
+                    "label": {"en_US": "DXP Blue"},
+                    "value": "#575C78"
+                },
+                {
+                    "label": {"en_US": "DXP Dark Blue"},
+                    "value": "#0F0F12"
+                },
+                {
+                    "label": {"en_US": "DXP Darker Blue"},
+                    "value": "#22386D"
+                },
+                {
+                    "label": {"en_US": "DXP Red"},
+                    "value": "#D74817"
+                },
+                {
+                    "label": {"en_US": "DXP Grey"},
+                    "value": "#EEF2F5"
+                },
+                {
+                    "label": {"en_US": "DXP Gray"},
+                    "value": "#F1F5F7"
+                },
+                {
+                    "label": {"en_US": "DXP Quote Gray"},
+                    "value": "#EEF3F5"
+                },
+                {
+                    "label": {"en_US": "DXP Primary Color"},
+                    "value": "#46718A"
+                },
+                {
+                    "label": {"en_US": "White"},
+                    "value": "#FFF"
+                },
+                {
+                    "label": {"en_US": "None"},
+                    "value": "none"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        }
+    ]
+}

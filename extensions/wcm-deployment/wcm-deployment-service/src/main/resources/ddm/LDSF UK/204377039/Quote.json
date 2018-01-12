@@ -1,0 +1,159 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Quote"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "quote",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Author"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Author Title"},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "author_title",
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Author Company"},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "author_company",
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": {}
+                }
+            ],
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "author",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"light-color\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Text Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "text_color",
+            "options": [
+                {
+                    "label": {"en_US": "Teal (accent color)"},
+                    "value": "accent-color"
+                },
+                {
+                    "label": {"en_US": "Orange (complementary color)"},
+                    "value": "complementary-color"
+                },
+                {
+                    "label": {"en_US": "Blue (primary color)"},
+                    "value": "primary-color"
+                },
+                {
+                    "label": {"en_US": "Blue (alternative primary color)"},
+                    "value": "alt-primary-color"
+                },
+                {
+                    "label": {"en_US": "Dark Blue (secondary color)"},
+                    "value": "secondary-color"
+                },
+                {
+                    "label": {"en_US": "Dark Blue (alternative secondary"},
+                    "value": "alt-secondary-color"
+                },
+                {
+                    "label": {"en_US": "White"},
+                    "value": "light-color"
+                },
+                {
+                    "label": {"en_US": "Light Gray (element color)"},
+                    "value": "element-color"
+                },
+                {
+                    "label": {"en_US": "Gray (alternative text color)"},
+                    "value": "alt-font-color"
+                },
+                {
+                    "label": {"en_US": "Dark Gray (text color)"},
+                    "value": "font-color"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Quote Source"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "source",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        }
+    ]
+}

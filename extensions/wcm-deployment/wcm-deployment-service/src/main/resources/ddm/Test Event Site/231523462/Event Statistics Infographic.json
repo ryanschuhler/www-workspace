@@ -1,0 +1,127 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "  "},
+            "readOnly": false,
+            "label": {"en_US": " Heading "},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "heading",
+            "localizable": true,
+            "tip": {"en_US": "  "},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": " [\"\"] "},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": " Background Color "},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "background_color",
+            "options": [
+                {
+                    "label": {"en_US": " Blue "},
+                    "value": "background-blue"
+                },
+                {
+                    "label": {"en_US": " White "},
+                    "value": "background-white"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": "  "},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "  "},
+            "readOnly": false,
+            "label": {"en_US": " Graphic Set Label "},
+            "type": "text",
+            "required": true,
+            "showLabel": true,
+            "nestedFields": [
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "  "},
+                    "readOnly": false,
+                    "label": {"en_US": " Number "},
+                    "type": "text",
+                    "required": true,
+                    "showLabel": true,
+                    "nestedFields": [{
+                        "dataType": "boolean",
+                        "predefinedValue": {"en_US": " false "},
+                        "readOnly": false,
+                        "showAsSwitcher": false,
+                        "label": {"en_US": " Percent "},
+                        "type": "checkbox",
+                        "required": false,
+                        "showLabel": true,
+                        "indexType": "keyword",
+                        "fieldNamespace": "",
+                        "visibilityExpression": "",
+                        "repeatable": false,
+                        "name": "sup",
+                        "localizable": true,
+                        "tip": {"en_US": "  "},
+                        "validation": ""
+                    }],
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "number",
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": {}
+                },
+                {
+                    "dataType": "document-library",
+                    "predefinedValue": {"en_US": "  "},
+                    "readOnly": false,
+                    "label": {"en_US": " SVG Document "},
+                    "type": "ddm-documentlibrary",
+                    "required": true,
+                    "showLabel": true,
+                    "indexType": "keyword",
+                    "fieldNamespace": "ddm",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "svg",
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": {}
+                }
+            ],
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": true,
+            "name": "label",
+            "localizable": true,
+            "tip": {"en_US": "  "},
+            "validation": {}
+        }
+    ]
+}

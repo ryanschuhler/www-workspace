@@ -1,1 +1,69 @@
-{"availableLanguageIds":["en_US"],"defaultLanguageId":"en_US","fields":[{"dataType":"string","predefinedValue":{"en_US":""},"readOnly":false,"label":{"en_US":"Article ID"},"type":"text","required":false,"showLabel":true,"displayStyle":"","indexType":"","fieldNamespace":"","visibilityExpression":"","repeatable":false,"name":"article_id","localizable":true,"tip":{"en_US":""},"validation":{"expression":"","errorMessage":""}},{"dataType":"string","predefinedValue":{"en_US":""},"readOnly":false,"label":{"en_US":"CTA Text"},"type":"text","required":true,"showLabel":true,"displayStyle":"","indexType":"keyword","fieldNamespace":"","visibilityExpression":"","repeatable":false,"name":"cta_text","localizable":true,"tip":{"en_US":""},"validation":{"expression":"","errorMessage":""}},{"dataType":"string","predefinedValue":{"en_US":""},"readOnly":false,"label":{"en_US":"CTA URL"},"type":"text","required":true,"showLabel":true,"displayStyle":"","indexType":"","fieldNamespace":"","visibilityExpression":"","repeatable":false,"name":"cta_url","localizable":true,"tip":{"en_US":""},"validation":{"expression":"","errorMessage":""}}]}
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Article ID"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "article_id",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {
+                "expression": "",
+                "errorMessage": ""
+            }
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "CTA Text"},
+            "type": "text",
+            "required": true,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "cta_text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {
+                "expression": "",
+                "errorMessage": ""
+            }
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "CTA URL"},
+            "type": "text",
+            "required": true,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "cta_url",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {
+                "expression": "",
+                "errorMessage": ""
+            }
+        }
+    ]
+}

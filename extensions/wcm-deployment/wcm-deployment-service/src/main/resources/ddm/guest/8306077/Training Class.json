@@ -1,0 +1,152 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "Upcoming Classes"},
+            "readOnly": false,
+            "label": {"en_US": "Heading"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "class_section_heading",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Course ID"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "course_id",
+            "localizable": false,
+            "tip": {"en_US": "Filter upcoming classes by a single training course."},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Number of Classes"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "number_of_classes",
+            "options": [
+                {
+                    "label": {"en_US": "All"},
+                    "value": "0"
+                },
+                {
+                    "label": {"en_US": "1"},
+                    "value": "1"
+                },
+                {
+                    "label": {"en_US": "2"},
+                    "value": "2"
+                },
+                {
+                    "label": {"en_US": "3"},
+                    "value": "3"
+                },
+                {
+                    "label": {"en_US": "4"},
+                    "value": "4"
+                },
+                {
+                    "label": {"en_US": "5"},
+                    "value": "5"
+                }
+            ],
+            "localizable": false,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"1\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Display Style"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "display_style",
+            "options": [
+                {
+                    "label": {"en_US": "Event List"},
+                    "value": "event_list"
+                },
+                {
+                    "label": {"en_US": "Event Block"},
+                    "value": "event_block"
+                }
+            ],
+            "localizable": false,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"null\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Course Filter"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "course_filter",
+            "options": [
+                {
+                    "label": {"en_US": "Online Courses Only"},
+                    "value": "true"
+                },
+                {
+                    "label": {"en_US": "Public Courses Only"},
+                    "value": "false"
+                },
+                {
+                    "label": {"en_US": "All Courses"},
+                    "value": "null"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        }
+    ]
+}

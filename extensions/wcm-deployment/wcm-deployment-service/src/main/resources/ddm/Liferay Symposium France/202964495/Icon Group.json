@@ -1,0 +1,39 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "document-library",
+        "predefinedValue": {"en_US": ""},
+        "readOnly": false,
+        "label": {"en_US": "Icon"},
+        "type": "ddm-documentlibrary",
+        "required": false,
+        "showLabel": true,
+        "nestedFields": [{
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        }],
+        "indexType": "keyword",
+        "fieldNamespace": "ddm",
+        "visibilityExpression": "",
+        "repeatable": true,
+        "name": "icon",
+        "localizable": true,
+        "tip": {"en_US": ""},
+        "validation": {}
+    }]
+}

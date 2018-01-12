@@ -1,0 +1,313 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Form Id"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "text",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "form_id",
+            "localizable": false,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Asset Id"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "asset_id",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Number of Fields"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [{
+                "dataType": "string",
+                "predefinedValue": {"en_US": ""},
+                "readOnly": false,
+                "label": {"en_US": "Override Number of Fields"},
+                "type": "text",
+                "required": false,
+                "showLabel": true,
+                "nestedFields": [{
+                    "ddmDataProviderInstanceId": "",
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "[\"\"]"},
+                    "multiple": false,
+                    "readOnly": false,
+                    "label": {"en_US": "Buyer Stage"},
+                    "type": "select",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "buyer_stage",
+                    "options": [
+                        {
+                            "label": {"en_US": ""},
+                            "value": ""
+                        },
+                        {
+                            "label": {"en_US": "Awareness"},
+                            "value": "Awareness"
+                        },
+                        {
+                            "label": {"en_US": "Education"},
+                            "value": "Education"
+                        },
+                        {
+                            "label": {"en_US": "Evaluation"},
+                            "value": "Evaluation"
+                        },
+                        {
+                            "label": {"en_US": "Justification"},
+                            "value": "Justification"
+                        },
+                        {
+                            "label": {"en_US": "Purchase"},
+                            "value": "Purchase"
+                        }
+                    ],
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": "",
+                    "dataSourceType": ""
+                }],
+                "displayStyle": "",
+                "indexType": "",
+                "fieldNamespace": "",
+                "visibilityExpression": "",
+                "repeatable": true,
+                "name": "override_number_of_fields",
+                "localizable": true,
+                "tip": {"en_US": ""},
+                "validation": {}
+            }],
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "number_of_fields",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Number of Fields First Column"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "number_of_fields_first_column",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Article Class"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "article_class",
+            "localizable": false,
+            "tip": {"en_US": "Insert custom css class names you want included on the article level."},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"font\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Text Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "text_color",
+            "options": [
+                {
+                    "label": {"en_US": "Orange (complementary color)"},
+                    "value": "complementary"
+                },
+                {
+                    "label": {"en_US": "Teal (accent color)"},
+                    "value": "accent"
+                },
+                {
+                    "label": {"en_US": "Blue (primary color)"},
+                    "value": "primary"
+                },
+                {
+                    "label": {"en_US": "Blue (alternative primary color)"},
+                    "value": "alt-primary"
+                },
+                {
+                    "label": {"en_US": "Dark Blue (secondary color)"},
+                    "value": "secondary"
+                },
+                {
+                    "label": {"en_US": "Dark Blue (alternative secondary color)"},
+                    "value": "alt-secondary"
+                },
+                {
+                    "label": {"en_US": "Light Gray (element color)"},
+                    "value": "element"
+                },
+                {
+                    "label": {"en_US": "Gray (alternative text color)"},
+                    "value": "alt-font"
+                },
+                {
+                    "label": {"en_US": "Dark Gray (text color)"},
+                    "value": "font"
+                },
+                {
+                    "label": {"en_US": "White"},
+                    "value": "light"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "On Success Javascript"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "on_success_javascript",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Thank You Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "thank_you_text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Submit Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "submit_text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"btn-primary\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Button Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "button_color",
+            "options": [
+                {
+                    "label": {"en_US": "White (light color)"},
+                    "value": "btn-light"
+                },
+                {
+                    "label": {"en_US": "Blue (primary color)"},
+                    "value": "btn-primary"
+                },
+                {
+                    "label": {"en_US": "Gray (font color)"},
+                    "value": "btn-font"
+                },
+                {
+                    "label": {"en_US": "Orange (complementary color)"},
+                    "value": "btn-complementary"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "string",
+        "predefinedValue": {"en_US": ""},
+        "readOnly": false,
+        "label": {"en_US": "Hubspot Form Generator Article Id"},
+        "type": "text",
+        "required": false,
+        "showLabel": true,
+        "displayStyle": "",
+        "indexType": "",
+        "fieldNamespace": "",
+        "visibilityExpression": "",
+        "repeatable": false,
+        "name": "article_id",
+        "localizable": false,
+        "tip": {"en_US": ""},
+        "validation": {}
+    }]
+}

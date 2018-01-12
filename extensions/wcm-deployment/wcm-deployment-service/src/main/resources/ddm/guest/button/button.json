@@ -1,117 +1,98 @@
 {
-	"availableLanguageIds": [
-		"en_US"
-	],
-	"defaultLanguageId": "en_US",
-	"fields": [
-		{
-			"dataType": "string",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "Button Text"
-			},
-			"localizable": true,
-			"name": "buttonText",
-			"predefinedValue": {
-				"en_US": ""
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"style": {
-				"en_US": ""
-			},
-			"tip": {
-				"en_US": ""
-			},
-			"type": "text"
-		},
-		{
-			"dataType": "string",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "URL"
-			},
-			"localizable": true,
-			"name": "url",
-			"predefinedValue": {
-				"en_US": ""
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"style": {
-				"en_US": ""
-			},
-			"tip": {
-				"en_US": ""
-			},
-			"type": "text"
-		},
-		{
-			"dataType": "string",
-			"indexType": "text",
-			"label": {
-				"en_US": "onClick JS"
-			},
-			"localizable": true,
-			"name": "onClickJS",
-			"predefinedValue": {
-				"en_US": ""
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"style": {
-				"en_US": ""
-			},
-			"tip": {
-				"en_US": ""
-			},
-			"type": "textarea"
-		},
-		{
-			"dataType": "string",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "Color"
-			},
-			"localizable": true,
-			"multiple": false,
-			"name": "color",
-			"options": [
-				{
-					"label": {
-						"en_US": "Default"
-					},
-					"value": "btn-primary"
-				},
-				{
-					"label": {
-						"en_US": "Light"
-					},
-					"value": "btn-light"
-				}
-			],
-			"predefinedValue": {
-				"en_US": [
-					""
-				]
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"style": {
-				"en_US": ""
-			},
-			"tip": {
-				"en_US": ""
-			},
-			"type": "select"
-		}
-	]
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Button Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "buttonText",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {
+                "expression": "",
+                "errorMessage": ""
+            }
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "URL"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "url",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {
+                "expression": "",
+                "errorMessage": ""
+            }
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "onClick JS"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "text",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "onClickJS",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {
+                "expression": "",
+                "errorMessage": ""
+            }
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "color",
+            "options": [
+                {
+                    "label": {"en_US": "Default"},
+                    "value": "btn-primary"
+                },
+                {
+                    "label": {"en_US": "Light"},
+                    "value": "btn-light"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        }
+    ]
 }

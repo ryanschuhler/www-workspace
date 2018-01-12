@@ -1,0 +1,149 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Card Title"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "card_title",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "html",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "SVG Icon"},
+            "type": "ddm-text-html",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "ddm",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "svg_icon",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Card Content"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "card_content",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Card Class"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "card_class",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "CTA Link"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "cta_link",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "CTA Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "cta_text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Card Color"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "card_color",
+            "options": [
+                {
+                    "label": {"en_US": "blue"},
+                    "value": "blue"
+                },
+                {
+                    "label": {"en_US": "green"},
+                    "value": "green"
+                },
+                {
+                    "label": {"en_US": "orange"},
+                    "value": "orange"
+                },
+                {
+                    "label": {"en_US": "red"},
+                    "value": "red"
+                }
+            ],
+            "localizable": false,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        }
+    ]
+}

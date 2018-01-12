@@ -1,0 +1,360 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Block Title"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "SVG Code"},
+                    "type": "textarea",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "svg_code",
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Block Content"},
+                    "type": "textarea",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "block_content",
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Block Link Text"},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "nestedFields": [{
+                        "dataType": "string",
+                        "predefinedValue": {"en_US": ""},
+                        "readOnly": false,
+                        "label": {"en_US": "Block Link URL"},
+                        "type": "text",
+                        "required": false,
+                        "showLabel": true,
+                        "displayStyle": "",
+                        "indexType": "keyword",
+                        "fieldNamespace": "",
+                        "visibilityExpression": "",
+                        "repeatable": false,
+                        "name": "block_link_url",
+                        "localizable": true,
+                        "tip": {"en_US": ""},
+                        "validation": {}
+                    }],
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": true,
+                    "name": "block_link_text",
+                    "localizable": true,
+                    "tip": {"en_US": "If the Exhibit item has more than one CTA then they should be added as links here."},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Block Button Text"},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "nestedFields": [
+                        {
+                            "dataType": "string",
+                            "predefinedValue": {"en_US": ""},
+                            "readOnly": false,
+                            "label": {"en_US": "Block Button URL"},
+                            "type": "text",
+                            "required": false,
+                            "showLabel": true,
+                            "displayStyle": "",
+                            "indexType": "keyword",
+                            "fieldNamespace": "",
+                            "visibilityExpression": "",
+                            "repeatable": false,
+                            "name": "block_button_url",
+                            "localizable": true,
+                            "tip": {"en_US": ""},
+                            "validation": {}
+                        },
+                        {
+                            "ddmDataProviderInstanceId": "",
+                            "dataType": "string",
+                            "predefinedValue": {"en_US": "[\"btn-complementary\"]"},
+                            "multiple": false,
+                            "readOnly": false,
+                            "label": {"en_US": "Block Button Color"},
+                            "type": "select",
+                            "required": false,
+                            "showLabel": true,
+                            "indexType": "",
+                            "fieldNamespace": "",
+                            "visibilityExpression": "",
+                            "repeatable": false,
+                            "name": "block_button_color",
+                            "options": [
+                                {
+                                    "label": {"en_US": "Teal (accent color)"},
+                                    "value": "btn-accent"
+                                },
+                                {
+                                    "label": {"en_US": "Gray (alternative text color)"},
+                                    "value": "btn-alt-font"
+                                },
+                                {
+                                    "label": {"en_US": "Blue (alternative primary color)"},
+                                    "value": "btn-alt-primary"
+                                },
+                                {
+                                    "label": {"en_US": "Dark Blue (secondary color)"},
+                                    "value": "btn-alt-secondary"
+                                },
+                                {
+                                    "label": {"en_US": "Orange (complementary color)"},
+                                    "value": "btn-complementary"
+                                },
+                                {
+                                    "label": {"en_US": "Dark Grey (font color)"},
+                                    "value": "btn-font"
+                                },
+                                {
+                                    "label": {"en_US": "White"},
+                                    "value": "btn-light"
+                                },
+                                {
+                                    "label": {"en_US": "Dark Blue (alternative secondary color)"},
+                                    "value": "btn-secondary"
+                                }
+                            ],
+                            "localizable": true,
+                            "tip": {"en_US": ""},
+                            "validation": "",
+                            "dataSourceType": ""
+                        }
+                    ],
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "block_button_text",
+                    "localizable": true,
+                    "tip": {"en_US": "Use this for the primary CTA of the block"},
+                    "validation": {}
+                },
+                {
+                    "ddmDataProviderInstanceId": "",
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "[\"no-delay\"]"},
+                    "multiple": false,
+                    "readOnly": false,
+                    "label": {"en_US": "Animation"},
+                    "type": "select",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "animation",
+                    "options": [
+                        {
+                            "label": {"en_US": "No Animation"},
+                            "value": ""
+                        },
+                        {
+                            "label": {"en_US": "No Delay"},
+                            "value": "no-delay"
+                        },
+                        {
+                            "label": {"en_US": "Delay 0.2s"},
+                            "value": "delay-1"
+                        },
+                        {
+                            "label": {"en_US": "Delay 0.4s"},
+                            "value": "delay-2"
+                        },
+                        {
+                            "label": {"en_US": "Delay 0.6s"},
+                            "value": "delay-3"
+                        }
+                    ],
+                    "localizable": false,
+                    "tip": {"en_US": ""},
+                    "validation": "",
+                    "dataSourceType": ""
+                }
+            ],
+            "displayStyle": "",
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": true,
+            "name": "block_title",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Button Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Button URL"},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "button_url",
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": {}
+                },
+                {
+                    "ddmDataProviderInstanceId": "",
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "[\"btn-complementary\"]"},
+                    "multiple": false,
+                    "readOnly": false,
+                    "label": {"en_US": "Button Color"},
+                    "type": "select",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "button_color",
+                    "options": [
+                        {
+                            "label": {"en_US": "Teal (accent color)"},
+                            "value": "btn-accent"
+                        },
+                        {
+                            "label": {"en_US": "Gray (alternative text color)"},
+                            "value": "btn-alt-font"
+                        },
+                        {
+                            "label": {"en_US": "Blue (alternative primary color)"},
+                            "value": "btn-alt-primary"
+                        },
+                        {
+                            "label": {"en_US": "Dark Blue (secondary color)"},
+                            "value": "btn-alt-secondary"
+                        },
+                        {
+                            "label": {"en_US": "Orange (complementary color)"},
+                            "value": "btn-complementary"
+                        },
+                        {
+                            "label": {"en_US": "Dark Grey (font color)"},
+                            "value": "btn-font"
+                        },
+                        {
+                            "label": {"en_US": "White"},
+                            "value": "btn-light"
+                        },
+                        {
+                            "label": {"en_US": "Dark Blue (alternative secondary color)"},
+                            "value": "btn-secondary"
+                        }
+                    ],
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": "",
+                    "dataSourceType": ""
+                }
+            ],
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "button_text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"33\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Exhibits Per Row"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "row_percent",
+            "options": [
+                {
+                    "label": {"en_US": "4"},
+                    "value": "25"
+                },
+                {
+                    "label": {"en_US": "3"},
+                    "value": "33"
+                },
+                {
+                    "label": {"en_US": "2"},
+                    "value": "50"
+                },
+                {
+                    "label": {"en_US": "1"},
+                    "value": "100"
+                }
+            ],
+            "localizable": false,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        }
+    ]
+}

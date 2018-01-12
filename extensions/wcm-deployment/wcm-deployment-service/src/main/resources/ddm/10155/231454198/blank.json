@@ -1,24 +1,25 @@
 {
-	"availableLanguageIds": ["en_US"],
-	"defaultLanguageId": "en_US",
-	"fields": [{
-		"indexType": "keyword",
-		"repeatable": false,
-		"dataType": "string",
-		"predefinedValue": {
-			"en_US": ""
-		},
-		"name": "Text2028",
-		"localizable": true,
-		"readOnly": false,
-		"tip": {
-			"en_US": ""
-		},
-		"label": {
-			"en_US": "Text"
-		},
-		"type": "text",
-		"required": false,
-		"showLabel": true
-	}]
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "string",
+        "predefinedValue": {"en_US": ""},
+        "readOnly": false,
+        "label": {"en_US": "Text"},
+        "type": "text",
+        "required": false,
+        "showLabel": true,
+        "displayStyle": "",
+        "indexType": "keyword",
+        "fieldNamespace": "",
+        "visibilityExpression": "",
+        "repeatable": false,
+        "name": "Text2028",
+        "localizable": true,
+        "tip": {"en_US": ""},
+        "validation": {
+            "expression": "",
+            "errorMessage": ""
+        }
+    }]
 }

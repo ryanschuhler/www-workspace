@@ -1,0 +1,59 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "string",
+        "predefinedValue": {"en_US": ""},
+        "readOnly": false,
+        "label": {"en_US": "place"},
+        "type": "text",
+        "required": false,
+        "showLabel": true,
+        "nestedFields": [
+            {
+                "dataType": "string",
+                "predefinedValue": {"en_US": ""},
+                "readOnly": false,
+                "label": {"en_US": "link"},
+                "type": "text",
+                "required": false,
+                "showLabel": true,
+                "displayStyle": "",
+                "indexType": "keyword",
+                "fieldNamespace": "",
+                "visibilityExpression": "",
+                "repeatable": false,
+                "name": "link",
+                "localizable": true,
+                "tip": {"en_US": ""},
+                "validation": {}
+            },
+            {
+                "dataType": "document-library",
+                "predefinedValue": {"en_US": ""},
+                "readOnly": false,
+                "label": {"en_US": "image"},
+                "type": "ddm-documentlibrary",
+                "required": false,
+                "showLabel": true,
+                "indexType": "keyword",
+                "fieldNamespace": "ddm",
+                "visibilityExpression": "",
+                "repeatable": false,
+                "name": "image",
+                "localizable": true,
+                "tip": {"en_US": ""},
+                "validation": {}
+            }
+        ],
+        "displayStyle": "",
+        "indexType": "keyword",
+        "fieldNamespace": "",
+        "visibilityExpression": "",
+        "repeatable": true,
+        "name": "place",
+        "localizable": true,
+        "tip": {"en_US": ""},
+        "validation": {}
+    }]
+}

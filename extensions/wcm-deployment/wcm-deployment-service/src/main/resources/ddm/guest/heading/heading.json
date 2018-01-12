@@ -1,31 +1,25 @@
 {
-	"availableLanguageIds": [
-		"en_US"
-	],
-	"defaultLanguageId": "en_US",
-	"fields": [
-		{
-			"dataType": "string",
-			"indexType": "keyword",
-			"label": {
-				"en_US": "Heading"
-			},
-			"localizable": true,
-			"name": "heading",
-			"predefinedValue": {
-				"en_US": ""
-			},
-			"readOnly": false,
-			"repeatable": false,
-			"required": false,
-			"showLabel": true,
-			"style": {
-				"en_US": ""
-			},
-			"tip": {
-				"en_US": ""
-			},
-			"type": "text"
-		}
-	]
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "string",
+        "predefinedValue": {"en_US": ""},
+        "readOnly": false,
+        "label": {"en_US": "Heading"},
+        "type": "text",
+        "required": false,
+        "showLabel": true,
+        "displayStyle": "",
+        "indexType": "keyword",
+        "fieldNamespace": "",
+        "visibilityExpression": "",
+        "repeatable": false,
+        "name": "heading",
+        "localizable": true,
+        "tip": {"en_US": ""},
+        "validation": {
+            "expression": "",
+            "errorMessage": ""
+        }
+    }]
 }

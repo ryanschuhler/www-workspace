@@ -1,0 +1,39 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "string",
+        "predefinedValue": {"en_US": "  "},
+        "readOnly": false,
+        "label": {"en_US": " Question "},
+        "type": "text",
+        "required": false,
+        "showLabel": true,
+        "nestedFields": [{
+            "dataType": "string",
+            "predefinedValue": {"en_US": "  "},
+            "readOnly": false,
+            "label": {"en_US": " Answer "},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": true,
+            "name": "answer",
+            "localizable": true,
+            "tip": {"en_US": "  "},
+            "validation": {}
+        }],
+        "displayStyle": "",
+        "indexType": "keyword",
+        "fieldNamespace": "",
+        "visibilityExpression": "",
+        "repeatable": true,
+        "name": "question",
+        "localizable": true,
+        "tip": {"en_US": "  "},
+        "validation": {}
+    }]
+}

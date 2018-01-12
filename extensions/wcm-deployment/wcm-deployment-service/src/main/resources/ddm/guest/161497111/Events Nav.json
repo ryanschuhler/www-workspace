@@ -1,0 +1,60 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [{
+        "dataType": "string",
+        "predefinedValue": {"en_US": ""},
+        "readOnly": false,
+        "label": {"en_US": "Link URLs"},
+        "type": "text",
+        "required": false,
+        "showLabel": true,
+        "nestedFields": [
+            {
+                "dataType": "string",
+                "predefinedValue": {"en_US": ""},
+                "readOnly": false,
+                "label": {"en_US": "Link Text"},
+                "type": "text",
+                "required": false,
+                "showLabel": true,
+                "displayStyle": "",
+                "indexType": "",
+                "fieldNamespace": "",
+                "visibilityExpression": "",
+                "repeatable": false,
+                "name": "link_text",
+                "localizable": true,
+                "tip": {"en_US": ""},
+                "validation": {}
+            },
+            {
+                "dataType": "boolean",
+                "predefinedValue": {"en_US": "false"},
+                "readOnly": false,
+                "showAsSwitcher": false,
+                "label": {"en_US": "Selected"},
+                "type": "checkbox",
+                "required": false,
+                "showLabel": true,
+                "indexType": "",
+                "fieldNamespace": "",
+                "visibilityExpression": "",
+                "repeatable": false,
+                "name": "selected",
+                "localizable": true,
+                "tip": {"en_US": ""},
+                "validation": ""
+            }
+        ],
+        "displayStyle": "",
+        "indexType": "",
+        "fieldNamespace": "",
+        "visibilityExpression": "",
+        "repeatable": true,
+        "name": "link_urls",
+        "localizable": true,
+        "tip": {"en_US": ""},
+        "validation": {}
+    }]
+}

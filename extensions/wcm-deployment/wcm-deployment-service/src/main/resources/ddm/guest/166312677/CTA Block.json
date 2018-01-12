@@ -1,0 +1,268 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "  "},
+            "readOnly": false,
+            "label": {"en_US": " Main Heading "},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "main_heading",
+            "localizable": true,
+            "tip": {"en_US": " Optional main heading "},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": " [\"25\"] "},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": " Exhibits Per Row "},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "row_percent",
+            "options": [
+                {
+                    "label": {"en_US": " 4 "},
+                    "value": "25"
+                },
+                {
+                    "label": {"en_US": " 3 "},
+                    "value": "33"
+                },
+                {
+                    "label": {"en_US": " 2 "},
+                    "value": "50"
+                },
+                {
+                    "label": {"en_US": " 1 "},
+                    "value": "100"
+                }
+            ],
+            "localizable": false,
+            "tip": {"en_US": "  "},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "  "},
+            "readOnly": false,
+            "label": {"en_US": " CTA URL "},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "  "},
+                    "readOnly": false,
+                    "label": {"en_US": " SVG Icon "},
+                    "type": "textarea",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "svg_icon",
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "  "},
+                    "readOnly": false,
+                    "label": {"en_US": " Heading "},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "nestedFields": [{
+                        "ddmDataProviderInstanceId": "",
+                        "dataType": "string",
+                        "predefinedValue": {"en_US": " [\"#6A708B\"] "},
+                        "multiple": false,
+                        "readOnly": false,
+                        "label": {"en_US": " Heading Color "},
+                        "type": "select",
+                        "required": false,
+                        "showLabel": true,
+                        "indexType": "",
+                        "fieldNamespace": "",
+                        "visibilityExpression": "",
+                        "repeatable": false,
+                        "name": "heading_color",
+                        "options": [
+                            {
+                                "label": {"en_US": " DXP Red "},
+                                "value": "#DF584C"
+                            },
+                            {
+                                "label": {"en_US": " DXP Yellow "},
+                                "value": "#E8C41E"
+                            },
+                            {
+                                "label": {"en_US": " DXP Green "},
+                                "value": "#34B88B"
+                            },
+                            {
+                                "label": {"en_US": " DXP Blue "},
+                                "value": "#365D9E"
+                            },
+                            {
+                                "label": {"en_US": " DXP Grey "},
+                                "value": "#6A708B"
+                            },
+                            {
+                                "label": {"en_US": " DXP Cool-Grey "},
+                                "value": "#88ABBD"
+                            },
+                            {
+                                "label": {"en_US": " DXP Orange "},
+                                "value": "#E7773F"
+                            },
+                            {
+                                "label": {"en_US": " DXP Teal "},
+                                "value": "#44A5AA"
+                            },
+                            {
+                                "label": {"en_US": " DXP Purple "},
+                                "value": "#675F9A"
+                            }
+                        ],
+                        "localizable": true,
+                        "tip": {"en_US": "  "},
+                        "validation": "",
+                        "dataSourceType": ""
+                    }],
+                    "displayStyle": "",
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "heading",
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "  "},
+                    "readOnly": false,
+                    "label": {"en_US": " Description "},
+                    "type": "textarea",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "keyword",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "description",
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": {}
+                },
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "  "},
+                    "readOnly": false,
+                    "label": {"en_US": " CTA Text "},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "displayStyle": "",
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "cta_text",
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": {}
+                },
+                {
+                    "ddmDataProviderInstanceId": "",
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": " [\"#6a708b\"] "},
+                    "multiple": false,
+                    "readOnly": false,
+                    "label": {"en_US": " CTA Hover Color "},
+                    "type": "select",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "hover_color",
+                    "options": [
+                        {
+                            "label": {"en_US": " DXP Red "},
+                            "value": "#DF584C"
+                        },
+                        {
+                            "label": {"en_US": " DXP Yellow "},
+                            "value": "#e8c41e"
+                        },
+                        {
+                            "label": {"en_US": " DXP Green "},
+                            "value": "#34b88b"
+                        },
+                        {
+                            "label": {"en_US": " DXP Blue "},
+                            "value": "#365d9e"
+                        },
+                        {
+                            "label": {"en_US": " DXP Grey "},
+                            "value": "#6a708b"
+                        },
+                        {
+                            "label": {"en_US": " DXP Cool-Grey "},
+                            "value": "#88abbd"
+                        },
+                        {
+                            "label": {"en_US": " DXP Orange "},
+                            "value": "#E7773F"
+                        },
+                        {
+                            "label": {"en_US": " DXP Teal "},
+                            "value": "#44A5AA"
+                        },
+                        {
+                            "label": {"en_US": " DXP Purple "},
+                            "value": "#675F9A"
+                        }
+                    ],
+                    "localizable": true,
+                    "tip": {"en_US": "  "},
+                    "validation": "",
+                    "dataSourceType": ""
+                }
+            ],
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": true,
+            "name": "cta_url",
+            "localizable": true,
+            "tip": {"en_US": " If this element opens up a popup instead of redirecting to a page, there is no need to fill out the URL. Instead, create a popup article and pass in the trigger class name. For example, \"pop-up-trigger-article163953381-cta-1\" where the long number is the ID of this article and the last number is the number of CTA block. "},
+            "validation": {}
+        }
+    ]
+}

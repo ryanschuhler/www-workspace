@@ -1,0 +1,237 @@
+{
+    "availableLanguageIds": ["en_US"],
+    "defaultLanguageId": "en_US",
+    "fields": [
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Button Text"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [
+                {
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": ""},
+                    "readOnly": false,
+                    "label": {"en_US": "Button Link"},
+                    "type": "text",
+                    "required": false,
+                    "showLabel": true,
+                    "displayStyle": "",
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "button_link",
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": {}
+                },
+                {
+                    "ddmDataProviderInstanceId": "",
+                    "dataType": "string",
+                    "predefinedValue": {"en_US": "[\"light\"]"},
+                    "multiple": false,
+                    "readOnly": false,
+                    "label": {"en_US": "Button Color"},
+                    "type": "select",
+                    "required": false,
+                    "showLabel": true,
+                    "indexType": "",
+                    "fieldNamespace": "",
+                    "visibilityExpression": "",
+                    "repeatable": false,
+                    "name": "button_color",
+                    "options": [
+                        {
+                            "label": {"en_US": "White (light color)"},
+                            "value": "light"
+                        },
+                        {
+                            "label": {"en_US": "Blue (primary color)"},
+                            "value": "primary"
+                        },
+                        {
+                            "label": {"en_US": "Gray (font color)"},
+                            "value": "font"
+                        },
+                        {
+                            "label": {"en_US": "Orange (complementary color)"},
+                            "value": "complementary"
+                        }
+                    ],
+                    "localizable": true,
+                    "tip": {"en_US": ""},
+                    "validation": "",
+                    "dataSourceType": ""
+                }
+            ],
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": true,
+            "name": "button_text",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "SVG Icon"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "svg_icon",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Button Alignment"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "keyword",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "button_alignment",
+            "options": [
+                {
+                    "label": {"en_US": "Left"},
+                    "value": "text-left"
+                },
+                {
+                    "label": {"en_US": "Center"},
+                    "value": "text-center"
+                },
+                {
+                    "label": {"en_US": "Right"},
+                    "value": "text-right"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "dataType": "document-library",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "Media"},
+            "type": "ddm-documentlibrary",
+            "required": false,
+            "showLabel": true,
+            "nestedFields": [{
+                "dataType": "string",
+                "predefinedValue": {"en_US": ""},
+                "readOnly": false,
+                "label": {"en_US": "Video Type"},
+                "type": "text",
+                "required": false,
+                "showLabel": true,
+                "displayStyle": "",
+                "indexType": "",
+                "fieldNamespace": "",
+                "visibilityExpression": "",
+                "repeatable": false,
+                "name": "video_type",
+                "localizable": true,
+                "tip": {"en_US": "Filling this in will tell the template this document is a video. The content should look like video/mp4 (or whatever file type it should be)"},
+                "validation": {}
+            }],
+            "indexType": "",
+            "fieldNamespace": "ddm",
+            "visibilityExpression": "",
+            "repeatable": true,
+            "name": "media",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "ddmDataProviderInstanceId": "",
+            "dataType": "string",
+            "predefinedValue": {"en_US": "[\"\"]"},
+            "multiple": false,
+            "readOnly": false,
+            "label": {"en_US": "Position"},
+            "type": "select",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "position",
+            "options": [
+                {
+                    "label": {"en_US": "Left"},
+                    "value": "justify-start"
+                },
+                {
+                    "label": {"en_US": "Center"},
+                    "value": "justify-center"
+                },
+                {
+                    "label": {"en_US": "Right"},
+                    "value": "justify-end"
+                }
+            ],
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": "",
+            "dataSourceType": ""
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": "768px"},
+            "readOnly": false,
+            "label": {"en_US": "Height"},
+            "type": "text",
+            "required": false,
+            "showLabel": true,
+            "displayStyle": "",
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "height",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        },
+        {
+            "dataType": "string",
+            "predefinedValue": {"en_US": ""},
+            "readOnly": false,
+            "label": {"en_US": "CSS"},
+            "type": "textarea",
+            "required": false,
+            "showLabel": true,
+            "indexType": "",
+            "fieldNamespace": "",
+            "visibilityExpression": "",
+            "repeatable": false,
+            "name": "css",
+            "localizable": true,
+            "tip": {"en_US": ""},
+            "validation": {}
+        }
+    ]
+}
