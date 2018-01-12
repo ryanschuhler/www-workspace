@@ -15,6 +15,7 @@
 package com.liferay.osb.www.wcm.deployment.service;
 
 import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
+import com.liferay.dynamic.data.mapping.io.DDMFormJSONSerializer;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
@@ -27,12 +28,16 @@ import com.liferay.osb.www.wcm.deployment.api.Structure;
 import com.liferay.osb.www.wcm.deployment.api.Template;
 import com.liferay.osb.www.wcm.deployment.api.WCMDeployment;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -43,6 +48,7 @@ import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -91,58 +97,70 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		}
 
 		for (Structure structure : structures) {
-			long groupId = getGroupId(structure.getGroupKey());
-			long classNameId = PortalUtil.getClassNameId(
-				JournalArticle.class.getName());
-			String structureKey = structure.getStructureKey();
-			String definition = structure.getContent();
-			String storageType = "json";
-
-			if (Validator.isNull(definition)) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Definition is null for structure: " + structureKey);
+			try {
+				long groupId = getGroupId(structure.getGroupKey());
+				long classNameId = PortalUtil.getClassNameId(
+					JournalArticle.class.getName());
+				String structureKey = structure.getStructureKey();
+				String definition = structure.getContent();
+				String storageType = "json";
+	
+				if (Validator.isNull(definition)) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							"Definition is null for structure: " + structureKey);
+					}
+	
+					continue;
 				}
-
+	
+				DDMStructure ddmStructure =
+					_ddmStructureLocalService.fetchStructure(
+						groupId, classNameId, structureKey);
+	
+				DDMForm ddmForm = _ddmFormJSONDeserializer.deserialize(definition);
+	
+				if (ddmStructure != null) {
+					
+					
+					String json = _ddmFormJSONSerializer.serialize(ddmStructure.getDDMForm());
+					if (!json.equals(definition))
+					
+						if (_log.isDebugEnabled()) {
+							_log.debug("Updating structure: " + structureKey);
+						}
+		
+						ddmStructure = _ddmStructureLocalService.updateStructure(
+							_wcmDeploymentConfiguration.adminUserId(),
+							ddmStructure.getStructureId(), ddmForm,
+							ddmStructure.getDDMFormLayout(), new ServiceContext());
+					}
+				}
+				else {
+					Map<Locale, String> nameMap = new HashMap<>();
+	
+					nameMap.put(
+						LocaleUtil.getDefault(), structure.getStructureKey());
+	
+					if (_log.isDebugEnabled()) {
+						_log.debug("Adding structure: " + structureKey);
+					}
+	
+					ddmStructure = _ddmStructureLocalService.addStructure(
+						_wcmDeploymentConfiguration.adminUserId(), groupId,
+						DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+						classNameId, structureKey, nameMap, Collections.emptyMap(),
+						ddmForm, DDMUtil.getDefaultDDMFormLayout(ddmForm),
+						storageType, DDMStructureConstants.TYPE_DEFAULT,
+						new ServiceContext());
+				}
+	
+				addTemplates(structure, ddmStructure);
+			} 
+			catch (PortalException pe) {
+				_log.error("Error deploying structure " + structure, pe);
 				continue;
 			}
-
-			DDMStructure ddmStructure =
-				_ddmStructureLocalService.fetchStructure(
-					groupId, classNameId, structureKey);
-
-			DDMForm ddmForm = _ddmFormJSONDeserializer.deserialize(definition);
-
-			if (ddmStructure != null) {
-				if (_log.isDebugEnabled()) {
-					_log.debug("Updating structure: " + structureKey);
-				}
-
-				ddmStructure = _ddmStructureLocalService.updateStructure(
-					_wcmDeploymentConfiguration.adminUserId(),
-					ddmStructure.getStructureId(), ddmForm,
-					ddmStructure.getDDMFormLayout(), new ServiceContext());
-			}
-			else {
-				Map<Locale, String> nameMap = new HashMap<>();
-
-				nameMap.put(
-					LocaleUtil.getDefault(), structure.getStructureKey());
-
-				if (_log.isDebugEnabled()) {
-					_log.debug("Adding structure: " + structureKey);
-				}
-
-				ddmStructure = _ddmStructureLocalService.addStructure(
-					_wcmDeploymentConfiguration.adminUserId(), groupId,
-					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-					classNameId, structureKey, nameMap, Collections.emptyMap(),
-					ddmForm, DDMUtil.getDefaultDDMFormLayout(ddmForm),
-					storageType, DDMStructureConstants.TYPE_DEFAULT,
-					new ServiceContext());
-			}
-
-			addTemplates(structure, ddmStructure);
 		}
 	}
 
@@ -150,49 +168,63 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		throws PortalException {
 
 		for (Template template : structure.getTemplates()) {
-			long groupId = getGroupId(structure.getGroupKey());
-
-			String script = template.getContent();
-			String templateKey = template.getTemplateName();
-			long classNameId = PortalUtil.getClassNameId(
-				DDMStructure.class.getName());
-			long resourceClassNameId = PortalUtil.getClassNameId(
-				JournalArticle.class.getName());
-			long structureId = ddmStructure.getStructureId();
-
-			DDMTemplate ddmTemplate = _ddmTemplateLocalService.fetchTemplate(
-				groupId, classNameId, templateKey);
-
-			if (ddmTemplate != null) {
-				if (_log.isDebugEnabled()) {
-					_log.debug("Updating template: " + templateKey);
+			
+			try {
+				long groupId = getGroupId(structure.getGroupKey());
+	
+				String script = template.getContent();
+				String templateKey = template.getTemplateName();
+				long classNameId = PortalUtil.getClassNameId(
+					DDMStructure.class.getName());
+				long resourceClassNameId = PortalUtil.getClassNameId(
+					JournalArticle.class.getName());
+				long structureId = ddmStructure.getStructureId();
+	
+				DDMTemplate ddmTemplate = _ddmTemplateLocalService.fetchTemplate(
+					groupId, classNameId, templateKey);
+				
+				
+	
+				if (ddmTemplate != null) {
+					
+					if (StringUtil.equalsIgnoreCase(ddmTemplate.getScript(), script)) {
+						continue;
+					}
+					
+					if (_log.isDebugEnabled()) {
+						_log.debug("Updating template: " + templateKey);
+					}
+	
+					ddmTemplate = _ddmTemplateLocalService.updateTemplate(
+						ddmTemplate.getUserId(), ddmTemplate.getTemplateId(),
+						ddmTemplate.getClassPK(), ddmTemplate.getNameMap(),
+						ddmTemplate.getDescriptionMap(), ddmTemplate.getType(),
+						ddmTemplate.getMode(), ddmTemplate.getLanguage(), script,
+						ddmTemplate.getCacheable(), ddmTemplate.getSmallImage(),
+						ddmTemplate.getSmallImageURL(), null, new ServiceContext());
 				}
-
-				ddmTemplate = _ddmTemplateLocalService.updateTemplate(
-					ddmTemplate.getUserId(), ddmTemplate.getTemplateId(),
-					ddmTemplate.getClassPK(), ddmTemplate.getNameMap(),
-					ddmTemplate.getDescriptionMap(), ddmTemplate.getType(),
-					ddmTemplate.getMode(), ddmTemplate.getLanguage(), script,
-					ddmTemplate.getCacheable(), ddmTemplate.getSmallImage(),
-					ddmTemplate.getSmallImageURL(), null, new ServiceContext());
+				else {
+					Map<Locale, String> nameMap = new HashMap<>();
+	
+					nameMap.put(
+						LocaleUtil.getDefault(), template.getTemplateName());
+	
+					if (_log.isDebugEnabled()) {
+						_log.debug("Adding template: " + templateKey);
+					}
+	
+					ddmTemplate = _ddmTemplateLocalService.addTemplate(
+						_wcmDeploymentConfiguration.adminUserId(), groupId,
+						classNameId, structureId, resourceClassNameId, templateKey,
+						nameMap, Collections.emptyMap(), StringPool.BLANK,
+						StringPool.BLANK, StringPool.BLANK, script, Boolean.TRUE,
+						Boolean.FALSE, StringPool.BLANK, null,
+						new ServiceContext());
+				}
 			}
-			else {
-				Map<Locale, String> nameMap = new HashMap<>();
-
-				nameMap.put(
-					LocaleUtil.getDefault(), template.getTemplateName());
-
-				if (_log.isDebugEnabled()) {
-					_log.debug("Adding template: " + templateKey);
-				}
-
-				ddmTemplate = _ddmTemplateLocalService.addTemplate(
-					_wcmDeploymentConfiguration.adminUserId(), groupId,
-					classNameId, structureId, resourceClassNameId, templateKey,
-					nameMap, Collections.emptyMap(), StringPool.BLANK,
-					StringPool.BLANK, StringPool.BLANK, script, Boolean.TRUE,
-					Boolean.FALSE, StringPool.BLANK, null,
-					new ServiceContext());
+			catch (PortalException pe) {
+				_log.error("Error deploying template " + template, pe);
+				continue;
 			}
 		}
 	}
@@ -235,7 +267,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 					templateParams.get("structureKey"));
 
 				Structure templateStructures = groupedStructures.get(tuple);
-
 				//TODO throw exception if no match?
 
 				if (templateStructures != null) {
@@ -261,14 +292,65 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			addStructures(structures);
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error("Error deploying structures", e);
 		}
 	}
 	
 	@Override
-	public void dumpToFilesystem(String directory) {
+	public void dumpToFilesystem(String directory) throws PortalException {
+		
+		FileUtil.deltree(directory);
+		_log.info("Creating directory " + directory);
+		FileUtil.mkdirs(directory);
+		
+		List<DDMStructure> ddmStructures = 
+			_ddmStructureLocalService.getDDMStructures(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		
 		
+		for (DDMStructure ddmStructure : ddmStructures) {
+		
+			if (!StringUtil.equalsIgnoreCase(ddmStructure.getClassName(), JournalArticle.class.getName())) {
+				continue;
+			}
+			
+			Group group = _groupLocalService.fetchGroup(ddmStructure.getGroupId());
+			
+			if (Validator.isNull(group)) {
+				_log.error( "Could not find group for " + ddmStructure.getNameCurrentValue() + " group " + 
+					ddmStructure.getGroupId());
+				continue;
+			}
+			
+			DDMForm ddmForm = ddmStructure.getDDMForm();
+			
+			String definition = _ddmFormJSONSerializer.serialize(ddmForm);
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(definition);
+			definition = jsonObject.toString(4);
+			
+			String structureFileName = FileUtil.encodeSafeFileName(
+				ddmStructure.getNameCurrentValue() + ".json");
+			structureFileName = structureFileName.replace(CharPool.FORWARD_SLASH, CharPool.PERIOD);
+			
+			try {
+				_log.debug("Writing structureFile " + structureFileName);
+				
+				FileUtil.write(directory + StringPool.FORWARD_SLASH +
+						group.getGroupKey() + StringPool.FORWARD_SLASH + 
+						ddmStructure.getStructureKey() + StringPool.FORWARD_SLASH + 
+						structureFileName, definition);
+				
+				for (DDMTemplate ddmTemplate : ddmStructure.getTemplates()) {
+					String templateFileName = ddmTemplate.getTemplateKey() + ".ftl";
+					FileUtil.write(directory + StringPool.FORWARD_SLASH +
+							group.getGroupKey() + StringPool.FORWARD_SLASH + 
+							ddmStructure.getStructureKey() + StringPool.FORWARD_SLASH + 
+							templateFileName, ddmTemplate.getScript());
+				}
+			} 
+			catch (IOException e) {
+				_log.error("Error writing structure or templates for file " + structureFileName, e);
+			}
+		}
 	}
 	
 	@Activate
@@ -339,6 +421,9 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	@Reference
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
 
+	@Reference
+	private DDMFormJSONSerializer _ddmFormJSONSerializer;
+	
 	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
 

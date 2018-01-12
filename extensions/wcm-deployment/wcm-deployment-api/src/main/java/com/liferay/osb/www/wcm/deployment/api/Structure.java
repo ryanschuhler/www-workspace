@@ -14,6 +14,8 @@
 
 package com.liferay.osb.www.wcm.deployment.api;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +50,10 @@ public class Structure {
 
 	public List<Template> getTemplates() {
 		return _templates;
+	}
+	
+	public String toString() {
+		return _groupKey + StringPool.POUND + _structureKey;
 	}
 
 	private final String _content;

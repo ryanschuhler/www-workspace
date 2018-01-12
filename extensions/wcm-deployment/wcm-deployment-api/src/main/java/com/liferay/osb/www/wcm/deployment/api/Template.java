@@ -33,6 +33,10 @@ public class Template {
 		return _templateName;
 	}
 
+	public String toString() {
+		return _templateName;
+	}
+	
 	private final String _content;
 	private final String _templateName;
 
