@@ -1,0 +1,3 @@
+Bundle-Name: Status Page Override
+Bundle-SymbolicName: com.liferay.osb.www.overrides.status
+Bundle-Version: 1.0.0

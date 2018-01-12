@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright 2000-present Liferay, Inc.
  *
@@ -13,22 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+--%>
 
-package com.liferay.osb.www.overrides.themes;
-
-import com.liferay.portal.custom.jsp.bag.BaseCustomJspBag;
-
-import org.osgi.service.component.annotations.Component;
-
-/**
- * @author Ryan Schuhler
- */
-@Component(
-	immediate = true,
-	property = {
-		"context.id=ThemesJspBag", "context.name=Themes JSP Bag",
-		"service.ranking:Integer=100"
-	}
-)
-public class ThemesJspBag extends BaseCustomJspBag {
-}
+<h2>I overrode the status page</h2>
