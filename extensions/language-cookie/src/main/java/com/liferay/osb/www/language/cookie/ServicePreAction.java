@@ -19,6 +19,24 @@ package com.liferay.osb.www.laguage.cookie;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.LifecycleAction;
 import com.liferay.portal.kernel.events.LifecycleEvent;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.PortletProvider;
+import com.liferay.portal.kernel.portlet.PortletProviderUtil;
+import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.CookieKeys;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+
+import javax.portlet.PortletMode;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
+
+import javax.servlet.http.Cookie;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -36,6 +54,68 @@ public class ServicePreAction implements LifecycleAction {
 		throws ActionException {
 
 		System.out.println("Language Cookie Pre Action");
+
+//		String languageStrutsAction = "/language/view";
+//		String strutsAction = PortalUtil.getStrutsAction(request);
+//
+//		if (StringUtil.equalsIgnoreCase(languageStrutsAction, strutsAction)) {
+//			return;
+//		}
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)lifecycleEvent.getRequest().getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		String osbLanguageId = CookieKeys.getCookie(
+			lifecycleEvent.getRequest(), "OSB_LANGUAGE_ID");
+
+		if (Validator.isNull(osbLanguageId)) {
+			osbLanguageId = themeDisplay.getLanguageId();
+		}
+
+		if (!LanguageUtil.isAvailableLocale(osbLanguageId)) {
+			return;
+		}
+
+		String guestLanguageId = CookieKeys.getCookie(
+			lifecycleEvent.getRequest(), CookieKeys.GUEST_LANGUAGE_ID);
+
+		if (!StringUtil.equalsIgnoreCase(
+				guestLanguageId, themeDisplay.getLanguageId())) {
+
+			Cookie cookie = new Cookie(
+				"OSB_LANGUAGE_ID", themeDisplay.getLanguageId());
+
+			cookie.setMaxAge((int)(Time.WEEK / 1000));
+			cookie.setPath(StringPool.SLASH);
+
+			CookieKeys.addCookie(
+				lifecycleEvent.getRequest(), lifecycleEvent.getResponse(),
+				cookie);
+
+			return;
+		}
+
+		if (StringUtil.equalsIgnoreCase(
+				osbLanguageId, themeDisplay.getLanguageId())) {
+
+			return;
+		}
+
+//		String loginPortletId = PortletProviderUtil.getPortletId(
+//			com.liferay.login.web.internal.portlet.LoginPortlet.class.getName(),
+//			PortletProvider.Action.VIEW);
+//
+//		PortletURL portletURL = PortletURLFactoryUtil.create(
+//			lifecycleEvent.getRequest(), loginPortletId, themeDisplay.getPlid(),
+//			PortletRequest.ACTION_PHASE);
+//
+//		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
+//		portletURL.setParameter("languageId", osbLanguageId);
+//		portletURL.setWindowState(WindowState.NORMAL);
+//		portletURL.setPortletMode(PortletMode.VIEW);
+//
+//		lifecycleEvent.getResponse().sendRedirect(portletURL.toString());
 	}
 
 }
