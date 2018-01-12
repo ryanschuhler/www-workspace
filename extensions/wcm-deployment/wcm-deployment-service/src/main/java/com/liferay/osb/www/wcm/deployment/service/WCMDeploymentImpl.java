@@ -122,9 +122,8 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	
 				if (ddmStructure != null) {
 					
-					
-					String json = _ddmFormJSONSerializer.serialize(ddmStructure.getDDMForm());
-					if (!json.equals(definition))
+
+					if (ddmForm.hashCode() != ddmStructure.getDDMForm().hashCode()) {
 					
 						if (_log.isDebugEnabled()) {
 							_log.debug("Updating structure: " + structureKey);
