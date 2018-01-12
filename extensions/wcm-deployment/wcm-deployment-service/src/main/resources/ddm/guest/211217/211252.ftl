@@ -100,14 +100,16 @@
 			</div>
 
 			<div class="block right-block w70">
-				<#assign fieldsMap = dl_file_entry.getFieldsMap(dl_file_entry.getFileVersion().getFileVersionId()) />
+				<#assign ddm_form_values_map = dl_file_entry.getDDMFormValuesMap(dl_file_entry.getFileVersion().getFileVersionId()) />
+				<#assign MARKETING_ASSET_STRUCTURE_KEY = "302980">
+				<#assign ddm_form_field_values_map = ddm_form_values_map[MARKETING_ASSET_STRUCTURE_KEY]!{}>		
 
-				<#list fieldsMap.values() as field>
-					<#assign title = dl_file_entry.getTitle() />
-					<#assign display_title = field.get("display_title")! />
+				<#assign title = dl_file_entry.getTitle() />
+				<#assign display_title_values = ddm_form_field_values_map.getDDMFormFieldValuesMap()["display_title"]! [] />
 
+				<#list display_title_values as display_title>
 					<#if display_title?has_content && display_title.getValue()?has_content>
-						<#assign title = display_title.getValue() />
+						<#assign title = display_title.getValue().getString(locale) />
 					</#if>
 				</#list>
 
