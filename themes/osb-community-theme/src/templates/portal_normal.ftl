@@ -106,7 +106,9 @@ TODO
 
 			${portletDisplay.setTitle(the_title)}
 
-			${theme.wrapPortlet("portlet.ftl", content_include)}
+			<@liferay_theme["wrap-portlet"] page="portlet.ftl">
+				<@liferay_util["include"] page=content_include />
+			</@>
 		</#if>
 
 		<#include "${full_templates_path}/footer.ftl" />
