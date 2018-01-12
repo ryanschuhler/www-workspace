@@ -139,7 +139,7 @@
 				</#if>
 
 				<#if asset_id?has_content>
-					<#assign dl_file_entry_local_service_util = staticUtil["com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil"]>
+					<#assign dl_file_entry_local_service_util = staticUtil["com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil"]>
 
 					<#if dl_file_entry_local_service_util.fetchDLFileEntry(getterUtil.getLong(asset_id))??>
 						<#assign dl_file_entry = dl_file_entry_local_service_util.fetchDLFileEntry(getterUtil.getLong(asset_id)) >

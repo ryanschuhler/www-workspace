@@ -1,6 +1,5 @@
-<#assign dl_file_entry_local_service_util = staticUtil["com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil"]>
-<#assign dl_file_util = staticUtil["com.liferay.portlet.documentlibrary.util.DLUtil"]>
-<#assign journal_article_local_service_util = staticUtil["com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil"] />
+<#assign dl_file_entry_local_service = serviceLocator.findService("com.liferay.document.library.kernel.service.DLFileEntryLocalService")>
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
@@ -24,16 +23,16 @@
 </p>
 
 <div class="resource-display">
-	<#if dl_file_entry_local_service_util.fetchFileEntry(groupId, folder_id, title)??>
-		<#assign dl_file_entry = dl_file_entry_local_service_util.fetchFileEntry(groupId, folder_id, title) />
-	<#elseif dl_file_entry_local_service_util.fetchDLFileEntry(resource_id)??>
-		<#assign dl_file_entry = dl_file_entry_local_service_util.fetchDLFileEntry(resource_id) />
+	<#if dl_file_entry_local_service.fetchFileEntry(groupId, folder_id, title)??>
+		<#assign dl_file_entry = dl_file_entry_local_service.fetchFileEntry(groupId, folder_id, title) />
+	<#elseif dl_file_entry_local_service.fetchDLFileEntry(resource_id)??>
+		<#assign dl_file_entry = dl_file_entry_local_service.fetchDLFileEntry(resource_id) />
 	</#if>
 
-	<#if journal_article_local_service_util.fetchArticleByUrlTitle(groupId, title)??>
-		<#assign article = journal_article_local_service_util.fetchArticleByUrlTitle(groupId, title) />
-	<#elseif journal_article_local_service_util.fetchArticle(groupId, resource_id?string)??>
-		<#assign article = journal_article_local_service_util.fetchArticle(groupId, resource_id?string) />
+	<#if journal_article_local_service.fetchArticleByUrlTitle(groupId, title)??>
+		<#assign article = journal_article_local_service.fetchArticleByUrlTitle(groupId, title) />
+	<#elseif journal_article_local_service.fetchArticle(groupId, resource_id?string)??>
+		<#assign article = journal_article_local_service.fetchArticle(groupId, resource_id?string) />
 	</#if>
 
 	<#if article??>
