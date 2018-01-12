@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.CookieKeys;
 
 import java.util.Locale;
 
@@ -53,6 +54,11 @@ public class ServicePreAction implements LifecycleAction {
 
 		lifecycleEvent.getRequest().setAttribute(
 			"OSB_WWW_GDPR_COUNTRY", isGDPRCountry(country));
+		
+		lifecycleEvent.getRequest().setAttribute(
+			"OSB_WWW_GDPR_ACCEPTED", 
+			Validator.isNotNull(CookieKeys.getCookie(lifecycleEvent.getRequest(), "OSB_WWW_GDPR_ACCEPTED")));
+		
 	}
 
 	protected String getCountry(HttpServletRequest request) {

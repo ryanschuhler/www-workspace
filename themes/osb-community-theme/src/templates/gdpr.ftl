@@ -1,8 +1,8 @@
-<#assign cookie_keys = objectUtil("com.liferay.portal.kernel.util.CookieKeys") />
 
-<#assign osb_www_gdpr_accepted = cookie_keys.getCookie(request, "OSB_WWW_GDPR_ACCEPTED")! />
 
-<#if !osb_www_gdpr_accepted?has_content>
+<#assign osb_www_gdpr_accepted = getterUtil.getBoolean(request.getAttribute("OSB_WWW_GDPR_ACCEPTED"))>
+
+<#if !osb_www_gdpr_accepted>
 	<div class="cookie-acceptance">
 		<div class="cookie-acceptance-container">
 			<div class="cookie-acceptance-message">
