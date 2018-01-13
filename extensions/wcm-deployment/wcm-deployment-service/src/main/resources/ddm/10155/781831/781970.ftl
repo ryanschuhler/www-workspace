@@ -1,7 +1,5 @@
 <#attempt>
-	<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil") />
-
-	<#assign hs_form_local_service = portlet_bean_locator.locate("hubspot-portlet", "com.liferay.hubspot.service.HSFormLocalService") />
+	<#assign hs_form_local_service = serviceLocator.findService("com.liferay.hubspot.service.HSFormLocalService") />
 	<#assign logFactory = objectUtil("com.liferay.portal.kernel.log.LogFactoryUtil") />
 	<#assign log = logFactory.getLog("com.liferay.portal.kernel.search.SearchEngineUtil") />
 
@@ -66,7 +64,7 @@
 				<#if request_attributes.OSB_WWW_HUBSPOT_UTK??>
 					<#assign hsutk = request_attributes.OSB_WWW_HUBSPOT_UTK />
 
-					<#assign hs_contact_local_service = portlet_bean_locator.locate("hubspot-portlet", "com.liferay.hubspot.service.HSContactLocalService") />
+					<#assign hs_contact_local_service = serviceLocator.locate("com.liferay.hubspot.service.HSContactLocalService") />
 
 					<#if hs_contact_local_service.fetchHSContactByUserToken(hsutk)??>
 						<#assign hs_contact = hs_contact_local_service.fetchHSContactByUserToken(hsutk) />
@@ -139,7 +137,7 @@
 				</#if>
 
 				<#if asset_id?has_content>
-					<#assign dl_file_entry_local_service_util = staticUtil["com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil"]>
+					<#assign dl_file_entry_local_service_util = staticUtil["com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil"]>
 
 					<#if dl_file_entry_local_service_util.fetchDLFileEntry(getterUtil.getLong(asset_id))??>
 						<#assign dl_file_entry = dl_file_entry_local_service_util.fetchDLFileEntry(getterUtil.getLong(asset_id)) >
