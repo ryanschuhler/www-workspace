@@ -3,17 +3,14 @@
 	<#assign logFactory = objectUtil("com.liferay.portal.kernel.log.LogFactoryUtil") />
 	<#assign log = logFactory.getLog("com.liferay.portal.kernel.search.SearchEngineUtil") />
 
-	<#assign expando_column_local_service = serviceLocator.findService("com.liferay.portlet.expando.service.ExpandoColumnLocalService") />
-	<#assign expando_table_local_service = serviceLocator.findService("com.liferay.portlet.expando.service.ExpandoTableLocalService") />
-	<#assign expando_value_local_service = serviceLocator.findService("com.liferay.portlet.expando.service.ExpandoValueLocalService") />
-	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 	<#function get_localized_expando_value expando_bridge name>
-		<#assign table = expando_table_local_service.getTable(expando_bridge.getClassName(), "CUSTOM_FIELDS")! />
+		<#assign table = expandoTableLocalService.getTable(company.getCompanyId(), expando_bridge.getClassName(), "CUSTOM_FIELDS")! />
 
 		<#if expando_bridge.hasAttribute(name) && table?has_content>
-			<#assign column = expando_column_local_service.getColumn(table.getTableId(), name)! />
-			<#assign value = expando_value_local_service.getValue(table.getTableId(), column.getColumnId(), expando_bridge.getClassPK())! />
+			<#assign column = expandoColumnLocalService.getColumn(table.getTableId(), name)! />
+			<#assign value = expandoValueLocalService.getValue(table.getTableId(), column.getColumnId(), expando_bridge.getClassPK())! />
 
 			<#if value?has_content>
 				<#return value.getString(locale)>
@@ -64,7 +61,7 @@
 				<#if request_attributes.OSB_WWW_HUBSPOT_UTK??>
 					<#assign hsutk = request_attributes.OSB_WWW_HUBSPOT_UTK />
 
-					<#assign hs_contact_local_service = serviceLocator.locate("com.liferay.hubspot.service.HSContactLocalService") />
+					<#assign hs_contact_local_service = serviceLocator.findService("com.liferay.hubspot.service.HSContactLocalService") />
 
 					<#if hs_contact_local_service.fetchHSContactByUserToken(hsutk)??>
 						<#assign hs_contact = hs_contact_local_service.fetchHSContactByUserToken(hsutk) />
