@@ -39,4 +39,6 @@ public interface WCMDeployment {
 	public void dumpToFilesystem(String directory)
 		throws PortalException;
 
+	public  List<Structure> getStructures(String directory);
+
 }

@@ -40,7 +40,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringParser;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -99,7 +99,7 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		for (Structure structure : structures) {
 			try {
 				long groupId = getGroupId(structure.getGroupKey());
-				long classNameId = PortalUtil.getClassNameId(
+				long classNameId = _portal.getClassNameId(
 					JournalArticle.class.getName());
 				String structureKey = structure.getStructureKey();
 				String definition = structure.getContent();
@@ -173,9 +173,9 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	
 				String script = template.getContent();
 				String templateKey = template.getTemplateName();
-				long classNameId = PortalUtil.getClassNameId(
+				long classNameId = _portal.getClassNameId(
 					DDMStructure.class.getName());
-				long resourceClassNameId = PortalUtil.getClassNameId(
+				long resourceClassNameId = _portal.getClassNameId(
 					JournalArticle.class.getName());
 				long structureId = ddmStructure.getStructureId();
 	
@@ -296,6 +296,71 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	}
 	
 	@Override
+	public List<Structure> getStructures(String directory) {
+		
+		List<Structure> structures = new ArrayList<>();
+		
+		///tmp/liferay/dump/Liferay Symposium Spain/202974493/Icon Group.json
+		String[] structurePaths = FileUtil.find(directory, "**\\*.json", "");
+		
+		for (int i = 0; i < structurePaths.length; i++) {
+			String path = structurePaths[i];
+
+			try {
+				Map<String, String> structureParams = getResourceInfo(
+						STRUCTURE, directory, path.substring(directory.length()));
+
+				structures.add(getStructure(structureParams));
+			}
+			catch (IOException e) {
+				_log.error("Error reading structure or templates for file " + path, e);
+			}
+		}
+		
+		Map<Tuple, Structure> groupedStructures = structures.stream().
+				collect(
+					Collectors.toMap(
+						structure -> new Tuple(structure.getGroupKey(), structure.getStructureKey()),
+						structure -> structure));
+
+		
+		
+			///tmp/liferay/dump/10155/12483/12485.FTL.ftl
+			String[] templatePaths = FileUtil.find(directory, "**\\*.ftl", "");
+		
+			for (int i = 0; i < templatePaths.length; i++) {
+			
+				String templatePath = templatePaths[i];
+
+				try {
+					Map<String, String> templateParams = getResourceInfo(
+						TEMPLATE,  directory, templatePath.substring(directory.length()));
+	
+					Tuple tuple = new Tuple(
+						templateParams.get("groupKey"),
+						templateParams.get("structureKey"));
+	
+					Structure templateStructures = groupedStructures.get(tuple);
+					//TODO throw exception if no match?
+	
+					if (templateStructures != null) {
+						templateStructures.addTemplate(
+							new Template(
+								FileUtil.stripExtension(templateParams.get("filename")),
+								templateParams.get("content")));
+					}
+				}
+				catch (IOException e) {
+					_log.error("Error reading structure or templates for file " + templatePath, e);
+				}
+			}
+
+			
+
+		return structures;
+	}
+	
+	@Override
 	public void dumpToFilesystem(String directory) throws PortalException {
 		
 		FileUtil.deltree(directory);
@@ -333,14 +398,14 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			try {
 				_log.debug("Writing structureFile " + structureFileName);
 				
-				FileUtil.write(directory + StringPool.FORWARD_SLASH +
+				FileUtil.write(directory + StringPool.FORWARD_SLASH + "ddm" + StringPool.FORWARD_SLASH +
 						group.getGroupKey() + StringPool.FORWARD_SLASH + 
 						ddmStructure.getStructureKey() + StringPool.FORWARD_SLASH + 
 						structureFileName, definition);
 				
 				for (DDMTemplate ddmTemplate : ddmStructure.getTemplates()) {
 					String templateFileName = ddmTemplate.getTemplateKey() + ".ftl";
-					FileUtil.write(directory + StringPool.FORWARD_SLASH +
+					FileUtil.write(directory + StringPool.FORWARD_SLASH + "ddm" +  StringPool.FORWARD_SLASH +
 							group.getGroupKey() + StringPool.FORWARD_SLASH + 
 							ddmStructure.getStructureKey() + StringPool.FORWARD_SLASH + 
 							templateFileName, ddmTemplate.getScript());
@@ -350,6 +415,7 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				_log.error("Error writing structure or templates for file " + structureFileName, e);
 			}
 		}
+	
 	}
 	
 	@Activate
@@ -364,11 +430,13 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		if (_wcmDeploymentConfiguration.autoDeploy()) {
 			deploy(bundle);
 		}
+		
+		
 	}
 
 	protected long getGroupId(String groupKey) {
 		Group group = _groupLocalService.fetchGroup(
-			PortalUtil.getDefaultCompanyId(), groupKey);
+			_portal.getDefaultCompanyId(), groupKey);
 
 		if (group == null) {
 			try {
@@ -392,6 +460,7 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 		String content = StringUtil.read(inputStream);
 
+		//  bundleentry://64.fwk1259683403/ddm/10155/12483/lego.json
 		StringParser stringParser = StringParser.create(
 			"{fileEntry:[^/]+}//{directory:[^/]+}/{ddm:[^/]+}/{groupKey:[^/]+}/{structureKey:[^/]+}" +
 				"/{filename:[^$]+}");
@@ -406,6 +475,25 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		return params;
 	}
 
+	protected Map<String, String> getResourceInfo(String type, String baseDirectory, String path)
+			throws IOException {
+
+		String content = FileUtil.read(baseDirectory + path);
+
+		StringParser stringParser = StringParser.create(
+			"/{ddm:[^/]+}/{groupKey:[^/]+}/{structureKey:[^/]+}" +
+				"/{filename:[^$]+}");
+
+		Map<String, String> params = new HashMap<>();
+
+		stringParser.parse(path.toString(), params);
+
+		params.put("content", content);
+		params.put("type", type);
+
+		return params;
+	}
+	
 	protected Structure getStructure(Map<String, String> params) {
 		Structure structure = new Structure(
 			params.get("groupKey"), params.get("structureKey"),
@@ -431,6 +519,9 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 	@Reference
 	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private Portal _portal;
 
 	private volatile WCMDeploymentConfiguration _wcmDeploymentConfiguration;
 
