@@ -53,94 +53,75 @@ if (Validator.isNotNull(exception)) {
 %>
 
 <c:choose>
-	<c:when test="<%= SessionErrors.contains(request, PrincipalException.getNestedClasses()) %>">
-		<h3 class="alert alert-danger">
-			<liferay-ui:message key="forbidden" />
-		</h3>
-
-		<liferay-ui:message key="you-do-not-have-permission-to-access-the-requested-resource" />
-
-		<br /><br />
-
-		<code class="lfr-url-error"><%= HtmlUtil.escape(url) %></code>
-	</c:when>
-	<c:when test="<%= SessionErrors.contains(request, PortalException.class.getName()) || SessionErrors.contains(request, SystemException.class.getName()) %>">
-		<h3 class="alert alert-danger">
-			<liferay-ui:message key="internal-server-error" />
-		</h3>
-
-		<liferay-ui:message key="an-error-occurred-while-accessing-the-requested-resource" />
-
-		<br /><br />
-
-		<code class="lfr-url-error"><%= HtmlUtil.escape(url) %></code>
-	</c:when>
-	<c:when test="<%= SessionErrors.contains(request, TransformException.class.getName()) %>">
-		<h3 class="alert alert-danger">
-			<liferay-ui:message key="internal-server-error" />
-		</h3>
-
-		<liferay-ui:message key="an-error-occurred-while-processing-the-requested-resource" />
-
-		<br /><br />
-
-		<code class="lfr-url-error"><%= HtmlUtil.escape(url) %></code>
-
-		<br /><br />
-
-		<%
-		TransformException te = (TransformException)SessionErrors.get(request, TransformException.class.getName());
-		%>
-
-		<div>
-			<%= StringUtil.replace(te.getMessage(), new char[] {'<', '\n'}, new String[] {"&lt;", "<br />\n"}) %>
-		</div>
-	</c:when>
 	<c:when test="<%= noSuchResourceException %>">
-		<h3 class="alert alert-danger">
-			<liferay-ui:message key="not-found" />
-		</h3>
+		<div class="block-container">
+			<div class="block error-image left-block w35">
+				<img src="<%= PortalUtil.getPathContext() %>/portlet_unavailable.png" />
+			</div>
 
-		<liferay-ui:message key="the-requested-resource-could-not-be-found" />
+			<div class="block error-content responsive-text-center right-block w65">
+				<h2 class="alt-secondary-color">
+					<liferay-ui:message key="were-sorry-the-page-you-requested-was-not-found" />
+				</h2>
 
-		<br /><br />
+				<div class="error-url"><%= HtmlUtil.escape(url) %></div>
 
-		<code class="lfr-url-error"><%= HtmlUtil.escape(url) %></code>
+				<%
+				String portletId = "1_WAR_googlesearchapplianceportlet_INSTANCE_0000";
+				String portletNamespace = "_" + portletId + "_";
+				String keywords = ParamUtil.getString(request, portletNamespace + "keywords");
+				%>
+
+				<form action="<%= PortalUtil.getLayoutFullURL(themeDisplay) %>" class="doc-search" method="get" name="<%= portletNamespace %>hookFm">
+					<input name="p_p_id" type="hidden" value="<%= portletId %>" />
+					<input name="p_p_lifecycle" type="hidden" value="0" />
+					<input name="p_p_state" type="hidden" value="maximized" />
+
+					<input class="doc-search-input" name="<%= portletNamespace %>keywords" required type="text" value="<%= HtmlUtil.escapeAttribute(keywords) %>" />
+
+					<input class="btn btn-sm" type="submit" value='<liferay-ui:message key="search" />'>
+				</form>
+
+				<ul class="suggested-links">
+					<li>
+						<a class="standard-padding" href="/community">
+							<liferay-ui:message key="explore-the-liferay-community" />
+						</a>
+					</li>
+					<li>
+						<a class="standard-padding" href="/downloads">
+							<liferay-ui:message key="available-software-downloads" />
+						</a>
+					</li>
+					<li>
+						<a class="standard-padding" href="/marketplace">
+							<liferay-ui:message key="buy-and-sell-marketplace-apps" />
+						</a>
+					</li>
+					<li>
+						<a class="standard-padding" href="/product">
+							<liferay-ui:message key="product-overview" />
+						</a>
+					</li>
+					<li>
+						<a class="standard-padding" href="/resources">
+							<liferay-ui:message key="read-a-whitepaper" />
+						</a>
+					</li>
+					<li>
+						<a class="standard-padding" href="/events">
+							<liferay-ui:message key="attend-an-event" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="separator"><!-- --></div>
+
+		<a href="javascript:history.go(-1);">&laquo; <liferay-ui:message key="back" /></a>
 	</c:when>
 	<c:otherwise>
-		<h3 class="alert alert-danger">
-			<liferay-ui:message key="internal-server-error" />
-		</h3>
-
-		<liferay-ui:message key="an-error-occurred-while-accessing-the-requested-resource" />
-
-		<br /><br />
-
-		<code class="lfr-url-error"><%= HtmlUtil.escape(url) %></code>
-
-		<%
-		for (String key : SessionErrors.keySet(request)) {
-			Object value = SessionErrors.get(request, key);
-
-			if (value instanceof Exception) {
-				Exception e = (Exception)value;
-
-				_log.error(e.getMessage());
-
-				if (_log.isDebugEnabled()) {
-					_log.debug(e, e);
-				}
-			}
-		}
-		%>
-
+		<liferay-util:include page="/html/portal/status.portal.jsp" />
 	</c:otherwise>
 </c:choose>
-
-<div class="separator"><!-- --></div>
-
-<a href="javascript:history.go(-1);">&laquo; <liferay-ui:message key="back" /></a>
-
-<%!
-private static Log _log = LogFactoryUtil.getLog("portal_web.docroot.html.portal.status_jsp");
-%>
