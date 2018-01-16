@@ -35,7 +35,7 @@ services:
     build:
       args:
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/7.0.10.6/liferay-dxp-digital-enterprise-tomcat-7.0-sp6-20171010144253003.zip
-        LIFERAY_FIXPACK_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-32-7010.zip
+        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-31-7010.zip;http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/hotfix/liferay-hotfix-1666-7010.zip
       context: liferay/.
     container_name: liferay
     depends_on:

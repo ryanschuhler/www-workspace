@@ -9,7 +9,7 @@ RUN apk update \
   && adduser -S -G liferay liferay 
 
 ARG LIFERAY_DOWNLOAD_URL
-ARG LIFERAY_FIXPACK_DOWNLOAD_URL
+ARG LIFERAY_FIXPACK_DOWNLOAD_URLS
 
 ENV LIFERAY_HOME /opt/java/liferay
 
@@ -33,21 +33,14 @@ RUN if [[ ! -f "/opt/java/*.zip" ]] \
     && find /opt/java/liferay -depth -maxdepth 1 -type d -name "tomcat-*" -exec mv {} /opt/java/liferay/tomcat \; \
   ; fi
 
-RUN if [ "$LIFERAY_FIXPACK_DOWNLOAD_URL" != "" ] \
-  ; then \
-    set -x \
-    && rm -fv /opt/java/liferay/patching-tool/patches/*.zip \
-    && cd /opt/java/liferay/patching-tool/patches/ \
-    && curl -fSL -O "$LIFERAY_FIXPACK_DOWNLOAD_URL" \
-    && sed -i 's/tomcat[^\/]*/tomcat/g' /opt/java/liferay/patching-tool/default.properties \
-    && bash /opt/java/liferay/patching-tool/patching-tool.sh install -force \
-  ; fi
+COPY --chown=liferay:liferay ./*.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/*.sh
+
+RUN /usr/local/bin/fixpacks.sh 
 
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
-COPY --chown=liferay:liferay ./*.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/*.sh
 
 COPY --chown=liferay:liferay ./resources/ ${LIFERAY_HOME}/
 
