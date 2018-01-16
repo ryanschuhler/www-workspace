@@ -1,6 +1,5 @@
 
 
-<#assign osb_www_gdpr_accepted = getterUtil.getBoolean(request.getAttribute("OSB_WWW_GDPR_ACCEPTED"))>
 
 <#if !osb_www_gdpr_accepted>
 	<div class="cookie-acceptance">
