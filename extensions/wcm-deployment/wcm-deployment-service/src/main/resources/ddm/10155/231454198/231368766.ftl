@@ -6,7 +6,7 @@
 <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 
-<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
+<#assign journal_article_local_service = journalArticleLocalService />
 
 <#assign runtime_id = 1>
 
@@ -153,7 +153,11 @@
 <#macro runtime_embed_journal_article article_id>
 	<#assign view_mode = get_view_mode()>
 
-	<runtime-portlet instance="${.vars['reserved-article-id'].data}_${runtime_id}" name="56" queryString="articleId=${article_id}&amp;viewMode=${view_mode}"/>
-
+	<#assign VOID = freeMarkerPortletPreferences.setValue( "articleId", article_id) />
+  	<@liferay_portlet["runtime"] 
+	  	defaultPreferences="${freeMarkerPortletPreferences}"
+		instanceId="${.vars['reserved-article-id'].data}_${runtime_id}"
+	  	portletName="com_liferay_journal_content_web_portlet_JournalContentPortlet" 
+	/>
 	<#assign runtime_id = runtime_id + 1>
 </#macro>

@@ -1,3 +1,5 @@
+<#import "${templatesPath}/231368766" as article_utilities>
+
 <#-- Get User Country ID -->
 <#assign user_country = "" />
 
@@ -37,34 +39,5 @@
 	<#assign has_update_permissons = layoutPermission.contains(permissionChecker, layout, "UPDATE")/>
 </#if>
 
-<#assign article = journal_article_local_service.getArticle(groupId, article_id)! />
 
-<#if article?has_content>
-	<@get_article_content article />
-</#if>
-
-<#macro get_article_content article>
-	<#if article?has_content>
-		${journalContentUtil.getContent(groupId, article.getArticleId(), "", locale)!}
-
-		<#if has_update_permissons?? && has_update_permissons>
-			<#assign current_url = request.attributes.CURRENT_COMPLETE_URL! />
-
-			<#assign edit_url = "test" />
-			<#assign edit_url = portletURLFactory.create(http_servlet_request, "15", plid, "0") />
-			<#assign VOID = edit_url.setParameter("p_p_state", "maximized") />
-			<#assign VOID = edit_url.setParameter("p_p_lifecycle", "0") />
-			<#assign VOID = edit_url.setParameter("groupId", "${groupId}") />
-			<#assign VOID = edit_url.setParameter("struts_action", "/journal/edit_article") />
-			<#assign VOID = edit_url.setParameter("redirect", "${current_url}") />
-			<#assign VOID = edit_url.setParameter("articleId", "${article.getArticleId()}") />
-
-			<span class="lfr-icon-action lfr-icon-action-edit lfr-meta-actions pull-right">
-				<a class="taglib-icon" href="${edit_url}">
-					<img alt="Edit" src="/osb-community-theme/images/spacer.png" style="background-image: url('/osb-community-theme/sprite/images/common/_sprite.png'); background-position: 50% -608px; background-repeat: no-repeat; height: 16px; width: 16px;">
-					<span class="taglib-text ">Edit</span>
-				</a>
-			</span>
-		</#if>
-	</#if>
-</#macro>
+<@article_utilities.runtime_embed_journal_article_by_article_id article_id/>
