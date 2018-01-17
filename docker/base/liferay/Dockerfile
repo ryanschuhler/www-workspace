@@ -36,11 +36,10 @@ RUN if [[ ! -f "/opt/java/*.zip" ]] \
 COPY --chown=liferay:liferay ./*.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/*.sh
 
-RUN /usr/local/bin/fixpacks.sh 
+RUN /usr/local/bin/apply-fix-packs.sh 
 
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
-
 
 COPY --chown=liferay:liferay ./resources/ ${LIFERAY_HOME}/
 
