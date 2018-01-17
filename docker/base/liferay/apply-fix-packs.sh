@@ -22,6 +22,7 @@ IFS=';' read -r -a URLARRAY <<< "$LIFERAY_FIXPACK_DOWNLOAD_URLS"
 for URL in "${URLARRAY[@]}" 
 do 
     curl -fSL -O "$URL" 
+    rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 done 
 
 sed -i 's/tomcat[^\/]*/tomcat/g' ${PATCHING_TOOL_HOME}/default.properties 
