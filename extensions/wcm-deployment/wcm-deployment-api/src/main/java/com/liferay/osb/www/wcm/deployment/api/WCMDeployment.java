@@ -26,12 +26,6 @@ import org.osgi.framework.Bundle;
  * @author Allen Ziegenfus
  */
 public interface WCMDeployment {
-
-	public void addStructures(List<Structure> structures)
-		throws PortalException;
-
-	public void addTemplates(Structure structure, DDMStructure ddmStructure)
-		throws PortalException;
 	
 	public void deploy(Bundle bundle)
 		throws PortalException;
@@ -39,6 +33,9 @@ public interface WCMDeployment {
 	public void dumpToFilesystem(String directory)
 		throws PortalException;
 
-	public  List<Structure> getStructures(String directory);
+	String getStructurePath(
+		String directory, String groupKey, String structureKey, String structureFileName);
+
+	String getTemplatePath(String directory, String groupKey, String structureKey, String templateKey);
 
 }

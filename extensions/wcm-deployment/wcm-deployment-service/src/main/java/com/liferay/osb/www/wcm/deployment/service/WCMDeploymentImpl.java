@@ -28,6 +28,7 @@ import com.liferay.osb.www.wcm.deployment.api.Structure;
 import com.liferay.osb.www.wcm.deployment.api.Template;
 import com.liferay.osb.www.wcm.deployment.api.WCMDeployment;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.backgroundtask.BackgroundTaskExecutor;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -41,6 +42,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringParser;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -79,8 +81,6 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, service = WCMDeployment.class
 )
 public class WCMDeploymentImpl implements WCMDeployment {
-
-	//TODO: check first if template / structure needs updating so we do not create extra versions..
 
 	public static final String STRUCTURE = "structure";
 
@@ -181,8 +181,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	
 				DDMTemplate ddmTemplate = _ddmTemplateLocalService.fetchTemplate(
 					groupId, classNameId, templateKey);
-				
-				
 	
 				if (ddmTemplate != null) {
 					
@@ -276,88 +274,11 @@ public class WCMDeploymentImpl implements WCMDeployment {
 				}
 			}
 
-			if (_log.isDebugEnabled()) {
-				_log.debug("Found following structures and templates:");
-
-				for (Structure structure : structures) {
-					_log.debug(structure.getStructureKey());
-
-					for (Template template : structure.getTemplates()) {
-						_log.debug("-----" + template.getTemplateName());
-					}
-				}
-			}
-
 			addStructures(structures);
 		}
 		catch (Exception e) {
 			_log.error("Error deploying structures", e);
 		}
-	}
-	
-	@Override
-	public List<Structure> getStructures(String directory) {
-		
-		List<Structure> structures = new ArrayList<>();
-		
-		///tmp/liferay/dump/Liferay Symposium Spain/202974493/Icon Group.json
-		String[] structurePaths = FileUtil.find(directory, "**\\*.json", "");
-		
-		for (int i = 0; i < structurePaths.length; i++) {
-			String path = structurePaths[i];
-
-			try {
-				Map<String, String> structureParams = getResourceInfo(
-						STRUCTURE, directory, path.substring(directory.length()));
-
-				structures.add(getStructure(structureParams));
-			}
-			catch (IOException e) {
-				_log.error("Error reading structure or templates for file " + path, e);
-			}
-		}
-		
-		Map<Tuple, Structure> groupedStructures = structures.stream().
-				collect(
-					Collectors.toMap(
-						structure -> new Tuple(structure.getGroupKey(), structure.getStructureKey()),
-						structure -> structure));
-
-		
-		
-			///tmp/liferay/dump/10155/12483/12485.FTL.ftl
-			String[] templatePaths = FileUtil.find(directory, "**\\*.ftl", "");
-		
-			for (int i = 0; i < templatePaths.length; i++) {
-			
-				String templatePath = templatePaths[i];
-
-				try {
-					Map<String, String> templateParams = getResourceInfo(
-						TEMPLATE,  directory, templatePath.substring(directory.length()));
-	
-					Tuple tuple = new Tuple(
-						templateParams.get("groupKey"),
-						templateParams.get("structureKey"));
-	
-					Structure templateStructures = groupedStructures.get(tuple);
-					//TODO throw exception if no match?
-	
-					if (templateStructures != null) {
-						templateStructures.addTemplate(
-							new Template(
-								FileUtil.stripExtension(templateParams.get("filename")),
-								templateParams.get("content")));
-					}
-				}
-				catch (IOException e) {
-					_log.error("Error reading structure or templates for file " + templatePath, e);
-				}
-			}
-
-			
-
-		return structures;
 	}
 	
 	@Override
@@ -369,7 +290,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		
 		List<DDMStructure> ddmStructures = 
 			_ddmStructureLocalService.getDDMStructures(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		
 		
 		for (DDMStructure ddmStructure : ddmStructures) {
 		
@@ -391,24 +311,24 @@ public class WCMDeploymentImpl implements WCMDeployment {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(definition);
 			definition = jsonObject.toString(4);
 			
-			String structureFileName = FileUtil.encodeSafeFileName(
-				ddmStructure.getNameCurrentValue() + ".json");
+			String structureFileName = FileUtil.encodeSafeFileName(ddmStructure.getNameCurrentValue());
 			structureFileName = structureFileName.replace(CharPool.FORWARD_SLASH, CharPool.PERIOD);
 			
 			try {
 				_log.debug("Writing structureFile " + structureFileName);
+		
+				String structurePath = getStructurePath(
+					directory, group.getGroupKey(), ddmStructure.getStructureKey(), structureFileName);
 				
-				FileUtil.write(directory + StringPool.FORWARD_SLASH + "ddm" + StringPool.FORWARD_SLASH +
-						group.getGroupKey() + StringPool.FORWARD_SLASH + 
-						ddmStructure.getStructureKey() + StringPool.FORWARD_SLASH + 
-						structureFileName, definition);
+				FileUtil.write(structurePath, definition);
 				
 				for (DDMTemplate ddmTemplate : ddmStructure.getTemplates()) {
-					String templateFileName = ddmTemplate.getTemplateKey() + ".ftl";
-					FileUtil.write(directory + StringPool.FORWARD_SLASH + "ddm" +  StringPool.FORWARD_SLASH +
-							group.getGroupKey() + StringPool.FORWARD_SLASH + 
-							ddmStructure.getStructureKey() + StringPool.FORWARD_SLASH + 
-							templateFileName, ddmTemplate.getScript());
+					
+					String templatePath = getTemplatePath(
+						directory, group.getGroupKey(), ddmStructure.getStructureKey(),
+						ddmTemplate.getTemplateKey());
+					
+					FileUtil.write(templatePath, ddmTemplate.getScript());
 				}
 			} 
 			catch (IOException e) {
@@ -430,10 +350,48 @@ public class WCMDeploymentImpl implements WCMDeployment {
 		if (_wcmDeploymentConfiguration.autoDeploy()) {
 			deploy(bundle);
 		}
-		
-		
 	}
 
+	@Override
+	public String getStructurePath(
+		String directory, String groupKey, String structureKey, String structureFileName) {
+		
+		StringBundler sb = new StringBundler(10);
+
+		sb.append(directory);
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append("ddm");
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append(groupKey);
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append(structureKey);
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append(structureFileName);
+		sb.append(".json");
+
+		return sb.toString();
+	}
+	
+	@Override
+	public String getTemplatePath(
+		String directory, String groupKey, String structureKey, String templateKey) {
+		
+		StringBundler sb = new StringBundler(10);
+
+		sb.append(directory);
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append("ddm");
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append(groupKey);
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append(structureKey);
+		sb.append(CharPool.FORWARD_SLASH);
+		sb.append(templateKey);
+		sb.append(".ftl");
+
+		return sb.toString();
+	}
+	
 	protected long getGroupId(String groupKey) {
 		Group group = _groupLocalService.fetchGroup(
 			_portal.getDefaultCompanyId(), groupKey);
@@ -474,25 +432,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 		return params;
 	}
-
-	protected Map<String, String> getResourceInfo(String type, String baseDirectory, String path)
-			throws IOException {
-
-		String content = FileUtil.read(baseDirectory + path);
-
-		StringParser stringParser = StringParser.create(
-			"/{ddm:[^/]+}/{groupKey:[^/]+}/{structureKey:[^/]+}" +
-				"/{filename:[^$]+}");
-
-		Map<String, String> params = new HashMap<>();
-
-		stringParser.parse(path.toString(), params);
-
-		params.put("content", content);
-		params.put("type", type);
-
-		return params;
-	}
 	
 	protected Structure getStructure(Map<String, String> params) {
 		Structure structure = new Structure(
@@ -501,7 +440,23 @@ public class WCMDeploymentImpl implements WCMDeployment {
 
 		return structure;
 	}
+	
+	@Reference(
+		unbind = "-", 
+		target="(background.task.executor.class.name=" + 
+			"com.liferay.dynamic.data.mapping.background.task.DDMStructureIndexerBackgroundTaskExecutor)"
+	)
+	protected void setBackgroundTaskExecutor(BackgroundTaskExecutor backgroundTaskExecutor) {
+		_backgroundTaskExecutor = backgroundTaskExecutor;
+	}
+			
+	private BackgroundTaskExecutor _backgroundTaskExecutor;
 
+	@Reference(unbind = "-")
+	protected void setDDMStructureLocalService(DDMStructureLocalService ddmStructureLocalService) {
+		_ddmStructureLocalService = ddmStructureLocalService;
+	}
+	
 	private static final Log _log = LogFactoryUtil.getLog(
 		WCMDeploymentImpl.class);
 
@@ -511,7 +466,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	@Reference
 	private DDMFormJSONSerializer _ddmFormJSONSerializer;
 	
-	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
 
 	@Reference
@@ -524,5 +478,6 @@ public class WCMDeploymentImpl implements WCMDeployment {
 	private Portal _portal;
 
 	private volatile WCMDeploymentConfiguration _wcmDeploymentConfiguration;
+
 
 }
