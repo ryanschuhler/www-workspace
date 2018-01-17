@@ -1,10 +1,10 @@
-FROM alpine:3.5
+FROM alpine:3.7
 
 MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 
 RUN apk update \
   && apk upgrade \
-  && apk add --no-cache bash curl openjdk8 tree unzip zip \
+  && apk add --no-cache bash busybox-extras curl openjdk8 tree unzip zip \
   && addgroup -S liferay \
   && adduser -S -G liferay liferay 
 
@@ -36,12 +36,12 @@ RUN if [[ ! -f "/opt/java/*.zip" ]] \
 COPY --chown=liferay:liferay ./*.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/*.sh
 
-RUN /usr/local/bin/apply-fix-packs.sh 
-
 EXPOSE 8080/tcp
 EXPOSE 11311/tcp
 
 COPY --chown=liferay:liferay ./resources/ ${LIFERAY_HOME}/
+
+RUN /usr/local/bin/apply-fix-packs.sh 
 
 RUN mkdir -p /tmp/liferay
 
