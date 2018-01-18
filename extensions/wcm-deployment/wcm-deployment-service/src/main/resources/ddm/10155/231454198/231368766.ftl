@@ -6,7 +6,7 @@
 <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 
-<#assign journal_article_local_service = journalArticleLocalService />
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 <#assign runtime_id = 1>
 

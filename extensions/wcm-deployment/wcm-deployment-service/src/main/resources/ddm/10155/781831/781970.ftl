@@ -22,7 +22,7 @@
 		<#return get_localized_expando_value(entity.getExpandoBridge(), "campaign_id")>
 	</#function>
 
-	<#assign portalURL = "https://" + themeDisplay.getPortalURL() />
+	<#assign portalURL = "https://" + getterUtil.getString (request['theme-display']['portal-url']) />
 
 	<#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 	<#assign http_servlet_request = service_context.getRequest() />
@@ -38,7 +38,7 @@
 	<#-- Need to move this to the correct spot -->
 	<#assign states_options_json = jsonFactoryUtil.createJSONObject() />
 
-	<#if themeDisplay.isLifecycleRender() && hs_form_local_service??>
+	<#if (request.lifecycle == 'RENDER_PHASE') && hs_form_local_service??>
 		<#attempt>
 			<div class="${article_class.data}">
 				<#include "${templatesPath}/1561886" />
@@ -54,8 +54,12 @@
 
 				<#assign article_namespace = "article${.vars['reserved-article-id'].data}" />
 
-				<#if request.getAttribute("OSB_WWW_HUBSPOT_UTK")??>
-					<#assign hsutk = request.getAttribute("OSB_WWW_HUBSPOT_UTK") />
+				<#assign portlet_namespace = request["portlet-namespace"]>
+
+				<#assign request_attributes = request.attributes />
+
+				<#if request_attributes.OSB_WWW_HUBSPOT_UTK??>
+					<#assign hsutk = request_attributes.OSB_WWW_HUBSPOT_UTK />
 
 					<#assign hs_contact_local_service = serviceLocator.findService("com.liferay.hubspot.service.HSContactLocalService") />
 
@@ -89,8 +93,8 @@
 				</#if>
 
 				<#assign hs_form = hs_form_local_service.fetchHSFormByGUID(form_id.data)! />
-				<#assign query_string = httpUtil.getParameterMap(request.getAttribute("DYNAMIC_QUERY_STRING")) />
-				<#assign portlet_id = portletDisplay.getId() />
+				<#assign query_string = httpUtil.getParameterMap(request_attributes.DYNAMIC_QUERY_STRING) />
+				<#assign portlet_id = request_attributes.PORTLET_ID />
 
 				<#assign asset_info = jsonFactoryUtil.createJSONObject() />
 				<#assign field_strings_json = jsonFactoryUtil.createJSONObject() />
@@ -172,12 +176,22 @@
 					</#if>
 				</#if>
 
+				<#if !layout?has_content>
+					<#assign theme_display = request["theme-display"] />
+
+					<#assign plid = theme_display["plid"]?number />
+
+					<#assign layout_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
+
+					<#assign layout = layout_service.getLayout(plid)! />
+				</#if>
+
 				<#assign layout_campaign_id = get_campaign_id(layout)! />
 
 				<#assign campaign_id = "" />
 
-				<#if request.getAttribute("utm_campaign")?has_content>
-					<#assign campaign_id = htmlUtil.escapeJS(request.getAttribute("utm_campaign")) />
+				<#if request_attributes.utm_campaign?has_content>
+					<#assign campaign_id = htmlUtil.escapeJS(request_attributes.utm_campaign) />
 				<#elseif article_campaign_id?has_content>
 					<#assign campaign_id = article_campaign_id />
 				<#elseif layout_campaign_id?has_content>
@@ -252,7 +266,7 @@
 						</div>
 					</form>
 
-					<#assign ip_address = request.getAttribute("OSB_WWW_REMOTE_ADDRESS")! />
+					<#assign ip_address = request_attributes.OSB_WWW_REMOTE_ADDRESS! />
 
 					<#assign redirect_url = hs_form.getRedirect()! />
 
@@ -340,10 +354,10 @@
 										}
 									}
 
-									fields.recent_conversion_source_content = '${request.getAttribute("utm_content")!}';
-									fields.recent_conversion_medium = '${request.getAttribute("utm_medium")!}';
-									fields.recent_conversion_source = '${request.getAttribute("utm_source")!}';
-									fields.recent_conversion_source_term = '${request.getAttribute("utm_term")!}';
+									fields.recent_conversion_source_content = '${request_attributes.utm_content!}';
+									fields.recent_conversion_medium = '${request_attributes.utm_medium!}';
+									fields.recent_conversion_source = '${request_attributes.utm_source!}';
+									fields.recent_conversion_source_term = '${request_attributes.utm_term!}';
 
 									var previousPageSeen = document.referrer;
 
