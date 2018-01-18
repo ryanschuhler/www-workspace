@@ -1,0 +1,4 @@
+<property>
+  <name>http.agent.name</name>
+  <value>Liferay Crawler</value>
+</property>
