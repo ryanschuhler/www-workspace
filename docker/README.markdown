@@ -45,3 +45,13 @@ If you look at the docker-compose.yaml you can see all of the containers and set
 	* This is your running instance of liferay
 	* Notice you can add files to the `/www-workspace/docker/local/liferay/resources` and they will be copied to your instance for you
 	* If you want to download your own bundle instead of using the url to download, you can do so by adding a `bundle.zip` to the `/www-workspace/docker/base/liferay` folder
+
+## Upgrading the database
+There is an extra docker configuration for upgrading the latest lrdcom database to DXP. The upgrade-database.sh script will look for the latest database image and download it. The script deletes any existing local_mariadb containers and volumes so make sure you don't have any important data there. After importing the latest db image it runs the database upgrade process. If it runs successfully you will see the message done. On my system it takes about 1 1/2 hours. 
+# Make sure you have already built the base images
+# Go to this folder docker/local/upgrade
+# Execute the upgrade-database.sh script
+# Wait till upgrade finishes (done message)
+> Completed Liferay core upgrade and verify processes in 5130 seconds >
+# Press ctrl-c to stop the mariadb container
+# Now if you do docker-compose up in the local directory, you should automatically have the upgraded data

@@ -1,0 +1,3 @@
+[mysqld]
+wait_timeout=31536000
+#log_warnings=4
