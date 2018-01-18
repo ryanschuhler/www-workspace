@@ -28,7 +28,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "apache:/var/www/html"
+      - "httpd:/var/www/html"
       - "./httpd/resources/:/tmp/httpd"
   liferay:
     container_name: liferay
@@ -85,10 +85,19 @@ services:
       - "www-internal"
     ports:
       - "8080:80"
+  nutch:
+    build: nutch/.
+    container_name: nutch
+    image: nutch:www-local
+    ports:
+      - "8983:8983"
+    volumes:
+      - "nutch:/nutch"
 
 volumes:
-  apache:
   elasticsearch:
+  httpd:
   liferay:
   mariadb:
   mockmock:
+  nutch:

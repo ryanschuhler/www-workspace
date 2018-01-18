@@ -2,19 +2,19 @@ FROM alpine:latest
 
 MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 
-WORKDIR /root/
-
 RUN apk update \
   && apk upgrade \
-  && apk add --no-cache ant openssh-server vim telnet git rsync curl openjdk-8-jdk-headless \
+  && apk add --no-cache apache-ant bash busybox-extras curl openjdk8 openssh-server rsync vim
 
-RUN apt update
-RUN apt install -y ant openssh-server vim telnet git rsync curl openjdk-8-jdk-headless
+RUN set -x \
+  && mkdir -p /opt/java/nutch \
+  && curl -fSL "https://github.com/apache/nutch/archive/master.zip" > /opt/java/nutch.zip \
+  && unzip /opt/java/nutch.zip -d /opt/java \
+  && rm /opt/java/nutch.zip \
+  && cd /opt/java/nutch-master \
+  && ant runtime
 
-RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> $HOME/.bashrc
+COPY ./resources/ /tmp/nutch/
 
-RUN git clone https://github.com/apache/nutch.git nutch_source && cd nutch_source && ant runtime
-
-COPY ./resources/ /nutch_source
-
-RUN ln -s nutch_source/runtime/local $HOME/nutch
+RUN ln -s /opt/java/nutch-master/runtime/local /opt/java/nutch
+ENTRYPOINT ["tail", "-f", "/dev/null"]
