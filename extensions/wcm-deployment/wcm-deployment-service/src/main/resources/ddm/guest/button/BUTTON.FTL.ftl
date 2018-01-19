@@ -1,1 +1,0 @@
-<a class="btn ${color.getData()}" onclick="${onClickJS.getData()}">${buttonText.getData()}</a>
