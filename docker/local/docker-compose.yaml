@@ -36,13 +36,15 @@ services:
      - "mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
-      - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
+      - CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=12345 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.rmi.port=12345 -Djava.rmi.server.hostname=$HOSTIP
     image: liferay:www-base
     networks:
       - "www-external"
       - "www-internal"
     ports:
       - "8000:8000"
+      - "11311:11311"
+      - "12345:12345"
     user: liferay
     volumes:
       - "liferay:/opt/java/liferay/data"
@@ -50,6 +52,7 @@ services:
       - "../../extensions/wcm-deployment/wcm-deployment-service/src/main/resources:/mnt/wcm"
       - "./liferay/resources/deploy:/opt/java/liferay/deploy"
       - "./liferay/resources/osgi/modules:/opt/java/liferay/osgi/modules"
+      - "./liferay/resources/osgi/war:/opt/java/liferay/osgi/war"
   mariadb:
     container_name: mariadb
     env_file:

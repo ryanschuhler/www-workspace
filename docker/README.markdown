@@ -55,3 +55,19 @@ There is an extra docker configuration for upgrading the latest lrdcom database 
 > Completed Liferay core upgrade and verify processes in 5130 seconds >
 * Press ctrl-c to stop the mariadb container
 * Now if you do docker-compose up in the local directory, you should automatically have the upgraded data
+j
+## Gogo shell
+In the local Liferay environment, Gogo shell is mapped to port 11311 and exposed to the host, so you can access it just by doing
+`telnet localhost 11311`
+directly from your host machine (you do not need to exec into the container itself)
+
+## JMX
+To monitor the Liferay Java environment with jconsole or jvisualvm please execute this command in the root of the repository to define an environment variable for your host's IP address. 
+
+`. sethostip.sh`
+
+This is needed to set the correct value for the JMX RMI server. If you then run jvisualvm or jconsole you can connect using the following URL. Use it as a Remote Process.
+
+`localhost:12345`
+
+With jvisualvm you can monitor memory usage and look at Java settings. With jconsole you can access mbeans and do things like inspect or clear the ehcache.

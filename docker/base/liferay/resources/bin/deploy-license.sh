@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp ${LIFERAY_HOME}/license/* ${LIFERAY_HOME}/deploy
+cp -v ${LIFERAY_HOME}/image-deploy/* ${LIFERAY_HOME}/deploy
