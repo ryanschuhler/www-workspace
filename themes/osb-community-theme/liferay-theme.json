@@ -1,0 +1,9 @@
+{
+  "LiferayTheme": {
+    "deployPath": "/Users/allenziegenfus/liferay/www-workspace/docker/local/liferay/resources/deploy",
+    "themeName": "osb-community-theme",
+    "appServerPathTheme": "/Users/allenziegenfus/liferay/www-workspace/docker/local/liferay/resources/tomcat-8.0.32/webapps/osb-community-theme",
+    "deployed": false,
+    "appServerPath": "/Users/allenziegenfus/liferay/www-workspace/docker/local/liferay/resources/tomcat-8.0.32"
+  }
+}
