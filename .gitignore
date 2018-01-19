@@ -11,8 +11,11 @@
 **/test-coverage
 **/tmp
 **/.web_bundle_build
+**/bin/.gitignore
+**/dist/
 .gradle
 .idea
 /docker/local/liferay/resources/deploy
 /docker/local/liferay/resources/osgi/modules
+/docker/local/liferay/resources/osgi/war
 test-results
