@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.liferay.osb.www.laguage.cookie;
+package com.liferay.osb.www.language.cookie;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.LifecycleAction;
