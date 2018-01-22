@@ -1,4 +1,4 @@
-FROM alpine:3.4 AS liferay-build
+FROM alpine:latest AS liferay-build
 
 MAINTAINER Allen Ziegenfus <allen.ziegenfus@liferay.com>
 
@@ -10,12 +10,12 @@ RUN apk update \
   && apk upgrade \
   && apk add --no-cache apache-ant bash curl git $JAVA_PACKAGE openssh-client tree unzip zip \
   && addgroup -S liferay \
-  && adduser -S -G liferay liferay 
+  && adduser -S -G liferay liferay
 
 ARG LIFERAY_PLUGINS_SDK_DOWNLOAD_URL
 ARG LIFERAY_DOWNLOAD_URL
 ARG LIFERAY_FIXPACK_DOWNLOAD_URLS
-ARG REPO=git@github.com:allen-ziegenfus/liferay-plugins-ee.git 
+ARG REPO=git@github.com:allen-ziegenfus/liferay-plugins-ee.git
 ARG BRANCH=ee-6.2.x
 ENV LIFERAY_HOME /opt/java/liferay
 ENV JAVA_HOME /usr/lib/jvm/java-1.7-openjdk
@@ -70,7 +70,7 @@ RUN apk update \
   && apk upgrade \
   && apk add --no-cache bash curl $JAVA_PACKAGE tree unzip zip \
   && addgroup -S liferay \
-  && adduser -S -G liferay liferay 
+  && adduser -S -G liferay liferay
 
 ARG LIFERAY_DOWNLOAD_URL
 ARG LIFERAY_FIXPACK_DOWNLOAD_URLS

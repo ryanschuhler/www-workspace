@@ -1,4 +1,4 @@
-FROM mariadb:10.0
+FROM mariadb:latest
 
 MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 

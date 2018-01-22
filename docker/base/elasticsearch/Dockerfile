@@ -1,11 +1,11 @@
-FROM elasticsearch:2.4-alpine
+FROM elasticsearch:alpine
 
 MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 
-RUN /usr/share/elasticsearch/bin/plugin install --batch analysis-icu
-RUN /usr/share/elasticsearch/bin/plugin install --batch analysis-kuromoji 
-RUN /usr/share/elasticsearch/bin/plugin install --batch analysis-smartcn
-RUN /usr/share/elasticsearch/bin/plugin install --batch analysis-stempel
+RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch analysis-icu
+RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch analysis-kuromoji
+RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch analysis-smartcn
+RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch analysis-stempel
 
 COPY ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh

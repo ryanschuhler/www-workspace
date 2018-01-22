@@ -1,4 +1,4 @@
-FROM httpd:2.4
+FROM httpd:alpine
 
 MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 
