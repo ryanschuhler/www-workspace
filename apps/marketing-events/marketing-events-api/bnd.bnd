@@ -1,3 +1,12 @@
-Bundle-Name: Marketing Events API
+Bundle-Name: Liferay OSB WWW Marketing Events API
 Bundle-SymbolicName: com.liferay.osb.www.marketing.events.api
 Bundle-Version: 1.0.0
+Export-Package: 	com.liferay.osb.www.marketing.events.configuration,\
+	com.liferay.osb.www.marketing.events.constants,\
+	com.liferay.osb.www.marketing.events.exception,\
+	com.liferay.osb.www.marketing.events.model,\
+	com.liferay.osb.www.marketing.events.service,\
+	com.liferay.osb.www.marketing.events.service.persistence,\
+	com.liferay.osb.www.marketing.events.util,\
+	com.liferay.osb.www.marketing.events.util.comparator
+-includeresource: META-INF/service.xml=../osb-www-marketing-events-service/service.xml

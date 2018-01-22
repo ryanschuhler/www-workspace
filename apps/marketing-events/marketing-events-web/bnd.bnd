@@ -1,3 +1,7 @@
-Bundle-Name: Marketing Events Web
+Bundle-Name: Liferay OSB WWW Marketing Events Web
 Bundle-SymbolicName: com.liferay.osb.www.marketing.events.web
 Bundle-Version: 1.0.0
+Export-Package:
+Private-Package: com.liferay.util
+1-check: all
+Web-ContextPath: /events-web

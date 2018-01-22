@@ -1,0 +1,147 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<c:if test="<%= MarketingEventSponsorLevelLocalServiceUtil.getMarketingEventSponsorLevelsCount(marketingEventId) > 0 %>">
+	<liferay-ui:header
+		title="sponsors"
+	/>
+
+	<liferay-ui:search-container
+		curParam="cur1"
+		headerNames="name,sponsor-level"
+		iteratorURL="<%= portletURL %>"
+		total="<%= MarketingEventSponsorLocalServiceUtil.getMarketingEventSponsorsCount(marketingEventId) %>"
+	>
+		<liferay-ui:search-container-results
+			results="<%= MarketingEventSponsorLocalServiceUtil.getMarketingEventSponsors(marketingEventId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+		/>
+
+		<liferay-ui:search-container-row
+			className="com.liferay.osb.www.marketing.events.model.MarketingEventSponsor"
+			keyProperty="marketingEventSponsorId"
+			modelVar="marketingEventSponsor"
+		>
+			<liferay-portlet:renderURL var="editMarketingEventSponsorURL">
+				<portlet:param name="mvcPath" value="/admin/edit_marketing_event_sponsor.jsp" />
+				<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+				<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEventSponsor.getMarketingEventId()) %>" />
+				<portlet:param name="marketingEventSponsorId" value="<%= String.valueOf(marketingEventSponsor.getMarketingEventSponsorId()) %>" />
+			</liferay-portlet:renderURL>
+
+			<liferay-ui:search-container-column-text
+				href="<%= editMarketingEventSponsorURL %>"
+				name="name"
+				value="<%= HtmlUtil.escape(marketingEventSponsor.getName()) %>"
+			/>
+
+			<liferay-ui:search-container-column-text
+				name="sponsor-level"
+			>
+
+				<%
+				MarketingEventSponsorLevel marketingEventSponsorLevel = MarketingEventSponsorLevelLocalServiceUtil.fetchMarketingEventSponsorLevel(marketingEventSponsor.getMarketingEventSponsorLevelId());
+				%>
+
+				<%= HtmlUtil.escape(marketingEventSponsorLevel.getName(locale)) %>
+			</liferay-ui:search-container-column-text>
+
+			<liferay-ui:search-container-column-text
+				name="image"
+			>
+
+				<%
+				FileEntry imageFileEntry = marketingEventSponsor.getImageFileEntry();
+				%>
+
+				<c:if test="<%= imageFileEntry != null %>">
+					<img height="auto" src="<%= themeDisplay.getPathContext() + "/documents/" + imageFileEntry.getRepositoryId() + "/" + imageFileEntry.getFolderId() + "/" + HttpUtil.encodeURL(imageFileEntry.getTitle()) + "/" + imageFileEntry.getUuid() %>" width="100" />
+				</c:if>
+			</liferay-ui:search-container-column-text>
+
+			<liferay-ui:search-container-column-jsp
+				align="right"
+				path="/admin/marketing_event_sponsor_action.jsp"
+			/>
+		</liferay-ui:search-container-row>
+
+		<aui:button-row>
+			<liferay-portlet:renderURL var="addMarketingEventSponsorURL">
+				<portlet:param name="mvcPath" value="/admin/edit_marketing_event_sponsor.jsp" />
+				<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+				<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEvent.getMarketingEventId()) %>" />
+			</liferay-portlet:renderURL>
+
+			<aui:button href="<%= addMarketingEventSponsorURL %>" value="add-sponsor" />
+		</aui:button-row>
+
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
+</c:if>
+
+<liferay-ui:header
+	title="sponsor-levels"
+/>
+
+<liferay-ui:search-container
+	curParam="cur2"
+	headerNames="name"
+	iteratorURL="<%= portletURL %>"
+	total="<%= MarketingEventSponsorLevelLocalServiceUtil.getMarketingEventSponsorLevelsCount(marketingEventId) %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= MarketingEventSponsorLevelLocalServiceUtil.getMarketingEventSponsorLevels(marketingEventId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.osb.www.marketing.events.model.MarketingEventSponsorLevel"
+		keyProperty="marketingEventSponsorLevelId"
+		modelVar="marketingEventSponsorLevel"
+	>
+		<liferay-portlet:renderURL var="editMarketingEventSponsorLevelURL">
+			<portlet:param name="mvcPath" value="/admin/edit_marketing_event_sponsor_level.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEventSponsorLevel.getMarketingEventId()) %>" />
+			<portlet:param name="marketingEventSponsorLevelId" value="<%= String.valueOf(marketingEventSponsorLevel.getMarketingEventSponsorLevelId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= editMarketingEventSponsorLevelURL %>"
+			name="name"
+			value="<%= HtmlUtil.escape(marketingEventSponsorLevel.getName(locale)) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="priority"
+		/>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/admin/marketing_event_sponsor_level_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<aui:button-row>
+		<liferay-portlet:renderURL var="addMarketingEventSponsorLevelURL">
+			<portlet:param name="mvcPath" value="/admin/edit_marketing_event_sponsor_level.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEvent.getMarketingEventId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<aui:button href="<%= addMarketingEventSponsorLevelURL %>" value="add-sponsor-level" />
+	</aui:button-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

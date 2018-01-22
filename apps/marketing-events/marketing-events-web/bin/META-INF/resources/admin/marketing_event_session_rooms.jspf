@@ -1,0 +1,74 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<liferay-ui:search-container
+	headerNames="name,image"
+	iteratorURL="<%= portletURL %>"
+	total="<%= MarketingEventSessionRoomLocalServiceUtil.getMarketingEventSessionRoomsCount(marketingEventId) %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= MarketingEventSessionRoomLocalServiceUtil.getMarketingEventSessionRooms(marketingEventId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.osb.www.marketing.events.model.MarketingEventSessionRoom"
+		keyProperty="marketingEventSessionRoomId"
+		modelVar="marketingEventSessionRoom"
+	>
+		<liferay-portlet:renderURL var="editMarketingEventSessionRoomURL">
+			<portlet:param name="mvcPath" value="/admin/edit_marketing_event_session_room.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="marketingEventSessionRoomId" value="<%= String.valueOf(marketingEventSessionRoom.getMarketingEventSessionRoomId()) %>" />
+			<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEventSessionRoom.getMarketingEventId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= editMarketingEventSessionRoomURL %>"
+			name="name"
+			value="<%= HtmlUtil.escape(marketingEventSessionRoom.getName()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="image"
+		>
+
+			<%
+			FileEntry imageFileEntry = marketingEventSessionRoom.getImageFileEntry();
+			%>
+
+			<c:if test="<%= imageFileEntry != null %>">
+				<img height="auto" src="<%= themeDisplay.getPathContext() + "/documents/" + imageFileEntry.getRepositoryId() + "/" + imageFileEntry.getFolderId() + "/" + HttpUtil.encodeURL(imageFileEntry.getTitle()) + "/" + imageFileEntry.getUuid() %>" width="100" />
+			</c:if>
+		</liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/admin/marketing_event_session_room_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<aui:button-row>
+		<liferay-portlet:renderURL var="addMarketingEventSessionRoomURL">
+			<portlet:param name="mvcPath" value="/admin/edit_marketing_event_session_room.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEventId) %>" />
+		</liferay-portlet:renderURL>
+
+		<aui:button href="<%= addMarketingEventSessionRoomURL %>" value="add-room" />
+	</aui:button-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

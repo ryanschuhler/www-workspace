@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEvent" />
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEventAnnouncement" />
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEventSession" />
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEventSessionRoom" />
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEventSponsor" />
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEventSponsorLevel" />
+	<import class="com.liferay.osb.www.marketing.events.model.MarketingEventUser" />
+	<import class="com.liferay.osb.www.marketing.events.model.SocialLink" />
+	<import class="com.liferay.osb.www.marketing.events.model.SocialLinkType" />
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventImpl" table="OSB_MarketingEvent">
+		<id name="marketingEventId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property column="type_" name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="titleURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hostedBy" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hostedByURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="siteGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="slidesFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="videoTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="timeZoneId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" type="org.hibernate.type.TimestampType" />
+		<property name="dateTBA" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="addressId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="latitude" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="longitude" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="globalRegion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property column="online_" name="online" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="registrationType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="registrationURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="extraSettings" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventAnnouncementImpl" table="OSB_MarketingEventAnnouncement">
+		<id name="marketingEventAnnouncementId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="message" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="imageFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="linkURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="linkLabel" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="displayDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventSessionImpl" table="OSB_MarketingEventSession">
+		<id name="marketingEventSessionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="marketingEventSessionRoomId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="keywords" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="slidesFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="videoURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventSessionRoomImpl" table="OSB_MarketingEventSessionRoom">
+		<id name="marketingEventSessionRoomId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="imageFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventSponsorImpl" table="OSB_MarketingEventSponsor">
+		<id name="marketingEventSponsorId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="marketingEventSponsorLevelId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="imageFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventSponsorLevelImpl" table="OSB_MarketingEventSponsorLevel">
+		<id name="marketingEventSponsorLevelId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.MarketingEventUserImpl" table="OSB_MarketingEventUser">
+		<id name="marketingEventUserId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="firstName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyLogoFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="jobTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="imageFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="phoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.SocialLinkImpl" table="OSB_SocialLink">
+		<id name="socialLinkId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="marketingEventUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="socialLinkTypeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.osb.www.marketing.events.model.impl.SocialLinkTypeImpl" table="OSB_SocialLinkType">
+		<id name="socialLinkTypeId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="imageFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

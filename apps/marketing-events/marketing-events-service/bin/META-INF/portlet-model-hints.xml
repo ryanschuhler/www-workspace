@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEvent">
+		<field name="marketingEventId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="type" type="int" />
+		<field localized="true" name="title" type="String">
+			<hint name="display-width">350</hint>
+			<hint name="max-length">4000</hint>
+			<validator name="required" />
+		</field>
+		<field name="titleURL" type="String">
+			<hint-collection name="URL" />
+			<hint name="display-width">350</hint>
+			<hint name="max-length">1000</hint>
+			<validator name="url" />
+		</field>
+		<field name="hostedBy" type="String">
+			<hint name="display-width">350</hint>
+		</field>
+		<field name="hostedByURL" type="String">
+			<hint-collection name="URL" />
+			<hint name="display-width">350</hint>
+			<hint name="max-length">1000</hint>
+			<validator name="url" />
+		</field>
+		<field localized="true" name="summary" type="String">
+			<hint-collection name="TEXTAREA" />
+			<hint name="display-width">350</hint>
+		</field>
+		<field name="siteGroupId" type="long" />
+		<field name="imageFileEntryId" type="long" />
+		<field name="slidesFileEntryId" type="long" />
+		<field name="videoTitle" type="String">
+			<hint name="display-width">350</hint>
+			<hint name="max-length">150</hint>
+		</field>
+		<field name="timeZoneId" type="String" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="dateTBA" type="boolean" />
+		<field name="addressId" type="long" />
+		<field name="latitude" type="double" />
+		<field name="longitude" type="double" />
+		<field name="globalRegion" type="int" />
+		<field name="online" type="boolean" />
+		<field name="registrationType" type="int" />
+		<field name="registrationURL" type="String">
+			<hint-collection name="URL" />
+			<hint name="display-width">350</hint>
+			<validator name="url" />
+		</field>
+		<field name="extraSettings" type="String">
+			<hint name="display-width">350</hint>
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEventAnnouncement">
+		<field name="uuid" type="String" />
+		<field name="marketingEventAnnouncementId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventId" type="long" />
+		<field name="title" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="message" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="summary" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="imageFileEntryId" type="long" />
+		<field name="linkURL" type="String">
+			<hint name="display-width">350</hint>
+			<hint name="max-length">150</hint>
+		</field>
+		<field name="linkLabel" type="String">
+			<hint name="max-length">150</hint>
+		</field>
+		<field name="displayDate" type="Date" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEventSession">
+		<field name="uuid" type="String" />
+		<field name="marketingEventSessionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventId" type="long" />
+		<field name="marketingEventSessionRoomId" type="long" />
+		<field localized="true" name="title" type="String">
+			<hint name="display-width">1000</hint>
+			<hint name="max-length">4000</hint>
+			<validator name="required" />
+		</field>
+		<field localized="true" name="description" type="String" />
+		<field localized="true" name="keywords" type="String" />
+		<field name="slidesFileEntryId" type="long" />
+		<field name="videoURL" type="String">
+			<hint-collection name="URL" />
+			<hint name="display-width">350</hint>
+			<hint name="max-length">150</hint>
+			<validator name="url" />
+		</field>
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEventSessionRoom">
+		<field name="marketingEventSessionRoomId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventId" type="long" />
+		<field name="name" type="String" />
+		<field name="imageFileEntryId" type="long" />
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEventSponsor">
+		<field name="marketingEventSponsorId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventId" type="long" />
+		<field name="marketingEventSponsorLevelId" type="long" />
+		<field name="name" type="String" />
+		<field localized="true" name="description" type="String" />
+		<field name="imageFileEntryId" type="long" />
+		<field name="url" type="String">
+			<hint-collection name="URL" />
+			<hint name="display-width">350</hint>
+			<hint name="max-length">150</hint>
+			<validator name="required" />
+			<validator name="url" />
+		</field>
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEventSponsorLevel">
+		<field name="marketingEventSponsorLevelId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventId" type="long" />
+		<field localized="true" name="name" type="String" />
+		<field name="priority" type="int" />
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.MarketingEventUser">
+		<field name="uuid" type="String" />
+		<field name="marketingEventUserId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventId" type="long" />
+		<field name="firstName" type="String" />
+		<field name="lastName" type="String" />
+		<field name="companyName" type="String" />
+		<field name="companyLogoFileEntryId" type="long" />
+		<field localized="true" name="jobTitle" type="String" />
+		<field localized="true" name="description" type="String" />
+		<field name="imageFileEntryId" type="long" />
+		<field name="phoneNumber" type="String" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.SocialLink">
+		<field name="socialLinkId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="marketingEventUserId" type="long" />
+		<field name="socialLinkTypeId" type="long" />
+		<field name="url" type="String">
+			<hint-collection name="URL" />
+			<hint name="display-width">350</hint>
+			<hint name="max-length">150</hint>
+			<validator name="required" />
+			<validator name="url" />
+		</field>
+	</model>
+	<model name="com.liferay.osb.www.marketing.events.model.SocialLinkType">
+		<field name="socialLinkTypeId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="imageFileEntryId" type="long" />
+	</model>
+</model-hints>

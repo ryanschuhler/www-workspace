@@ -1,0 +1,9 @@
+Bundle-Name: Liferay OSB WWW Marketing Events Scheduler
+Bundle-SymbolicName: com.liferay.osb.www.marketing.events.scheduler
+Bundle-Version: 1.0.0
+Import-Package:\
+	!android.util.*,\
+	\
+	!io.reactivex.*,\
+	\
+	*

@@ -1,3 +1,11 @@
-Bundle-Name: Marketing Events Service
+Bundle-Name: Liferay OSB WWW Marketing Events Service
 Bundle-SymbolicName: com.liferay.osb.www.marketing.events.service
 Bundle-Version: 1.0.0
+Export-Package: 	com.liferay.osb.www.marketing.events.asset,\
+	com.liferay.osb.www.marketing.events.indexer,\
+	com.liferay.osb.www.marketing.events.model,\
+	com.liferay.osb.www.marketing.events.service
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+Private-Package: 	com.liferay.util.dao.orm,\
+	com.liferay.util.portlet
