@@ -1,0 +1,72 @@
+version: '3.3'
+
+networks:
+  www-external:
+    internal: false
+  www-internal:
+    internal: true
+
+services:
+  httpd:
+    container_name: httpd62
+    image: httpd:www-base
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "apache:/var/www/html"
+      - "../httpd/resources/:/tmp/httpd"
+  liferay:
+    build: 
+      args:
+        JAVA_PACKAGE: openjdk7-jre
+        LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
+        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-fix-packs-6.2-ee-sp20-20170717160924965.zip
+      context: liferay/.
+    container_name: liferay-62
+    depends_on:
+     - "mariadb"
+    environment:
+      - "VIRTUAL_PORT=8080"
+    image: liferay-plugins-62:www-base
+    ports:
+      - "8000:8000"
+      - "11311:11311"
+      - "12345:12345"
+    user: liferay
+    networks:
+      - "www-external"
+      - "www-internal"
+    volumes:
+      - "liferay62:/opt/java/liferay/data"
+      - "./liferay/resources:/tmp/liferay"
+      - "./liferay/resources/deploy:/opt/java/liferay/deploy"
+  mariadb:
+    container_name: mariadb62
+    env_file:
+      - "mariadb/mariadb.env"
+    image: mariadb:www-base
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "3307:3306"
+    volumes:
+      - "mariadb62:/var/lib/mysql"
+      - "./mariadb/resources:/tmp/mariadb"
+  hubspot:
+    container_name: hubspot62
+    image: hubspot:www-local
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8080:80"
+
+volumes:
+  apache:
+  liferay62:
+  mariadb62:
