@@ -11,9 +11,10 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "6.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype", version: "2.0.0"
-	provided project(":apps:foundation:portal:portal-dao-orm-custom-sql")
 
-	compileOnly project(":private:apps:osb-www:osb-www-marketing-events-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql", version: "1.0.13"
+
+	compileOnly project(":apps:marketing-events:osb-www-marketing-events-api")
 
 	testCompile group: "biz.aQute.bnd", name: "biz.aQute.remote.api", version: "3.4.0"
 	testCompile group: "com.liferay.arquillian", name: "com.liferay.arquillian.arquillian-container-liferay", version: "1.0.6", {
@@ -23,5 +24,5 @@ dependencies {
 	testCompile group: "junit", name: "junit", version: "4.12"
 	testCompile group: "org.jboss.arquillian.graphene", name: "graphene-webdriver", version: "2.1.0.Final"
 	testCompile group: "org.jboss.arquillian.junit", name: "arquillian-junit-container", version: "1.1.11.Final"
-	testCompile project(":private:apps:osb-www:osb-www-marketing-events-api")
+	testCompile project(":apps:marketing-events:osb-www-marketing-events-api")
 }
