@@ -1,0 +1,10 @@
+.Card {
+	border: 1px solid #e3e4e5;
+	height: 250px;
+	margin: 0.5em;
+	border-radius: 3px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}

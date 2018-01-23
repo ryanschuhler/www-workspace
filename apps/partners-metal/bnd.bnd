@@ -1,0 +1,4 @@
+Bundle-Name: partners-metal
+Bundle-SymbolicName: partners.metal
+Bundle-Version: 1.0.0
+Export-Package: partners.metal.constants
