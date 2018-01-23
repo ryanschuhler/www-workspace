@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.io.Serializable;
@@ -374,7 +373,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getUuid() {
 		if (_uuid == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _uuid;
@@ -425,7 +424,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 			return user.getUuid();
 		}
 		catch (PortalException pe) {
-			return StringPool.BLANK;
+			return "";
 		}
 	}
 
@@ -437,7 +436,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _userName;
@@ -504,7 +503,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getTitle() {
 		if (_title == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _title;
@@ -520,7 +519,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getMessage() {
 		if (_message == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _message;
@@ -536,7 +535,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getSummary() {
 		if (_summary == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _summary;
@@ -563,7 +562,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getLinkURL() {
 		if (_linkURL == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _linkURL;
@@ -579,7 +578,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getLinkLabel() {
 		if (_linkLabel == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _linkLabel;
@@ -654,7 +653,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 			return user.getUuid();
 		}
 		catch (PortalException pe) {
-			return StringPool.BLANK;
+			return "";
 		}
 	}
 
@@ -666,7 +665,7 @@ public class MarketingEventAnnouncementModelImpl extends BaseModelImpl<Marketing
 	@Override
 	public String getStatusByUserName() {
 		if (_statusByUserName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _statusByUserName;

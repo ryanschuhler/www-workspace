@@ -21,7 +21,6 @@ import com.liferay.osb.www.marketing.events.model.MarketingEvent;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -138,7 +137,7 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		marketingEventImpl.setUserId(userId);
 
 		if (userName == null) {
-			marketingEventImpl.setUserName(StringPool.BLANK);
+			marketingEventImpl.setUserName("");
 		}
 		else {
 			marketingEventImpl.setUserName(userName);
@@ -161,35 +160,35 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		marketingEventImpl.setType(type);
 
 		if (title == null) {
-			marketingEventImpl.setTitle(StringPool.BLANK);
+			marketingEventImpl.setTitle("");
 		}
 		else {
 			marketingEventImpl.setTitle(title);
 		}
 
 		if (titleURL == null) {
-			marketingEventImpl.setTitleURL(StringPool.BLANK);
+			marketingEventImpl.setTitleURL("");
 		}
 		else {
 			marketingEventImpl.setTitleURL(titleURL);
 		}
 
 		if (hostedBy == null) {
-			marketingEventImpl.setHostedBy(StringPool.BLANK);
+			marketingEventImpl.setHostedBy("");
 		}
 		else {
 			marketingEventImpl.setHostedBy(hostedBy);
 		}
 
 		if (hostedByURL == null) {
-			marketingEventImpl.setHostedByURL(StringPool.BLANK);
+			marketingEventImpl.setHostedByURL("");
 		}
 		else {
 			marketingEventImpl.setHostedByURL(hostedByURL);
 		}
 
 		if (summary == null) {
-			marketingEventImpl.setSummary(StringPool.BLANK);
+			marketingEventImpl.setSummary("");
 		}
 		else {
 			marketingEventImpl.setSummary(summary);
@@ -200,14 +199,14 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		marketingEventImpl.setSlidesFileEntryId(slidesFileEntryId);
 
 		if (videoTitle == null) {
-			marketingEventImpl.setVideoTitle(StringPool.BLANK);
+			marketingEventImpl.setVideoTitle("");
 		}
 		else {
 			marketingEventImpl.setVideoTitle(videoTitle);
 		}
 
 		if (timeZoneId == null) {
-			marketingEventImpl.setTimeZoneId(StringPool.BLANK);
+			marketingEventImpl.setTimeZoneId("");
 		}
 		else {
 			marketingEventImpl.setTimeZoneId(timeZoneId);
@@ -236,14 +235,14 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		marketingEventImpl.setRegistrationType(registrationType);
 
 		if (registrationURL == null) {
-			marketingEventImpl.setRegistrationURL(StringPool.BLANK);
+			marketingEventImpl.setRegistrationURL("");
 		}
 		else {
 			marketingEventImpl.setRegistrationURL(registrationURL);
 		}
 
 		if (extraSettings == null) {
-			marketingEventImpl.setExtraSettings(StringPool.BLANK);
+			marketingEventImpl.setExtraSettings("");
 		}
 		else {
 			marketingEventImpl.setExtraSettings(extraSettings);
@@ -309,7 +308,7 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(userName);
@@ -321,35 +320,35 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		objectOutput.writeInt(type);
 
 		if (title == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(title);
 		}
 
 		if (titleURL == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(titleURL);
 		}
 
 		if (hostedBy == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(hostedBy);
 		}
 
 		if (hostedByURL == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(hostedByURL);
 		}
 
 		if (summary == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(summary);
@@ -362,14 +361,14 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		objectOutput.writeLong(slidesFileEntryId);
 
 		if (videoTitle == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(videoTitle);
 		}
 
 		if (timeZoneId == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(timeZoneId);
@@ -393,14 +392,14 @@ public class MarketingEventCacheModel implements CacheModel<MarketingEvent>,
 		objectOutput.writeInt(registrationType);
 
 		if (registrationURL == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(registrationURL);
 		}
 
 		if (extraSettings == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(extraSettings);

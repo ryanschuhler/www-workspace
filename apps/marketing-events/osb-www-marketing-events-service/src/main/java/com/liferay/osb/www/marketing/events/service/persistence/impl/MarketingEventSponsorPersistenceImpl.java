@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
@@ -311,7 +310,7 @@ public class MarketingEventSponsorPersistenceImpl extends BasePersistenceImpl<Ma
 		msg.append("marketingEventId=");
 		msg.append(marketingEventId);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchMarketingEventSponsorException(msg.toString());
 	}
@@ -364,7 +363,7 @@ public class MarketingEventSponsorPersistenceImpl extends BasePersistenceImpl<Ma
 		msg.append("marketingEventId=");
 		msg.append(marketingEventId);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchMarketingEventSponsorException(msg.toString());
 	}
@@ -855,7 +854,7 @@ public class MarketingEventSponsorPersistenceImpl extends BasePersistenceImpl<Ma
 		msg.append(", marketingEventSponsorLevelId=");
 		msg.append(marketingEventSponsorLevelId);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchMarketingEventSponsorException(msg.toString());
 	}
@@ -913,7 +912,7 @@ public class MarketingEventSponsorPersistenceImpl extends BasePersistenceImpl<Ma
 		msg.append(", marketingEventSponsorLevelId=");
 		msg.append(marketingEventSponsorLevelId);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchMarketingEventSponsorException(msg.toString());
 	}
@@ -1682,12 +1681,12 @@ public class MarketingEventSponsorPersistenceImpl extends BasePersistenceImpl<Ma
 		for (Serializable primaryKey : uncachedPrimaryKeys) {
 			query.append((long)primaryKey);
 
-			query.append(StringPool.COMMA);
+			query.append(",");
 		}
 
 		query.setIndex(query.index() - 1);
 
-		query.append(StringPool.CLOSE_PARENTHESIS);
+		query.append(")");
 
 		String sql = query.toString();
 

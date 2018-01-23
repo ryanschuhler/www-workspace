@@ -21,7 +21,6 @@ import com.liferay.osb.www.marketing.events.model.MarketingEventSponsorLevel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -98,7 +97,7 @@ public class MarketingEventSponsorLevelCacheModel implements CacheModel<Marketin
 		marketingEventSponsorLevelImpl.setUserId(userId);
 
 		if (userName == null) {
-			marketingEventSponsorLevelImpl.setUserName(StringPool.BLANK);
+			marketingEventSponsorLevelImpl.setUserName("");
 		}
 		else {
 			marketingEventSponsorLevelImpl.setUserName(userName);
@@ -122,7 +121,7 @@ public class MarketingEventSponsorLevelCacheModel implements CacheModel<Marketin
 		marketingEventSponsorLevelImpl.setMarketingEventId(marketingEventId);
 
 		if (name == null) {
-			marketingEventSponsorLevelImpl.setName(StringPool.BLANK);
+			marketingEventSponsorLevelImpl.setName("");
 		}
 		else {
 			marketingEventSponsorLevelImpl.setName(name);
@@ -158,7 +157,7 @@ public class MarketingEventSponsorLevelCacheModel implements CacheModel<Marketin
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(userName);
@@ -170,7 +169,7 @@ public class MarketingEventSponsorLevelCacheModel implements CacheModel<Marketin
 		objectOutput.writeLong(marketingEventId);
 
 		if (name == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(name);

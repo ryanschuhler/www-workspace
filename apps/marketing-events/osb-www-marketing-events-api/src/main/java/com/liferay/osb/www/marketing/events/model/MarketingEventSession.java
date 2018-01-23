@@ -63,6 +63,10 @@ public interface MarketingEventSession extends MarketingEventSessionModel,
 	public com.liferay.portal.kernel.json.JSONArray getAssetCategoriesJSONArray()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public java.util.List<java.lang.String> getMarketingEventSessionImageURLs(
+		MarketingEventSession marketingEventSession)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	@com.liferay.portal.kernel.json.JSON()
 	public MarketingEventSessionRoom getMarketingEventSessionRoom()
 		throws com.liferay.portal.kernel.exception.PortalException;

@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -416,7 +415,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getUuid() {
 		if (_uuid == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _uuid;
@@ -455,7 +454,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 			return user.getUuid();
 		}
 		catch (PortalException pe) {
-			return StringPool.BLANK;
+			return "";
 		}
 	}
 
@@ -505,7 +504,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 			return user.getUuid();
 		}
 		catch (PortalException pe) {
-			return StringPool.BLANK;
+			return "";
 		}
 	}
 
@@ -517,7 +516,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _userName;
@@ -584,7 +583,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getFirstName() {
 		if (_firstName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _firstName;
@@ -600,7 +599,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getLastName() {
 		if (_lastName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _lastName;
@@ -616,7 +615,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getCompanyName() {
 		if (_companyName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _companyName;
@@ -643,7 +642,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getJobTitle() {
 		if (_jobTitle == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _jobTitle;
@@ -744,7 +743,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getDescription() {
 		if (_description == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _description;
@@ -858,7 +857,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getPhoneNumber() {
 		if (_phoneNumber == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _phoneNumber;
@@ -912,7 +911,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 			return user.getUuid();
 		}
 		catch (PortalException pe) {
-			return StringPool.BLANK;
+			return "";
 		}
 	}
 
@@ -924,7 +923,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 	@Override
 	public String getStatusByUserName() {
 		if (_statusByUserName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _statusByUserName;
@@ -1084,7 +1083,7 @@ public class MarketingEventUserModelImpl extends BaseModelImpl<MarketingEventUse
 		String xml = getJobTitle();
 
 		if (xml == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 
 		Locale defaultLocale = LocaleUtil.getDefault();

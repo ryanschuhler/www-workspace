@@ -455,6 +455,13 @@ public class MarketingEventSessionWrapper implements MarketingEventSession,
 	}
 
 	@Override
+	public java.util.List<java.lang.String> getMarketingEventSessionImageURLs(
+		MarketingEventSession marketingEventSession)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _marketingEventSession.getMarketingEventSessionImageURLs(marketingEventSession);
+	}
+
+	@Override
 	public MarketingEventSessionRoom getMarketingEventSessionRoom()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getMarketingEventSessionRoom();

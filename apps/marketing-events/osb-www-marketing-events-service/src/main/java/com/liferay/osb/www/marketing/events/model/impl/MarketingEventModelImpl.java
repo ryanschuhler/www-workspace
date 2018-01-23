@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
@@ -513,7 +512,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 			return user.getUuid();
 		}
 		catch (PortalException pe) {
-			return StringPool.BLANK;
+			return "";
 		}
 	}
 
@@ -525,7 +524,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _userName;
@@ -592,7 +591,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getTitle() {
 		if (_title == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _title;
@@ -691,7 +690,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getTitleURL() {
 		if (_titleURL == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _titleURL;
@@ -707,7 +706,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getHostedBy() {
 		if (_hostedBy == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _hostedBy;
@@ -723,7 +722,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getHostedByURL() {
 		if (_hostedByURL == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _hostedByURL;
@@ -739,7 +738,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getSummary() {
 		if (_summary == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _summary;
@@ -884,7 +883,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getVideoTitle() {
 		if (_videoTitle == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _videoTitle;
@@ -900,7 +899,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getTimeZoneId() {
 		if (_timeZoneId == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _timeZoneId;
@@ -1049,7 +1048,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getRegistrationURL() {
 		if (_registrationURL == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _registrationURL;
@@ -1065,7 +1064,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 	@Override
 	public String getExtraSettings() {
 		if (_extraSettings == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _extraSettings;
@@ -1128,7 +1127,7 @@ public class MarketingEventModelImpl extends BaseModelImpl<MarketingEvent>
 		String xml = getTitle();
 
 		if (xml == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 
 		Locale defaultLocale = LocaleUtil.getDefault();

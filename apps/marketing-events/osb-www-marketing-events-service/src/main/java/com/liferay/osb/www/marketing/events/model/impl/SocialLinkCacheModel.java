@@ -21,7 +21,6 @@ import com.liferay.osb.www.marketing.events.model.SocialLink;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -97,7 +96,7 @@ public class SocialLinkCacheModel implements CacheModel<SocialLink>,
 		socialLinkImpl.setUserId(userId);
 
 		if (userName == null) {
-			socialLinkImpl.setUserName(StringPool.BLANK);
+			socialLinkImpl.setUserName("");
 		}
 		else {
 			socialLinkImpl.setUserName(userName);
@@ -121,7 +120,7 @@ public class SocialLinkCacheModel implements CacheModel<SocialLink>,
 		socialLinkImpl.setSocialLinkTypeId(socialLinkTypeId);
 
 		if (url == null) {
-			socialLinkImpl.setUrl(StringPool.BLANK);
+			socialLinkImpl.setUrl("");
 		}
 		else {
 			socialLinkImpl.setUrl(url);
@@ -155,7 +154,7 @@ public class SocialLinkCacheModel implements CacheModel<SocialLink>,
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(userName);
@@ -169,7 +168,7 @@ public class SocialLinkCacheModel implements CacheModel<SocialLink>,
 		objectOutput.writeLong(socialLinkTypeId);
 
 		if (url == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(url);

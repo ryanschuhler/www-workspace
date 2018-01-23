@@ -21,7 +21,6 @@ import com.liferay.osb.www.marketing.events.model.MarketingEventSponsor;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -103,7 +102,7 @@ public class MarketingEventSponsorCacheModel implements CacheModel<MarketingEven
 		marketingEventSponsorImpl.setUserId(userId);
 
 		if (userName == null) {
-			marketingEventSponsorImpl.setUserName(StringPool.BLANK);
+			marketingEventSponsorImpl.setUserName("");
 		}
 		else {
 			marketingEventSponsorImpl.setUserName(userName);
@@ -127,14 +126,14 @@ public class MarketingEventSponsorCacheModel implements CacheModel<MarketingEven
 		marketingEventSponsorImpl.setMarketingEventSponsorLevelId(marketingEventSponsorLevelId);
 
 		if (name == null) {
-			marketingEventSponsorImpl.setName(StringPool.BLANK);
+			marketingEventSponsorImpl.setName("");
 		}
 		else {
 			marketingEventSponsorImpl.setName(name);
 		}
 
 		if (description == null) {
-			marketingEventSponsorImpl.setDescription(StringPool.BLANK);
+			marketingEventSponsorImpl.setDescription("");
 		}
 		else {
 			marketingEventSponsorImpl.setDescription(description);
@@ -143,7 +142,7 @@ public class MarketingEventSponsorCacheModel implements CacheModel<MarketingEven
 		marketingEventSponsorImpl.setImageFileEntryId(imageFileEntryId);
 
 		if (url == null) {
-			marketingEventSponsorImpl.setUrl(StringPool.BLANK);
+			marketingEventSponsorImpl.setUrl("");
 		}
 		else {
 			marketingEventSponsorImpl.setUrl(url);
@@ -181,7 +180,7 @@ public class MarketingEventSponsorCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(userName);
@@ -195,14 +194,14 @@ public class MarketingEventSponsorCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(marketingEventSponsorLevelId);
 
 		if (name == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(name);
 		}
 
 		if (description == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(description);
@@ -211,7 +210,7 @@ public class MarketingEventSponsorCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(imageFileEntryId);
 
 		if (url == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(url);

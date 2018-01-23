@@ -21,7 +21,6 @@ import com.liferay.osb.www.marketing.events.model.MarketingEventSession;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -118,7 +117,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		MarketingEventSessionImpl marketingEventSessionImpl = new MarketingEventSessionImpl();
 
 		if (uuid == null) {
-			marketingEventSessionImpl.setUuid(StringPool.BLANK);
+			marketingEventSessionImpl.setUuid("");
 		}
 		else {
 			marketingEventSessionImpl.setUuid(uuid);
@@ -129,7 +128,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		marketingEventSessionImpl.setUserId(userId);
 
 		if (userName == null) {
-			marketingEventSessionImpl.setUserName(StringPool.BLANK);
+			marketingEventSessionImpl.setUserName("");
 		}
 		else {
 			marketingEventSessionImpl.setUserName(userName);
@@ -153,21 +152,21 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		marketingEventSessionImpl.setMarketingEventSessionRoomId(marketingEventSessionRoomId);
 
 		if (title == null) {
-			marketingEventSessionImpl.setTitle(StringPool.BLANK);
+			marketingEventSessionImpl.setTitle("");
 		}
 		else {
 			marketingEventSessionImpl.setTitle(title);
 		}
 
 		if (description == null) {
-			marketingEventSessionImpl.setDescription(StringPool.BLANK);
+			marketingEventSessionImpl.setDescription("");
 		}
 		else {
 			marketingEventSessionImpl.setDescription(description);
 		}
 
 		if (keywords == null) {
-			marketingEventSessionImpl.setKeywords(StringPool.BLANK);
+			marketingEventSessionImpl.setKeywords("");
 		}
 		else {
 			marketingEventSessionImpl.setKeywords(keywords);
@@ -176,7 +175,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		marketingEventSessionImpl.setSlidesFileEntryId(slidesFileEntryId);
 
 		if (videoURL == null) {
-			marketingEventSessionImpl.setVideoURL(StringPool.BLANK);
+			marketingEventSessionImpl.setVideoURL("");
 		}
 		else {
 			marketingEventSessionImpl.setVideoURL(videoURL);
@@ -200,7 +199,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		marketingEventSessionImpl.setStatusByUserId(statusByUserId);
 
 		if (statusByUserName == null) {
-			marketingEventSessionImpl.setStatusByUserName(StringPool.BLANK);
+			marketingEventSessionImpl.setStatusByUserName("");
 		}
 		else {
 			marketingEventSessionImpl.setStatusByUserName(statusByUserName);
@@ -254,7 +253,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(uuid);
@@ -267,7 +266,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(userName);
@@ -281,21 +280,21 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(marketingEventSessionRoomId);
 
 		if (title == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(title);
 		}
 
 		if (description == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(description);
 		}
 
 		if (keywords == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(keywords);
@@ -304,7 +303,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(slidesFileEntryId);
 
 		if (videoURL == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(videoURL);
@@ -318,7 +317,7 @@ public class MarketingEventSessionCacheModel implements CacheModel<MarketingEven
 		objectOutput.writeLong(statusByUserId);
 
 		if (statusByUserName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(statusByUserName);

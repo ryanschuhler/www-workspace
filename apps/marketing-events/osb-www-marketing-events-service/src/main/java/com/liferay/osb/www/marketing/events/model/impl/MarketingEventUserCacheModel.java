@@ -21,7 +21,6 @@ import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -118,7 +117,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		MarketingEventUserImpl marketingEventUserImpl = new MarketingEventUserImpl();
 
 		if (uuid == null) {
-			marketingEventUserImpl.setUuid(StringPool.BLANK);
+			marketingEventUserImpl.setUuid("");
 		}
 		else {
 			marketingEventUserImpl.setUuid(uuid);
@@ -129,7 +128,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		marketingEventUserImpl.setUserId(userId);
 
 		if (userName == null) {
-			marketingEventUserImpl.setUserName(StringPool.BLANK);
+			marketingEventUserImpl.setUserName("");
 		}
 		else {
 			marketingEventUserImpl.setUserName(userName);
@@ -152,21 +151,21 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		marketingEventUserImpl.setMarketingEventId(marketingEventId);
 
 		if (firstName == null) {
-			marketingEventUserImpl.setFirstName(StringPool.BLANK);
+			marketingEventUserImpl.setFirstName("");
 		}
 		else {
 			marketingEventUserImpl.setFirstName(firstName);
 		}
 
 		if (lastName == null) {
-			marketingEventUserImpl.setLastName(StringPool.BLANK);
+			marketingEventUserImpl.setLastName("");
 		}
 		else {
 			marketingEventUserImpl.setLastName(lastName);
 		}
 
 		if (companyName == null) {
-			marketingEventUserImpl.setCompanyName(StringPool.BLANK);
+			marketingEventUserImpl.setCompanyName("");
 		}
 		else {
 			marketingEventUserImpl.setCompanyName(companyName);
@@ -175,14 +174,14 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		marketingEventUserImpl.setCompanyLogoFileEntryId(companyLogoFileEntryId);
 
 		if (jobTitle == null) {
-			marketingEventUserImpl.setJobTitle(StringPool.BLANK);
+			marketingEventUserImpl.setJobTitle("");
 		}
 		else {
 			marketingEventUserImpl.setJobTitle(jobTitle);
 		}
 
 		if (description == null) {
-			marketingEventUserImpl.setDescription(StringPool.BLANK);
+			marketingEventUserImpl.setDescription("");
 		}
 		else {
 			marketingEventUserImpl.setDescription(description);
@@ -191,7 +190,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		marketingEventUserImpl.setImageFileEntryId(imageFileEntryId);
 
 		if (phoneNumber == null) {
-			marketingEventUserImpl.setPhoneNumber(StringPool.BLANK);
+			marketingEventUserImpl.setPhoneNumber("");
 		}
 		else {
 			marketingEventUserImpl.setPhoneNumber(phoneNumber);
@@ -201,7 +200,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		marketingEventUserImpl.setStatusByUserId(statusByUserId);
 
 		if (statusByUserName == null) {
-			marketingEventUserImpl.setStatusByUserName(StringPool.BLANK);
+			marketingEventUserImpl.setStatusByUserName("");
 		}
 		else {
 			marketingEventUserImpl.setStatusByUserName(statusByUserName);
@@ -255,7 +254,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(uuid);
@@ -268,7 +267,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(userName);
@@ -280,21 +279,21 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		objectOutput.writeLong(marketingEventId);
 
 		if (firstName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(firstName);
 		}
 
 		if (lastName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(lastName);
 		}
 
 		if (companyName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(companyName);
@@ -303,14 +302,14 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		objectOutput.writeLong(companyLogoFileEntryId);
 
 		if (jobTitle == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(jobTitle);
 		}
 
 		if (description == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(description);
@@ -319,7 +318,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		objectOutput.writeLong(imageFileEntryId);
 
 		if (phoneNumber == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(phoneNumber);
@@ -330,7 +329,7 @@ public class MarketingEventUserCacheModel implements CacheModel<MarketingEventUs
 		objectOutput.writeLong(statusByUserId);
 
 		if (statusByUserName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(statusByUserName);
