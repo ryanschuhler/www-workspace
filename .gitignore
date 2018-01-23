@@ -19,3 +19,7 @@
 /docker/local/liferay/resources/osgi/modules
 /docker/local/liferay/resources/osgi/war
 test-results
+/.metadata/
+id_rsa
+id_rsa.pub
+activation-key*.xml

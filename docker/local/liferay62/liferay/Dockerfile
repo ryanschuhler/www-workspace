@@ -89,9 +89,9 @@ EXPOSE 11311/tcp
 
 COPY --chown=liferay:liferay ./resources/ ${LIFERAY_HOME}/
 
-RUN /usr/local/bin/apply-fix-packs.sh $LIFERAY_FIXPACK_DOWNLOAD_URLS
+RUN apply-fix-packs.sh $LIFERAY_FIXPACK_DOWNLOAD_URLS
 
 RUN mkdir -p /tmp/liferay
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/opt/java/liferay/tomcat/bin/catalina.sh", "run"]
