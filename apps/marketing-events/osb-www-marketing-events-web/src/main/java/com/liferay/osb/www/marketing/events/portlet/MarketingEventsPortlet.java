@@ -16,6 +16,7 @@ package com.liferay.osb.www.marketing.events.portlet;
 
 import com.liferay.osb.www.marketing.events.configuration.MarketingEventsConfiguration;
 import com.liferay.osb.www.marketing.events.constants.OSBWWWMarketingEventsPortletKeys;
+import com.liferay.osb.www.marketing.events.service.MarketingEventLocalService;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
@@ -31,6 +32,7 @@ import javax.portlet.RenderResponse;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Allen Ziegenfus
@@ -78,4 +80,6 @@ public class MarketingEventsPortlet extends MVCPortlet {
 
 	private volatile MarketingEventsConfiguration _configuration;
 
+	@Reference
+	MarketingEventLocalService _marketingEventLocalService;
 }

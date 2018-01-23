@@ -61,7 +61,7 @@ public class MarketingEventServiceUpgrade implements UpgradeStepRegistrator {
 		}
 		
 		registry.register(
-			"com.liferay.osb.www.marketing.events.service", "0.0.1", "1.0.0", new UpgradeCompanyId());
+			"com.liferay.osb.www.marketing.events.service", "0.0.1", "1.1.0", new UpgradeCompanyId());
 
 	}
 
