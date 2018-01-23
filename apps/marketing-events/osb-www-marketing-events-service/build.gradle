@@ -25,4 +25,10 @@ dependencies {
 	testCompile group: "org.jboss.arquillian.graphene", name: "graphene-webdriver", version: "2.1.0.Final"
 	testCompile group: "org.jboss.arquillian.junit", name: "arquillian-junit-container", version: "1.1.11.Final"
 	testCompile project(":apps:marketing-events:osb-www-marketing-events-api")
+
+buildService {
+	apiDir = "../osb-www-marketing-events-api/src/main/java"
+}
+
+group = "com.liferay.osb"
 }
