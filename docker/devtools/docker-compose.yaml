@@ -1,0 +1,37 @@
+version: '3.3'
+
+networks:
+  www-external:
+    internal: false
+  www-internal:
+    internal: true
+
+services:
+  mockmock:
+    build: mockmock/.
+    container_name: mockmock
+    expose:
+      - "25"
+    image: mockmock
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8282:8282"
+    volumes:
+      - "mockmock:/home"
+  hubspot:
+    build: hubspot/.
+    container_name: hubspot
+    image: hubspot
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8080:80"
+    volumes:
+      - "hubspot:/home"
+
+volumes:
+  hubspot:
+  mockmock:
