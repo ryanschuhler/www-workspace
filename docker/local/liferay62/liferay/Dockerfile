@@ -19,7 +19,7 @@ ARG REPO=git@github.com:allen-ziegenfus/liferay-plugins-ee.git
 ARG BRANCH=ee-6.2.x
 ENV LIFERAY_HOME /opt/java/liferay
 ENV JAVA_HOME /usr/lib/jvm/java-1.7-openjdk
-ENV PLUGINS_LIST hooks/osb-www-hook hooks/portal-compat-hook portlets/osb-www-asset-publisher-portlet portlets/hubspot-portlet themes/osb-community-theme portlets/osb-www-marketing-events-portlet portlets/marketplace-portlet
+ENV PLUGINS_LIST hooks/osb-www-hook hooks/portal-compat-hook portlets/osb-www-asset-publisher-portlet portlets/hubspot-portlet themes/osb-community-theme portlets/osb-www-marketing-events-portlet portlets/marketplace-portlet portlets/osb-www-portlet
 
 RUN chmod o+w /usr/share/java/apache-ant/lib
 
@@ -58,7 +58,7 @@ RUN git clone ${REPO} --single-branch --branch ${BRANCH} --depth=1 --progress  /
 # copy over build properites and portlet properties
 COPY --chown=liferay:liferay build-properties/ /opt/java/plugins-sdk
 
-RUN build_plugins.sh
+RUN build_plugins.sh ${PLUGINS_LIST}
 
 FROM alpine:latest
 
@@ -93,5 +93,5 @@ RUN apply-fix-packs.sh $LIFERAY_FIXPACK_DOWNLOAD_URLS
 
 RUN mkdir -p /tmp/liferay
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["/opt/java/liferay/tomcat/bin/catalina.sh", "run"]
