@@ -15,7 +15,7 @@
 **/dist/
 .gradle
 .idea
-/docker/local/liferay/resources/deploy
-/docker/local/liferay/resources/osgi/modules
-/docker/local/liferay/resources/osgi/war
+/docker/liferay/resources/deploy
+/docker/liferay/resources/osgi/modules
+/docker/liferay/resources/osgi/war
 test-results
