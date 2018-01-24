@@ -3,7 +3,7 @@
 
 $standardSpacing: 1em;
 
-.aui {
+html {
 	#wrapper .preview-block a:hover {
 		border-color: #1C75B9;
 	}

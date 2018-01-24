@@ -1,15 +1,16 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 $standardSpacing: 1em;
 
-.aui {
+html {
 	#wrapper .preview-block a:hover {
 		border-color: #1C75B9;
 	}
 
 	.modal {
 		background-color: #FFF;
+		border-radius: 0;
 		border-width: 0;
 		box-shadow: none;
 		left: 50% !important;
@@ -17,7 +18,6 @@ $standardSpacing: 1em;
 		overflow: auto;
 		position: absolute;
 
-		@include border-radius(0);
 
 		@include respond-to(phone) {
 			width: 100% !important;
@@ -38,12 +38,12 @@ $standardSpacing: 1em;
 
 		input[type='text'], select {
 			background-color: transparent;
+			border-radius: 0;
 			height: auto;
 			line-height: 1.5em;
 			width: 220px;
 
 			@include appearance(none);
-			@include border-radius(0);
 			@include box-sizing(border-box);
 		}
 

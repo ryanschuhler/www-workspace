@@ -17,7 +17,7 @@ $standardSpacing: 1em;
 		overflow: auto;
 		position: absolute;
 
-		@include border-radius(0);
+		border-radius: 0;
 
 		@include respond-to(phone) {
 			width: 100% !important;
