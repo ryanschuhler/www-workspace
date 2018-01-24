@@ -1,150 +1,126 @@
-configure (subprojects) { project ->
-  task cleanProject(type:Exec) {
-    group "Docker"
-    description "Deletes all modules and wars from project"
+task cleanProject(type:Exec) {
+  group "Docker"
+  description "Deletes all modules and wars from project"
 
-    doLast {
-      exec {
-        commandLine "rm", "-r", "-f", "liferay/resources/osgi/modules/"
-      }
-
-      exec {
-        commandLine "rm", "-r", "-f", "liferay/resources/deploy/"
-      }
+  doLast {
+    exec {
+      commandLine "rm", "-r", "-f", "liferay/resources/osgi/modules/"
     }
 
-    commandLine "echo", "Emptied /www-workspace/docker/${project.name}/liferay/resources/osgi/modules and /www-workspace/docker/${project.name}/liferay/resources/deploy"
-  }
-
-  task compile(type:Exec) {
-    group "Docker"
-    description "Compiles all modules listed for deploy.modules in gradle.properties for project"
-
-    def String[] modules = project.property('deploy.modules').split(',')
-
-    doLast {
-      modules.each { module ->
-        exec {
-          workingDir "../" + module
-          commandLine "gradle", "deploy"
-        }
-
-        exec {
-          commandLine "echo", "Ran gradle deploy for ${module}"
-        }
-      }
+    exec {
+      commandLine "rm", "-r", "-f", "liferay/resources/osgi/wars/"
     }
 
-    commandLine "echo", "Compiling ${modules.size()} modules for ${project.name}"
-  }
-
-  task buildBase(type:Exec) {
-    group "Docker"
-    description "Compiles modules and builds docker images for base project"
-
-    dependsOn compile
-
-    doLast {
-      exec {
-        workingDir "../base"
-        commandLine "docker-compose", "build"
-      }
+    exec {
+      commandLine "rm", "-r", "-f", "liferay/resources/deploy/"
     }
-
-    commandLine "echo", "Compiling and building base project"
   }
 
-  task buildProject(type:Exec) {
-    group "Docker"
-    description "Compiles modules and builds docker images for project"
+  commandLine "echo", "Emptied /www-workspace/docker/${project.name}/liferay/resources/osgi/modules and /www-workspace/docker/${project.name}/liferay/resources/deploy"
+}
 
-    dependsOn compile
+task compile(type:Exec) {
+  group "Docker"
+  description "Compiles all modules listed for deploy.modules in gradle.properties for project"
 
-    doLast {
+  def String[] modules = project.property('deploy.modules').split(',')
+
+  doLast {
+    modules.each { module ->
       exec {
-        commandLine "docker-compose", "build"
-      }
-    }
-
-    commandLine "echo", "Compiling and building ${project.name} project"
-  }
-
-  task build(type:Exec) {
-    group "Docker"
-    description "Runs build for base project and then current project"
-
-    dependsOn buildBase
-    dependsOn buildProject
-
-    commandLine "echo", "Building images for base and ${project.name}"
-  }
-
-  task down(type:Exec) {
-    group "Docker"
-    description "Stops and cleans up all docker instances for project"
-
-    doLast {
-      exec {
-        commandLine "docker-compose", "down"
-      }
-    }
-
-    commandLine "echo", "Running docker-compose down"
-  }
-
-  task restart(type:Exec) {
-    group "Docker"
-    description "Restarts up all docker instances for project"
-
-    doLast {
-      exec {
-        commandLine "docker-compose", "stop"
+        workingDir "../" + module
+        commandLine "gradle", "deploy"
       }
 
       exec {
-        commandLine "docker-compose", "start"
+        commandLine "echo", "Ran gradle deploy for ${module}"
       }
     }
-
-    commandLine "echo", "Running docker-compose stop and then docker-compose start"
   }
 
-  task start(type:Exec) {
-    group "Docker"
-    description "Starts up all docker instances for project"
+  commandLine "echo", "Compiling ${modules.size()} modules for ${project.name}"
+}
 
-    doLast {
-      exec {
-        commandLine "docker-compose", "start"
-      }
+task buildImages(type:Exec) {
+  group "Docker"
+  description "Compiles modules and builds docker images for project"
+
+  dependsOn compile
+
+  doLast {
+    exec {
+      commandLine "docker-compose", "build"
+    }
+  }
+
+  commandLine "echo", "Compiling and building ${project.name} project"
+}
+
+task down(type:Exec) {
+  group "Docker"
+  description "Stops and cleans up all docker instances for project"
+
+  doLast {
+    exec {
+      commandLine "docker-compose", "down"
+    }
+  }
+
+  commandLine "echo", "Running docker-compose down"
+}
+
+task restart(type:Exec) {
+  group "Docker"
+  description "Restarts up all docker instances for project"
+
+  doLast {
+    exec {
+      commandLine "docker-compose", "stop"
     }
 
-    commandLine "echo", "Running docker-compose start"
-  }
-
-  task stop(type:Exec) {
-    group "Docker"
-    description "Stops all docker instances for project"
-
-    doLast {
-      exec {
-        commandLine "docker-compose", "stop"
-      }
+    exec {
+      commandLine "docker-compose", "start"
     }
-
-    commandLine "echo", "Running docker-compose stop"
   }
 
-  task up(type:Exec) {
-    group "Docker"
-    description "Sets up and starts all docker instances for project"
+  commandLine "echo", "Running docker-compose stop and then docker-compose start"
+}
 
-    doLast {
-      exec {
-        commandLine "docker-compose", "up", "-d"
-      }
+task start(type:Exec) {
+  group "Docker"
+  description "Starts up all docker instances for project"
+
+  doLast {
+    exec {
+      commandLine "docker-compose", "start"
     }
-
-    commandLine "echo", "Running docker-compose up -d"
   }
+
+  commandLine "echo", "Running docker-compose start"
+}
+
+task stop(type:Exec) {
+  group "Docker"
+  description "Stops all docker instances for project"
+
+  doLast {
+    exec {
+      commandLine "docker-compose", "stop"
+    }
+  }
+
+  commandLine "echo", "Running docker-compose stop"
+}
+
+task up(type:Exec) {
+  group "Docker"
+  description "Sets up and starts all docker instances for project"
+
+  doLast {
+    exec {
+      commandLine "docker-compose", "up", "-d"
+    }
+  }
+
+  commandLine "echo", "Running docker-compose up -d"
 }

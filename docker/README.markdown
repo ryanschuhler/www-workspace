@@ -5,8 +5,8 @@ This is an environment setup for www.liferay.com using both docker and Liferay w
 * Intall [Docker](https://docs.docker.com/engine/installation/)
 	* Increase memory in docker (in app preferences)
 * Make sure that [gradle](https://gradle.org/install/) is installed and your `PATH` environment variable is updated
-* From the `docker/local` folder you can run `gradle build`
-  * This should take around 10 minutes the first time you run it. After that it caches many of the files so subsequent builds should be faster depending on what you have changed.
+* From the `docker` folder you can run `gradle buildImages`
+  * This should take around 5 minutes the first time you run it. After that it caches many of the files so subsequent builds should be faster depending on what you have changed.
 * Run `gradle up`
 * Go to [localhost](http://localhost) in your browser
 * To shut down your containers you can run `gradle down`
@@ -38,18 +38,21 @@ If you look at the docker-compose.yaml you can see all of the containers and set
 	* Using elasticsearch
 	* This is a dedicated server to store search indexes
 	* You can see the indexes at <http://localhost:9200/_cat/indices>
-* Email Server
-	* Using mockmock
-	* This is just for testing so that you can send emails from liferay and see them at <http://localhost:8282>
 * Liferay Instance
 	* This is your running instance of liferay
-	* Notice you can add files to the `/www-workspace/docker/local/liferay/resources` and they will be copied to your instance for you
+	* Notice you can add files to the `/www-workspace/docker/liferay/resources` and they will be copied to your instance for you
 	* If you want to download your own bundle instead of using the url to download, you can do so by adding a `bundle.zip` to the `/www-workspace/docker/base/liferay` folder
+* Dev Tools
+  * Email Server
+    * Using mockmock
+    * This is just for testing so that you can send emails from liferay and see them at <http://localhost:8282>
+  * Fake HubSpot Server
+    * This is just a mock json of some hubspot responses for testing
 
 ## Upgrading the database
 There is an extra docker configuration for upgrading the latest lrdcom database to DXP. The upgrade-database.sh script will look for the latest database image and download it. The script deletes any existing local_mariadb containers and volumes so make sure you don't have any important data there. After importing the latest db image it runs the database upgrade process. If it runs successfully you will see the message done. On my system it takes about 1 1/2 hours. 
 * Make sure you have already built the base images
-* Go to this folder docker/local/upgrade
+* Go to this folder docker/devtools/upgrade
 * Execute the upgrade-database.sh script
 * Wait till upgrade finishes (done message)
 > Completed Liferay core upgrade and verify processes in 5130 seconds >
