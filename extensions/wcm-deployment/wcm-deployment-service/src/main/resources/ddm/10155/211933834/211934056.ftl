@@ -1,14 +1,14 @@
-<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil") />
+ 
 
-<#assign marketing_event_user_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService") />
+<#assign marketing_event_user_local_service =   serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService") />
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0)! />
 
 <#if request.lifecycle == 'RENDER_PHASE'>
-	<#assign class_loader_util = staticUtil["com.liferay.portal.util.ClassLoaderUtil"]>
-	<#assign class_loader = class_loader_util.getPluginClassLoader("osb-www-marketing-events-portlet")>
+	 
+	 
 
-	<#assign marketing_events_util = staticUtil["com.liferay.portal.kernel.util.InstanceFactory"].newInstance(class_loader, "com.liferay.osb.www.marketing.events.util.MarketingEventsUtil")>
+	<#assign  marketing_events = serviceLocator.findService("com.liferay.osb.www.marketing.events.util.MarketingEvents") >
 
 	<#assign list_util = staticUtil["com.liferay.portal.kernel.util.ListUtil"]>
 
@@ -16,7 +16,7 @@
 
 	<#assign first_name_order_by = order_by_comparator_factory_util.create("MarketingEventUser", ["firstName", true])>
 
-	<#assign featured_speakers = list_util.sort(marketing_events_util.getMarketingEventUsers(marketing_event_id, "Marketing Event User Types", "Featured")!, first_name_order_by)/>
+	<#assign featured_speakers = list_util.sort( marketing_events.getMarketingEventUsers(marketing_event_id, "Marketing Event User Types", "Featured")!, first_name_order_by)/>
 
 	<#assign speakers = list_util.remove(marketing_event_user_local_service.getMarketingEventUsers(marketing_event_id, 0, -1, -1), featured_speakers)>
 

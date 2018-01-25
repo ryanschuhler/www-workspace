@@ -26,9 +26,9 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 	protected String[][] getRenamePortletIdsArray() {
 		return new String[][] {
 			new String[] 
-			{"1_WAR_osbwwwmarketingeventsportlet",OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_ADMIN},
-			{"2_WAR_osbwwwmarketingeventsportlet", OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_DISPLAY}
-			//{"3_WAR_osbwwwmarketingeventsportlet", OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_DISPLAY},
+			{"1_WAR_osbwwwmarketingeventsportlet", OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_ADMIN},
+			{"2_WAR_osbwwwmarketingeventsportlet", OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_DISPLAY},
+			{"3_WAR_osbwwwmarketingeventsportlet", OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_AGENDA}
 			
 		};
 	}

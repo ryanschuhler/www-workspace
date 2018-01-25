@@ -86,12 +86,9 @@
 
 <@liferay_util["include"] page=body_top_include />
 
-<#--
-TODO
-	<#if permissionChecker.isOmniadmin() || is_site_admin>
-		<@liferay.dockbar />
-	</#if>
--->
+<#if permissionChecker.isOmniadmin() || is_site_admin>
+	<@liferay.control_menu />
+</#if>
 
 <div class="container-fluid" id="wrapper">
 	<div class="content">

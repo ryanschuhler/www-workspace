@@ -22,6 +22,9 @@ public class OSBWWWMarketingEventsPortletKeys {
 	public static final String MARKETING_EVENTS_ADMIN =
 		"com_liferay_osb_www_marketing_events_MarketingEventsAdminPortlet";
 
+	public static final String MARKETING_EVENTS_AGENDA =
+		"com_liferay_osb_www_marketing_events_MarketingEventsAgendaPortlet";
+
 	public static final String MARKETING_EVENTS_DISPLAY =
 		"com_liferay_osb_www_marketing_events_MarketingEventsDisplayPortlet";
 

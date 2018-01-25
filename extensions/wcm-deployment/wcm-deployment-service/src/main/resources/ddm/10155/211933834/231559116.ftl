@@ -4,14 +4,14 @@
 
 <#assign locale_english = locale_util.UK>
 
-<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil")>
+ 
 
-<#assign asset_category_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetCategoryLocalService")>
-<#assign asset_category_property_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetCategoryPropertyLocalService")>
-<#assign asset_vocabulary_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetVocabularyLocalService") />
-<#assign marketing_event_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventLocalService")>
-<#assign marketing_event_session_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService")>
-<#assign marketing_event_user_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService")>
+<#assign asset_category_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryLocalService")>
+<#assign asset_category_property_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryPropertyLocalService")>
+<#assign asset_vocabulary_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetVocabularyLocalService") />
+<#assign marketing_event_local_service =   serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventLocalService")>
+<#assign marketing_event_session_local_service =   serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService")>
+<#assign marketing_event_user_local_service =   serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService")>
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0)>
 

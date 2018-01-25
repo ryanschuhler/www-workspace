@@ -28,5 +28,5 @@
 		}
 	</script>
 <#else>
-	${theme.search()}
+	<@liferay.search />
 </#if>

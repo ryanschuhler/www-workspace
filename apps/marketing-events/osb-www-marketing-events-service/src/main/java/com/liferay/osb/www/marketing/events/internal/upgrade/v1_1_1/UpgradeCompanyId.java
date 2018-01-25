@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osb.www.marketing.events.internal.upgrade.v1_0_0;
+package com.liferay.osb.www.marketing.events.internal.upgrade.v1_1_1;
 
 import com.liferay.portal.kernel.upgrade.BaseUpgradeCompanyId;
 

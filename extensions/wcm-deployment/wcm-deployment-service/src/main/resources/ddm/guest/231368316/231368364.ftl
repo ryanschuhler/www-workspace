@@ -206,7 +206,7 @@
 		}
 	</style>
 
-	<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil")>
+	 
 
 	<#assign hs_subscription_options = [
 		"blog_en_us_customer_experience",
@@ -217,7 +217,7 @@
 
 	<#if request.attributes.OSB_WWW_HUBSPOT_UTK??>
 		<#assign hsutk = request.attributes.OSB_WWW_HUBSPOT_UTK>
-		<#assign hs_contact_local_service = portlet_bean_locator.locate("hubspot-portlet", "com.liferay.hubspot.service.HSContactLocalService")>
+		<#assign hs_contact_local_service =  serviceLocator.findService("com.liferay.hubspot.service.HSContactLocalService")>
 
 		<#assign hs_contact = hs_contact_local_service.fetchHSContactByUserToken(hsutk)!>
 

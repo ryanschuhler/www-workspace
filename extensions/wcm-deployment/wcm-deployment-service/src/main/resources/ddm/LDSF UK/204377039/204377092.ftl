@@ -1,4 +1,4 @@
-<#assign layout_service = serviceLocator.findService("com.liferay.portal.service.LayoutLocalService") />
+<#assign layout_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
 <#assign theme_display = request["theme-display"] />
 <#assign plid = theme_display["plid"] />
 <#assign layout = layout_service.getLayout(plid?number) />

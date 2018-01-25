@@ -15,14 +15,12 @@
 
 package com.liferay.osb.www.marketing.events.internal.upgrade;
 
-import com.liferay.osb.www.marketing.events.internal.upgrade.v1_0_0.UpgradeCompanyId;
-import com.liferay.portal.kernel.settings.SettingsFactory;
+import com.liferay.osb.www.marketing.events.internal.upgrade.v1_1_1.UpgradeCompanyId;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.portal.upgrade.release.BaseUpgradeServiceModuleRelease;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Allen Ziegenfus
@@ -34,7 +32,7 @@ public class MarketingEventServiceUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		
 		try {
-			BaseUpgradeServiceModuleRelease upgradeServiceModuleRelease =
+			BaseUpgradeServiceModuleRelease baseUpgradeServiceModuleRelease =
 				new BaseUpgradeServiceModuleRelease() {
 
 					@Override
@@ -54,22 +52,14 @@ public class MarketingEventServiceUpgrade implements UpgradeStepRegistrator {
 
 				};
 
-			upgradeServiceModuleRelease.upgrade();
+			baseUpgradeServiceModuleRelease.upgrade();
 		}
 		catch (UpgradeException ue) {
 			throw new RuntimeException(ue);
 		}
 		
 		registry.register(
-			"com.liferay.osb.www.marketing.events.service", "0.0.1", "1.1.0", new UpgradeCompanyId());
-
+			"com.liferay.osb.www.marketing.events.service", "1.1.0", "1.1.1", new UpgradeCompanyId());
 	}
-
-	@Reference(unbind = "-")
-	protected void setSettingsFactory(SettingsFactory settingsFactory) {
-		_settingsFactory = settingsFactory;
-	}
-
-	private SettingsFactory _settingsFactory;
 
 }

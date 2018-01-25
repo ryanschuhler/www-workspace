@@ -345,7 +345,7 @@
 
 <#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil") >
 
-<#assign marketing_event_user_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService") >
+<#assign marketing_event_user_local_service =   serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService") >
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0) >
 

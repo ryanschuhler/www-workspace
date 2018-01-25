@@ -1,11 +1,11 @@
-<#assign class_loader_util = staticUtil["com.liferay.portal.util.ClassLoaderUtil"]>
-<#assign class_loader = class_loader_util.getPluginClassLoader("osb-www-marketing-events-portlet")>
+ 
+ 
 
-<#assign marketing_events_util = staticUtil["com.liferay.portal.kernel.util.InstanceFactory"].newInstance(class_loader, "com.liferay.osb.www.marketing.events.util.MarketingEventsUtil")>
+<#assign  marketing_events = serviceLocator.findService("com.liferay.osb.www.marketing.events.util.MarketingEvents") >
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0) />
 
-<#assign test_speakers_sessions_map = marketing_events_util.getMarketingEventUserMarketingEventSessionsMap(marketing_event_id, "Marketing Event Session Types", "Experts Exchange") />
+<#assign test_speakers_sessions_map =  marketing_events.getMarketingEventUserMarketingEventSessionsMap(marketing_event_id, "Marketing Event Session Types", "Experts Exchange") />
 
 
 <div class="portlet-layout" id="expert-exchange-section">

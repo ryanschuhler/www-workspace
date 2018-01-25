@@ -77,7 +77,6 @@ import java.util.TreeMap;
  * @author Ryan Schuhler
  * @author Joan H. Kim
  */
-//TODO: create interface like DDLImpl.java?
 public class MarketingEventsUtil {
 
 	public static AssetCategory fetchAssetCategory(
@@ -440,98 +439,6 @@ public class MarketingEventsUtil {
 		}
 
 		return ListUtil.sort(jsonObjects, new MarketingEventsUtilComparator());
-	}
-
-	public Map<MarketingEventUser, List<MarketingEventSession>>
-			getMarketingEventUserMarketingEventSessionsMap(
-				long marketingEventId, String vocabularyName,
-				String categoryName)
-		throws PortalException {
-
-		MarketingEvent marketingEvent =
-			MarketingEventLocalServiceUtil.getMarketingEvent(marketingEventId);
-
-		List<MarketingEventSession> marketingEventSessions = new ArrayList<>();
-
-		try {
-			AssetVocabulary assetVocabulary =
-				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
-					marketingEvent.getSiteGroupId(), vocabularyName);
-
-			AssetCategory assetCategory = fetchAssetCategory(
-				categoryName, assetVocabulary.getVocabularyId());
-
-			marketingEventSessions =
-				MarketingEventSessionLocalServiceUtil.getMarketingEventSessions(
-					new long[] {assetCategory.getCategoryId()},
-					new int[] {WorkflowConstants.STATUS_APPROVED},
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
-		catch (Exception e) {
-			return Collections.emptyMap();
-		}
-
-		Map<MarketingEventUser, List<MarketingEventSession>>
-			marketingEventUserMarketingEventSessionsMap = new TreeMap<>(
-				new MarketingEventUserFirstNameComparator());
-
-		for (MarketingEventSession marketingEventSession :
-				marketingEventSessions) {
-
-			for (MarketingEventUser marketingEventUser :
-					marketingEventSession.getMarketingEventUsers()) {
-
-				List<MarketingEventSession>
-					marketingEventUserMarketingEventSessionList;
-
-				if (marketingEventUserMarketingEventSessionsMap.containsKey(
-						marketingEventUser)) {
-
-					marketingEventUserMarketingEventSessionList =
-						marketingEventUserMarketingEventSessionsMap.get(
-							marketingEventUser);
-				}
-				else {
-					marketingEventUserMarketingEventSessionList =
-						new ArrayList<>();
-				}
-
-				marketingEventUserMarketingEventSessionList.add(
-					marketingEventSession);
-
-				marketingEventUserMarketingEventSessionsMap.put(
-					marketingEventUser,
-					marketingEventUserMarketingEventSessionList);
-			}
-		}
-
-		return marketingEventUserMarketingEventSessionsMap;
-	}
-
-	public List<MarketingEventUser> getMarketingEventUsers(
-			long marketingEventId, String vocabularyName, String categoryName)
-		throws PortalException {
-
-		MarketingEvent marketingEvent =
-			MarketingEventLocalServiceUtil.getMarketingEvent(marketingEventId);
-
-		try {
-			AssetVocabulary assetVocabulary =
-				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
-					marketingEvent.getSiteGroupId(), vocabularyName);
-
-			AssetCategory assetCategory = fetchAssetCategory(
-				categoryName, assetVocabulary.getVocabularyId());
-
-			return MarketingEventUserLocalServiceUtil.getMarketingEventUsers(
-				new long[] {assetCategory.getCategoryId()},
-				new int[] {WorkflowConstants.STATUS_APPROVED},
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new MarketingEventUserFirstNameComparator());
-		}
-		catch (Exception e) {
-			return Collections.emptyList();
-		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
