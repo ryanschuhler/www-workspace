@@ -2,6 +2,6 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <category name="com.liferay.osb.www.wcm.deployment.dev">
-        <priority value="DEBUG" />
+        <priority value="${LOGGING_LEVEL:-ERROR}" />
     </category>
 </log4j:configuration>
