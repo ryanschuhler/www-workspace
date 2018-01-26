@@ -5,7 +5,10 @@ rm -rfv ${ENTRYPOINT_DIR}
 mkdir -p ${ENTRYPOINT_DIR}
 cp *.sql ${ENTRYPOINT_DIR}
 BASE_URL=http://mirrors/files.liferay.com/private/lrdcom/
+#BASE_URL=http://mirrors/files.liferay.com/private/data/www 
 DB_URL=`curl -s ${BASE_URL} | grep www_lportal | tail -1 | perl -n  -e'/href=\"(.*)\"/ && print $1' `
 curl -fSL ${BASE_URL}/${DB_URL} > ${ENTRYPOINT_DIR}/db.sql.gz
+cp ${ENTRYPOINT_DIR}/db.sql.gz ~/.liferay/databases/${DB_URL}
+
 
 
