@@ -1,6 +1,5 @@
 <#macro submit_form>
-	<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil") />
-	<#assign hs_form_local_service = portlet_bean_locator.locate("hubspot-portlet", "com.liferay.hubspot.service.HSFormLocalService") />
+	<#assign hs_form_local_service = serviceLocator.findService("com.liferay.hubspot.service.HSFormLocalService") />
 
 	<!-- Testing -->
 	<#-- <#assign hs_account_id = "299703" /> -->

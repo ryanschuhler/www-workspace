@@ -58,10 +58,9 @@
 	}
 </style>
 
-<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil") />
-
-<#assign marketing_event_sponsor_level_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLevelLocalService") />
-<#assign marketing_event_sponsor_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLocalService") />
+ 
+<#assign marketing_event_sponsor_level_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLevelLocalService") />
+<#assign marketing_event_sponsor_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLocalService") />
 
 <#assign order_by_comparator_factory_util = staticUtil["com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil"]>
 

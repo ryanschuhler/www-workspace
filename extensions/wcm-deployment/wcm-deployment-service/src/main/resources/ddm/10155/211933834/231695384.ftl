@@ -4,20 +4,19 @@
 
 <#assign locale_english = locale_util.UK>
 
-<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil")>
-
-<#assign asset_category_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetCategoryLocalService")>
-<#assign asset_category_property_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetCategoryPropertyLocalService")>
-<#assign asset_vocabulary_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetVocabularyLocalService") />
-<#assign marketing_event_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventLocalService")>
-<#assign marketing_event_session_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService")>
-<#assign marketing_event_user_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService")>
+ 
+<#assign asset_category_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryLocalService")>
+<#assign asset_category_property_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryPropertyLocalService")>
+<#assign asset_vocabulary_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetVocabularyLocalService") />
+<#assign marketing_event_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventLocalService")>
+<#assign marketing_event_session_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService")>
+<#assign marketing_event_user_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService")>
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0)>
 
 <#assign orderByComparatorFactoryUtil = staticUtil["com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil"]>
 
-<#assign sessions_map = marketing_event_session_local_service.getMarketingEventSessionsMap(marketing_event_id, true)!>
+<#assign session_entries = marketing_event_session_local_service.getMarketingEventSessionEntries(marketing_event_id, true)!>
 
 <#assign marketing_event = marketing_event_local_service.getMarketingEvent(marketing_event_id)>
 
@@ -71,9 +70,9 @@
 	<h2 class="lego-element no-margin no-padding text-center">AGENDA*</h2>
 
 	<ul class="element-border session-tab-wrapper">
-		<#assign sessions_dates = sessions_map.keySet().toArray()>
+		<#assign sessions_dates = session_entries.keySet().toArray()>
 
-		<#list sessions_dates as date>
+		 <#list session_entries as session_entry>
 			<#assign localized_date = dateUtil.getDate(date, (agenda_date_format.data)!"EEEE, MMM dd, yyyy", locale_english, time_zone)>
 
 			<#assign this_day = "day-${date_index + 1}">
@@ -113,10 +112,10 @@
 	</div>
 
 	<div class="agenda-hidden">
-		<#list sessions_dates as date>
+		 <#list session_entries as session_entry>
 			<table class="day-${date_index + 1} session-table w100">
 				<tbody>
-					<#assign sessions_list = sessions_map.get(date).toArray()>
+					<#assign sessions_list = session_entries.get(date).toArray()>
 					<#assign slot_rowspan_offsets =  jsonFactoryUtil.createJSONObject()>
 					<#assign slot_times = [sessions_list?first.getStartDate()]>
 

@@ -1,10 +1,10 @@
-<#assign portlet_bean_locator = objectUtil("com.liferay.portal.kernel.bean.PortletBeanLocatorUtil") />
+ 
 
-<#assign asset_category_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetCategoryLocalService")>
-<#assign asset_vocabulary_local_service = serviceLocator.findService("com.liferay.portlet.asset.service.AssetVocabularyLocalService") />
-<#assign marketing_event_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventLocalService") />
-<#assign marketing_event_session_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService") />
-<#assign marketing_event_user_local_service = portlet_bean_locator.locate("osb-www-marketing-events-portlet", "com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService") />
+<#assign asset_category_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryLocalService")>
+<#assign asset_vocabulary_local_service = serviceLocator.findService("com.liferay.asset.kernel.service.AssetVocabularyLocalService") />
+<#assign marketing_event_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventLocalService") />
+<#assign marketing_event_session_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService") />
+<#assign marketing_event_user_local_service = serviceLocator.findService("com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService") />
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0) />
 
@@ -12,14 +12,14 @@
 
 <#assign categories_order_by = orderByComparatorFactoryUtil.create("AssetCategory", ["name", true])>
 
-<#assign class_loader_util = staticUtil["com.liferay.portal.util.ClassLoaderUtil"]>
-<#assign class_loader = class_loader_util.getPluginClassLoader("osb-www-marketing-events-portlet")>
+ 
+ 
 
-<#assign marketing_events_util = staticUtil["com.liferay.portal.kernel.util.InstanceFactory"].newInstance(class_loader, "com.liferay.osb.www.marketing.events.util.MarketingEventsUtil")>
+<#assign  marketing_events = serviceLocator.findService("com.liferay.osb.www.marketing.events.util.MarketingEvents") >
 
-<#assign session_sponsors = marketing_events_util.getMarketingEventUsers(marketing_event_id, "Marketing Event User Types", "Session Sponsor")! />
+<#assign session_sponsors = marketing_events.getMarketingEventUsers(marketing_event_id, "Marketing Event User Types", "Session Sponsor")! />
 
-<#assign sessions_map = marketing_event_session_local_service.getMarketingEventSessionsMap(marketing_event_id, true)! />
+<#assign session_entries = marketing_event_session_local_service.getMarketingEventSessionEntries(marketing_event_id, true)! />
 
 <#assign time_zone_id = marketing_event_local_service.getMarketingEvent(marketing_event_id).getTimeZoneId() />
 <#assign time_zone = timeZoneUtil.getTimeZone(time_zone_id) />
@@ -54,11 +54,11 @@
 
 <section class="sessions" id="agenda">
 	<ul class="border-bottom border-top element-border session-tab-wrapper">
-		<#assign sessions_dates = sessions_map.keySet().toArray() />
+		<#assign sessions_dates = session_entries.keySet().toArray() />
 
-		<#list sessions_dates as date>
+		 <#list session_entries as session_entry>
 			<#assign localized_date = dateUtil.getDate(date, (agenda_date_format.data)!"EEEE, MMM dd, yyyy" , locale, time_zone) />
-			<#assign this_day = "day-${date_index + 1}" />
+			<#assign this_day = "day-${session_entry_index + 1}" />
 
 			<li class="class-toggle session-tab standard-padding-vertical text-center toggler-header-collapsed ${this_day}" data-target-class="class-toggle-active-${this_day}" data-target-nodes=".sessions, .sessions li.${this_day}, .sessions .session-table.${this_day}" data-toggle-type="carousel" role="presentation">
 				${localized_date}
@@ -79,8 +79,8 @@
 		</#list>
 	</div>
 
-	<#list sessions_dates as date>
-		<table class="day-${date_index + 1} session-table w100">
+	 <#list session_entries as session_entry>
+		<table class="day-${session_entry_index + 1} session-table w100">
 
 			<tbody>
 				<#assign current_start_date = "" />
@@ -88,10 +88,10 @@
 				<#assign slot_talk_counts = {} />
 				<#assign talk_count = 1 />
 
-				<#assign sessions_list = sessions_map.get(date).toArray() />
+				<#assign sessions_list = session_entry.getValue() >
 
 				<#list sessions_list as session>
-					<#assign current_start_date = session.getStartDate().getTime()?string />
+					<#assign current_start_date = session.getStartDate()?time?string />
 
 					<#if session_index == 0>
 						<#assign previous_start_date = current_start_date />
@@ -115,7 +115,7 @@
 						<#if current_session_time != previous_session_time>
 							<#assign previous_session_time = current_session_time />
 
-							<td class="hidden-phone hidden-tablet standard-padding time-display w20" rowspan="${slot_talk_counts[session.getStartDate().getTime()?string]}">
+							<td class="hidden-phone hidden-tablet standard-padding time-display w20" rowspan="${slot_talk_counts[session.getStartDate()?time?string]}">
 								<h3 class="alt-font-color">
 									${current_session_time}
 								</h3>
@@ -139,7 +139,7 @@
 							</#if>
 						</#list>
 
-						<td class="align-center block-container session-detail ${session_track} standard-padding" data-session-type="${htmlUtil.escape(session_type)}" data-talks-in-row="${slot_talk_counts[session.getStartDate().getTime()?string]}">
+						<td class="align-center block-container session-detail ${session_track} standard-padding" data-session-type="${htmlUtil.escape(session_type)}" data-talks-in-row="${slot_talk_counts[session.getStartDate()?time?string]}">
 							<div class="block w70">
 								<p class="visible-phone visible-tablet">${current_session_time_range}</p>
 
@@ -152,7 +152,7 @@
 								<#list session_speaker_ids as speaker_id>
 									<#assign speaker = marketing_event_user_local_service.getMarketingEventUser(speaker_id) />
 
-									<#if session_sponsors.contains(speaker)>
+									<#if session_sponsors?seq_contains(speaker)>
 										<#assign session_company_logos = session_company_logos + {speaker.getCompanyName(): speaker.getCompanyLogoFileEntryURL()} />
 									</#if>
 
