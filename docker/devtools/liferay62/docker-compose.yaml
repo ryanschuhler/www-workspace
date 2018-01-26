@@ -23,6 +23,7 @@ services:
     build: 
       args:
         JAVA_PACKAGE: openjdk7-jre
+        BRANCH: LRIS-28398-2018-01-24
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
         LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-fix-packs-6.2-ee-sp20-20170717160924965.zip
       context: liferay/.
