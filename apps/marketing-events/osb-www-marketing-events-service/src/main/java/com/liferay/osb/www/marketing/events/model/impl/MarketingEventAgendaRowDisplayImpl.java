@@ -89,6 +89,16 @@ public class MarketingEventAgendaRowDisplayImpl
 				return StringUtil.toUpperCase(assetCategory.getName());
 			}
 
+			@Override
+			public Class<String> getAttributeClass() {
+				return String.class;
+			}
+
+			@Override
+			public Class<AssetCategory> getTypeClass() {
+				return AssetCategory.class;
+			}
+
 		};
 
 	private Date _startDate;

@@ -322,6 +322,13 @@ public class MarketingEventSessionLocalServiceUtil {
 				   .getMarketingEventSessionByUuidAndCompanyId(uuid, companyId);
 	}
 
+	public static java.util.List<java.util.Map.Entry<java.util.Date, java.util.List<com.liferay.osb.www.marketing.events.model.MarketingEventSession>>> getMarketingEventSessionEntries(
+		long marketingEventId, boolean asc)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getMarketingEventSessionEntries(marketingEventId, asc);
+	}
+
 	/**
 	* Returns a range of all the marketing event sessions.
 	*
@@ -468,6 +475,18 @@ public class MarketingEventSessionLocalServiceUtil {
 		getService()
 			.setMarketingEventUserMarketingEventSessions(marketingEventUserId,
 			marketingEventSessionIds);
+	}
+
+	public static void updateAsset(long userId, long groupId,
+		com.liferay.osb.www.marketing.events.model.MarketingEventSession marketingEventSession,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames,
+		long[] assetLinkEntryIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.search.SearchException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateAsset(userId, groupId, marketingEventSession,
+			assetCategoryIds, assetTagNames, assetLinkEntryIds);
 	}
 
 	public static com.liferay.osb.www.marketing.events.model.MarketingEventSession updateMarketingEventSession(

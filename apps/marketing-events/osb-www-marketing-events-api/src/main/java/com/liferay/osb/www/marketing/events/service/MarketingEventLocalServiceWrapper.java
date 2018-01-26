@@ -245,6 +245,13 @@ public class MarketingEventLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.osb.www.marketing.events.model.MarketingEventAgendaDisplay getMarketingEventAgendaDisplay(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _marketingEventLocalService.getMarketingEventAgendaDisplay(groupId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.osb.www.marketing.events.model.MarketingEvent> getMarketingEvents(
 		int type, java.util.Date startDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc) {

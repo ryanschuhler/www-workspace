@@ -15,7 +15,6 @@
 package com.liferay.osb.www.marketing.events.admin.portlet;
 
 import com.liferay.asset.kernel.exception.AssetCategoryException;
-import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.osb.www.marketing.events.configuration.MarketingEventsConfiguration;
@@ -66,6 +65,7 @@ import com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLocalSe
 import com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.service.SocialLinkLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.service.SocialLinkTypeLocalServiceUtil;
+import com.liferay.osb.www.marketing.events.util.MarketingEventCacheUtil;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.AddressCityException;
 import com.liferay.portal.kernel.exception.AddressStreetException;
@@ -79,14 +79,11 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.io.IOException;
-
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -120,12 +117,12 @@ import org.osgi.service.component.annotations.Reference;
 
 		"com.liferay.portlet.preferences-company-wide=true",
 		"com.liferay.portlet.preferences-unique-per-layout=false",
-		"com.liferay.portlet.control-panel-entry-category=site_administration.content",
 		"com.liferay.portlet.control-panel-entry-weight=9.0",
 		"com.liferay.portlet.css-class-wrapper=osb-www-marketing-events-portlet-admin",
 		"com.liferay.portlet.header-portlet-css=/admin/css/main.css",
 		"com.liferay.portlet.display-category=category.hidden",
 		"com.liferay.portlet.instanceable=false",
+		"com.liferay.portlet.system=true",
 		"javax.portlet.display-name=OSB Marketing Events Admin",
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.ddm-resource=com.liferay.osb.www.marketing.events.admin",

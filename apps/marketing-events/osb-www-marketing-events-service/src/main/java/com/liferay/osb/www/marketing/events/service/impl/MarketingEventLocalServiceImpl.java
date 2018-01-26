@@ -14,6 +14,10 @@
 
 package com.liferay.osb.www.marketing.events.service.impl;
 
+import com.liferay.asset.kernel.model.AssetCategory;
+import com.liferay.asset.kernel.model.AssetVocabulary;
+import com.liferay.asset.kernel.service.AssetCategoryLocalServiceUtil;
+import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.exception.DuplicateSiteGroupException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventEndDateException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventHostedByException;
@@ -24,7 +28,11 @@ import com.liferay.osb.www.marketing.events.exception.MarketingEventTitleExcepti
 import com.liferay.osb.www.marketing.events.exception.MarketingEventTitleURLException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventVideoTitleException;
 import com.liferay.osb.www.marketing.events.model.MarketingEvent;
+import com.liferay.osb.www.marketing.events.model.MarketingEventAgendaDisplay;
 import com.liferay.osb.www.marketing.events.model.MarketingEventConstants;
+import com.liferay.osb.www.marketing.events.model.MarketingEventSession;
+import com.liferay.osb.www.marketing.events.model.impl.MarketingEventAgendaDisplayImpl;
+import com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.service.base.MarketingEventLocalServiceBaseImpl;
 import com.liferay.osb.www.marketing.events.util.comparator.MarketingEventStartDateComparator;
 import com.liferay.osb.www.marketing.events.util.comparator.MarketingEventTypeComparator;
@@ -34,6 +42,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Junction;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -52,6 +61,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -62,8 +72,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -218,7 +228,7 @@ public class MarketingEventLocalServiceImpl
 	
 	public MarketingEventAgendaDisplay getMarketingEventAgendaDisplay(
 			long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MarketingEvent marketingEvent = getSiteGroupMarketingEvent(groupId);
 		Map<Date, List<MarketingEventSession>> marketingEventSessions =

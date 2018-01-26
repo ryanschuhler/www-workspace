@@ -14,6 +14,7 @@
 
 package com.liferay.osb.www.marketing.events.util;
 
+import com.liferay.asset.kernel.exception.NoSuchVocabularyException;
 import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetCategoryProperty;
 import com.liferay.asset.kernel.model.AssetVocabulary;
@@ -23,12 +24,7 @@ import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.exception.NoSuchMarketingEventException;
 import com.liferay.osb.www.marketing.events.model.MarketingEvent;
 import com.liferay.osb.www.marketing.events.model.MarketingEventConstants;
-import com.liferay.osb.www.marketing.events.model.MarketingEventSession;
-import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
 import com.liferay.osb.www.marketing.events.service.MarketingEventLocalServiceUtil;
-import com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalServiceUtil;
-import com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalServiceUtil;
-import com.liferay.osb.www.marketing.events.util.comparator.MarketingEventUserFirstNameComparator;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -54,6 +50,7 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
 import com.liferay.portal.kernel.service.CountryServiceUtil;
+import com.liferay.portal.kernel.service.RegionServiceUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -61,7 +58,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,7 +66,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * @author Rachael Koestartyo
@@ -434,7 +429,7 @@ public class MarketingEventsUtil {
 		return new Tuple(marketingEvents, corruptIndex);
 	}
 	
-	public static Region getRegion(long regionId) throws SystemException {
+	public static Region getRegion(long regionId) {
 		if (_regions == null) {
 			_regions = new HashMap<Long, Region>();
 

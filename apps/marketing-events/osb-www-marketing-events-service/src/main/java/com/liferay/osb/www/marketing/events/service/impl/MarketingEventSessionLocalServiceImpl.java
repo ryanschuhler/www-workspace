@@ -14,6 +14,8 @@
 
 package com.liferay.osb.www.marketing.events.service.impl;
 
+import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.model.AssetLinkConstants;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventSessionEndDateException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventSessionStartDateException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventSessionTitleException;
@@ -25,9 +27,11 @@ import com.liferay.osb.www.marketing.events.service.base.MarketingEventSessionLo
 import com.liferay.osb.www.marketing.events.util.comparator.MarketingEventSessionStartDateComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistry;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -250,6 +254,21 @@ public class MarketingEventSessionLocalServiceImpl
 
 		return marketingEventSessionsMap;
 	}
+	
+	public List<Map.Entry<Date, List<MarketingEventSession>>> getMarketingEventSessionEntries(
+			long marketingEventId, boolean asc) 
+		throws PortalException {
+
+		List<Map.Entry<Date, List<MarketingEventSession>>> marketingEventSessions = new ArrayList<>();
+		
+		 Map<Date, List<MarketingEventSession>> marketingEventSessionsMap = 
+			getMarketingEventSessionsMap(marketingEventId, asc);
+		 
+		 marketingEventSessions.addAll(marketingEventSessionsMap.entrySet());
+		 
+		return marketingEventSessions;
+	}
+
 
 	public List<MarketingEventUser> getMarketingEventSessionUsers(
 		long marketingEventSessionId, int start, int end,

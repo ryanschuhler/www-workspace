@@ -17,7 +17,7 @@
 
 <#assign orderByComparatorFactoryUtil = staticUtil["com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil"]>
 
-<#assign sessions_map = marketing_event_session_local_service.getMarketingEventSessionsMap(marketing_event_id, true)!>
+<#assign session_entries = marketing_event_session_local_service.getMarketingEventSessionEntries(marketing_event_id, true)!>
 
 <#assign marketing_event = marketing_event_local_service.getMarketingEvent(marketing_event_id)>
 
@@ -71,16 +71,16 @@
 	<h2 class="lego-element no-margin no-padding text-center">AGENDA</h2>
 
 	<ul class="element-border session-tab-wrapper">
-		<#assign sessions_dates = sessions_map.keySet().toArray()>
 
-		<#list sessions_dates as date>
+		 <#list session_entries as session_entry>
+		 	<#assign date = session_entry.getKey() >
 			<#assign localized_date = dateUtil.getDate(date, (agenda_date_format.data)!"EEEE, MMM dd, yyyy", locale_english, time_zone)>
 
-			<#assign this_day = "day-${date_index + 1}">
+			<#assign this_day = "day-${session_entry_index + 1}">
 
 			<li class="block-container justify-center session-tab standard-padding-vertical text-center toggler-header-collapsed ${this_day}" data-target-class="class-toggle-active-${this_day}" data-target-nodes=".sessions, .sessions li.${this_day}, .sessions .session-table.${this_day}" data-toggle-type="carousel" role="presentation">
-				<#if date_index gt 0>
-					<#assign prev_day = "day-${date_index}">
+				<#if session_entry_index gt 0>
+					<#assign prev_day = "day-${session_entry_index}">
 
 					<svg class="agenda-day-btn agenda-previous-day-btn class-toggle w20"  data-target-class="class-toggle-active-${prev_day}" data-target-nodes=".sessions, .sessions li.${prev_day}, .sessions .session-table.${prev_day}" data-toggle-type="carousel"><use xlink:href="#arrowBtn"></use></svg>
 				<#else>
@@ -89,8 +89,8 @@
 
 				<h4 class="session-tab-date-title w30">${localized_date}</h4>
 
-				<#if date_index lt sessions_dates?size-1>
-					<#assign next_day = "day-${date_index + 2}">
+				<#if session_entry_index lt session_entries?size-1>
+					<#assign next_day = "day-${session_entry_index + 2}">
 
 					<svg class="agenda-day-btn agenda-next-day-btn class-toggle w20"  data-target-class="class-toggle-active-${next_day}" data-target-nodes=".sessions, .sessions li.${next_day}, .sessions .session-table.${next_day}" data-toggle-type="carousel"><use xlink:href="#arrowBtn"></use></svg>
 				<#else>
@@ -113,10 +113,10 @@
 	</div>
 
 	<div class="agenda-hidden">
-		<#list sessions_dates as date>
-			<table class="day-${date_index + 1} session-table w100">
+		 <#list session_entries as session_entry>
+			<table class="day-${session_entry_index + 1} session-table w100">
 				<tbody>
-					<#assign sessions_list = sessions_map.get(date).toArray()>
+					<#assign sessions_list = session_entry.getValue()>
 					<#assign slot_rowspan_offsets =  jsonFactoryUtil.createJSONObject()>
 					<#assign slot_times = [sessions_list?first.getStartDate()]>
 
@@ -209,12 +209,12 @@
 						<#assign found_slot = false>
 
 						<#list slot_times as slot_time>
-							<#if found_slot && (slot_time.compareTo(session.getEndDate()) < 0)>
+							<#if found_slot && (slot_time?time < session.getEndDate()?time)>
 								<#assign rowspan = rowspan + 1>
 								<#assign void = slot_rowspan_offsets.put(slot_time_index?string, "1")>
 							</#if>
 
-							<#if slot_time.compareTo(session.getStartDate()) == 0>
+							<#if (slot_time?time == session.getStartDate()?time) >
 								<#assign found_slot = true>
 							</#if>
 						</#list>

@@ -487,6 +487,11 @@ public class MarketingEventWrapper implements MarketingEvent,
 		return _marketingEvent.getPrimaryKeyObj();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.model.Region getRegion() {
+		return _marketingEvent.getRegion();
+	}
+
 	/**
 	* Returns the registration type of this marketing event.
 	*

@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -263,6 +264,10 @@ public interface MarketingEventSessionLocalService extends BaseLocalService,
 	public MarketingEventSession getMarketingEventSessionByUuidAndCompanyId(
 		java.lang.String uuid, long companyId) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Map.Entry<Date, List<MarketingEventSession>>> getMarketingEventSessionEntries(
+		long marketingEventId, boolean asc) throws PortalException;
+
 	/**
 	* Returns a range of all the marketing event sessions.
 	*
@@ -363,6 +368,11 @@ public interface MarketingEventSessionLocalService extends BaseLocalService,
 
 	public void setMarketingEventUserMarketingEventSessions(
 		long marketingEventUserId, long[] marketingEventSessionIds);
+
+	public void updateAsset(long userId, long groupId,
+		MarketingEventSession marketingEventSession, long[] assetCategoryIds,
+		java.lang.String[] assetTagNames, long[] assetLinkEntryIds)
+		throws PortalException, SearchException, SystemException;
 
 	public MarketingEventSession updateMarketingEventSession(
 		long marketingEventSessionId, long marketingEventSessionRoomId,

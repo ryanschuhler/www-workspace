@@ -410,6 +410,16 @@ public class MarketingEventUserLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.osb.www.marketing.events.model.MarketingEventUser> getMarketingEventUsers(
+		long marketingEventId, long[] categoryIds, long[] notCategoryIds,
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _marketingEventUserLocalService.getMarketingEventUsers(marketingEventId,
+			categoryIds, notCategoryIds, start, end, obc);
+	}
+
+	@Override
+	public java.util.List<com.liferay.osb.www.marketing.events.model.MarketingEventUser> getMarketingEventUsers(
 		long[] categoryIds, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _marketingEventUserLocalService.getMarketingEventUsers(categoryIds,

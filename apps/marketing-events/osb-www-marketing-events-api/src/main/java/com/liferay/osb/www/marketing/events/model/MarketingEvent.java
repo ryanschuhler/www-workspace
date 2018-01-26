@@ -75,6 +75,9 @@ public interface MarketingEvent extends MarketingEventModel, PersistedModel {
 	public com.liferay.portal.kernel.json.JSONObject getMarketingEventSessionAssetCategoriesJSONObject()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@com.liferay.portal.kernel.json.JSON()
+	public com.liferay.portal.kernel.model.Region getRegion();
+
 	public com.liferay.portal.kernel.repository.model.FileEntry getSlidesFileEntry();
 
 	public java.lang.String getVideoURL(java.lang.String extension);

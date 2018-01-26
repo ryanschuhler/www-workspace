@@ -15,6 +15,7 @@
 package com.liferay.osb.www.marketing.events.portlet.action;
 
 import com.liferay.osb.www.marketing.events.constants.OSBWWWMarketingEventsPortletKeys;
+import com.liferay.osb.www.marketing.events.web.display.context.MarketingEventAgendaDisplayContext;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -57,16 +58,13 @@ public class MarketingEventsAgendaConfigurationAction extends DefaultConfigurati
 	protected void setRenderRequestAttributes(RenderRequest renderRequest) {
 		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		MarketingEventAgendaDisplayContext marketingEventAgendaDisplayContext =
 			new MarketingEventAgendaDisplayContext(
 				portletPreferences, themeDisplay);
 
-		renderRequest.setAttribute(
-			WebKeys.MARKETING_EVENT_AGENDA_DISPLAY_CONTEXT,
-			marketingEventAgendaDisplayContext);
+		renderRequest.setAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT, marketingEventAgendaDisplayContext);
 	}
 
 }

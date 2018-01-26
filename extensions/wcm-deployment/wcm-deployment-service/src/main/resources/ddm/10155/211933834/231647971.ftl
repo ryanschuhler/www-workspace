@@ -195,15 +195,15 @@
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0) />
 
-<#assign speakers_sessions_map =  marketing_events.getMarketingEventUserMarketingEventSessionsMap(marketing_event_id, "Marketing Event Session Types", "Expert Exchange") />
+<#assign speakers_sessions =  marketing_events.getMarketingEventUserMarketingEventSessions(marketing_event_id, "Marketing Event Session Types", "Expert Exchange") />
 
 
 <div class="portlet-layout" id="expert-exchange-section">
 	<div class="expert-exchange-image-container">
 
-	<#assign speakers = speakers_sessions_map.keySet() >
+	<#list speakers_sessions as speakers_session_entry>
 
-	<#list speakers as speaker >
+		<#assign speaker = speakers_session_entry.getKey() >
 		<#assign speaker_image_src = speaker.getImageFileEntryURL() >
 
 		<#if !speaker_image_src?has_content>
@@ -232,7 +232,7 @@
 						${speaker.getCompanyName()}
 					</p>
 					<p class="sessions-info">
-						<#assign sessions = speakers_sessions_map.get(speaker) />
+						<#assign sessions = speakers_session_entry.getValue() />
 
 						<#list sessions as session>
 							<h3>

@@ -7,14 +7,11 @@
 
 <#assign marketing_event_id = getterUtil.getLong(marketing_event_id.data, 0) />
 
- 
- 
-
 <#assign  marketing_events = serviceLocator.findService("com.liferay.osb.www.marketing.events.util.MarketingEvents") >
 
 <#assign session_sponsors =  marketing_events.getMarketingEventUsers(marketing_event_id, "Marketing Event User Types", "Session Sponsor")! />
 
-<#assign sessions_map = marketing_event_session_local_service.getMarketingEventSessionsMap(marketing_event_id, true)! />
+<#assign session_entries = marketing_event_session_local_service.getMarketingEventSessionEntries(marketing_event_id, true)! />
 
 <#assign time_zone_id = marketing_event_local_service.getMarketingEvent(marketing_event_id).getTimeZoneId() />
 <#assign time_zone = timeZoneUtil.getTimeZone(time_zone_id) />
@@ -30,12 +27,12 @@
 
 <section class="sessions" id="agenda">
 	<ul class="border-bottom border-top element-border session-tab-wrapper">
-		<#assign sessions_dates = sessions_map?keys />
-
-		<#list sessions_dates as date>
+		 
+		 <#list session_entries as session_entry>
+		 	<#assign date = session_entry.getKey()>
 			<#assign localized_date = dateUtil.getDate(date, (agenda_date_format.data)!"EEEE, MMM dd, yyyy" , locale, time_zone) />
 
-			<#assign this_day = "day-${date_index + 1}" />
+			<#assign this_day = "day-${session_entry_index + 1}" />
 
 			<li class="class-toggle session-tab standard-padding-vertical text-center toggler-header-collapsed ${this_day}" data-target-class="class-toggle-active-${this_day}" data-target-nodes=".sessions, .sessions li.${this_day}, .sessions .session-table.${this_day}" data-toggle-type="carousel" role="presentation">
 				${localized_date}
@@ -43,15 +40,15 @@
 		</#list>
 	</ul>
 
-	<#list sessions_dates as date>
-		<table class="day-${date_index + 1} session-table w100">
+	 <#list session_entries as session_entry>
+		<table class="day-${session_entry_index + 1} session-table w100">
 			<tbody>
 				<#assign current_start_date = "" />
 				<#assign previous_start_date = "" />
 				<#assign slot_talk_counts = {} />
 				<#assign talk_count = 1 />
 
-				<#assign sessions_list = marketing_events.getMarketingEventSessions(marketing_event_id, date) />
+				<#assign sessions_list = session_entry.getValue() />
 
 				<#list sessions_list as session>
 					<#assign current_start_date = session.getStartDate()?time?string />
@@ -110,7 +107,7 @@
 								<#list session_speaker_ids as speaker_id>
 									<#assign speaker = marketing_event_user_local_service.getMarketingEventUser(speaker_id) />
 
-									<#if session_sponsors.contains(speaker)>
+									<#if session_sponsors?seq_contains(speaker)>
 										<#assign session_company_logos = session_company_logos + {speaker.getCompanyName(): speaker.getCompanyLogoFileEntryURL()} />
 									</#if>
 

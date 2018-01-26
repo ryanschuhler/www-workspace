@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -45,6 +44,26 @@ import org.osgi.service.component.annotations.Component;
 @Component
 public class MarketingEventsImpl implements MarketingEvents {
 
+	@Override
+	public List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>> 
+		getMarketingEventUserMarketingEventSessions(
+				long marketingEventId, String vocabularyName,
+				String categoryName)
+		throws PortalException {
+
+		Map<MarketingEventUser, List<MarketingEventSession>> marketingEventUserMarketingEventSessionsMap = 
+			getMarketingEventUserMarketingEventSessionsMap(
+				marketingEventId, vocabularyName, categoryName);
+		
+		List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>> 
+			marketingEventUserMarketingEventSessions = new ArrayList<>();
+			
+		marketingEventUserMarketingEventSessions.addAll(
+				marketingEventUserMarketingEventSessionsMap.entrySet());
+		
+		return marketingEventUserMarketingEventSessions;
+	}
+		
 	@Override
 	public Map<MarketingEventUser, List<MarketingEventSession>>
 			getMarketingEventUserMarketingEventSessionsMap(
@@ -110,16 +129,6 @@ public class MarketingEventsImpl implements MarketingEvents {
 		}
 
 		return marketingEventUserMarketingEventSessionsMap;
-	}
-
-	@Override
-	public List<MarketingEventSession> getMarketingEventSessions(long marketingEventId, Date date) 
-		throws PortalException {
-		
-		Map<Date, List<MarketingEventSession>> marketingEventSessionsMap = 
-				MarketingEventSessionLocalServiceUtil.getMarketingEventSessionsMap(marketingEventId, true);
-		
-		return marketingEventSessionsMap.get(date);
 	}
 	
 	@Override

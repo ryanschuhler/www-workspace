@@ -15,7 +15,7 @@
 package com.liferay.osb.www.marketing.events.portlet;
 
 import com.liferay.osb.www.marketing.events.constants.OSBWWWMarketingEventsPortletKeys;
-import com.liferay.osb.www.marketing.events.util.MarketingEventAgendaDisplayContext;
+import com.liferay.osb.www.marketing.events.web.display.context.MarketingEventAgendaDisplayContext;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -76,9 +76,7 @@ public class MarketingEventsAgendaPortlet extends MVCPortlet {
 			new MarketingEventAgendaDisplayContext(
 				portletPreferences, themeDisplay);
 
-		renderRequest.setAttribute(
-			WebKeys.MARKETING_EVENT_AGENDA_DISPLAY_CONTEXT,
-			marketingEventAgendaDisplayContext);
+		renderRequest.setAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT, marketingEventAgendaDisplayContext);
 	}
 
 }

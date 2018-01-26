@@ -17,12 +17,12 @@
 <%@ include file="/init.jsp" %>
 
 <%@ page import="com.liferay.osb.www.marketing.events.model.MarketingEventAgendaDisplay" %><%@
-page import="com.liferay.osb.www.marketing.events.util.MarketingEventAgendaDisplayContext" %><%@
+page import="com.liferay.osb.www.marketing.events.web.display.context.MarketingEventAgendaDisplayContext" %><%@
 page import="com.liferay.osb.www.marketing.events.util.MarketingEventDateFormat" %><%@
 page import="com.liferay.osb.www.marketing.events.util.MarketingEventSessionLogoType" %>
 
 <%
-MarketingEventAgendaDisplayContext marketingEventAgendaDisplayContext = (MarketingEventAgendaDisplayContext)request.getAttribute(WebKeys.MARKETING_EVENT_AGENDA_DISPLAY_CONTEXT);
+MarketingEventAgendaDisplayContext marketingEventAgendaDisplayContext = (MarketingEventAgendaDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 MarketingEventAgendaDisplay marketingEventAgendaDisplay = marketingEventAgendaDisplayContext.getMarketingEventAgendaDisplay();
 

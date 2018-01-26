@@ -13,12 +13,13 @@ import java.util.Map;
  */
 public interface MarketingEvents {
 
+	List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>> 
+		getMarketingEventUserMarketingEventSessions(
+			long marketingEventId, String vocabularyName, String categoryName) throws PortalException;
+	
 	Map<MarketingEventUser, List<MarketingEventSession>> 
 		getMarketingEventUserMarketingEventSessionsMap(
 			long marketingEventId, String vocabularyName, String categoryName) throws PortalException;
-
-	List<MarketingEventSession> getMarketingEventSessions(long marketingEventId, Date date)
-		throws PortalException;
 
 	List<MarketingEventUser> getMarketingEventUsers(
 		long marketingEventId, String vocabularyName, String categoryName) throws PortalException;

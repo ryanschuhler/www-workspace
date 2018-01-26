@@ -17,7 +17,7 @@
 
 <#assign orderByComparatorFactoryUtil = staticUtil["com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil"]>
 
-<#assign sessions_map = marketing_event_session_local_service.getMarketingEventSessionsMap(marketing_event_id, true)!>
+<#assign session_entries = marketing_event_session_local_service.getMarketingEventSessionEntries(marketing_event_id, true)!>
 
 <#assign marketing_event = marketing_event_local_service.getMarketingEvent(marketing_event_id)>
 
@@ -71,9 +71,9 @@
 	<h2 class="lego-element no-margin no-padding text-center">AGENDA*</h2>
 
 	<ul class="element-border session-tab-wrapper">
-		<#assign sessions_dates = sessions_map.keySet().toArray()>
+		<#assign sessions_dates = session_entries.keySet().toArray()>
 
-		<#list sessions_dates as date>
+		 <#list session_entries as session_entry>
 			<#assign localized_date = dateUtil.getDate(date, (agenda_date_format.data)!"EEEE, MMM dd, yyyy", locale_english, time_zone)>
 
 			<#assign this_day = "day-${date_index + 1}">
@@ -113,10 +113,10 @@
 	</div>
 
 	<div class="agenda-hidden">
-		<#list sessions_dates as date>
+		 <#list session_entries as session_entry>
 			<table class="day-${date_index + 1} session-table w100">
 				<tbody>
-					<#assign sessions_list = sessions_map.get(date).toArray()>
+					<#assign sessions_list = session_entries.get(date).toArray()>
 					<#assign slot_rowspan_offsets =  jsonFactoryUtil.createJSONObject()>
 					<#assign slot_times = [sessions_list?first.getStartDate()]>
 

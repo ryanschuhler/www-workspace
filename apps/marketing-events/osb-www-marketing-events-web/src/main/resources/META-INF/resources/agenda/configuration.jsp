@@ -26,7 +26,7 @@
 			<aui:option value="" />
 
 			<%
-			Group group = GroupLocalServiceUtil.fetchGroup(company.getCompanyId(), OSBConstants.PARENT_GROUP_NAME_EVENTS);
+			Group group = GroupLocalServiceUtil.fetchGroup(company.getCompanyId(), OSBWWWMarketingEventsConstants.PARENT_GROUP_NAME_EVENTS);
 
 			for (Group curGroup : GroupLocalServiceUtil.getGroups(company.getCompanyId(), group.getGroupId(), true)) {
 			%>
@@ -59,7 +59,7 @@
 					<c:set value="<%= marketingEventAgendaDisplayContext.getDefaultDay() %>" var="defaultDay" />
 
 					<c:forEach items="${eventDates}" var="eventDate" varStatus="eventDateStatus">
-						<aui:option label="${marketingEventFormatDate.format(eventDate)}" selected="${eventDateStatus.index == defaultDay}" value="${eventDateStatus.index}" />
+						<aui:option label="${eventDate}"  selected="${eventDateStatus.index == defaultDay}" value="${eventDateStatus.index}"/>
 					</c:forEach>
 				</aui:select>
 			</c:when>

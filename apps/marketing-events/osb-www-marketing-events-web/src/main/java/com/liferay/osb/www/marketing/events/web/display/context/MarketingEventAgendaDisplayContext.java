@@ -12,16 +12,20 @@
  * details.
  */
 
-package com.liferay.osb.www.marketing.events.util;
+package com.liferay.osb.www.marketing.events.web.display.context;
 
 import com.liferay.osb.www.marketing.events.model.MarketingEventAgendaDisplay;
 import com.liferay.osb.www.marketing.events.model.MarketingEventConstants;
 import com.liferay.osb.www.marketing.events.model.MarketingEventSessionConstants;
-
+import com.liferay.osb.www.marketing.events.util.MarketingEventCacheUtil;
+import com.liferay.osb.www.marketing.events.util.MarketingEventDateFormat;
+import com.liferay.osb.www.marketing.events.util.MarketingEventSessionLogoType;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+
+import javax.portlet.PortletPreferences;
 
 /**
  * @author Allen Ziegenfus

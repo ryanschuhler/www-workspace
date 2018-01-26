@@ -228,6 +228,14 @@ public class MarketingEventSessionWrapper implements MarketingEventSession,
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.kernel.model.AssetCategory> getAssetCategories(
+		java.lang.String vocabularyName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _marketingEventSession.getAssetCategories(vocabularyName);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.json.JSONArray getAssetCategoriesJSONArray()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getAssetCategoriesJSONArray();
@@ -236,6 +244,36 @@ public class MarketingEventSessionWrapper implements MarketingEventSession,
 	@Override
 	public java.lang.String[] getAvailableLanguageIds() {
 		return _marketingEventSession.getAvailableLanguageIds();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getChildFileEntries()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _marketingEventSession.getChildFileEntries();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getChildFileEntries(
+		java.lang.String[] mimeTypes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _marketingEventSession.getChildFileEntries(mimeTypes);
+	}
+
+	@Override
+	public java.util.List<java.lang.String> getChildFileEntryURLs()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _marketingEventSession.getChildFileEntryURLs();
+	}
+
+	@Override
+	public java.util.List<java.lang.String> getChildFileEntryURLs(
+		java.lang.String[] mimeTypes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _marketingEventSession.getChildFileEntryURLs(mimeTypes);
 	}
 
 	/**

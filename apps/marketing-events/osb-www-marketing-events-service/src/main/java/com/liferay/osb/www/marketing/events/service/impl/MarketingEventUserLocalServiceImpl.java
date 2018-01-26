@@ -14,6 +14,9 @@
 
 package com.liferay.osb.www.marketing.events.service.impl;
 
+import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryServiceUtil;
+import com.liferay.asset.kernel.service.persistence.AssetEntryQuery;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventUserCompanyException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventUserFirstNameException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventUserLastNameException;
@@ -22,12 +25,19 @@ import com.liferay.osb.www.marketing.events.exception.RequiredMarketingEventUser
 import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
 import com.liferay.osb.www.marketing.events.service.base.MarketingEventUserLocalServiceBaseImpl;
 import com.liferay.osb.www.marketing.events.util.comparator.AssetEntryPriorityComparator;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 

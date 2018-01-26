@@ -311,6 +311,12 @@ public interface MarketingEventUserLocalService extends BaseLocalService,
 		long marketingEventId, int start, int end, OrderByComparator obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<MarketingEventUser> getMarketingEventUsers(
+		long marketingEventId, long[] categoryIds, long[] notCategoryIds,
+		int start, int end, OrderByComparator obc)
+		throws PortalException, SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MarketingEventUser> getMarketingEventUsers(long[] categoryIds,
 		int[] statuses, int start, int end, OrderByComparator obc);
 

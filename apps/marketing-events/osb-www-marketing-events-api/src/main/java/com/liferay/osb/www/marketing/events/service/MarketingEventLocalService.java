@@ -17,6 +17,7 @@ package com.liferay.osb.www.marketing.events.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.osb.www.marketing.events.model.MarketingEvent;
+import com.liferay.osb.www.marketing.events.model.MarketingEventAgendaDisplay;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -209,6 +210,10 @@ public interface MarketingEventLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public MarketingEvent getMarketingEvent(long marketingEventId)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public MarketingEventAgendaDisplay getMarketingEventAgendaDisplay(
+		long groupId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MarketingEvent> getMarketingEvents(int type, Date startDate,
