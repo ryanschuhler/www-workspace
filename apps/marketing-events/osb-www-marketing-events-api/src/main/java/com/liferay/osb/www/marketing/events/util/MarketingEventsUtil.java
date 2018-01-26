@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.Country;
+import com.liferay.portal.kernel.model.Region;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
@@ -153,6 +154,44 @@ public class MarketingEventsUtil {
 		}
 
 		return jsonObject;
+	}
+	
+	public static long[] getCategoryIds(
+			long groupId, String vocabularyName, String categoryNames)
+		throws PortalException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			AssetCategory.class);
+
+		try {
+			AssetVocabulary assetVocabulary =
+				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
+					groupId, vocabularyName);
+
+			Property vocabularyIdProperty = PropertyFactoryUtil.forName(
+				"vocabularyId");
+
+			dynamicQuery.add(
+				vocabularyIdProperty.eq(assetVocabulary.getVocabularyId()));
+		}
+		catch (NoSuchVocabularyException nsve) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unable to get asset vocabulary " + vocabularyName);
+			}
+
+			return new long[0];
+		}
+
+		Property nameProperty = PropertyFactoryUtil.forName("name");
+
+		dynamicQuery.add(nameProperty.in(StringUtil.split(categoryNames)));
+
+		List<AssetCategory> assetCategories =
+			AssetCategoryLocalServiceUtil.dynamicQuery(
+				dynamicQuery, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		return StringUtil.split(
+			ListUtil.toString(assetCategories, "categoryId"), 0L);
 	}
 
 	public static List<Country> getCountries(
@@ -394,6 +433,20 @@ public class MarketingEventsUtil {
 
 		return new Tuple(marketingEvents, corruptIndex);
 	}
+	
+	public static Region getRegion(long regionId) throws SystemException {
+		if (_regions == null) {
+			_regions = new HashMap<Long, Region>();
+
+			List<Region> regions = RegionServiceUtil.getRegions(true);
+
+			for (Region region : regions) {
+				_regions.put(region.getRegionId(), region);
+			}
+		}
+
+		return _regions.get(regionId);
+	}
 
 	public static List<JSONObject> getTypeJSONObjects(
 			int[] globalRegions, long[] countryIds, int[] locationTypes,
@@ -445,6 +498,7 @@ public class MarketingEventsUtil {
 		MarketingEventsUtil.class);
 
 	private static Map<Long, Country> _countries;
+	private static Map<Long, Region> _regions;
 
 	private static class MarketingEventsUtilComparator
 		implements Comparator<JSONObject> {

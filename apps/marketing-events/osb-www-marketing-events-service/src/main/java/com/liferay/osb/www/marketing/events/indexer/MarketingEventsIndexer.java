@@ -58,6 +58,7 @@ import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Peter Shin
+ * @author Allen Ziegenfus
  */
 @Component(immediate = true, service = Indexer.class)
 public class MarketingEventsIndexer extends BaseIndexer<MarketingEvent> {
@@ -203,14 +204,9 @@ public class MarketingEventsIndexer extends BaseIndexer<MarketingEvent> {
 
 		document.addKeyword(
 			Field.CLASS_PK, marketingEvent.getMarketingEventId());
-		document.addKeyword(Field.COMPANY_ID, marketingEvent.getCompanyId());
-		document.addDate(Field.CREATE_DATE, marketingEvent.getCreateDate());
-		document.addDate(Field.MODIFIED_DATE, marketingEvent.getModifiedDate());
-		document.addNumberSortable(Field.TYPE, marketingEvent.getType());
-		document.addKeyword(Field.USER_ID, marketingEvent.getUserId());
-		document.addNumberSortable(
-			"globalRegion", marketingEvent.getGlobalRegion());
+		document.addNumber("globalRegion", marketingEvent.getGlobalRegion());
 		document.addDate("startDate", marketingEvent.getStartDate());
+		document.addNumber(Field.TYPE, marketingEvent.getType());
 
 		addLocalizedText(
 			document, Field.TITLE,
@@ -225,13 +221,13 @@ public class MarketingEventsIndexer extends BaseIndexer<MarketingEvent> {
 	@Override
 	protected String doGetSortField(String orderByCol) {
 		if (orderByCol.equals("global-region")) {
-			return "globalRegion_Number_sortable";
+			return DocumentImpl.getSortableFieldName("globalRegion");
 		}
 		else if (orderByCol.equals("start-date")) {
-			return "startDate_sortable";
+			return DocumentImpl.getSortableFieldName("startDate");
 		}
 		else if (orderByCol.equals("type")) {
-			return "type_Number_sortable";
+			return DocumentImpl.getSortableFieldName(Field.TYPE);
 		}
 		else {
 			return orderByCol;

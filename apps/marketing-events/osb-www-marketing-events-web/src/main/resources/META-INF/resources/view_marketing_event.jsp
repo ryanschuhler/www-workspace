@@ -37,7 +37,13 @@ MarketingEvent marketingEvent = MarketingEventLocalServiceUtil.getMarketingEvent
 
 		<c:choose>
 			<c:when test="<%= marketingEvent.hasVideo() %>">
-				<div id="<portlet:namespace />video"><!-- --></div>
+				<div id="<portlet:namespace />video">
+					<div class="video-content">
+						<video class="video-node" controls poster='<%= marketingEvent.getVideoURL(".jpg") %>'>
+							 <source src='<%= marketingEvent.getVideoURL(".mp4") %>' type="video/mp4">
+						</video>
+					</div>
+				</div>
 			</c:when>
 			<c:when test="<%= imageFileEntry != null %>">
 				<img class="marketing-event-image" src="<%= themeDisplay.getPathContext() + "/documents/" + imageFileEntry.getRepositoryId() + "/" + imageFileEntry.getFolderId() + "/" + HttpUtil.encodeURL(imageFileEntry.getTitle()) + "/" + imageFileEntry.getUuid() %>" />
@@ -258,18 +264,5 @@ MarketingEvent marketingEvent = MarketingEventLocalServiceUtil.getMarketingEvent
 				}
 			);
 		}
-	</aui:script>
-</c:if>
-
-<c:if test="<%= marketingEvent.hasVideo() %>">
-	<aui:script use="aui-base,aui-video">
-		new A.Video(
-			{
-				contentBox: '#<portlet:namespace />video',
-				cssClass: 'video',
-				poster: '<%= marketingEvent.getVideoURL(".jpg") %>',
-				url: '<%= marketingEvent.getVideoURL(".mp4") %>'
-			}
-		).render();
 	</aui:script>
 </c:if>

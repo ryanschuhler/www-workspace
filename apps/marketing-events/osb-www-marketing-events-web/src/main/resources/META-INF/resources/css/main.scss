@@ -105,8 +105,8 @@ html {
 			}
 
 			.link-tile-wrapper {
-				padding: 3em 1.5em .5em;
-
+				padding: 3em 1.5em 0.5em;
+				
 				img, svg {
 					max-height: 80px;
 					max-width: 160px;
@@ -114,7 +114,10 @@ html {
 				}
 
 				.marketing-event-header {
+					align-items: center;
+					display: flex;
 					height: 120px;
+					justify-content: center;
 				}
 			}
 		}
@@ -126,14 +129,14 @@ html {
 		}
 
 		button.close {
-			font-size: 3em;
-			line-height: 1em;
-			opacity: 0;
-			position: absolute;
-			right: 0;
+			box-shadow: none;
+			height: 50px;
+			width: 50px;
 
-			&:hover {
-				opacity: 0;
+			@include transform(translateY(0));
+
+			&, &:focus, &:hover {
+				opacity: 1;
 			}
 		}
 
@@ -142,10 +145,8 @@ html {
 		}
 
 		.modal-header {
-			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDEwMCAxMDAiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cG9seWdvbiBmaWxsPSIjMDEwMTAxIiBwb2ludHM9Ijc3LjYsMjEuMSA0OS42LDQ5LjIgMjEuNSwyMS4xIDE5LjYsMjMgNDcuNiw1MS4xIDE5LjYsNzkuMiAyMS41LDgxLjEgNDkuNiw1MyA3Ny42LDgxLjEgNzkuNiw3OS4yICAgNTEuNSw1MS4xIDc5LjYsMjMgIi8+PC9zdmc+) no-repeat right;
-			background-position: 98% 0.5em;
-			background-size: 2em;
 			border-width: 0;
+			padding: 0;
 		}
 
 		.jsp-view-marketing-event {

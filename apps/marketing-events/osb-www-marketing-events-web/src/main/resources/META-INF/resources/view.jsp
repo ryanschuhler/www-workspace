@@ -551,7 +551,20 @@
 						cssClass: 'osb-www-marketing-events-portlet-popup',
 						destroyOnHide: true,
 						modal: true,
-						resizable: false
+						resizable: false,
+						toolbars: {
+							header: [
+								{
+									cssClass: "close",
+									on: {
+										click: function(event) {
+											dialog.hide();
+										}
+									},
+									srcNode: A.Node.create('<button><svg height=20 width=20><use xlink:href="#closeIcon"></use></svg></button>')
+								}
+							]
+						}
 					},
 					id: '<portlet:namespace/>dialog'
 				}

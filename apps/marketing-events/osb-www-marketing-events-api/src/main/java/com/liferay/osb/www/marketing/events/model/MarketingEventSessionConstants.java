@@ -18,10 +18,27 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 /**
  * @author Joan H. Kim
+ * @author Allen R. Ziegenfus
  */
 public class MarketingEventSessionConstants {
 
-	public static final int[] STATUSES =
-		{WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_DRAFT};
+	public static final String MIME_TYPE_IMAGE_GIF = "image/gif";
+
+	public static final String MIME_TYPE_IMAGE_JPEG = "image/jpeg";
+
+	public static final String MIME_TYPE_IMAGE_PNG = "image/png";
+
+	public static final String MIME_TYPE_IMAGE_SVG_XML = "image/svg+xml";
+
+	public static final String[] MIME_TYPES_IMAGES = {
+		MIME_TYPE_IMAGE_GIF, MIME_TYPE_IMAGE_JPEG, MIME_TYPE_IMAGE_PNG,
+		MIME_TYPE_IMAGE_SVG_XML
+	};
+
+	public static final int[] STATUSES = {
+		WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_DRAFT
+	};
+
+	public static final String TIME_FORMAT_DEFAULT_PATTERN = "H:mm";
 
 }

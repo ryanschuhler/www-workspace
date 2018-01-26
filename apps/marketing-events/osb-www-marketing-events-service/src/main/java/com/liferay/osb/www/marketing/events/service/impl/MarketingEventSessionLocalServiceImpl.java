@@ -122,7 +122,11 @@ public class MarketingEventSessionLocalServiceImpl
 		marketingEventSessionPersistence.setMarketingEventUsers(
 			marketingEventSessionId, marketingEventUserIds);
 
-		updateAsset(marketingEventSession, serviceContext);
+		updateAsset(
+			user.getUserId(), serviceContext.getScopeGroupId(),
+			marketingEventSession, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames(),
+			serviceContext.getAssetLinkEntryIds());
 
 		return marketingEventSession;
 	}
@@ -254,6 +258,35 @@ public class MarketingEventSessionLocalServiceImpl
 		return marketingEventSessionPersistence.getMarketingEventUsers(
 			marketingEventSessionId, start, end, obc);
 	}
+	
+	@Override
+	public void updateAsset(
+			long userId, long groupId,
+			MarketingEventSession marketingEventSession,
+			long[] assetCategoryIds, String[] assetTagNames,
+			long[] assetLinkEntryIds)
+		throws PortalException, SearchException, SystemException {
+
+		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
+			userId, groupId, marketingEventSession.getCreateDate(),
+			marketingEventSession.getModifiedDate(),
+			MarketingEventSession.class.getName(),
+			marketingEventSession.getMarketingEventSessionId(),
+			marketingEventSession.getUuid(), 0, assetCategoryIds, assetTagNames,
+			marketingEventSession.isApproved(), null, null, null,
+			ContentTypes.TEXT, marketingEventSession.getTitle(),
+			marketingEventSession.getDescription(), null, null, null, 0, 0,
+			null, false);
+
+		assetLinkLocalService.updateLinks(
+			userId, assetEntry.getEntryId(), assetLinkEntryIds,
+			AssetLinkConstants.TYPE_CHILD);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			MarketingEventSession.class);
+
+		indexer.reindex(marketingEventSession);
+	}
 
 	public MarketingEventSession updateMarketingEventSession(
 			long marketingEventSessionId, long marketingEventSessionRoomId,
@@ -317,7 +350,11 @@ public class MarketingEventSessionLocalServiceImpl
 		marketingEventSessionPersistence.setMarketingEventUsers(
 			marketingEventSessionId, marketingEventUserIds);
 
-		updateAsset(marketingEventSession, serviceContext);
+		updateAsset(
+				user.getUserId(), serviceContext.getScopeGroupId(),
+				marketingEventSession, serviceContext.getAssetCategoryIds(),
+				serviceContext.getAssetTagNames(),
+				serviceContext.getAssetLinkEntryIds());
 
 		return marketingEventSession;
 	}
@@ -353,30 +390,5 @@ public class MarketingEventSessionLocalServiceImpl
 
 	@ServiceReference(type = IndexerRegistry.class)
 	protected IndexerRegistry indexerRegistry;
-
-	private void updateAsset(
-			MarketingEventSession marketingEventSession,
-			ServiceContext serviceContext)
-		throws PortalException, SearchException {
-
-		assetEntryLocalService.updateEntry(
-			serviceContext.getUserId(), serviceContext.getScopeGroupId(),
-			marketingEventSession.getCreateDate(),
-			marketingEventSession.getModifiedDate(),
-			MarketingEventSession.class.getName(),
-			marketingEventSession.getMarketingEventSessionId(),
-			marketingEventSession.getUuid(), 0,
-			serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(),
-			marketingEventSession.isApproved(), null, null, null,
-			ContentTypes.TEXT, marketingEventSession.getTitle(),
-			marketingEventSession.getDescription(), null, null, null, 0, 0,
-			null, false);
-
-		Indexer<MarketingEventSession> indexer =
-			getMarketingEventSessionIndexer();
-
-		indexer.reindex(marketingEventSession);
-	}
 
 }

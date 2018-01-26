@@ -75,6 +75,7 @@ import java.util.TimeZone;
 /**
  * @author Rachael Koestartyo
  * @author Ryan Schuhler
+ * @author Allen Ziegenfus
  */
 public class MarketingEventLocalServiceImpl
 	extends MarketingEventLocalServiceBaseImpl {
@@ -213,6 +214,58 @@ public class MarketingEventLocalServiceImpl
 		indexer.delete(marketingEvent);
 
 		return marketingEvent;
+	}
+	
+	public MarketingEventAgendaDisplay getMarketingEventAgendaDisplay(
+			long groupId)
+		throws PortalException, SystemException {
+
+		MarketingEvent marketingEvent = getSiteGroupMarketingEvent(groupId);
+		Map<Date, List<MarketingEventSession>> marketingEventSessions =
+			Collections.emptyMap();
+		List<AssetCategory> marketingEventTracksAssetCategories =
+			Collections.emptyList();
+		List<AssetCategory> marketingEventTopicsAssetCategories =
+			Collections.emptyList();
+
+		try {
+			marketingEventSessions =
+				MarketingEventSessionLocalServiceUtil.
+					getMarketingEventSessionsMap(
+						marketingEvent.getMarketingEventId(), true);
+
+			OrderByComparator obc = OrderByComparatorFactoryUtil.create(
+				"AssetCategory", "name", true);
+
+			AssetVocabulary sessionTracksAssetVocabulary =
+				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
+					marketingEvent.getSiteGroupId(),
+					MarketingEventConstants.
+						ASSET_VOCABULARY_NAME_SESSION_TRACKS);
+
+			marketingEventTracksAssetCategories =
+				AssetCategoryLocalServiceUtil.getVocabularyCategories(
+					sessionTracksAssetVocabulary.getVocabularyId(),
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+
+			AssetVocabulary sessionTopicsAssetVocabulary =
+				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
+					marketingEvent.getSiteGroupId(),
+					MarketingEventConstants.
+						ASSET_VOCABULARY_NAME_SESSION_TOPICS);
+
+			marketingEventTopicsAssetCategories =
+				AssetCategoryLocalServiceUtil.getVocabularyCategories(
+					sessionTopicsAssetVocabulary.getVocabularyId(),
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+		}
+		catch (PortalException pe) {
+		}
+
+		return new MarketingEventAgendaDisplayImpl(
+			marketingEvent, marketingEventSessions,
+			marketingEventTracksAssetCategories,
+			marketingEventTopicsAssetCategories);
 	}
 
 	public List<MarketingEvent> getMarketingEvents(

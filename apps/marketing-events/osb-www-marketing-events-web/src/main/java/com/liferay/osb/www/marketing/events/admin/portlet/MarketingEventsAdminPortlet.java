@@ -243,21 +243,9 @@ public class MarketingEventsAdminPortlet extends MVCPortlet {
 		super.processAction(actionRequest, actionResponse);
 
 		try {
-			String[] ddmStructureKeys = _configuration.ddmStructureKeys();
-
-			List<JournalArticle> journalArticles =
-				_journalArticleLocalService.getStructureArticles(
-					ddmStructureKeys);
-
-			for (JournalArticle journalArticle : journalArticles) {
-				_journalContent.clearCache(
-					journalArticle.getGroupId(), journalArticle.getArticleId(),
-					StringPool.BLANK);
-			}
+			MarketingEventCacheUtil.clearCache();
 		}
 		catch (Exception e) {
-			_log.error(e);
-
 			throw new PortletException(e);
 		}
 	}

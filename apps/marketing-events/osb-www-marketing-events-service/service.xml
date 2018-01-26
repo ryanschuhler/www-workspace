@@ -158,6 +158,7 @@
 		<!-- References -->
 
 		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
 	</entity>
 	<entity local-service="true" name="MarketingEventSessionRoom" remote-service="true">
 

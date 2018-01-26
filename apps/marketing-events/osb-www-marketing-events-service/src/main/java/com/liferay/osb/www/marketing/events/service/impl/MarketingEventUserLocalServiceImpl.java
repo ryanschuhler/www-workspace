@@ -37,7 +37,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author Joan H. Kim
+ * @author Joan H. Kim 
+ * @author Phillip Chan
  */
 public class MarketingEventUserLocalServiceImpl
 	extends MarketingEventUserLocalServiceBaseImpl {
@@ -156,6 +157,44 @@ public class MarketingEventUserLocalServiceImpl
 			marketingEventId, WorkflowConstants.STATUS_ANY, start, end, obc);
 	}
 
+	public List<MarketingEventUser> getMarketingEventUsers(
+			long marketingEventId, long[] categoryIds, long[] notCategoryIds,
+			int start, int end, OrderByComparator obc)
+		throws PortalException, SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			MarketingEventUser.class, getClassLoader());
+
+		Property marketingEventIdProperty = PropertyFactoryUtil.forName(
+			"marketingEventId");
+
+		dynamicQuery.add(marketingEventIdProperty.eq(marketingEventId));
+
+		Property marketingEventUserIdProperty = PropertyFactoryUtil.forName(
+			"marketingEventUserId");
+
+		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
+
+		assetEntryQuery.setAnyCategoryIds(categoryIds);
+		assetEntryQuery.setClassName(MarketingEventUser.class.getName());
+		assetEntryQuery.setEnd(end);
+		assetEntryQuery.setNotAnyCategoryIds(notCategoryIds);
+		assetEntryQuery.setStart(start);
+		assetEntryQuery.setVisible(true);
+
+		List<AssetEntry> assetEntries = AssetEntryServiceUtil.getEntries(
+			assetEntryQuery);
+
+		long[] marketingEventUserIds = StringUtil.split(
+			ListUtil.toString(assetEntries, "classPK"), 0L);
+
+		dynamicQuery.add(
+			marketingEventUserIdProperty.in(marketingEventUserIds));
+
+		return dynamicQuery(
+			dynamicQuery, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+	}
+	
 	public List<MarketingEventUser> getMarketingEventUsers(
 		long[] categoryIds, int[] statuses, int start, int end,
 		OrderByComparator obc) {

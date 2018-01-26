@@ -200,6 +200,22 @@ public class MarketingEventImpl extends MarketingEventBaseImpl {
 
 		return jsonObject;
 	}
+	
+	@JSON
+	public Region getRegion() {
+		try {
+			Address address = getAddress();
+
+			return MarketingEventsUtil.getRegion(address.getRegionId());
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
+
+		return null;
+	}
 
 	public FileEntry getSlidesFileEntry() {
 		if (getSlidesFileEntryId() <= 0) {

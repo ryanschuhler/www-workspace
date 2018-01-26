@@ -14,38 +14,47 @@
 
 package com.liferay.osb.www.marketing.events.model.impl;
 
+import com.liferay.asset.kernel.exception.NoSuchVocabularyException;
 import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetCategoryLocalServiceUtil;
 import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
+import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.util.DLUtil;
+import com.liferay.osb.www.marketing.events.model.MarketingEvent;
 import com.liferay.osb.www.marketing.events.model.MarketingEventSession;
 import com.liferay.osb.www.marketing.events.model.MarketingEventSessionRoom;
 import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
+import com.liferay.osb.www.marketing.events.service.MarketingEventLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.service.MarketingEventSessionRoomLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.util.MarketingEventsUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * @author Joan H. Kim
  * @author Ryan Schuhler
+ * @author Allen Ziegenfus
  */
 public class MarketingEventSessionImpl extends MarketingEventSessionBaseImpl {
 
@@ -58,10 +67,104 @@ public class MarketingEventSessionImpl extends MarketingEventSessionBaseImpl {
 			getMarketingEventSessionId());
 	}
 
+	public List<AssetCategory> getAssetCategories(String vocabularyName)
+		throws PortalException, SystemException {
+
+		List<AssetCategory> assetCategories = new ArrayList<AssetCategory>();
+
+		AssetVocabulary assetVocabulary = null;
+
+		MarketingEvent marketingEvent =
+			MarketingEventLocalServiceUtil.getMarketingEvent(
+				getMarketingEventId());
+
+		try {
+			assetVocabulary =
+				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
+					marketingEvent.getSiteGroupId(), vocabularyName);
+		}
+		catch (NoSuchVocabularyException nsve) {
+			return Collections.emptyList();
+		}
+
+		for (AssetCategory assetCategory : getAssetCategories()) {
+			if (assetCategory.getVocabularyId() ==
+					assetVocabulary.getVocabularyId()) {
+
+				assetCategories.add(assetCategory);
+			}
+		}
+
+		return assetCategories;
+	}
+
 	@JSON
 	public JSONArray getAssetCategoriesJSONArray() throws PortalException {
 		return MarketingEventsUtil.getAssetCategoriesJSONArray(
 			getAssetCategories());
+	}
+	
+	public List<FileEntry> getChildFileEntries()
+			throws PortalException, SystemException {
+
+			return getChildFileEntries(new String[0]);
+	}
+
+	public List<FileEntry> getChildFileEntries(String[] mimeTypes)
+		throws PortalException, SystemException {
+
+		List<FileEntry> fileEntries = new ArrayList<FileEntry>();
+
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+			MarketingEventSession.class.getName(),
+			getMarketingEventSessionId());
+
+		List<AssetEntry> childAssetEntries =
+			AssetEntryLocalServiceUtil.getChildEntries(assetEntry.getEntryId());
+
+		for (AssetEntry childAssetEntry : childAssetEntries) {
+			if ((mimeTypes.length > 0) &&
+				!ArrayUtil.contains(mimeTypes, childAssetEntry.getMimeType())) {
+
+				continue;
+			}
+
+			try {
+				FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
+					childAssetEntry.getClassPK());
+
+				fileEntries.add(fileEntry);
+			}
+			catch (Exception e) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e);
+				}
+			}
+		}
+
+		return fileEntries;
+	}
+
+	public List<String> getChildFileEntryURLs()
+		throws PortalException, SystemException {
+
+		return getChildFileEntryURLs(new String[0]);
+	}
+
+	public List<String> getChildFileEntryURLs(String[] mimeTypes)
+		throws PortalException, SystemException {
+
+		List<String> fileEntryURLs = new ArrayList<String>();
+
+		for (FileEntry fileEntry : getChildFileEntries(mimeTypes)) {
+			String url = DLUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
+				false, true);
+
+			fileEntryURLs.add(url);
+		}
+
+		return fileEntryURLs;
 	}
 
 	public List<String> getMarketingEventSessionImageURLs(

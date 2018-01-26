@@ -152,10 +152,9 @@ public class SendMarketingEventAnnouncementListener
 
 		Map<String, String> data = new HashMap<>();
 
-		data.put(
-			"image_url", marketingEventAnnouncement.getImageFileEntryURL());
-		data.put("link_label", marketingEventAnnouncement.getLinkLabel());
-		data.put("link_url", marketingEventAnnouncement.getLinkURL());
+		data.put("imageURL", marketingEventAnnouncement.getImageFileEntryURL());
+		data.put("linkLabel", marketingEventAnnouncement.getLinkLabel());
+		data.put("linkURL", marketingEventAnnouncement.getLinkURL());
 		data.put("marketingEventId", String.valueOf(marketingEventId));
 		data.put("message", marketingEventAnnouncement.getMessage());
 

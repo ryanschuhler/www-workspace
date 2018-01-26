@@ -174,6 +174,13 @@ else {
 				<aui:input groupIds="<%= marketingEvent.getSiteGroupId() %>" name="categories" type="assetCategories" />
 			</aui:fieldset>
 		</liferay-ui:panel>
+		
+		<liferay-ui:panel defaultState="open" extended="<%= false %>" id="marketingEventSessionAssetLinksPanel" persistState="<%= true %>" title="related-assets">
+			<liferay-ui:input-asset-links
+				className="<%= MarketingEventSession.class.getName() %>"
+				classPK="<%= marketingEventSessionId %>"
+			/>
+		</liferay-ui:panel>
 
 		<aui:button-row>
 			<aui:button type="submit" value="save" />
