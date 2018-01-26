@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventAnnouncementLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventAnnouncementLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventAnnouncementServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventAnnouncementService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventAnnouncementPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventAnnouncementPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSessionLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSessionLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSessionServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSessionService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventSessionPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventSessionPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventSessionFinderImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventSessionFinder" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSessionRoomLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSessionRoomLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSessionRoomServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSessionRoomService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventSessionRoomPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventSessionRoomPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSponsorLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSponsorServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSponsorService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventSponsorPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventSponsorPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSponsorLevelLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLevelLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventSponsorLevelServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventSponsorLevelService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventSponsorLevelPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventSponsorLevelPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventUserLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventUserLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.MarketingEventUserServiceImpl" id="com.liferay.osb.www.marketing.events.service.MarketingEventUserService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventUserPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventUserPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.MarketingEventUserFinderImpl" id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventUserFinder" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.SocialLinkLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.SocialLinkLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.SocialLinkServiceImpl" id="com.liferay.osb.www.marketing.events.service.SocialLinkService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.SocialLinkPersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.SocialLinkPersistence" parent="basePersistence" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.SocialLinkTypeLocalServiceImpl" id="com.liferay.osb.www.marketing.events.service.SocialLinkTypeLocalService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.impl.SocialLinkTypeServiceImpl" id="com.liferay.osb.www.marketing.events.service.SocialLinkTypeService" />
+	<bean class="com.liferay.osb.www.marketing.events.service.persistence.impl.SocialLinkTypePersistenceImpl" id="com.liferay.osb.www.marketing.events.service.persistence.SocialLinkTypePersistence" parent="basePersistence" />
+</beans>

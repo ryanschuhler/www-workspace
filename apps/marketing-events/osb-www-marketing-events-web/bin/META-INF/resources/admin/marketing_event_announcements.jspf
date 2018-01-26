@@ -1,0 +1,97 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+String orderByCol = ParamUtil.getString(request, "orderByCol", "display-date");
+String orderByType = ParamUtil.getString(request, "orderByType", "asc");
+
+OrderByComparator orderByComparator = OrderByComparatorFactoryUtil.create("MarketingEventAnnouncement", TextFormatter.format(orderByCol, TextFormatter.M), orderByType.equals("asc"));
+%>
+
+<liferay-ui:search-container
+	headerNames="title,message,summary,display-date,status"
+	iteratorURL="<%= portletURL %>"
+	orderByCol="<%= orderByCol %>"
+	orderByComparator="<%= orderByComparator %>"
+	orderByType="<%= orderByType %>"
+	total="<%= MarketingEventAnnouncementLocalServiceUtil.getMarketingEventAnnouncementsCount(marketingEventId) %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= MarketingEventAnnouncementLocalServiceUtil.getMarketingEventAnnouncements(marketingEventId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.osb.www.marketing.events.model.MarketingEventAnnouncement"
+		keyProperty="marketingEventAnnouncementId"
+		modelVar="marketingEventAnnouncement"
+	>
+		<liferay-portlet:renderURL var="editMarketingEventAnnouncementURL">
+			<portlet:param name="mvcPath" value="/admin/edit_marketing_event_announcement.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="marketingEventAnnouncementId" value="<%= String.valueOf(marketingEventAnnouncement.getMarketingEventAnnouncementId()) %>" />
+			<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEventAnnouncement.getMarketingEventId()) %>" />
+		</liferay-portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= editMarketingEventAnnouncementURL %>"
+			name="title"
+			orderable="<%= true %>"
+			value="<%= HtmlUtil.escape(marketingEventAnnouncement.getTitle()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= editMarketingEventAnnouncementURL %>"
+			name="message"
+			value="<%= HtmlUtil.escape(marketingEventAnnouncement.getMessage()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= editMarketingEventAnnouncementURL %>"
+			name="summary"
+			value="<%= HtmlUtil.escape(marketingEventAnnouncement.getSummary()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="display-date"
+			orderable="<%= true %>"
+			translate="<%= true %>"
+			value="<%= longDateFormatDateTime.format(marketingEventAnnouncement.getDisplayDate()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="status"
+			orderable="<%= true %>"
+			value="<%= WorkflowConstants.getStatusLabel(marketingEventAnnouncement.getStatus()) %>"
+		/>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/admin/marketing_event_announcement_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<aui:button-row>
+		<liferay-portlet:renderURL var="addMarketingEventAnnouncementURL">
+			<portlet:param name="mvcPath" value="/admin/edit_marketing_event_announcement.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="marketingEventId" value="<%= String.valueOf(marketingEventId) %>" />
+		</liferay-portlet:renderURL>
+
+		<aui:button href="<%= addMarketingEventAnnouncementURL %>" value="add-announcement" />
+	</aui:button-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

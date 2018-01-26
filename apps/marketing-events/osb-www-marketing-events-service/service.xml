@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="com.liferay.osb.www.marketing.events">
+	<namespace>OSB</namespace>
+	<entity local-service="true" name="MarketingEvent" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="type" type="int" />
+		<column localized="true" name="title" type="String" />
+		<column name="titleURL" type="String" />
+		<column name="hostedBy" type="String" />
+		<column name="hostedByURL" type="String" />
+		<column localized="true" name="summary" type="String" />
+		<column name="siteGroupId" type="long" />
+		<column name="imageFileEntryId" type="long" />
+		<column name="slidesFileEntryId" type="long" />
+		<column name="videoTitle" type="String" />
+		<column name="timeZoneId" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="dateTBA" type="boolean" />
+		<column name="addressId" type="long" />
+		<column name="latitude" type="double" />
+		<column name="longitude" type="double" />
+		<column name="globalRegion" type="int" />
+		<column name="online" type="boolean" />
+		<column name="registrationType" type="int" />
+		<column name="registrationURL" type="String" />
+		<column name="extraSettings" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="Type" return-type="Collection">
+			<finder-column name="type" />
+		</finder>
+		<finder name="SiteGroupId" return-type="MarketingEvent">
+			<finder-column name="siteGroupId" />
+		</finder>
+		<finder name="GlobalRegion" return-type="Collection">
+			<finder-column name="globalRegion" />
+		</finder>
+		<finder name="T_GtSD" return-type="Collection">
+			<finder-column name="type" />
+			<finder-column comparator="&gt;" name="startDate" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="Address" package-path="com.liferay.portal" />
+	</entity>
+	<entity local-service="true" name="MarketingEventAnnouncement" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventAnnouncementId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventId" type="long" />
+		<column name="title" type="String" />
+		<column name="message" type="String" />
+		<column name="summary" type="String" />
+		<column name="imageFileEntryId" type="long" />
+		<column name="linkURL" type="String" />
+		<column name="linkLabel" type="String" />
+		<column name="displayDate" type="Date" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventId" return-type="Collection">
+			<finder-column name="marketingEventId" />
+		</finder>
+		<finder name="MEI_LtDD_S" return-type="Collection">
+			<finder-column name="marketingEventId" />
+			<finder-column comparator="&lt;" name="displayDate" />
+			<finder-column name="status" />
+		</finder>
+	</entity>
+	<entity local-service="true" name="MarketingEventSession" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventSessionId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventId" type="long" />
+		<column name="marketingEventSessionRoomId" type="long" />
+		<column localized="true" name="title" type="String" />
+		<column localized="true" name="description" type="String" />
+		<column localized="true" name="keywords" type="String" />
+		<column name="slidesFileEntryId" type="long" />
+		<column name="videoURL" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<!-- Relationships -->
+
+		<column entity="MarketingEventUser" mapping-table="MarketingEventSessions_MarketingEventUsers" name="marketingEventUsers" type="Collection" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="startDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventId" return-type="Collection">
+			<finder-column name="marketingEventId" />
+		</finder>
+		<finder name="MEI_MESRI" return-type="Collection">
+			<finder-column name="marketingEventId" />
+			<finder-column name="marketingEventSessionRoomId" />
+		</finder>
+		<finder name="MEI_S" return-type="Collection">
+			<finder-column name="marketingEventId" />
+			<finder-column name="status" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
+	</entity>
+	<entity local-service="true" name="MarketingEventSessionRoom" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventSessionRoomId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventId" type="long" />
+		<column name="name" type="String" />
+		<column name="imageFileEntryId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventId" return-type="Collection">
+			<finder-column name="marketingEventId" />
+		</finder>
+	</entity>
+	<entity local-service="true" name="MarketingEventSponsor" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventSponsorId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventId" type="long" />
+		<column name="marketingEventSponsorLevelId" type="long" />
+		<column name="name" type="String" />
+		<column localized="true" name="description" type="String" />
+		<column name="imageFileEntryId" type="long" />
+		<column name="url" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventId" return-type="Collection">
+			<finder-column name="marketingEventId" />
+		</finder>
+		<finder name="MEI_MESLI" return-type="Collection">
+			<finder-column name="marketingEventId" />
+			<finder-column name="marketingEventSponsorLevelId" />
+		</finder>
+	</entity>
+	<entity local-service="true" name="MarketingEventSponsorLevel" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventSponsorLevelId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventId" type="long" />
+		<column localized="true" name="name" type="String" />
+		<column name="priority" type="int" />
+
+		<!-- Order -->
+
+		<order>
+			<order-column name="priority" order-by="asc" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventId" return-type="Collection">
+			<finder-column name="marketingEventId" />
+		</finder>
+	</entity>
+	<entity local-service="true" name="MarketingEventUser" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="marketingEventUserId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventId" type="long" />
+		<column name="firstName" type="String" />
+		<column name="lastName" type="String" />
+		<column name="companyName" type="String" />
+		<column name="companyLogoFileEntryId" type="long" />
+		<column localized="true" name="jobTitle" type="String" />
+		<column localized="true" name="description" type="String" />
+		<column name="imageFileEntryId" type="long" />
+		<column name="phoneNumber" type="String" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<!-- Relationships -->
+
+		<column entity="MarketingEventSession" mapping-table="MarketingEventSessions_MarketingEventUsers" name="marketingEventSessions" type="Collection" />
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventId" return-type="Collection">
+			<finder-column name="marketingEventId" />
+		</finder>
+		<finder name="MEI_S" return-type="Collection">
+			<finder-column name="marketingEventId" />
+			<finder-column name="status" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+	</entity>
+	<entity local-service="true" name="SocialLink" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="socialLinkId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="marketingEventUserId" type="long" />
+		<column name="socialLinkTypeId" type="long" />
+		<column name="url" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="MarketingEventUserId" return-type="Collection">
+			<finder-column name="marketingEventUserId" />
+		</finder>
+		<finder name="SocialLinkTypeId" return-type="Collection">
+			<finder-column name="socialLinkTypeId" />
+		</finder>
+		<finder name="MEUI_SLTI" return-type="Collection">
+			<finder-column name="marketingEventUserId" />
+			<finder-column name="socialLinkTypeId" />
+		</finder>
+	</entity>
+	<entity local-service="true" name="SocialLinkType" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="socialLinkTypeId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="imageFileEntryId" type="long" />
+	</entity>
+	<exceptions>
+		<exception>DuplicateSiteGroup</exception>
+		<exception>DuplicateSocialLinkType</exception>
+		<exception>MarketingEventAnnouncementDisplayDate</exception>
+		<exception>MarketingEventAnnouncementLinkLabel</exception>
+		<exception>MarketingEventAnnouncementLinkURL</exception>
+		<exception>MarketingEventAnnouncementMessage</exception>
+		<exception>MarketingEventAnnouncementTitle</exception>
+		<exception>MarketingEventEndDate</exception>
+		<exception>MarketingEventHostedBy</exception>
+		<exception>MarketingEventHostedByURL</exception>
+		<exception>MarketingEventRegistrationURL</exception>
+		<exception>MarketingEventSessionEndDate</exception>
+		<exception>MarketingEventSessionRoomName</exception>
+		<exception>MarketingEventSessionStartDate</exception>
+		<exception>MarketingEventSessionTitle</exception>
+		<exception>MarketingEventSessionVideoURL</exception>
+		<exception>MarketingEventSponsorLevelName</exception>
+		<exception>MarketingEventSponsorMarketingEventSponsorLevelId</exception>
+		<exception>MarketingEventSponsorName</exception>
+		<exception>MarketingEventStartDate</exception>
+		<exception>MarketingEventTitle</exception>
+		<exception>MarketingEventTitleURL</exception>
+		<exception>MarketingEventUserCompany</exception>
+		<exception>MarketingEventUserFirstName</exception>
+		<exception>MarketingEventUserLastName</exception>
+		<exception>MarketingEventUserPhoneNumber</exception>
+		<exception>MarketingEventVideoTitle</exception>
+		<exception>RequiredMarketingEventSessionRoom</exception>
+		<exception>RequiredMarketingEventSponsorLevel</exception>
+		<exception>RequiredMarketingEventUser</exception>
+		<exception>RequiredSocialLinkType</exception>
+		<exception>SocialLinkTypeName</exception>
+		<exception>SocialLinkURL</exception>
+	</exceptions>
+</service-builder>

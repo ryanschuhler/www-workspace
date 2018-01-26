@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventSessionFinder.findByCI_S">
+		<![CDATA[
+			SELECT
+				{OSB_MarketingEventSession.*}
+			FROM
+				OSB_MarketingEventSession
+			INNER JOIN
+				AssetEntry ON
+					(AssetEntry.classPK = OSB_MarketingEventSession.marketingEventSessionId)
+			INNER JOIN
+				AssetEntries_AssetCategories ON
+					(AssetEntries_AssetCategories.entryId = AssetEntry.entryId)
+			WHERE
+				(AssetEntries_AssetCategories.categoryId IN ([$CATEGORY_IDS$])) AND
+				(AssetEntry.classNameId = ?) AND
+				(OSB_MarketingEventSession.status IN ([$STATUSES$]))
+		]]>
+	</sql>
+	<sql id="com.liferay.osb.www.marketing.events.service.persistence.MarketingEventUserFinder.findByCI_S">
+		<![CDATA[
+			SELECT
+				{OSB_MarketingEventUser.*}
+			FROM
+				OSB_MarketingEventUser
+			INNER JOIN
+				AssetEntry ON
+					(AssetEntry.classPK = OSB_MarketingEventUser.marketingEventUserId)
+			INNER JOIN
+				AssetEntries_AssetCategories ON
+					(AssetEntries_AssetCategories.entryId = AssetEntry.entryId)
+			WHERE
+				(AssetEntries_AssetCategories.categoryId IN ([$CATEGORY_IDS$])) AND
+				(AssetEntry.classNameId = ?) AND
+				(OSB_MarketingEventUser.status IN ([$STATUSES$]))
+		]]>
+	</sql>
+</custom-sql>
