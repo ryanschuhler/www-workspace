@@ -54,6 +54,10 @@ services:
     networks:
       - "www-external"
       - "www-internal"
+    ports:
+      - "8000:8000"
+      - "11311:11311"
+      - "12345:12345"
     user: liferay
     volumes:
       - "liferay:/opt/java/liferay/data"
@@ -69,7 +73,10 @@ services:
       - "mariadb/mariadb-${ENV:-local}.env"
     image: mariadb:www
     networks:
+      - "www-external"
       - "www-internal"
+    ports:
+      - "3307:3306"
     volumes:
       - "mariadb:/var/lib/mysql"
 
