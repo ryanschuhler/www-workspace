@@ -1,0 +1,11 @@
+{namespace Card}
+
+/**
+ * @param click
+ * @param clicked
+ */
+{template .render}
+	<div class="card {$clicked ? 'clicked': ''}" onClick="{$click}">
+		Imma card
+	</div>
+{/template}

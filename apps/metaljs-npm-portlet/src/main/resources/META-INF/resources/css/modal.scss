@@ -1,0 +1,21 @@
+.liferay-npm-example-metal-modal {
+	left: 20%;
+	top: 10%;
+
+	&.hide {
+		display: none;
+	}
+
+	.modal-content {
+		width: 24em;
+	}
+
+	.card {
+		padding: 2em;
+		border: 1px solid black;
+	}
+
+	.card.clicked {
+		background: #red;
+	}
+}
