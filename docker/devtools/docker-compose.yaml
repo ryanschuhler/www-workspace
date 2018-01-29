@@ -12,7 +12,7 @@ services:
     container_name: mockmock
     expose:
       - "25"
-    image: mockmock
+    image: mockmock:www
     networks:
       - "www-external"
       - "www-internal"
@@ -23,7 +23,7 @@ services:
   hubspot:
     build: hubspot/.
     container_name: hubspot
-    image: hubspot
+    image: hubspot:www
     networks:
       - "www-external"
       - "www-internal"

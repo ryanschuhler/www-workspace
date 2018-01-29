@@ -7,9 +7,9 @@ networks:
     internal: true
 
 services:
-  httpd:
+  httpd62:
     container_name: httpd62
-    image: httpd:www-base
+    image: httpd:www
     networks:
       - "www-external"
       - "www-internal"
@@ -17,22 +17,22 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "apache:/var/www/html"
+      - "httpd62:/var/www/html"
       - "../httpd/resources/:/tmp/httpd"
-  liferay:
-    build: 
+  liferay62:
+    build:
       args:
         JAVA_PACKAGE: openjdk7-jre
         BRANCH: LRIS-28398-2018-01-24
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
         LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-fix-packs-6.2-ee-sp20-20170717160924965.zip
       context: liferay/.
-    container_name: liferay-62
+    container_name: liferay62
     depends_on:
-     - "mariadb"
+     - "mariadb62"
     environment:
       - "VIRTUAL_PORT=8080"
-    image: liferay-plugins-62:www-base
+    image: liferay-plugins-62:www
     ports:
       - "8000:8000"
       - "11311:11311"
@@ -43,13 +43,12 @@ services:
       - "www-internal"
     volumes:
       - "liferay62:/opt/java/liferay/data"
-      - "./liferay/resources:/tmp/liferay"
       - "./liferay/resources/deploy:/opt/java/liferay/deploy"
-  mariadb:
+  mariadb62:
     container_name: mariadb62
     env_file:
       - "mariadb/mariadb.env"
-    image: mariadb:www-base
+    image: mariadb:www
     networks:
       - "www-external"
       - "www-internal"
@@ -57,17 +56,19 @@ services:
       - "3307:3306"
     volumes:
       - "mariadb62:/var/lib/mysql"
-      - "./mariadb/resources:/tmp/mariadb"
-  hubspot:
+  hubspot62:
     container_name: hubspot62
-    image: hubspot:www-local
+    image: hubspot:www
     networks:
       - "www-external"
       - "www-internal"
     ports:
       - "8080:80"
+    volumes:
+      - "httpd62:/home"
 
 volumes:
-  apache:
+  httpd62:
+  hubspot62:
   liferay62:
   mariadb62:

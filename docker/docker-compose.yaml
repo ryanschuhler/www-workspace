@@ -58,7 +58,6 @@ services:
       - "8000:8000"
       - "11311:11311"
       - "12345:12345"
-    user: liferay
     volumes:
       - "liferay:/opt/java/liferay/data"
       - "../extensions/wcm-deployment/wcm-deployment-service/src/main/resources:/mnt/wcm"
