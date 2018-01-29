@@ -5,7 +5,7 @@ SOURCE_BUNDLE_FILE=liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
 PATCH_FILES=liferay-fix-pack-portal-154-6210.zip
 
 # need set this more dynamically so it works across computer setups
-DOCKER_BASE=~/liferay/www-workspace/docker/local/liferay62/liferay
+DOCKER_BASE=~/liferay/www-workspace/docker/devtools/liferay62/liferay
 
 BUNDLE_FILE=liferay-bundle.zip
 
