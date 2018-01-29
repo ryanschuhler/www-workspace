@@ -1,4 +1,4 @@
-FROM alpine:latest AS liferay-build
+FROM alpine:3.4 AS liferay-build
 
 MAINTAINER Allen Ziegenfus <allen.ziegenfus@liferay.com>
 

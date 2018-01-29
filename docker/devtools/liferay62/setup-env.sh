@@ -11,7 +11,10 @@ BUNDLE_FILE=liferay-bundle.zip
 
 rm -v ${DOCKER_BASE}/${BUNDLE_FILE}
 rm -v ${DOCKER_BASE}/resources/patches/*.zip
-rm -v ${DOCKER_BASE}/resources/image-deploy/*.xml
+rm -v ${DOCKER_BASE}/resources/image-deploy
+
+mkdir -p ${DOCKER_BASE}/resources/patches
+mkdir -p ${DOCKER_BASE}/resources/image-deploy
 
 CACHE=~/.liferay/
 
