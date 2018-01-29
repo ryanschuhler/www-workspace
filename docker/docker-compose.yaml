@@ -41,7 +41,6 @@ services:
     build:
       args:
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/7.0.10.6/liferay-dxp-digital-enterprise-tomcat-7.0-sp6-20171010144253003.zip
-#        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-31-7010.zip;http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/hotfix/liferay-hotfix-1666-7010.zip
         LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-37-7010.zip
       context: liferay/.
     container_name: liferay
@@ -58,6 +57,7 @@ services:
       - "8000:8000"
       - "11311:11311"
       - "12345:12345"
+    user: liferay
     volumes:
       - "liferay:/opt/java/liferay/data"
       - "../extensions/wcm-deployment/wcm-deployment-service/src/main/resources:/mnt/wcm"
