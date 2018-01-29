@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:latest AS liferay-build
 
 MAINTAINER Ryan Schuhler <ryan.schuhler@liferay.com>
 
@@ -45,6 +45,25 @@ EXPOSE 11311/tcp
 COPY --chown=liferay:liferay ./resources/ ${LIFERAY_HOME}/
 
 RUN apply-fix-packs.sh $LIFERAY_FIXPACK_DOWNLOAD_URLS
+
+RUN bundle-exclude.sh
+
+FROM alpine:latest 
+
+ARG JAVA_PACKAGE=openjdk8
+
+RUN apk update \
+  && apk upgrade \
+  && apk add --no-cache bash $JAVA_PACKAGE tree \
+  && addgroup -S liferay \
+  && adduser -S -G liferay liferay
+
+ENV LIFERAY_HOME /opt/java/liferay
+
+USER liferay:liferay
+
+COPY --chown=liferay:liferay --from=liferay-build /opt/java/liferay /opt/java/liferay
+COPY --chown=liferay:liferay --from=liferay-build /usr/local/bin /usr/local/bin
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["/opt/java/liferay/tomcat/bin/catalina.sh", "run"]
