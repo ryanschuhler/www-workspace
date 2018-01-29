@@ -23,7 +23,7 @@ if [ ! -z "$PATCH_FILES" ]
 then
     for PATCH_FILE in ${PATCH_FILES}
     do 
-        cp -v $PATCH_FILE ${PATCHING_TOOL_HOME}/patches/
+        mv -v $PATCH_FILE ${PATCHING_TOOL_HOME}/patches/
     done
 else
     # Parse semi colon delimited list of URLs into an array
@@ -40,3 +40,5 @@ fi
 sed -i 's/tomcat[^\/]*/tomcat/g' ${PATCHING_TOOL_HOME}/default.properties 
 
 bash ${PATCHING_TOOL_HOME}/patching-tool.sh install -force 
+rm -rfv ${PATCHING_TOOL_HOME}/patches/*
+rm -rfv /opt/java/liferay/tomcat/webapps/ROOT/WEB-INF/patching-backup.zip
