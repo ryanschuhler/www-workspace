@@ -9,6 +9,9 @@ networks:
 services:
   httpd62:
     container_name: httpd62
+    environment:
+      - "SERVER_NAME=localhost"
+      - "LIFERAY_CONTAINER_NAME=liferay62"
     image: httpd:www
     networks:
       - "www-external"
