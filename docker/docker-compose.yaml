@@ -45,6 +45,7 @@ services:
       context: liferay/.
     container_name: liferay
     depends_on:
+     - "elasticsearch"
      - "mariadb"
     env_file:
       - "liferay/liferay.env"
