@@ -48,10 +48,11 @@ RUN if [ ! -f "${BUILD_RESOURCES}/${LIFERAY_ACTIVATION_KEY_NAME}" ] && [ "$LIFER
     && curl -fSL "$LIFERAY_ACTIVATION_KEY_URL" > ${BUILD_RESOURCES}/${LIFERAY_ACTIVATION_KEY_NAME} \
   ; fi
 
-RUN if [ ! -f "${BUILD_RESOURCES}/${LIFERAY_ACTIVATION_KEY_NAME}" ] \
+RUN if [ -f "${BUILD_RESOURCES}/${LIFERAY_ACTIVATION_KEY_NAME}" ] \
   ; then \
     set -x \
-    && mv ${BUILD_RESOURCES}/${LIFERAY_ACTIVATION_KEY_NAME} ${LIFERAY_HOME}/osgi/modules \
+    && mkdir ${LIFERAY_HOME}/image-deploy \
+    && mv ${BUILD_RESOURCES}/${LIFERAY_ACTIVATION_KEY_NAME} ${LIFERAY_HOME}/image-deploy \
   ; fi
 
 RUN ${BUILD_RESOURCES}/bundle-exclude.sh
