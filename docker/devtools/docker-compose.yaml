@@ -20,6 +20,20 @@ services:
       - "8282:8282"
     volumes:
       - "mockmock:/home"
+  nginx:
+    build: nginx/.
+    container_name: nginx
+    env_file:
+      - "nginx/nginx.env"
+    image: nginx:www
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "nginx"
   hubspot:
     build: hubspot/.
     container_name: hubspot
@@ -34,4 +48,5 @@ services:
 
 volumes:
   hubspot:
+  nginx:
   mockmock:
