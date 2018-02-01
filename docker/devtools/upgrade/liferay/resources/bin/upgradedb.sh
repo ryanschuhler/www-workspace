@@ -1,7 +1,7 @@
 #!/bin/bash
 
 chmod u+x /tmp/liferay/wait-for-it.sh
-bash -x /tmp/liferay/wait-for-it.sh -t 600 mariadb:3306
+bash -x /tmp/liferay/wait-for-it.sh -t 600 upgrade_mariadb:3306
 
 DIR=/opt/java/liferay/tools/portal-tools-db-upgrade-client
 
