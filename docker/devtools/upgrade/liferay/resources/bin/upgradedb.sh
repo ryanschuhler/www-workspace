@@ -1,9 +1,10 @@
 #!/bin/bash
 
-chmod u+x /tmp/liferay/wait-for-it.sh
-bash -x /tmp/liferay/wait-for-it.sh -t 600 upgrade_mariadb:3306
+/opt/java/liferay/bin/wait-for-it.sh -t 600 mariadb:3306
 
 DIR=/opt/java/liferay/tools/portal-tools-db-upgrade-client
+
+cp -rv /mnt/upgradetools/* /opt/java/liferay/tools
 
 cd ${DIR}
 export JAVA_OPTS="-Xms4096m -Xmx4096m -XX:MaxNewSize=2048m -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled"

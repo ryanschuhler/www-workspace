@@ -8,13 +8,13 @@ networks:
 
 services:
   liferay:
-    build: liferay/.
     container_name: upgrade_liferay
     depends_on:
      - "mariadb"
     command: ["echo", "done"]
     environment:
       - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
+    entrypoint: ["/opt/java/liferay/bin/upgradedb.sh"]
     image: liferay:www
     networks:
       - "www-external"
@@ -24,8 +24,10 @@ services:
       - "8080:8080"
     volumes:
       - "liferay:/opt/java/liferay/data"
-      - "liferay-tools:/opt/java/liferay/tools"
       - "./liferay/resources:/tmp/liferay"
+      - "./liferay/resources/bin/upgradedb.sh:/opt/java/liferay/bin/upgradedb.sh"
+      - "./liferay/resources/osgi/configs:/opt/java/liferay/osgi/configs"
+      - "./liferay/resources/tools:/mnt/upgradetools"
   mariadb:
     container_name: upgrade_mariadb
     env_file:
@@ -38,8 +40,8 @@ services:
       - "3307:3306"
     volumes:
       - "mariadb:/var/lib/mysql"
-      - "./mariadb/resources:/tmp/mariadb"
-
+      - "./mariadb/resources/etc/mysql/conf.d/local.cnf:/etc/mysql/conf.d/local.cnf"
+      - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
 volumes:
   liferay:
   liferay-tools:
