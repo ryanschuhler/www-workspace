@@ -7,6 +7,19 @@ networks:
     internal: true
 
 services:
+  elasticsearch62:
+    container_name: elasticsearch62
+    environment:
+      - "cluster.name=elasticsearch"
+    image: elasticsearch:www
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - "elasticsearch62:/usr/share/elasticsearch/data"
   httpd62:
     container_name: httpd62
     environment:
@@ -28,7 +41,7 @@ services:
         JAVA_PACKAGE: openjdk7-jre
         BRANCH: ee-6.2.x
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
-        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-fix-packs-6.2-ee-sp20-20170717160924965.zip
+        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/6.2.10/portal/liferay-fix-pack-portal-164-6210.zip
       context: liferay/.
     container_name: liferay62
     depends_on:
@@ -59,6 +72,7 @@ services:
       - "3307:3306"
     volumes:
       - "mariadb62:/var/lib/mysql"
+      - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
   hubspot62:
     container_name: hubspot62
     image: hubspot:www
@@ -71,6 +85,7 @@ services:
       - "httpd62:/home"
 
 volumes:
+  elasticsearch62:
   httpd62:
   hubspot62:
   liferay62:
