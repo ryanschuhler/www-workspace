@@ -1,0 +1,14 @@
+{namespace Test}
+
+/**
+ * Prints stuff
+ */
+{template .render}
+	{@param param1: string}
+	{@param param2: string}
+
+	<blockquote class="blockquote-primary">
+		<p>param1={$param1}</p>
+		<p>param2={$param2}</p>
+	</blockquote>
+{/template}
