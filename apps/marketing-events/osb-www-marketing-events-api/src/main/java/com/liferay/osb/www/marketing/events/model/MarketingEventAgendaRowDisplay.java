@@ -16,7 +16,8 @@ package com.liferay.osb.www.marketing.events.model;
 
 import java.util.Date;
 import java.util.List;
-/*
+
+/**
  * @author Allen Ziegenfus
  */
 public interface MarketingEventAgendaRowDisplay {

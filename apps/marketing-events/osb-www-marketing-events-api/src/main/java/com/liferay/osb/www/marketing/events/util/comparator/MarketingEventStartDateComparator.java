@@ -17,15 +17,19 @@ package com.liferay.osb.www.marketing.events.util.comparator;
 import com.liferay.osb.www.marketing.events.model.MarketingEvent;
 import com.liferay.osb.www.marketing.events.model.MarketingEventConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.CollatorUtil;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+
+import java.text.Collator;
 
 import java.util.Locale;
 
 /**
  * @author Rachael Koestartyo
  * @author Joan H. Kim
+ * @author Allen Ziegenfus
  */
 public class MarketingEventStartDateComparator
 	extends OrderByComparator<MarketingEvent> {
@@ -55,8 +59,6 @@ public class MarketingEventStartDateComparator
 			marketingEvent1.getStartDate(), marketingEvent2.getStartDate());
 
 		if (value == 0) {
-			//Collator collator = Collator.getInstance(_locale);
-
 			String typeLabel1 = MarketingEventConstants.getTypeLabel(
 				marketingEvent1.getType());
 
@@ -67,10 +69,9 @@ public class MarketingEventStartDateComparator
 
 			String typeValue2 = LanguageUtil.get(_locale, typeLabel2);
 
-			// TODO: use collator
+			Collator collator = CollatorUtil.getInstance(_locale);
 
-			//value = collator.compare(typeValue1, typeValue2);
-			value = typeValue1.compareTo(typeValue2);
+			value = collator.compare(typeValue1, typeValue2);
 		}
 
 		if (_asc) {

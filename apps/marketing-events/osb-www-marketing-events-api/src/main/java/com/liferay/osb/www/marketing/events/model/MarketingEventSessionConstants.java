@@ -35,9 +35,8 @@ public class MarketingEventSessionConstants {
 		MIME_TYPE_IMAGE_SVG_XML
 	};
 
-	public static final int[] STATUSES = {
-		WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_DRAFT
-	};
+	public static final int[] STATUSES =
+		{WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_DRAFT};
 
 	public static final String TIME_FORMAT_DEFAULT_PATTERN = "H:mm";
 

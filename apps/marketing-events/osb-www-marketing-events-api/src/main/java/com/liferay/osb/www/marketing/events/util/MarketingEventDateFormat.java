@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -69,8 +68,8 @@ public enum MarketingEventDateFormat {
 	}
 
 	private MarketingEventDateFormat(String value, int style) {
-		_style = style;
 		_value = value;
+		_style = style;
 	}
 
 	private int _style;

@@ -21,7 +21,7 @@ package com.liferay.osb.www.marketing.events.model;
 public class MarketingEventConstants {
 
 	public static final String ADDRESS_ZIP_NOT_AVAILABLE = "N/A";
-	
+
 	public static final String ASSET_VOCABULARY_NAME_SESSION_TOPICS =
 		"Marketing Event Session Topics";
 
@@ -30,7 +30,7 @@ public class MarketingEventConstants {
 
 	public static final String ASSET_VOCABULARY_NAME_SESSION_TYPES =
 		"Marketing Event Session Types";
-	
+
 	public static final int CONFIGURATION_TYPE_COMMUNITY = 0;
 
 	public static final int CONFIGURATION_TYPE_CONFERENCE = 1;
@@ -48,7 +48,7 @@ public class MarketingEventConstants {
 		CONFIGURATION_TYPE_INDUSTRY, CONFIGURATION_TYPE_PARTNER,
 		CONFIGURATION_TYPE_ROADSHOW, CONFIGURATION_TYPE_WEBINAR
 	};
-	
+
 	public static final String DATE_FORMAT_DEFAULT_PATTERN = "yyyy-MM-dd";
 
 	public static final long DEFAULT_ADDRESS_ID = 0;

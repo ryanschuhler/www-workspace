@@ -150,7 +150,7 @@ public class MarketingEventsUtil {
 
 		return jsonObject;
 	}
-	
+
 	public static long[] getCategoryIds(
 			long groupId, String vocabularyName, String categoryNames)
 		throws PortalException {
@@ -428,10 +428,10 @@ public class MarketingEventsUtil {
 
 		return new Tuple(marketingEvents, corruptIndex);
 	}
-	
+
 	public static Region getRegion(long regionId) {
 		if (_regions == null) {
-			_regions = new HashMap<Long, Region>();
+			_regions = new HashMap<>();
 
 			List<Region> regions = RegionServiceUtil.getRegions(true);
 
