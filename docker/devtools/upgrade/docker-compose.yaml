@@ -12,6 +12,8 @@ services:
     depends_on:
      - "mariadb"
     command: ["echo", "done"]
+    env_file:
+      - "liferay/liferay.env"
     environment:
       - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
     entrypoint: ["/opt/java/liferay/bin/upgradedb.sh"]
@@ -32,7 +34,6 @@ services:
     container_name: upgrade_mariadb
     env_file:
       - "mariadb/mariadb.env"
-      - "mariadb/mariadb-${ENV:-local}.env"
     image: mariadb:www
     networks:
       - "www-external"
