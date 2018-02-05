@@ -79,6 +79,7 @@ services:
       - "3307:3306"
     volumes:
       - "mariadb:/var/lib/mysql"
+      - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
 
 volumes:
   elasticsearch:

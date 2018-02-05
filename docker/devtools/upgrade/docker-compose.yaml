@@ -32,6 +32,7 @@ services:
     container_name: upgrade_mariadb
     env_file:
       - "mariadb/mariadb.env"
+      - "mariadb/mariadb-${ENV:-local}.env"
     image: mariadb:www
     networks:
       - "www-external"
