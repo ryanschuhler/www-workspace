@@ -10,12 +10,11 @@
 		nameCurrentValue: string
 	]>}
 	{@param navigationURL: string}
-	{@param param1: string}
-	{@param param2: string}
+	{@param? items: list<?>}
 
 	<div id="{$id}">
 		{call Header.render data="all"}{/call}
-		{call Test.render data="all"}{/call}
+		{call MyList.render data="all"}{/call}
 
 		<p>{msg desc=""}here-you-will-find-how-easy-it-is-to-do-things-like{/msg}</p>
 

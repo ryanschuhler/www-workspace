@@ -46,8 +46,7 @@ public class SoyPortletViewMVCRenderCommand
 
 		template.put("releaseInfo", ReleaseInfo.getReleaseInfo());
 
-		template.put("param1", "Hey here is param 1");
-		template.put("param2", "Hey here is param 2");
+		template.put("items", new String[]{"one", "two", "four"});
 
 		return "View";
 	}
