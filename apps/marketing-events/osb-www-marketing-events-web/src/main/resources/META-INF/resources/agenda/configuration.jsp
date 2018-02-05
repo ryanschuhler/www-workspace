@@ -55,11 +55,14 @@
 			<c:when test="<%= (marketingEventAgendaDisplay != null) %>">
 				<aui:select label="default-day" name="preferences--defaultDay--">
 					<c:set value="<%= marketingEventAgendaDisplay.getMarketingEventDates() %>" var="eventDates" />
-					<c:set value="<%= marketingEventAgendaDisplay.getDateFormat(marketingEventAgendaDisplayContext.getMarketingEventDateFormat(), marketingEventAgendaDisplayContext.getAgendaCustomDatePattern(), locale) %>" var="marketingEventFormatDate" />
 					<c:set value="<%= marketingEventAgendaDisplayContext.getDefaultDay() %>" var="defaultDay" />
 
+					<%
+					Format marketingEventFormatDate = marketingEventAgendaDisplay.getDateFormat(marketingEventAgendaDisplayContext.getMarketingEventDateFormat(), marketingEventAgendaDisplayContext.getAgendaCustomDatePattern(), locale);
+					%>
+
 					<c:forEach items="${eventDates}" var="eventDate" varStatus="eventDateStatus">
-						<aui:option label="${eventDate}"  selected="${eventDateStatus.index == defaultDay}" value="${eventDateStatus.index}"/>
+						<aui:option label='<%= marketingEventFormatDate.format(pageContext.getAttribute("eventDate")) %>' selected="${eventDateStatus.index == defaultDay}" value="${eventDateStatus.index}" />
 					</c:forEach>
 				</aui:select>
 			</c:when>
