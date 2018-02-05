@@ -1,4 +1,4 @@
 Bundle-Name: Soy Components
 Bundle-SymbolicName: com.liferay.osb.www.soy.components
 Bundle-Version: 1.0.0
-Export-Package: com.liferay.osb.www
+Export-Package: com.liferay.osb.www.soy.components
