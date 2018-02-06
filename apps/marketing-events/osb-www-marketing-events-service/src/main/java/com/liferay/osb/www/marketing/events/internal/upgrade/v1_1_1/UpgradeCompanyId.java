@@ -16,15 +16,23 @@ package com.liferay.osb.www.marketing.events.internal.upgrade.v1_1_1;
 
 import com.liferay.portal.kernel.upgrade.BaseUpgradeCompanyId;
 
+/**
+ * @author Allen Ziegenfus
+ */
 public class UpgradeCompanyId extends BaseUpgradeCompanyId {
 
 	@Override
 	protected TableUpdater[] getTableUpdaters() {
 		return new TableUpdater[] {
-			new TableUpdater("OSB_MarketingEventSession", "OSB_MarketingEvent", "marketingEventId"),
-			new TableUpdater("OSB_MarketingEventUser", "OSB_MarketingEvent", "marketingEventId"),
-			new TableUpdater("OSB_MarketingEventSessions_MarketingEventUsers", "OSB_MarketingEventSession", 
-				"marketingEventSessionId")
+			new TableUpdater(
+				"OSB_MarketingEventSession", "OSB_MarketingEvent",
+				"marketingEventId"),
+			new TableUpdater(
+				"OSB_MarketingEventUser", "OSB_MarketingEvent",
+				"marketingEventId"),
+			new TableUpdater(
+				"OSB_MarketingEventSessions_MarketingEventUsers",
+				"OSB_MarketingEventSession", "marketingEventSessionId")
 		};
 	}
 

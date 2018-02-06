@@ -45,7 +45,7 @@ public class OSBWWWMarketingEventPermissionUtil {
 	public static OSBWWWMarketingEventPermission
 		getOSBWWWMarketingEventPermission() {
 
-			return _osbWWWMarketingEventPermissionUtil;
+		return _osbWWWMarketingEventPermissionUtil;
 	}
 
 	@Reference(unbind = "-")

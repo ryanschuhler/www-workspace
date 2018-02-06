@@ -12,7 +12,6 @@
  * details.
  */
 
-
 package com.liferay.osb.www.marketing.events.internal.upgrade;
 
 import com.liferay.osb.www.marketing.events.internal.upgrade.v1_1_1.UpgradeCompanyId;
@@ -30,7 +29,6 @@ public class MarketingEventServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		
 		try {
 			BaseUpgradeServiceModuleRelease baseUpgradeServiceModuleRelease =
 				new BaseUpgradeServiceModuleRelease() {
@@ -57,9 +55,10 @@ public class MarketingEventServiceUpgrade implements UpgradeStepRegistrator {
 		catch (UpgradeException ue) {
 			throw new RuntimeException(ue);
 		}
-		
+
 		registry.register(
-			"com.liferay.osb.www.marketing.events.service", "1.1.0", "1.1.1", new UpgradeCompanyId());
+			"com.liferay.osb.www.marketing.events.service", "1.1.0", "1.1.1",
+			new UpgradeCompanyId());
 	}
 
 }

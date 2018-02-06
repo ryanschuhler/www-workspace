@@ -36,7 +36,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-/** @author Allen Ziegenfus*/
+/**
+ * @author Allen Ziegenfus
+ */
 @RunAsClient
 @RunWith(Arquillian.class)
 public class MarketingEventsAdminPortletTest {
@@ -66,8 +68,9 @@ public class MarketingEventsAdminPortletTest {
 	@PortalURL(OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_ADMIN)
 	private URL _portletURL;
 
-	@FindBy(xpath = "//div[contains(@id,'" +
-		OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_ADMIN + "')]")
+	@FindBy(
+		xpath = "//div[contains(@id,'" + OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_ADMIN + "')]"
+	)
 	private WebElement _tasksPortlet;
 
 	@Drone

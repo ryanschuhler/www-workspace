@@ -32,8 +32,8 @@ public class UpgradeMarketingEventSession extends UpgradeProcess {
 
 		if (!hasColumn("OSB_MarketingEventSession", "type_")) {
 			runSQL(
-				"alter table OSB_MarketingEventSession add column " +
-					"type_ INTEGER");
+				"alter table OSB_MarketingEventSession add column type_ " +
+					"INTEGER");
 		}
 
 		runSQL(

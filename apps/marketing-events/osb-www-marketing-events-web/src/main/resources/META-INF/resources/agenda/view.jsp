@@ -18,7 +18,7 @@
 
 <div class="agenda" id="agenda">
 	<c:choose>
-		<c:when test="<%= ((marketingEventAgendaDisplay == null) || (marketingEventAgendaDisplay.isEmpty())) %>">
+		<c:when test="<%= ((marketingEventAgendaDisplay == null) || marketingEventAgendaDisplay.isEmpty()) %>">
 			<h2>
 				<liferay-ui:message key="agenda-coming-soon" />
 			</h2>

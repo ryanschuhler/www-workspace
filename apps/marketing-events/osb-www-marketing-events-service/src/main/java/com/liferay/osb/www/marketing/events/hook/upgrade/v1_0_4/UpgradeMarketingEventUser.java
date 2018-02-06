@@ -42,8 +42,8 @@ public class UpgradeMarketingEventUser extends UpgradeProcess {
 
 		if (!hasColumn("OSB_MarketingEventUser", "statusDate")) {
 			runSQL(
-				"alter table OSB_MarketingEventUser add column " +
-					"statusDate DATE null");
+				"alter table OSB_MarketingEventUser add column statusDate " +
+					"DATE null");
 		}
 
 		runSQL("update OSB_MarketingEventUser set status = 0");

@@ -45,25 +45,26 @@ import org.osgi.service.component.annotations.Component;
 public class MarketingEventsImpl implements MarketingEvents {
 
 	@Override
-	public List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>> 
-		getMarketingEventUserMarketingEventSessions(
+	public List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>>
+			getMarketingEventUserMarketingEventSessions(
 				long marketingEventId, String vocabularyName,
 				String categoryName)
 		throws PortalException {
 
-		Map<MarketingEventUser, List<MarketingEventSession>> marketingEventUserMarketingEventSessionsMap = 
-			getMarketingEventUserMarketingEventSessionsMap(
-				marketingEventId, vocabularyName, categoryName);
-		
-		List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>> 
+		Map<MarketingEventUser, List<MarketingEventSession>>
+			marketingEventUserMarketingEventSessionsMap =
+				getMarketingEventUserMarketingEventSessionsMap(
+					marketingEventId, vocabularyName, categoryName);
+
+		List<Map.Entry<MarketingEventUser, List<MarketingEventSession>>>
 			marketingEventUserMarketingEventSessions = new ArrayList<>();
-			
+
 		marketingEventUserMarketingEventSessions.addAll(
-				marketingEventUserMarketingEventSessionsMap.entrySet());
-		
+			marketingEventUserMarketingEventSessionsMap.entrySet());
+
 		return marketingEventUserMarketingEventSessions;
 	}
-		
+
 	@Override
 	public Map<MarketingEventUser, List<MarketingEventSession>>
 			getMarketingEventUserMarketingEventSessionsMap(
@@ -81,8 +82,9 @@ public class MarketingEventsImpl implements MarketingEvents {
 				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
 					marketingEvent.getSiteGroupId(), vocabularyName);
 
-			AssetCategory assetCategory = MarketingEventsUtil.fetchAssetCategory(
-				categoryName, assetVocabulary.getVocabularyId());
+			AssetCategory assetCategory =
+				MarketingEventsUtil.fetchAssetCategory(
+					categoryName, assetVocabulary.getVocabularyId());
 
 			marketingEventSessions =
 				MarketingEventSessionLocalServiceUtil.getMarketingEventSessions(
@@ -130,7 +132,7 @@ public class MarketingEventsImpl implements MarketingEvents {
 
 		return marketingEventUserMarketingEventSessionsMap;
 	}
-	
+
 	@Override
 	public List<MarketingEventUser> getMarketingEventUsers(
 			long marketingEventId, String vocabularyName, String categoryName)
@@ -144,8 +146,9 @@ public class MarketingEventsImpl implements MarketingEvents {
 				AssetVocabularyLocalServiceUtil.getGroupVocabulary(
 					marketingEvent.getSiteGroupId(), vocabularyName);
 
-			AssetCategory assetCategory = MarketingEventsUtil.fetchAssetCategory(
-				categoryName, assetVocabulary.getVocabularyId());
+			AssetCategory assetCategory =
+				MarketingEventsUtil.fetchAssetCategory(
+					categoryName, assetVocabulary.getVocabularyId());
 
 			return MarketingEventUserLocalServiceUtil.getMarketingEventUsers(
 				new long[] {assetCategory.getCategoryId()},

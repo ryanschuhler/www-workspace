@@ -26,7 +26,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-/*
+
+/**
  * @author Allen Ziegenfus
  */
 public class MarketingEventAgendaRowDisplayImpl
@@ -61,7 +62,7 @@ public class MarketingEventAgendaRowDisplayImpl
 		getMarketingEventSessionDisplays() {
 
 		List<MarketingEventSessionDisplay> marketingEventSessionDisplays =
-			new ArrayList<MarketingEventSessionDisplay>();
+			new ArrayList<>();
 
 		for (String key : _marketingEventSessionDisplays.keySet()) {
 			marketingEventSessionDisplays.add(
@@ -78,8 +79,7 @@ public class MarketingEventAgendaRowDisplayImpl
 
 	private String _cssClass;
 	private Map<String, MarketingEventSessionDisplay>
-		_marketingEventSessionDisplays =
-			new TreeMap<String, MarketingEventSessionDisplay>();
+		_marketingEventSessionDisplays = new TreeMap<>();
 
 	private Accessor<AssetCategory, String> _nameAccessor =
 		new Accessor<AssetCategory, String>() {

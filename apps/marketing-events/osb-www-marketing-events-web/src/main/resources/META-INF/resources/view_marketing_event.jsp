@@ -40,7 +40,7 @@ MarketingEvent marketingEvent = MarketingEventLocalServiceUtil.getMarketingEvent
 				<div id="<portlet:namespace />video">
 					<div class="video-content">
 						<video class="video-node" controls poster='<%= marketingEvent.getVideoURL(".jpg") %>'>
-							 <source src='<%= marketingEvent.getVideoURL(".mp4") %>' type="video/mp4">
+							<source src="<%= marketingEvent.getVideoURL(".mp4") %>" type="video/mp4">
 						</video>
 					</div>
 				</div>
@@ -88,7 +88,7 @@ MarketingEvent marketingEvent = MarketingEventLocalServiceUtil.getMarketingEvent
 					<c:choose>
 						<c:when test="<%= !themeDisplay.isSignedIn() || !marketingEvent.isTypeWebinar() %>">
 							<c:choose>
-								<c:when test="<%= !Validator.equals(marketingEventLongDateFormatDate.format(marketingEvent.getStartDate()), marketingEventLongDateFormatDate.format(marketingEvent.getEndDate())) %>">
+								<c:when test="<%= !Objects.equals(marketingEventLongDateFormatDate.format(marketingEvent.getStartDate()), marketingEventLongDateFormatDate.format(marketingEvent.getEndDate())) %>">
 									<span content="<%= marketingEventISO8601Format.format(marketingEvent.getStartDate()) %>" property="startDate">
 										<%= marketingEventShortDateFormatDate.format(marketingEvent.getStartDate()) %>
 									</span> -
@@ -108,7 +108,7 @@ MarketingEvent marketingEvent = MarketingEventLocalServiceUtil.getMarketingEvent
 
 							<%= marketingEventLongDateFormatTime.format(marketingEvent.getStartDate()) %>
 						</c:when>
-						<c:when test="<%= Validator.equals(marketingEventLongDateFormatDate.format(marketingEvent.getStartDate()), userDateFormatDate.format(marketingEvent.getStartDate())) %>">
+						<c:when test="<%= Objects.equals(marketingEventLongDateFormatDate.format(marketingEvent.getStartDate()), userDateFormatDate.format(marketingEvent.getStartDate())) %>">
 							<span content="<%= marketingEventISO8601Format.format(marketingEvent.getStartDate()) %>" property="startDate">
 								<%= marketingEventLongDateFormatDate.format(marketingEvent.getStartDate()) %><br />
 								<%= marketingEventLongDateFormatTime.format(marketingEvent.getStartDate()) %>

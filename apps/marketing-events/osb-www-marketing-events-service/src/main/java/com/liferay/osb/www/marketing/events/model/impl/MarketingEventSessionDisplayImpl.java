@@ -23,7 +23,7 @@ import com.liferay.osb.www.marketing.events.model.MarketingEventSessionRoom;
 import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
 import com.liferay.osb.www.marketing.events.util.MarketingEventSessionLogoType;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,7 +44,7 @@ public class MarketingEventSessionDisplayImpl
 
 	public MarketingEventSessionDisplayImpl(
 			MarketingEventSession marketingEventSession)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		_marketingEventSession = marketingEventSession;
 
@@ -72,7 +72,7 @@ public class MarketingEventSessionDisplayImpl
 	@Override
 	public String getDescription(Locale locale) {
 		return StringUtil.replace(
-			_marketingEventSession.getDescription(locale), StringPool.NEW_LINE,
+			_marketingEventSession.getDescription(locale), CharPool.NEW_LINE,
 			"<br>");
 	}
 
@@ -119,11 +119,8 @@ public class MarketingEventSessionDisplayImpl
 		return Validator.isNotNull(_roomName);
 	}
 
-	protected void setSessionLogoURLs()
-		throws PortalException, SystemException {
-
-		_marketingEventSessionLogoURLs =
-			new HashMap<MarketingEventSessionLogoType, List<String>>();
+	protected void setSessionLogoURLs() throws PortalException {
+		_marketingEventSessionLogoURLs = new HashMap<>();
 
 		List<String> sessionURLs = _marketingEventSession.getChildFileEntryURLs(
 			MarketingEventSessionConstants.MIME_TYPES_IMAGES);
@@ -131,7 +128,7 @@ public class MarketingEventSessionDisplayImpl
 		_marketingEventSessionLogoURLs.put(
 			MarketingEventSessionLogoType.LOGO_TYPE_SESSION, sessionURLs);
 
-		Set<String> companyURLs = new HashSet<String>();
+		Set<String> companyURLs = new HashSet<>();
 
 		for (MarketingEventUser marketingEventUser : _marketingEventUsers) {
 			companyURLs.add(marketingEventUser.getCompanyLogoFileEntryURL());

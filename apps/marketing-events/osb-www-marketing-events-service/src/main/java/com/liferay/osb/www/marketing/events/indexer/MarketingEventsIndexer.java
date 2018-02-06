@@ -88,12 +88,14 @@ public class MarketingEventsIndexer extends BaseIndexer<MarketingEvent> {
 		addSearchLocalizedTerm(searchQuery, searchContext, Field.TITLE, true);
 
 		int[] globalRegions = (int[])searchContext.getAttribute("globalRegion");
+
 		addSearchArrayQuery(
 			searchQuery, searchContext, "globalRegion", globalRegions);
 
 		addSearchLocalizedTerm(searchQuery, searchContext, "summary", false);
 
 		int[] types = (int[])searchContext.getAttribute("type");
+
 		addSearchArrayQuery(searchQuery, searchContext, "type", types);
 
 		Date startDateGT = (Date)searchContext.getAttribute("startDateGT");
@@ -135,8 +137,9 @@ public class MarketingEventsIndexer extends BaseIndexer<MarketingEvent> {
 		}
 	}
 
-	protected void addSearchArrayQuery(BooleanQuery searchQuery, SearchContext searchContext,
-			String field, int[] fieldValues)
+	protected void addSearchArrayQuery(
+			BooleanQuery searchQuery, SearchContext searchContext, String field,
+			int[] fieldValues)
 		throws ParseException {
 
 		BooleanQueryImpl booleanQuery = new BooleanQueryImpl();

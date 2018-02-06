@@ -83,6 +83,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.io.IOException;
+
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
@@ -771,10 +772,10 @@ public class MarketingEventsAdminPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-			renderRequest.setAttribute(
-				MarketingEventsConfiguration.class.getName(), _configuration);
+		renderRequest.setAttribute(
+			MarketingEventsConfiguration.class.getName(), _configuration);
 
-			super.render(renderRequest, renderResponse);
+		super.render(renderRequest, renderResponse);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

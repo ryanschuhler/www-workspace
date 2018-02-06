@@ -34,7 +34,6 @@ import com.liferay.osb.www.marketing.events.service.MarketingEventSessionRoomLoc
 import com.liferay.osb.www.marketing.events.util.MarketingEventsUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.log.Log;
@@ -68,9 +67,9 @@ public class MarketingEventSessionImpl extends MarketingEventSessionBaseImpl {
 	}
 
 	public List<AssetCategory> getAssetCategories(String vocabularyName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
-		List<AssetCategory> assetCategories = new ArrayList<AssetCategory>();
+		List<AssetCategory> assetCategories = new ArrayList<>();
 
 		AssetVocabulary assetVocabulary = null;
 
@@ -103,17 +102,15 @@ public class MarketingEventSessionImpl extends MarketingEventSessionBaseImpl {
 		return MarketingEventsUtil.getAssetCategoriesJSONArray(
 			getAssetCategories());
 	}
-	
-	public List<FileEntry> getChildFileEntries()
-			throws PortalException, SystemException {
 
-			return getChildFileEntries(new String[0]);
+	public List<FileEntry> getChildFileEntries() throws PortalException {
+		return getChildFileEntries(new String[0]);
 	}
 
 	public List<FileEntry> getChildFileEntries(String[] mimeTypes)
-		throws PortalException, SystemException {
+		throws PortalException {
 
-		List<FileEntry> fileEntries = new ArrayList<FileEntry>();
+		List<FileEntry> fileEntries = new ArrayList<>();
 
 		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
 			MarketingEventSession.class.getName(),
@@ -145,16 +142,14 @@ public class MarketingEventSessionImpl extends MarketingEventSessionBaseImpl {
 		return fileEntries;
 	}
 
-	public List<String> getChildFileEntryURLs()
-		throws PortalException, SystemException {
-
+	public List<String> getChildFileEntryURLs() throws PortalException {
 		return getChildFileEntryURLs(new String[0]);
 	}
 
 	public List<String> getChildFileEntryURLs(String[] mimeTypes)
-		throws PortalException, SystemException {
+		throws PortalException {
 
-		List<String> fileEntryURLs = new ArrayList<String>();
+		List<String> fileEntryURLs = new ArrayList<>();
 
 		for (FileEntry fileEntry : getChildFileEntries(mimeTypes)) {
 			String url = DLUtil.getPreviewURL(

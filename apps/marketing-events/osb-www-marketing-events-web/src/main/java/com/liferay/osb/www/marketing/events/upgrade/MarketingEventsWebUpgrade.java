@@ -1,6 +1,3 @@
-
-
-
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -14,8 +11,8 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.liferay.osb.www.marketing.events.upgrade;
 
+package com.liferay.osb.www.marketing.events.upgrade;
 
 import com.liferay.osb.www.marketing.events.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -43,9 +40,10 @@ public class MarketingEventsWebUpgrade implements UpgradeStepRegistrator {
 
 				@Override
 				protected String[] getPortletIds() {
-					return new String[] {"1_WAR_osbwwwmarketingeventsportlet", 
-							"2_WAR_osbwwwmarketingeventsportlet",
-							"3_WAR_osbwwwmarketingeventsportlet"
+					return new String[] {
+						"1_WAR_osbwwwmarketingeventsportlet",
+						"2_WAR_osbwwwmarketingeventsportlet",
+						"3_WAR_osbwwwmarketingeventsportlet"
 					};
 				}
 
@@ -65,7 +63,6 @@ public class MarketingEventsWebUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"com.liferay.osb.www.marketing.events.web", "0.0.1", "1.0.0",
 			new UpgradePortletId());
-
 	}
 
 }
