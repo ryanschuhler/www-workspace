@@ -23,7 +23,6 @@ import com.liferay.osb.www.marketing.events.model.MarketingEventSession;
 import com.liferay.osb.www.marketing.events.model.MarketingEventSessionDisplay;
 import com.liferay.osb.www.marketing.events.util.MarketingEventDateFormat;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -34,6 +33,7 @@ import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.text.Format;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -54,7 +54,7 @@ public class MarketingEventAgendaDisplayImpl
 			Map<Date, List<MarketingEventSession>> marketingEventSessions,
 			List<AssetCategory> marketingEventTracksAssetCategories,
 			List<AssetCategory> marketingEventTopicsAssetCategories)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		_marketingEvent = marketingEvent;
 		_marketingEventSessions = marketingEventSessions;
@@ -113,7 +113,7 @@ public class MarketingEventAgendaDisplayImpl
 
 	@Override
 	public List<Date> getMarketingEventDates() {
-		return new ArrayList<Date>(_marketingEventSessions.keySet());
+		return new ArrayList<>(_marketingEventSessions.keySet());
 	}
 
 	@Override
@@ -145,11 +145,8 @@ public class MarketingEventAgendaDisplayImpl
 		return _marketingEventSessions.isEmpty();
 	}
 
-	protected void setMarketingEventAgendaRowDisplays()
-		throws PortalException, SystemException {
-
-		_marketingEventAgendaRowDisplays =
-			new HashMap<Date, List<MarketingEventAgendaRowDisplay>>();
+	protected void setMarketingEventAgendaRowDisplays() throws PortalException {
+		_marketingEventAgendaRowDisplays = new HashMap<>();
 
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"HHmm", getTimeZone());
@@ -163,8 +160,7 @@ public class MarketingEventAgendaDisplayImpl
 
 			Date previousDate = new Date(0);
 
-			List<MarketingEventAgendaRowDisplay> agendaRows =
-				new ArrayList<MarketingEventAgendaRowDisplay>();
+			List<MarketingEventAgendaRowDisplay> agendaRows = new ArrayList<>();
 
 			MarketingEventAgendaRowDisplayImpl currentAgendaRow = null;
 
@@ -188,9 +184,8 @@ public class MarketingEventAgendaDisplayImpl
 						agendaRows.add(currentAgendaRow);
 					}
 
-					currentAgendaRow =
-						new MarketingEventAgendaRowDisplayImpl(
-							hourCSSClass, currentDate);
+					currentAgendaRow = new MarketingEventAgendaRowDisplayImpl(
+						hourCSSClass, currentDate);
 
 					previousDate = currentDate;
 				}
@@ -211,7 +206,7 @@ public class MarketingEventAgendaDisplayImpl
 	protected void updateCategoryFilters(
 			MarketingEventSession marketingEventSession, String dayCSSClass,
 			String hourCSSClass)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		for (AssetCategory sessionCategory :
 				marketingEventSession.getAssetCategories()) {
@@ -226,11 +221,11 @@ public class MarketingEventAgendaDisplayImpl
 
 			jsonArray.put(
 				".session-" +
-				marketingEventSession.getMarketingEventSessionId());
+					marketingEventSession.getMarketingEventSessionId());
 
 			String dayHourCSSClass =
 				StringPool.PERIOD + dayCSSClass + StringPool.SPACE +
-				StringPool.PERIOD + hourCSSClass;
+					StringPool.PERIOD + hourCSSClass;
 
 			String cssClasses = jsonArray.toString();
 
@@ -244,8 +239,7 @@ public class MarketingEventAgendaDisplayImpl
 
 	private JSONObject _categoryFiltersJSONObject =
 		JSONFactoryUtil.createJSONObject();
-	private Map<AssetCategory, String> _cssClasses =
-		new HashMap<AssetCategory, String>();
+	private Map<AssetCategory, String> _cssClasses = new HashMap<>();
 	private MarketingEvent _marketingEvent;
 	private Map<Date, List<MarketingEventAgendaRowDisplay>>
 		_marketingEventAgendaRowDisplays;

@@ -26,8 +26,8 @@ public class UpgradeMarketingEvent extends UpgradeProcess {
 		runSQL("drop index IX_F81473A on OSB_MarketingEvent");
 
 		runSQL(
-			"create index IX_5AE99366 on OSB_MarketingEvent " +
-				"(type_, startDate)");
+			"create index IX_5AE99366 on OSB_MarketingEvent (type_, " +
+				"startDate)");
 	}
 
 }

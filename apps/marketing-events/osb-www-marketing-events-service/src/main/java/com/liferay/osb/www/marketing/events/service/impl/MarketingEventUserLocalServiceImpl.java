@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -47,7 +46,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author Joan H. Kim 
+ * @author Joan H. Kim
  * @author Phillip Chan
  */
 public class MarketingEventUserLocalServiceImpl
@@ -91,7 +90,7 @@ public class MarketingEventUserLocalServiceImpl
 
 		marketingEventUserPersistence.update(marketingEventUser);
 
-		updateAsset(marketingEventUser, null, serviceContext);
+		_updateAsset(marketingEventUser, null, serviceContext);
 
 		return marketingEventUser;
 	}
@@ -170,7 +169,7 @@ public class MarketingEventUserLocalServiceImpl
 	public List<MarketingEventUser> getMarketingEventUsers(
 			long marketingEventId, long[] categoryIds, long[] notCategoryIds,
 			int start, int end, OrderByComparator obc)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MarketingEventUser.class, getClassLoader());
@@ -204,7 +203,7 @@ public class MarketingEventUserLocalServiceImpl
 		return dynamicQuery(
 			dynamicQuery, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
-	
+
 	public List<MarketingEventUser> getMarketingEventUsers(
 		long[] categoryIds, int[] statuses, int start, int end,
 		OrderByComparator obc) {
@@ -251,7 +250,7 @@ public class MarketingEventUserLocalServiceImpl
 
 		marketingEventUserPersistence.update(marketingEventUser);
 
-		updateAsset(marketingEventUser, null, serviceContext);
+		_updateAsset(marketingEventUser, null, serviceContext);
 
 		return marketingEventUser;
 	}
@@ -276,7 +275,7 @@ public class MarketingEventUserLocalServiceImpl
 
 		marketingEventUserPersistence.update(marketingEventUser);
 
-		updateAsset(marketingEventUser, priority, serviceContext);
+		_updateAsset(marketingEventUser, priority, serviceContext);
 
 		return marketingEventUser;
 	}
@@ -305,7 +304,7 @@ public class MarketingEventUserLocalServiceImpl
 		}
 	}
 
-	private void updateAsset(
+	private void _updateAsset(
 			MarketingEventUser marketingEventUser, Integer priority,
 			ServiceContext serviceContext)
 		throws PortalException {

@@ -47,7 +47,7 @@ public class MarketingEventAgendaDisplayContext {
 
 	public int getDefaultDay() {
 		return GetterUtil.getInteger(
-			_portletPreferences.getValue("defaultDay", null), 0);
+			_portletPreferences.getValue("defaultDay", null));
 	}
 
 	public MarketingEventAgendaDisplay getMarketingEventAgendaDisplay() {
@@ -57,8 +57,8 @@ public class MarketingEventAgendaDisplayContext {
 
 	public MarketingEventDateFormat getMarketingEventDateFormat() {
 		int agendaDateFormatType = GetterUtil.getInteger(
-			_portletPreferences.getValue("agendaDateFormatType",
-			StringPool.BLANK));
+			_portletPreferences.getValue(
+				"agendaDateFormatType", StringPool.BLANK));
 
 		return MarketingEventDateFormat.toMarketingEventDateFormat(
 			agendaDateFormatType);
@@ -89,38 +89,38 @@ public class MarketingEventAgendaDisplayContext {
 
 	public boolean isShowRoomLocation() {
 		return GetterUtil.getBoolean(
-			_portletPreferences.getValue("showRoomLocation",
-			String.valueOf(true)));
+			_portletPreferences.getValue(
+				"showRoomLocation", String.valueOf(true)));
 	}
 
 	public boolean isShowSpeakerAvatar() {
 		return GetterUtil.getBoolean(
-			_portletPreferences.getValue("showSpeakerAvatar",
-			String.valueOf(true)));
+			_portletPreferences.getValue(
+				"showSpeakerAvatar", String.valueOf(true)));
 	}
 
 	public boolean isShowSpeakerCompanyName() {
 		return GetterUtil.getBoolean(
-			_portletPreferences.getValue("showSpeakerCompanyName",
-			String.valueOf(true)));
+			_portletPreferences.getValue(
+				"showSpeakerCompanyName", String.valueOf(true)));
 	}
 
 	public boolean isShowSpeakerName() {
 		return GetterUtil.getBoolean(
-			_portletPreferences.getValue("showSpeakerName",
-			String.valueOf(true)));
+			_portletPreferences.getValue(
+				"showSpeakerName", String.valueOf(true)));
 	}
 
 	public boolean isShowSpeakerOnSingleLine() {
 		return GetterUtil.getBoolean(
-			_portletPreferences.getValue("showSpeakerOnSingleLine",
-			String.valueOf(false)));
+			_portletPreferences.getValue(
+				"showSpeakerOnSingleLine", String.valueOf(false)));
 	}
 
 	public boolean isShowSpeakerTitle() {
 		return GetterUtil.getBoolean(
-			_portletPreferences.getValue("showSpeakerTitle",
-			String.valueOf(true)));
+			_portletPreferences.getValue(
+				"showSpeakerTitle", String.valueOf(true)));
 	}
 
 	public boolean isShowTime() {

@@ -84,11 +84,11 @@ public class UpgradeMarketingEventSession extends UpgradeProcess {
 		runSQL(
 			"create index IX_A9C3F140 on " +
 				"OSB_MarketingEventSessions_MarketingEventUsers " +
-				"(marketingEventSessionId)");
+					"(marketingEventSessionId)");
 		runSQL(
 			"create index IX_8408C51B on " +
 				"OSB_MarketingEventSessions_MarketingEventUsers " +
-				"(marketingEventUserId)");
+					"(marketingEventUserId)");
 	}
 
 }

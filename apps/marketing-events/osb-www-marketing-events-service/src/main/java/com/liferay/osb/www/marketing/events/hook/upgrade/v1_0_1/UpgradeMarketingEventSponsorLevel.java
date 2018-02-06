@@ -24,8 +24,8 @@ public class UpgradeMarketingEventSponsorLevel extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		runSQL(
-			"alter table OSB_MarketingEventSponsorLevel modify column " +
-				"name STRING");
+			"alter table OSB_MarketingEventSponsorLevel modify column name " +
+				"STRING");
 	}
 
 }

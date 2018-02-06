@@ -38,7 +38,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Allen Ziegenfus
  */
 @Component(
-
 	configurationPid = "com.liferay.osb.www.marketing.events.configuration.MarketingEventsConfiguration",
 	immediate = true,
 	property = {
@@ -60,13 +59,6 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class MarketingEventsPortlet extends MVCPortlet {
 
-	@Activate
-	@Modified
-	protected void activate(Map<String, Object> properties) {
-		_configuration = ConfigurableUtil.createConfigurable(
-			MarketingEventsConfiguration.class, properties);
-	}
-
 	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -78,8 +70,16 @@ public class MarketingEventsPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		_configuration = ConfigurableUtil.createConfigurable(
+			MarketingEventsConfiguration.class, properties);
+	}
+
 	private volatile MarketingEventsConfiguration _configuration;
 
 	@Reference
-	MarketingEventLocalService _marketingEventLocalService;
+	private MarketingEventLocalService _marketingEventLocalService;
+
 }

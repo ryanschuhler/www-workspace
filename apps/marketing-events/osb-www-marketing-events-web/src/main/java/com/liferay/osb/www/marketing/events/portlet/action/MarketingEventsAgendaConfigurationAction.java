@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +39,8 @@ import org.osgi.service.component.annotations.Component;
 	property = {"javax.portlet.name=" + OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_AGENDA},
 	service = ConfigurationAction.class
 )
-public class MarketingEventsAgendaConfigurationAction extends DefaultConfigurationAction {
+public class MarketingEventsAgendaConfigurationAction
+	extends DefaultConfigurationAction {
 
 	@Override
 	public void include(
@@ -54,17 +56,19 @@ public class MarketingEventsAgendaConfigurationAction extends DefaultConfigurati
 		super.include(portletConfig, request, response);
 	}
 
-
 	protected void setRenderRequestAttributes(RenderRequest renderRequest) {
 		PortletPreferences portletPreferences = renderRequest.getPreferences();
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		MarketingEventAgendaDisplayContext marketingEventAgendaDisplayContext =
 			new MarketingEventAgendaDisplayContext(
 				portletPreferences, themeDisplay);
 
-		renderRequest.setAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT, marketingEventAgendaDisplayContext);
+		renderRequest.setAttribute(
+			WebKeys.PORTLET_DISPLAY_CONTEXT,
+			marketingEventAgendaDisplayContext);
 	}
 
 }

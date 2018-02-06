@@ -56,8 +56,8 @@ public class UpgradeMarketingEventAnnouncement extends UpgradeProcess {
 
 		runSQL(
 			"update OSB_MarketingEventAnnouncement set status = 0, " +
-			"statusByUserId = userId, statusByUserName = userName, " +
-			"statusDate = createDate where status is null");
+				"statusByUserId = userId, statusByUserName = userName, " +
+					"statusDate = createDate where status is null");
 
 		runSQL(
 			"create index IX_1EF95061 on OSB_MarketingEventAnnouncement " +

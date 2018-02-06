@@ -33,8 +33,8 @@ public class UpgradeMarketingEventUser extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		if (!hasColumn("OSB_MarketingEventUser", "uuid_")) {
 			runSQL(
-				"alter table OSB_MarketingEventUser add column " +
-					"uuid_ VARCHAR(75)");
+				"alter table OSB_MarketingEventUser add column uuid_ " +
+					"VARCHAR(75)");
 			runSQL(
 				"create index IX_87A0720E on OSB_MarketingEventUser (uuid_)");
 
@@ -59,7 +59,7 @@ public class UpgradeMarketingEventUser extends UpgradeProcess {
 		ResultSet rs = null;
 
 		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
+			con = DataAccess.getConnection();
 
 			ps1 = con.prepareStatement(
 				"select marketingEventUserId from OSB_MarketingEventUser " +

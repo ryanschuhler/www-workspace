@@ -46,6 +46,8 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Hits;
@@ -72,6 +74,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -111,6 +114,7 @@ public class MarketingEventLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
+
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, timeZone, MarketingEventStartDateException.class);
@@ -225,7 +229,7 @@ public class MarketingEventLocalServiceImpl
 
 		return marketingEvent;
 	}
-	
+
 	public MarketingEventAgendaDisplay getMarketingEventAgendaDisplay(
 			long groupId)
 		throws PortalException {
@@ -270,6 +274,7 @@ public class MarketingEventLocalServiceImpl
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 		}
 		catch (PortalException pe) {
+			_log.error(pe, pe);
 		}
 
 		return new MarketingEventAgendaDisplayImpl(
@@ -374,6 +379,7 @@ public class MarketingEventLocalServiceImpl
 		// Marketing event
 
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
+
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, timeZone, MarketingEventStartDateException.class);
@@ -640,10 +646,11 @@ public class MarketingEventLocalServiceImpl
 	}
 
 	protected Address updateAddress(
-		String addressStreet1, String addressStreet2, String addressStreet3,
-		String addressCity, String addressZip, long addressRegionId,
-		long addressCountryId, MarketingEvent marketingEvent,
-		ServiceContext serviceContext) throws PortalException {
+			String addressStreet1, String addressStreet2, String addressStreet3,
+			String addressCity, String addressZip, long addressRegionId,
+			long addressCountryId, MarketingEvent marketingEvent,
+			ServiceContext serviceContext)
+		throws PortalException {
 
 		if (marketingEvent.getAddressId() ==
 				MarketingEventConstants.DEFAULT_ADDRESS_ID) {
@@ -742,5 +749,8 @@ public class MarketingEventLocalServiceImpl
 
 	@ServiceReference(type = IndexerRegistry.class)
 	protected IndexerRegistry indexerRegistry;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MarketingEventLocalServiceImpl.class);
 
 }

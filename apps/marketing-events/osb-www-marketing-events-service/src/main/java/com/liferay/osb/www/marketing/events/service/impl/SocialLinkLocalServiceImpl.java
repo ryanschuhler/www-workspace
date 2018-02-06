@@ -96,9 +96,7 @@ public class SocialLinkLocalServiceImpl extends SocialLinkLocalServiceBaseImpl {
 			throw new SocialLinkURLException();
 		}
 
-		if (Validator.isNotNull(marketingEventUserId) &&
-			Validator.isNotNull(socialLinkTypeId)) {
-
+		if ((marketingEventUserId != 0) && (socialLinkTypeId != 0)) {
 			int count = socialLinkPersistence.countByMEUI_SLTI(
 				marketingEventUserId, socialLinkTypeId);
 

@@ -39,8 +39,8 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"com.liferay.portlet.css-class-wrapper=osb-www-marketing-events-portlet-agenda",
 		"com.liferay.portlet.display-category=category.osb",
-		"com.liferay.portlet.header-portlet-css=/agenda/css/main.css",
 		"com.liferay.portlet.footer-portlet-javascript=/agenda/js/main.js",
+		"com.liferay.portlet.header-portlet-css=/agenda/css/main.css",
 		"com.liferay.portlet.instanceable=false",
 		"javax.portlet.display-name=OSB WWW Marketing Events Agenda",
 		"javax.portlet.expiration-cache=0",
@@ -76,7 +76,9 @@ public class MarketingEventsAgendaPortlet extends MVCPortlet {
 			new MarketingEventAgendaDisplayContext(
 				portletPreferences, themeDisplay);
 
-		renderRequest.setAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT, marketingEventAgendaDisplayContext);
+		renderRequest.setAttribute(
+			WebKeys.PORTLET_DISPLAY_CONTEXT,
+			marketingEventAgendaDisplayContext);
 	}
 
 }

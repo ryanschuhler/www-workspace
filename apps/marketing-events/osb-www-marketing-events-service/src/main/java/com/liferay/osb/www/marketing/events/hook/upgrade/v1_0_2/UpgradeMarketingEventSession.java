@@ -28,12 +28,10 @@ public class UpgradeMarketingEventSession extends UpgradeProcess {
 		}
 
 		runSQL(
-			"alter table OSB_MarketingEventSession add column " +
-				"uuid_ VARCHAR(75) null");
+			"alter table OSB_MarketingEventSession add column uuid_ " +
+				"VARCHAR(75) null");
 
-		runSQL(
-			"create index IX_84560B2D on OSB_MarketingEventSession " +
-				"(uuid_)");
+		runSQL("create index IX_84560B2D on OSB_MarketingEventSession (uuid_)");
 	}
 
 }

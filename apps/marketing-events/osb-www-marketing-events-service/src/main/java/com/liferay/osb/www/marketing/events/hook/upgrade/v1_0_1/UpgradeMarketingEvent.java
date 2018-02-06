@@ -25,8 +25,7 @@ public class UpgradeMarketingEvent extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		if (!hasColumn("OSB_MarketingEvent", "siteGroupId")) {
 			runSQL(
-				"alter table OSB_MarketingEvent add column " +
-					"siteGroupId LONG");
+				"alter table OSB_MarketingEvent add column siteGroupId LONG");
 		}
 	}
 

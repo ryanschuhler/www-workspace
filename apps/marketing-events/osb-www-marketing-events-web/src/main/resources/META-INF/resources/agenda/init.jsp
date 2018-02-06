@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%@ page import="com.liferay.osb.www.marketing.events.model.MarketingEventAgendaDisplay" %><%@
-page import="com.liferay.osb.www.marketing.events.web.display.context.MarketingEventAgendaDisplayContext" %><%@
 page import="com.liferay.osb.www.marketing.events.util.MarketingEventDateFormat" %><%@
-page import="com.liferay.osb.www.marketing.events.util.MarketingEventSessionLogoType" %>
+page import="com.liferay.osb.www.marketing.events.util.MarketingEventSessionLogoType" %><%@
+page import="com.liferay.osb.www.marketing.events.web.display.context.MarketingEventAgendaDisplayContext" %>
 
 <%
 MarketingEventAgendaDisplayContext marketingEventAgendaDisplayContext = (MarketingEventAgendaDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);

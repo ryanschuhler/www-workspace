@@ -47,7 +47,7 @@
 			</c:forEach>
 		</aui:select>
 
-		<div class='<%= (enableCustomAgendaDateFormat ? StringPool.BLANK : "hide") %>' id="<portlet:namespace />agendaCustomDatePattern">
+		<div class="<%= (enableCustomAgendaDateFormat ? StringPool.BLANK : "hide") %>" id="<portlet:namespace />agendaCustomDatePattern">
 			<aui:input name="preferences--agendaCustomDatePattern--" type="text" value="<%= marketingEventAgendaDisplayContext.getAgendaCustomDatePattern() %>" />
 		</div>
 

@@ -16,7 +16,7 @@ package com.liferay.osb.www.marketing.events.model.impl;
 
 import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetVocabulary;
-import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
+import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.osb.www.marketing.events.configuration.MarketingEventsConfiguration;
@@ -34,14 +34,15 @@ import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.Country;
 import com.liferay.portal.kernel.model.Region;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,8 +66,7 @@ public class MarketingEventImpl extends MarketingEventBaseImpl {
 	public Address getAddress() {
 		try {
 			if (_address == null) {
-				_address =
-					AddressLocalServiceUtil.fetchAddress(getAddressId());
+				_address = AddressLocalServiceUtil.fetchAddress(getAddressId());
 			}
 		}
 		catch (Exception e) {
@@ -177,7 +177,7 @@ public class MarketingEventImpl extends MarketingEventBaseImpl {
 
 			try {
 				AssetVocabulary assetVocabulary =
-					getAssetVocabularyLocalService().getGroupVocabulary(
+					AssetVocabularyLocalServiceUtil.getGroupVocabulary(
 						getSiteGroupId(), vocabularyName);
 
 				assetCategories = assetVocabulary.getCategories();
@@ -193,14 +193,14 @@ public class MarketingEventImpl extends MarketingEventBaseImpl {
 
 			jsonObject.put(
 				StringUtil.replace(
-					vocabularyName, StringPool.SPACE, StringPool.BLANK),
+					vocabularyName, CharPool.SPACE, StringPool.BLANK),
 				MarketingEventsUtil.getAssetCategoriesJSONArray(
 					assetCategories));
 		}
 
 		return jsonObject;
 	}
-	
+
 	@JSON
 	public Region getRegion() {
 		try {
@@ -304,13 +304,13 @@ public class MarketingEventImpl extends MarketingEventBaseImpl {
 		return false;
 	}
 
-	//TODO: Rethink this...
 	protected String[] sessionVocabularyNames() {
 		try {
-			ConfigurationAdmin configurationAdmin = getConfigurationAdmin();
+			ConfigurationAdmin configurationAdmin = _getConfigurationAdmin();
 
 			Configuration configuration = configurationAdmin.getConfiguration(
-				"com.liferay.osb.www.marketing.events.configuration.MarketingEventsConfiguration", 
+				"com.liferay.osb.www.marketing.events.configuration." +
+					"MarketingEventsConfiguration",
 				StringPool.QUESTION);
 
 			_configuration = ConfigurableUtil.createConfigurable(
@@ -324,30 +324,18 @@ public class MarketingEventImpl extends MarketingEventBaseImpl {
 		}
 	}
 
-	private AddressLocalService getAddressLocalService() {
-		return _serviceTracker.getService();
-	}
-
-	private AssetVocabularyLocalService getAssetVocabularyLocalService() {
-		return _assetVocabServiceTracker.getService();
-	}
-
-	private ConfigurationAdmin getConfigurationAdmin() {
+	private ConfigurationAdmin _getConfigurationAdmin() {
 		return _configAdminServiceTracker.getService();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MarketingEventImpl.class);
 
 	private Address _address;
-	private ServiceTracker<AssetVocabularyLocalService, AssetVocabularyLocalService>
-		_assetVocabServiceTracker = ServiceTrackerFactory.open(
-			AssetVocabularyLocalService.class);
-	private ServiceTracker<ConfigurationAdmin, ConfigurationAdmin> _configAdminServiceTracker =
-		ServiceTrackerFactory.open(ConfigurationAdmin.class);
+	private ServiceTracker<ConfigurationAdmin, ConfigurationAdmin>
+		_configAdminServiceTracker = ServiceTrackerFactory.open(
+			ConfigurationAdmin.class);
 	private volatile MarketingEventsConfiguration _configuration;
 	private FileEntry _imageFileEntry;
-	private ServiceTracker<AddressLocalService, AddressLocalService> _serviceTracker =
-		ServiceTrackerFactory.open(AddressLocalService.class);
 	private FileEntry _slidesFileEntry;
 
 }

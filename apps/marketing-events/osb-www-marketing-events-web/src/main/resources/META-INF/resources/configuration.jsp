@@ -119,7 +119,7 @@ String editorContent = PrefsParamUtil.getString(portletPreferences, request, edi
 		window,
 		'<portlet:namespace />saveConfiguration',
 		function() {
-			<c:if test='<%= Validator.equals(tabs1, "header") %>'>
+			<c:if test='<%= Objects.equals(tabs1, "header") %>'>
 				document.<portlet:namespace />fm.<portlet:namespace /><%= editorParam %>.value = window.<portlet:namespace />editor.getHTML();
 			</c:if>
 
