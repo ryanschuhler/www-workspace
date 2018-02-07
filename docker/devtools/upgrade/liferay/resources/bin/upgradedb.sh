@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/opt/java/liferay/bin/wait-for-it.sh -t 600 mariadb:3306
+/opt/java/liferay/bin/wait-for-it.sh -t 600 upgrade_mariadb:3306
 
 DIR=/opt/java/liferay/tools/portal-tools-db-upgrade-client
 

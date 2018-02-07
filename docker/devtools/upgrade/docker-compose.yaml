@@ -10,7 +10,7 @@ services:
   upgrade_liferay:
     container_name: upgrade_liferay
     depends_on:
-     - "mariadb"
+     - "upgrade_mariadb"
     command: ["echo", "done"]
     env_file:
       - "liferay/liferay.env"
@@ -25,7 +25,7 @@ services:
       - "8000:8000"
       - "8080:8080"
     volumes:
-      - "upgrade_liferay:/opt/java/liferay/data"
+      - "liferay:/opt/java/liferay/data"
       - "./liferay/resources:/tmp/liferay"
       - "./liferay/resources/bin/upgradedb.sh:/opt/java/liferay/bin/upgradedb.sh"
       - "./liferay/resources/osgi/configs:/opt/java/liferay/osgi/configs"
@@ -41,12 +41,12 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - "upgrade_mariadb:/var/lib/mysql"
+      - "mariadb:/var/lib/mysql"
       - "./mariadb/resources/etc/mysql/conf.d/local.cnf:/etc/mysql/conf.d/local.cnf"
       - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
 volumes:
-  upgrade_liferay:
+  liferay:
   liferay-tools:
-  upgrade_mariadb:
+  mariadb:
    external:
     name: docker_mariadb
