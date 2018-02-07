@@ -8,6 +8,6 @@ for script in ${LIFERAY_HOME}/bin/*.sh; do
     fi
 done
 
-bash /usr/local/bin/wait-for-it.sh -t 600 mariadb62:3306
+bash /usr/local/bin/wait-for-it.sh -t 600 62_mariadb:3306
 
 exec "$@"

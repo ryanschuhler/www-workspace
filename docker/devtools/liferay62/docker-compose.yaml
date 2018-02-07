@@ -7,8 +7,8 @@ networks:
     internal: true
 
 services:
-  elasticsearch62:
-    container_name: elasticsearch62
+  62_elasticsearch:
+    container_name: 62_elasticsearch
     environment:
       - "cluster.name=elasticsearch"
     image: elasticsearch:www
@@ -19,12 +19,12 @@ services:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - "elasticsearch62:/usr/share/elasticsearch/data"
-  httpd62:
-    container_name: httpd62
+      - "62_elasticsearch:/usr/share/elasticsearch/data"
+  62_httpd:
+    container_name: 62_httpd
     environment:
       - "SERVER_NAME=localhost"
-      - "LIFERAY_CONTAINER_NAME=liferay62"
+      - "LIFERAY_CONTAINER_NAME=62_liferay"
     image: httpd:www
     networks:
       - "www-external"
@@ -33,9 +33,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "httpd62:/var/www/html"
+      - "62_httpd:/var/www/html"
       - "../httpd/resources/:/tmp/httpd"
-  liferay62:
+  62_liferay:
     build:
       args:
         JAVA_PACKAGE: openjdk7-jre
@@ -43,12 +43,12 @@ services:
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
         LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/6.2.10/portal/liferay-fix-pack-portal-164-6210.zip
       context: liferay/.
-    container_name: liferay62
+    container_name: 62_liferay
     depends_on:
-     - "mariadb62"
+     - "62_mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
-    image: liferay-plugins-62:www
+    image: liferay:62
     ports:
       - "8000:8000"
       - "11311:11311"
@@ -58,10 +58,10 @@ services:
       - "www-external"
       - "www-internal"
     volumes:
-      - "liferay62:/opt/java/liferay/data"
+      - "62_liferay:/opt/java/liferay/data"
       - "./liferay/resources/deploy:/opt/java/liferay/deploy"
-  mariadb62:
-    container_name: mariadb62
+  62_mariadb:
+    container_name: 62_mariadb
     env_file:
       - "mariadb/mariadb.env"
     image: mariadb:www
@@ -71,10 +71,10 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - "mariadb62:/var/lib/mysql"
+      - "62_mariadb:/var/lib/mysql"
       - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
-  hubspot62:
-    container_name: hubspot62
+  62_hubspot:
+    container_name: 62_hubspot
     image: hubspot:www
     networks:
       - "www-external"
@@ -82,11 +82,11 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - "httpd62:/home"
+      - "62_httpd:/home"
 
 volumes:
-  elasticsearch62:
-  httpd62:
-  hubspot62:
-  liferay62:
-  mariadb62:
+  62_elasticsearch:
+  62_httpd:
+  62_hubspot:
+  62_liferay:
+  62_mariadb:
