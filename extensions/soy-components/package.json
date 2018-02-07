@@ -1,18 +1,13 @@
 {
-	"dependencies": {
-		"liferay-module-config-generator": "^1.3.3"
-	},
 	"devDependencies": {
-		"babel-cli": "6.26.0",
-		"babel-preset-es2015": "6.24.1",
-		"babel-preset-liferay-project": "1.2.2",
-		"liferay-npm-bundler": "1.2.2",
-		"liferay-npm-bundler-preset-standard": "1.2.2",
-		"metal-tools-soy": "4.2.7"
+		"liferay-module-config-generator": "^1.3.3",
+		"metal-cli": "4.3.3",
+		"metal-soy": "2.13.2",
+		"metal-tools-soy": "5.0.0"
 	},
 	"name": "soy-components",
 	"scripts": {
-		"build": "metalsoy && babel --source-maps -d build/resources/main/META-INF/resources src/main/resources/META-INF/resources && liferay-npm-bundler"
+		"build": "metalsoy"
 	},
 	"version": "1.0.0"
 }

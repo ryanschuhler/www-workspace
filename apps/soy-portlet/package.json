@@ -1,11 +1,10 @@
 {
 	"dependencies": {
-		"metal-component": "^2.4.5",
-		"metal-soy": "^2.4.5"
-	},
-	"devDependencies": {
 		"liferay-module-config-generator": "^1.2.1",
-		"metal-cli": "^4.0.1"
+		"metal-component": "^2.4.5",
+		"metal-cli": "4.3.3",
+		"metal-soy": "2.13.2",
+		"metal-tools-soy": "5.0.0"
 	},
 	"name": "soy-portlet",
 	"version": "1.0.0"

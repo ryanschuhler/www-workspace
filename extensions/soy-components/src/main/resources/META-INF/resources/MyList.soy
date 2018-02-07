@@ -7,7 +7,6 @@
 	{@param? items: list<?>}
 
 	<ul>
-		<li>This is external!</li>
 		{if isNonnull($items)}
 			{foreach $item in $items}
 				{call MyList.printItem}
@@ -23,5 +22,5 @@
  * @param item
  */
 {template .printItem}
-	<li>{$item}</li>
+	<li class="item">{$item}</li>
 {/template}

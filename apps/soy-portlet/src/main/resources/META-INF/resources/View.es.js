@@ -1,8 +1,7 @@
 import Component from 'metal-component/src/Component';
 import Footer from './Footer.es';
 import Header from './Header.es';
-// import MyList from 'soy-components/src/main/resources/META-INF/resources/MyList.soy';
-import MyList from './MyList.soy';
+import MyList from '/soy-components/MyList.es';
 import Soy from 'metal-soy/src/Soy';
 import templates from './View.soy';
 

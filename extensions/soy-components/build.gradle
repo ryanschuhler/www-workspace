@@ -1,2 +1,30 @@
-dependencies {
-}
+//task copyPackageJson(type: Copy)
+//
+//jar {
+//	dependsOn copyPackageJson
+//}
+//
+//copyPackageJson {
+//	from projectDir
+//	include "package.json"
+//	into "${sourceSets.main.output.resourcesDir}"
+//}
+//
+//transpileJS {
+//	srcIncludes = "**/*.es.js"
+//	soySrcIncludes = "**/*.soy"
+//}
+//
+//configJSModules {
+//	moduleFormat "/.soy/g,.soy.js"
+//}
+//
+//testJS {
+//	dependsOn npmRunTest
+//}
+//
+//afterEvaluate {
+//	transpileJS {
+//		soyDependencies = []
+//	}
+//}
