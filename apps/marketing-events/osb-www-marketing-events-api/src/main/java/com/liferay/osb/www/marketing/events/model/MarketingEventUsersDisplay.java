@@ -16,15 +16,13 @@ package com.liferay.osb.www.marketing.events.model;
 
 import java.io.Serializable;
 
+import java.util.List;
+
 /**
  * @author Allen Ziegenfus
  */
-public interface SocialLinkDisplay extends Serializable {
+public interface MarketingEventUsersDisplay extends Serializable {
 
-	public String getSocialLinkTypeImageFileEntryURL();
-
-	public String getSocialLinkTypeName();
-
-	public String getURL();
+	public List<MarketingEventUserDisplay> getMarketingEventUserDisplays();
 
 }

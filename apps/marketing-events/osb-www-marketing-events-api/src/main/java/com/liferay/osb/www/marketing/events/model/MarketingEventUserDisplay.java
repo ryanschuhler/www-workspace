@@ -43,4 +43,6 @@ public interface MarketingEventUserDisplay extends Serializable {
 
 	public boolean hasJobTitle();
 
+	public boolean isKeynoteSpeaker();
+
 }

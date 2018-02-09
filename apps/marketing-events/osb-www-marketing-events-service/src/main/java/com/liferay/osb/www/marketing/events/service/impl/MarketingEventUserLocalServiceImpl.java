@@ -22,9 +22,14 @@ import com.liferay.osb.www.marketing.events.exception.MarketingEventUserFirstNam
 import com.liferay.osb.www.marketing.events.exception.MarketingEventUserLastNameException;
 import com.liferay.osb.www.marketing.events.exception.MarketingEventUserPhoneNumberException;
 import com.liferay.osb.www.marketing.events.exception.RequiredMarketingEventUserException;
+import com.liferay.osb.www.marketing.events.model.MarketingEvent;
 import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
+import com.liferay.osb.www.marketing.events.model.MarketingEventUsersDisplay;
+import com.liferay.osb.www.marketing.events.model.impl.MarketingEventUsersDisplayImpl;
+import com.liferay.osb.www.marketing.events.service.MarketingEventLocalServiceUtil;
 import com.liferay.osb.www.marketing.events.service.base.MarketingEventUserLocalServiceBaseImpl;
 import com.liferay.osb.www.marketing.events.util.comparator.AssetEntryPriorityComparator;
+import com.liferay.osb.www.marketing.events.util.comparator.MarketingEventUserFirstNameComparator;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -48,6 +53,7 @@ import java.util.Map;
 /**
  * @author Joan H. Kim
  * @author Phillip Chan
+ * @author Allen Ziegenfus
  */
 public class MarketingEventUserLocalServiceImpl
 	extends MarketingEventUserLocalServiceBaseImpl {
@@ -215,6 +221,45 @@ public class MarketingEventUserLocalServiceImpl
 	public int getMarketingEventUsersCount(long marketingEventId) {
 		return marketingEventUserPersistence.countByMarketingEventId(
 			marketingEventId);
+	}
+
+	public MarketingEventUsersDisplay getMarketingEventUsersDisplay(long marketingEventSiteGroup,
+			long[] anyAssetCategoryIds, long[] notAnyAssetCategoryIds,
+			String orderByCol, String orderByType,
+			String languageId) throws PortalException {
+
+		MarketingEventUsersDisplay marketingEventUsersDisplay = null;
+
+		MarketingEvent marketingEvent =
+			MarketingEventLocalServiceUtil.getSiteGroupMarketingEvent(
+				marketingEventSiteGroup);
+
+		OrderByComparator obc = null;
+
+		boolean orderByAsc = false;
+
+		if (orderByType.equals("asc")) {
+			orderByAsc = true;
+		}
+
+		if (orderByCol.equals("first-name")) {
+			obc = new MarketingEventUserFirstNameComparator(orderByAsc);
+		}
+
+		List<MarketingEventUser> marketingEventUsers = getMarketingEventUsers(
+				marketingEvent.getMarketingEventId(), anyAssetCategoryIds,
+				notAnyAssetCategoryIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				obc);
+
+		if (obc == null) {
+			marketingEventUsers = ListUtil.sort(
+				marketingEventUsers, new AssetEntryPriorityComparator());
+		}
+
+		marketingEventUsersDisplay = new MarketingEventUsersDisplayImpl(
+			marketingEventUsers, languageId);
+
+		return marketingEventUsersDisplay;
 	}
 
 	public MarketingEventUser updateMarketingEventUser(
