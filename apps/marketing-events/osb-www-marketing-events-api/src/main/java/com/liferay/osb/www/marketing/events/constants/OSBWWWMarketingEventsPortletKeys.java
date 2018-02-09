@@ -31,4 +31,8 @@ public class OSBWWWMarketingEventsPortletKeys {
 		"com_liferay_osb_www_marketing_events_portlet_" +
 			"MarketingEventsDisplayPortlet";
 
+	public static final String MARKETING_EVENTS_USERS =
+		"com_liferay_osb_www_marketing_events_portlet_" +
+			"MarketingEventsUsersortlet";
+
 }

@@ -396,8 +396,7 @@ public class MarketingEventUserLocalServiceUtil {
 	public static java.util.List<com.liferay.osb.www.marketing.events.model.MarketingEventUser> getMarketingEventUsers(
 		long marketingEventId, long[] categoryIds, long[] notCategoryIds,
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getMarketingEventUsers(marketingEventId, categoryIds,
 			notCategoryIds, start, end, obc);
@@ -422,6 +421,17 @@ public class MarketingEventUserLocalServiceUtil {
 
 	public static int getMarketingEventUsersCount(long marketingEventId) {
 		return getService().getMarketingEventUsersCount(marketingEventId);
+	}
+
+	public static com.liferay.osb.www.marketing.events.model.MarketingEventUsersDisplay getMarketingEventUsersDisplay(
+		long marketingEventSiteGroup, long[] anyAssetCategoryIds,
+		long[] notAnyAssetCategoryIds, java.lang.String orderByCol,
+		java.lang.String orderByType, java.lang.String languageId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getMarketingEventUsersDisplay(marketingEventSiteGroup,
+			anyAssetCategoryIds, notAnyAssetCategoryIds, orderByCol,
+			orderByType, languageId);
 	}
 
 	/**

@@ -372,7 +372,7 @@ public interface MarketingEventSessionLocalService extends BaseLocalService,
 	public void updateAsset(long userId, long groupId,
 		MarketingEventSession marketingEventSession, long[] assetCategoryIds,
 		java.lang.String[] assetTagNames, long[] assetLinkEntryIds)
-		throws PortalException, SearchException, SystemException;
+		throws PortalException, SearchException;
 
 	public MarketingEventSession updateMarketingEventSession(
 		long marketingEventSessionId, long marketingEventSessionRoomId,

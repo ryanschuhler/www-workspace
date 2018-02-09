@@ -230,8 +230,7 @@ public class MarketingEventSessionWrapper implements MarketingEventSession,
 	@Override
 	public java.util.List<com.liferay.asset.kernel.model.AssetCategory> getAssetCategories(
 		java.lang.String vocabularyName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getAssetCategories(vocabularyName);
 	}
 
@@ -248,31 +247,27 @@ public class MarketingEventSessionWrapper implements MarketingEventSession,
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getChildFileEntries()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getChildFileEntries();
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getChildFileEntries(
 		java.lang.String[] mimeTypes)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getChildFileEntries(mimeTypes);
 	}
 
 	@Override
 	public java.util.List<java.lang.String> getChildFileEntryURLs()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getChildFileEntryURLs();
 	}
 
 	@Override
 	public java.util.List<java.lang.String> getChildFileEntryURLs(
 		java.lang.String[] mimeTypes)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _marketingEventSession.getChildFileEntryURLs(mimeTypes);
 	}
 

@@ -482,8 +482,7 @@ public class MarketingEventSessionLocalServiceUtil {
 		long[] assetCategoryIds, java.lang.String[] assetTagNames,
 		long[] assetLinkEntryIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.search.SearchException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.search.SearchException {
 		getService()
 			.updateAsset(userId, groupId, marketingEventSession,
 			assetCategoryIds, assetTagNames, assetLinkEntryIds);

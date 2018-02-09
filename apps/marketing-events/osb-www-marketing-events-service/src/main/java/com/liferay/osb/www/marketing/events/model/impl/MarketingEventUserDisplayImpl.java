@@ -60,7 +60,7 @@ public class MarketingEventUserDisplayImpl
 			marketingEventUser.getAssetCategories();
 
 		for (AssetCategory assetCategory : assetCategories) {
-			if (StringUtil.containsIgnoreCase(
+			if (StringUtil.matchesIgnoreCase(
 					assetCategory.getName(), "Keynote")) {
 
 				_keynoteSpeaker = true;

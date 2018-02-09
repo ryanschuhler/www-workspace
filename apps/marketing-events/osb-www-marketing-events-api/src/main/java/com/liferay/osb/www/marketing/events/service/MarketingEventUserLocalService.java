@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 
 import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
+import com.liferay.osb.www.marketing.events.model.MarketingEventUsersDisplay;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -313,8 +314,7 @@ public interface MarketingEventUserLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MarketingEventUser> getMarketingEventUsers(
 		long marketingEventId, long[] categoryIds, long[] notCategoryIds,
-		int start, int end, OrderByComparator obc)
-		throws PortalException, SystemException;
+		int start, int end, OrderByComparator obc) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MarketingEventUser> getMarketingEventUsers(long[] categoryIds,
@@ -330,6 +330,13 @@ public interface MarketingEventUserLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMarketingEventUsersCount(long marketingEventId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public MarketingEventUsersDisplay getMarketingEventUsersDisplay(
+		long marketingEventSiteGroup, long[] anyAssetCategoryIds,
+		long[] notAnyAssetCategoryIds, java.lang.String orderByCol,
+		java.lang.String orderByType, java.lang.String languageId)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.

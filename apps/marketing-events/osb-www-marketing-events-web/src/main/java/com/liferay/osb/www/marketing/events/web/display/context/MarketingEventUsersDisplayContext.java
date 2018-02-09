@@ -14,10 +14,19 @@
 
 package com.liferay.osb.www.marketing.events.web.display.context;
 
+import com.liferay.osb.www.marketing.events.constants.OSBWWWMarketingEventsConstants;
 import com.liferay.osb.www.marketing.events.model.MarketingEventUsersDisplay;
 import com.liferay.osb.www.marketing.events.util.MarketingEventUsersCacheUtil;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.portlet.PortletPreferences;
 
@@ -38,15 +47,43 @@ public class MarketingEventUsersDisplayContext {
 			return _anyAssetCategoryIds;
 		}
 
-		_anyAssetCategoryIds = GetterUtil.getLongValues(
-			_portletPreferences.getValues("anyAssetCategoryIds", null));
+		String anyAssetCategoryIdsString = _portletPreferences.getValue(
+			"anyAssetCategoryIds", null);
+
+		_anyAssetCategoryIds = StringUtil.split(anyAssetCategoryIdsString, 0L);
 
 		return _anyAssetCategoryIds;
+	}
+
+	public String getAnyAssetCategoryIdsString() throws Exception {
+		return StringUtil.merge(getAnyAssetCategoryIds());
 	}
 
 	public String getDisplayStyle() {
 		return GetterUtil.getString(
 			_portletPreferences.getValue("displayStyle", "default"));
+	}
+
+	public long[] getGroupIds() {
+		List<Long> groupIds = new ArrayList<>();
+		List<Group> groups = getGroups();
+
+		for (Group group : groups) {
+			groupIds.add(group.getGroupId());
+		}
+
+		return ArrayUtil.toLongArray(groupIds);
+	}
+
+	public List<Group> getGroups() {
+		Company company = _themeDisplay.getCompany();
+
+		Group group = GroupLocalServiceUtil.fetchGroup(
+			company.getCompanyId(),
+			OSBWWWMarketingEventsConstants.PARENT_GROUP_NAME_EVENTS);
+
+		return GroupLocalServiceUtil.getGroups(
+			company.getCompanyId(), group.getGroupId(), true);
 	}
 
 	public String getHeaderText() {
@@ -70,7 +107,8 @@ public class MarketingEventUsersDisplayContext {
 
 		return MarketingEventUsersCacheUtil.getMarketingEventUsersDisplay(
 			getMarketingEventSiteGroupId(), getAnyAssetCategoryIds(),
-			getNotAnyAssetCategoryIds(), getOrderByCol(), getOrderByType());
+			getNotAnyAssetCategoryIds(), getOrderByCol(), getOrderByType(),
+			_themeDisplay.getLanguageId());
 	}
 
 	public long[] getNotAnyAssetCategoryIds() throws Exception {
@@ -78,10 +116,17 @@ public class MarketingEventUsersDisplayContext {
 			return _notAnyAssetCategoryIds;
 		}
 
-		_notAnyAssetCategoryIds = GetterUtil.getLongValues(
-			_portletPreferences.getValues("notAnyAssetCategoryIds", null));
+		String notAnyAssetCategoryIdsString = _portletPreferences.getValue(
+			"notAnyAssetCategoryIds", null);
+
+		_notAnyAssetCategoryIds = StringUtil.split(
+			notAnyAssetCategoryIdsString, 0L);
 
 		return _notAnyAssetCategoryIds;
+	}
+
+	public String getNotAnyAssetCategoryIdsString() throws Exception {
+		return StringUtil.merge(getNotAnyAssetCategoryIds());
 	}
 
 	public String getOrderByCol() {
@@ -95,8 +140,6 @@ public class MarketingEventUsersDisplayContext {
 	}
 
 	private long[] _anyAssetCategoryIds;
-	private String _headerText;
-	private String _keynoteSpeakerBadgeText;
 	private long[] _notAnyAssetCategoryIds;
 	private PortletPreferences _portletPreferences;
 	private ThemeDisplay _themeDisplay;

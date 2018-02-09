@@ -66,7 +66,9 @@ public class MarketingEventUsersCacheUtil {
 				notAnyAssetCategoryIds, orderByCol, orderByType, languageId,
 				key);
 
-			_portalCache.put(key, marketingEventUsersDisplay);
+			if (marketingEventUsersDisplay != null) {
+				_portalCache.put(key, marketingEventUsersDisplay);
+			}
 		}
 
 		if (_log.isDebugEnabled()) {
@@ -120,11 +122,8 @@ public class MarketingEventUsersCacheUtil {
 					languageId);
 		}
 		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to get marketing event users display for key " +
-						key);
-			}
+			_log.error(
+				"Unable to get marketing event users display for key " + key);
 
 			return null;
 		}

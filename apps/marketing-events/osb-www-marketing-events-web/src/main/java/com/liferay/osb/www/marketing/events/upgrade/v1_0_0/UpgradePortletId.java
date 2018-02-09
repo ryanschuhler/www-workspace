@@ -39,6 +39,11 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 				{
 					"3_WAR_osbwwwmarketingeventsportlet",
 					OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_AGENDA
+				},
+			new String[]
+				{
+					"4_WAR_osbwwwmarketingeventsportlet",
+					OSBWWWMarketingEventsPortletKeys.MARKETING_EVENTS_USERS
 				}
 		};
 	}

@@ -61,30 +61,25 @@ public interface MarketingEventSession extends MarketingEventSessionModel,
 
 	public java.util.List<com.liferay.asset.kernel.model.AssetCategory> getAssetCategories(
 		java.lang.String vocabularyName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@com.liferay.portal.kernel.json.JSON()
 	public com.liferay.portal.kernel.json.JSONArray getAssetCategoriesJSONArray()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getChildFileEntries()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getChildFileEntries(
 		java.lang.String[] mimeTypes)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public java.util.List<java.lang.String> getChildFileEntryURLs()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public java.util.List<java.lang.String> getChildFileEntryURLs(
 		java.lang.String[] mimeTypes)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public java.util.List<java.lang.String> getMarketingEventSessionImageURLs(
 		MarketingEventSession marketingEventSession)
