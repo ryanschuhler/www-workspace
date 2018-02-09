@@ -37,11 +37,12 @@ public class SocialLinkDisplayImpl implements SocialLinkDisplay {
 
 	@Override
 	public String getSocialLinkTypeName() {
-	return _socialLinkTypeName;
+		return _socialLinkTypeName;
 	}
 
 	@Override
-	public String getURL() {return _url;
+	public String getURL() {
+		return _url;
 	}
 
 	private String _socialLinkTypeImageFileEntryURL;

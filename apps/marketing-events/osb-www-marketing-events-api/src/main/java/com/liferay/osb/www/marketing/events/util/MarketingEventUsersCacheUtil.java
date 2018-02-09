@@ -37,17 +37,18 @@ public class MarketingEventUsersCacheUtil {
 		_portalCache.removeAll();
 	}
 
-	public static MarketingEventUsersDisplay getMarketingEventUsersDisplay(long marketingEventSiteGroup,
-			long[] anyAssetCategoryIds, long[] notAnyAssetCategoryIds,
-					String orderByCol, String orderByType, String languageId) {
+	public static MarketingEventUsersDisplay getMarketingEventUsersDisplay(
+		long marketingEventSiteGroup, long[] anyAssetCategoryIds,
+		long[] notAnyAssetCategoryIds, String orderByCol, String orderByType,
+		String languageId) {
 
 		StopWatch stopWatch = new StopWatch();
 
 		stopWatch.start();
 
-		String key = _encodeKey(marketingEventSiteGroup,
-				anyAssetCategoryIds, notAnyAssetCategoryIds, orderByCol,
-				orderByType, languageId);
+		String key = _encodeKey(
+			marketingEventSiteGroup, anyAssetCategoryIds,
+			notAnyAssetCategoryIds, orderByCol, orderByType, languageId);
 
 		MarketingEventUsersDisplay marketingEventUsersDisplay = null;
 
@@ -61,9 +62,9 @@ public class MarketingEventUsersCacheUtil {
 
 		if (marketingEventUsersDisplay == null) {
 			marketingEventUsersDisplay = _getMarketingEventUsersDisplay(
-					marketingEventSiteGroup, anyAssetCategoryIds,
-					notAnyAssetCategoryIds,
-						orderByCol, orderByType, languageId, key);
+				marketingEventSiteGroup, anyAssetCategoryIds,
+				notAnyAssetCategoryIds, orderByCol, orderByType, languageId,
+				key);
 
 			_portalCache.put(key, marketingEventUsersDisplay);
 		}
@@ -77,9 +78,10 @@ public class MarketingEventUsersCacheUtil {
 		return marketingEventUsersDisplay;
 	}
 
-	private static String _encodeKey(long marketingEventSiteGroup,
-			long[] anyAssetCategoryIds, long[] notAnyAssetCategoryIds,
-			String orderByCol, String orderByType, String languageId) {
+	private static String _encodeKey(
+		long marketingEventSiteGroup, long[] anyAssetCategoryIds,
+		long[] notAnyAssetCategoryIds, String orderByCol, String orderByType,
+		String languageId) {
 
 		StringBundler sb = new StringBundler(13);
 
@@ -100,10 +102,10 @@ public class MarketingEventUsersCacheUtil {
 		return sb.toString();
 	}
 
-	private static MarketingEventUsersDisplay _getMarketingEventUsersDisplay(long marketingEventSiteGroup,
-			long[] anyAssetCategoryIds, long[] notAnyAssetCategoryIds,
-			String orderByCol, String orderByType, String languageId,
-			String key) {
+	private static MarketingEventUsersDisplay _getMarketingEventUsersDisplay(
+		long marketingEventSiteGroup, long[] anyAssetCategoryIds,
+		long[] notAnyAssetCategoryIds, String orderByCol, String orderByType,
+		String languageId, String key) {
 
 		try {
 			if (_log.isInfoEnabled()) {
@@ -111,10 +113,11 @@ public class MarketingEventUsersCacheUtil {
 					"Getting marketing event users display for key " + key);
 			}
 
-			return
-				MarketingEventUserLocalServiceUtil.getMarketingEventUsersDisplay(marketingEventSiteGroup,
-						anyAssetCategoryIds, notAnyAssetCategoryIds, orderByCol,
-						orderByType, languageId);
+			return MarketingEventUserLocalServiceUtil.
+				getMarketingEventUsersDisplay(
+					marketingEventSiteGroup, anyAssetCategoryIds,
+					notAnyAssetCategoryIds, orderByCol, orderByType,
+					languageId);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

@@ -36,6 +36,7 @@ public class MarketingEventUsersDisplayImpl
 			MarketingEventUserDisplay marketingEventUserDisplay =
 				new MarketingEventUserDisplayImpl(
 					marketingEventUser, languageId);
+
 			_marketingEventUserDisplays.add(marketingEventUserDisplay);
 		}
 	}

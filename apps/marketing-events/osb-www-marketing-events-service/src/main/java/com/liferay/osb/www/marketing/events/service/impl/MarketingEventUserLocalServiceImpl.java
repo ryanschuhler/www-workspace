@@ -223,10 +223,11 @@ public class MarketingEventUserLocalServiceImpl
 			marketingEventId);
 	}
 
-	public MarketingEventUsersDisplay getMarketingEventUsersDisplay(long marketingEventSiteGroup,
-			long[] anyAssetCategoryIds, long[] notAnyAssetCategoryIds,
-			String orderByCol, String orderByType,
-			String languageId) throws PortalException {
+	public MarketingEventUsersDisplay getMarketingEventUsersDisplay(
+			long marketingEventSiteGroup, long[] anyAssetCategoryIds,
+			long[] notAnyAssetCategoryIds, String orderByCol,
+			String orderByType, String languageId)
+		throws PortalException {
 
 		MarketingEventUsersDisplay marketingEventUsersDisplay = null;
 
@@ -247,9 +248,8 @@ public class MarketingEventUserLocalServiceImpl
 		}
 
 		List<MarketingEventUser> marketingEventUsers = getMarketingEventUsers(
-				marketingEvent.getMarketingEventId(), anyAssetCategoryIds,
-				notAnyAssetCategoryIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				obc);
+			marketingEvent.getMarketingEventId(), anyAssetCategoryIds,
+			notAnyAssetCategoryIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 
 		if (obc == null) {
 			marketingEventUsers = ListUtil.sort(

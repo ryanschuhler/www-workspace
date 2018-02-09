@@ -47,14 +47,15 @@ public class MarketingEventUserDisplayImpl
 		for (SocialLink socialLink : marketingEventUser.getSocialLinks()) {
 			SocialLinkDisplay socialLinkDisplay = new SocialLinkDisplayImpl(
 				socialLink);
+
 			_socialLinkDisplays.add(socialLinkDisplay);
 		}
 
-		_hasCompanyLogo = (marketingEventUser.getCompanyLogoFileEntryId() != 0);
+		_hasCompanyLogo = marketingEventUser.getCompanyLogoFileEntryId() != 0;
 		_hasCompanyName = Validator.isNotNull(_companyName);
 		_hasJobTitle = Validator.isNotNull(_jobTitle);
 
-		_isKeynoteSpeaker = false;
+		_keynoteSpeaker = false;
 		List<AssetCategory> assetCategories =
 			marketingEventUser.getAssetCategories();
 
@@ -62,7 +63,7 @@ public class MarketingEventUserDisplayImpl
 			if (StringUtil.containsIgnoreCase(
 					assetCategory.getName(), "Keynote")) {
 
-				_isKeynoteSpeaker = true;
+				_keynoteSpeaker = true;
 			}
 		}
 	}
@@ -119,7 +120,7 @@ public class MarketingEventUserDisplayImpl
 
 	@Override
 	public boolean isKeynoteSpeaker() {
-		return _isKeynoteSpeaker;
+		return _keynoteSpeaker;
 	}
 
 	private String _companyLogoFileEntryURL;
@@ -130,8 +131,8 @@ public class MarketingEventUserDisplayImpl
 	private boolean _hasCompanyName;
 	private boolean _hasJobTitle;
 	private String _imageFileEntryURL;
-	private boolean _isKeynoteSpeaker;
 	private String _jobTitle;
+	private boolean _keynoteSpeaker;
 	private List<SocialLinkDisplay> _socialLinkDisplays = new ArrayList<>();
 
 }

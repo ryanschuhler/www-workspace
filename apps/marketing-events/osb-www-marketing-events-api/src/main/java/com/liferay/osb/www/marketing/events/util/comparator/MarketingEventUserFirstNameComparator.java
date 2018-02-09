@@ -15,10 +15,7 @@
 package com.liferay.osb.www.marketing.events.util.comparator;
 
 import com.liferay.osb.www.marketing.events.model.MarketingEventUser;
-import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.util.OrderByComparator;
-
-import java.util.Comparator;
 
 /**
  * @author Joan H. Kim
