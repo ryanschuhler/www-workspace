@@ -1,9 +1,9 @@
-Bundle-Name: soy-portlet
+Bundle-Name: my-soy-portlet
 Bundle-SymbolicName: soy.portlet
 Bundle-Version: 1.0.0
 Provide-Capability:\
 	soy;\
-		type="soy-portlet";\
+		type="my-soy-portlet";\
 		version:Version="1.0.0"
 Require-Capability:\
 	soy;\

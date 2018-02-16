@@ -6,6 +6,6 @@
 		"metal-soy": "2.13.2",
 		"metal-tools-soy": "5.0.0"
 	},
-	"name": "soy-portlet",
+	"name": "my-soy-portlet",
 	"version": "1.0.0"
 }
