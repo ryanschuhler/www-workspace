@@ -9,7 +9,11 @@ import templates from './View.soy';
 /**
  * View Component
  */
-class View extends Component {}
+class View extends Component {
+	attached() {
+		console.log(MyList);
+	}
+}
 
 // Register component
 Soy.register(View, templates);
