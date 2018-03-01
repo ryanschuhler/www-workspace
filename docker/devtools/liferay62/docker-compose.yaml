@@ -22,9 +22,9 @@ services:
       - "62_elasticsearch:/usr/share/elasticsearch/data"
   62_httpd:
     container_name: 62_httpd
-    environment:
-      - "SERVER_NAME=localhost"
-      - "LIFERAY_CONTAINER_NAME=62_liferay"
+    env_file:
+      - "httpd/httpd.env"
+      - "httpd/httpd-${ENV:-local}.env"
     image: httpd:www
     networks:
       - "www-external"
