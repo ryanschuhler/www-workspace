@@ -3,7 +3,7 @@
 LICENSE_FILE=activation-key-development-6.2ee-liferaycom.xml
 SOURCE_BUNDLE_FILE=liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
 PATCH_FILES=liferay-fix-pack-portal-164-6210.zip
-DATABASE=www_lportal-2018-02-01_19-00-PST.sql.gz
+DATABASE=www_lportal-2018-02-25_19-00-PST.sql.gz
 
 REPO_ROOT=~/liferay/www-workspace 
 
