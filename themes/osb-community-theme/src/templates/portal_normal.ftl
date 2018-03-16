@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 
-<!-- TODO -->
-<#assign open_graph_images = [] />
-<#assign open_graph_title = "" />
-<#assign open_graph_url = "" />
-<#assign page_title= "" />
-<#assign page_description= "" />
 
 <#include init />
 
@@ -82,7 +76,7 @@
 
 <body class="${css_class}">
 
-<a class="hide-accessible" href="#main-content" id="skip-to-content"><@liferay.language key="skip-to-content" /></a>
+<@liferay_ui["quick-access"] contentId="#main-content" />
 
 <@liferay_util["include"] page=body_top_include />
 

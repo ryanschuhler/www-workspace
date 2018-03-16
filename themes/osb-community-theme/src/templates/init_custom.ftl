@@ -73,9 +73,7 @@
 
 <#assign top_head_ext_include = "${dir_include}/common/themes/top_head-ext.jsp" />
 
-<!-- TODO
-include "${full_templates_path}/seo.ftl"  
--->
+<#include "${full_templates_path}/seo.ftl" />
 
 <#function get_localized_expando_value expandoBridge name>
 	<#assign table = expando_table_local_service.getTable(company.getCompanyId(), expandoBridge.getClassName(), "CUSTOM_FIELDS")! />

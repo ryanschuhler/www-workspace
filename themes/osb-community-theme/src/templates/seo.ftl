@@ -1,6 +1,3 @@
-<#assign service_context = staticUtil["com.liferay.portal.kernel.service.ServiceContextThreadLocal"].getServiceContext() />
-
-<#assign http_servlet_request = service_context.getRequest() />
 
 <#assign current_url = portal.getCurrentCompleteURL(request) />
 
@@ -15,22 +12,22 @@
 	<#assign servlet_request_url = portalUtil.getPortalURL(request, portalUtil.isSecure(request)) + "/osb-blogs-web" />
 
 	<#attempt>
-		<#if http_servlet_request.getParameter("title")?has_content>
-			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url + "/blogs_entry", "title", http_servlet_request.getParameter("title")) />
+		<#if request.getParameter("title")?has_content>
+			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url + "/blogs_entry", "title", request.getParameter("title")) />
 		<#else>
 			<#assign servlet_request_url = servlet_request_url + "/blogs_entries" />
 		</#if>
 
-		<#if http_servlet_request.getParameter("blogCategoryName")?has_content>
-			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url, "blogCategoryName", http_servlet_request.getParameter("blogCategoryName")) />
+		<#if request.getParameter("blogCategoryName")?has_content>
+			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url, "blogCategoryName", request.getParameter("blogCategoryName")) />
 		</#if>
 
-		<#if http_servlet_request.getParameter("regionCategoryName")?has_content>
-			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url, "regionCategoryName", http_servlet_request.getParameter("regionCategoryName")) />
+		<#if request.getParameter("regionCategoryName")?has_content>
+			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url, "regionCategoryName", request.getParameter("regionCategoryName")) />
 		</#if>
 
-		<#if http_servlet_request.getParameter("topicCategoryName")?has_content>
-			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url, "topicCategoryName", http_servlet_request.getParameter("topicCategoryName")) />
+		<#if request.getParameter("topicCategoryName")?has_content>
+			<#assign servlet_request_url = httpUtil.addParameter(servlet_request_url, "topicCategoryName", request.getParameter("topicCategoryName")) />
 		</#if>
 
 		<#assign response = httpUtil.URLtoString(servlet_request_url) />
@@ -60,8 +57,8 @@
 		<#assign page_title = "" />
 	</#attempt>
 <#else>
-	<#assign url_folder_id = http_servlet_request.getParameter("folderId")!"" />
-	<#assign url_title = http_servlet_request.getParameter("title")!"" />
+	<#assign url_folder_id = request.getParameter("folderId")!"" />
+	<#assign url_title = request.getParameter("title")!"" />
 
 	<#if url_folder_id?has_content && url_title?has_content>
 		<#assign dl_file_entry_local_service = serviceLocator.findService("com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService") />
@@ -80,7 +77,7 @@
 			</#if>
 		</#if>
 	<#elseif url_title?has_content>
-		<#assign journal_article_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+		<#assign journal_article_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 		<#assign article = journal_article_service.getLatestArticleByUrlTitle(scopeGroupId, url_title, 0)!"" />
 
@@ -106,6 +103,9 @@
 
 <#if !page_title?has_content>
 	<#assign page_title = the_title + " | " + company_name />
+	<#if pageTitle??>
+		<#assign page_title = pageTitle + " | " + company_name />
+	</#if>
 </#if>
 
 <#if !open_graph_images?has_content>
