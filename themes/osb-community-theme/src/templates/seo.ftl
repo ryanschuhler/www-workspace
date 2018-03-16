@@ -1,4 +1,3 @@
-
 <#assign current_url = portal.getCurrentCompleteURL(request) />
 
 <#if (themeDisplay.getURLCurrent()?index_of('/blog') != -1)>
@@ -103,6 +102,7 @@
 
 <#if !page_title?has_content>
 	<#assign page_title = the_title + " | " + company_name />
+
 	<#if pageTitle??>
 		<#assign page_title = pageTitle + " | " + company_name />
 	</#if>
