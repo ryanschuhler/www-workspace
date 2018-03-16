@@ -128,9 +128,26 @@ strong {
         padding-top: 106px;
     }
 }
+.has-control-menu.nav-overlay #main-content {
+    padding-top: 64px;
+}
+.portal-popup.has-control-menu.nav-overlay #main-content {
+    padding-top: 0;
+    min-height: 90vh;
+}
 
 .root #main-content {
     padding-top: 60px;
+}
+.has-control-menu.root #main-content {
+    padding-top: 124px;
+}
+.portal-popup.has-control-menu.root #main-content {
+    padding-top: 0;
+    min-height: 90vh;
+}
+.hide-accessible {
+    display: none;
 }
 
 @include respond-to(phone, tablet) {
@@ -144,3 +161,13 @@ strong {
         }
     }
 }
+
+.portlet-content, .portlet-minimized .portlet-content-container {
+	padding: 0;
+}
+
+.quick-access-nav {
+    display: none;
+}
+
+

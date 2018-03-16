@@ -131,6 +131,9 @@
 	}
 }
 
+.scroll-nav-content-container .navigation.affix, .scroll-nav-content-container .navigation.nav-top.affix {
+	left: auto;
+}
 .hide-banner .scroll-nav-content-container .navigation.nav-top.affix {
 	top: 3em;
 }

@@ -34,6 +34,15 @@
 	}
 }
 
+.has-control-menu {
+	#banner{
+		top: $has-control-menu-margin-top-mobile;
+
+		@include sm() {
+			top: $has-control-menu-margin-top-desktop;
+		}
+	}
+}
 #banner {
 	background: rgba(255, 255, 255, 0.9);
 	border-bottom: 1px solid $element-color;
@@ -61,6 +70,23 @@
 		min-width: 100px;
 		max-width: 160px;
 		width: 100%;
+
+		.liferayLogo-gradientLightest {
+			fill: #FFF;
+		}
+		.liferayLogo-logoBorder {
+			fill: transparent;
+			stroke: #939598;
+		}
+		.liferayLogo-gradientLight {
+			fill: #79B3E1;
+		}
+		.liferayLogo-gradientDark {
+			fill: #1D396B;
+		}
+		.liferayLogo-gradientDarkest {
+			fill: #051E3C;
+		}
 	}
 
 	.main-banner-section {
@@ -406,22 +432,7 @@
 	}
 }
 
-.logo-border {
-	fill: transparent;
-	stroke: #939598;
-}
 
-.logo-gradient-dark {
-	fill: #1D396B;
-}
-
-.logo-gradient-darkest {
-	fill: #051E3C;
-}
-
-.logo-gradient-light {
-	fill: #79B3E1;
-}
 
 .notification {
 	background-color: #D0021B;
