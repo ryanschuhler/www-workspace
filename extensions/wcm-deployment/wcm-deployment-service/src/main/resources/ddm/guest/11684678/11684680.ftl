@@ -121,7 +121,7 @@
 
 	<article class="block block-container large-padding w50">
 		<#if course_details.classes_article_id.data?has_content>
-			${journalContentUtil.getContent(groupId, course_details.classes_article_id.data, "", locale, xmlRequest)}
+			${journalContentUtil.getContent(groupId, course_details.classes_article_id.data, "", locale)}
 		</#if>
 	</article>
 </div>
@@ -151,13 +151,13 @@
 
 	<article class="block block-container w33">
 		<#if course_details.advertisement_article_id.data?has_content>
-			${journalContentUtil.getContent(groupId, course_details.advertisement_article_id.data, "", locale, xmlRequest)!}
+			${journalContentUtil.getContent(groupId, course_details.advertisement_article_id.data, "", locale)!}
 		</#if>
 	</article>
 
 	<article class="block block-container element-background large-padding text-center w33">
 		<#if course_details.quote_article_id.data?has_content>
-			${journalContentUtil.getContent(groupId, course_details.quote_article_id.data, "", locale, xmlRequest)!}
+			${journalContentUtil.getContent(groupId, course_details.quote_article_id.data, "", locale)!}
 		</#if>
 	</article>
 

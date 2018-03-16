@@ -1,4 +1,4 @@
-<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 <#import "${templatesPath}/231368766" as article_utilities>
 

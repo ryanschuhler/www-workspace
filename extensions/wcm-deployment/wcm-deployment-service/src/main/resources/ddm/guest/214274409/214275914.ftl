@@ -4,8 +4,8 @@
 	<#assign page_path = "/" + landing_page_path.data + "/l" />
 	<#assign landing_page_admin_path = "/" + landing_page_path.data + "/admin" />
 	<#assign landing_pages_folder_id = getterUtil.getLong(folder_id.data) />
-	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
-	<#assign journal_folder_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalFolderLocalService") />
+	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
+	<#assign journal_folder_local_service = serviceLocator.findService("com.liferay.journal.service.JournalFolderLocalService") />
 
 	<#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 	<#assign http_servlet_request = service_context.getRequest() />
@@ -32,7 +32,7 @@
 	</#if>
 
 	<#if title?has_content && article?has_content>
-		${journalContentUtil.getContent(groupId, article.getArticleId()?string, "", locale, xmlRequest)}
+		<@article_utilities.get_journal_article_content article />
 
 		<#if has_update_permissions>
 			<#assign edit_url = article_utilities.get_edit_url(article) />

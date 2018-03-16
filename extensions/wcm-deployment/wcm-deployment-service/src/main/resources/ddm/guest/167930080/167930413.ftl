@@ -1,5 +1,3 @@
-<#assign portalUtil = staticUtil["com.liferay.portal.util.PortalUtil"] />
-
 <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
 

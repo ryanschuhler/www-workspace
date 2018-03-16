@@ -1,8 +1,10 @@
+<#import "${templatesPath}/231368766" as article_utilities>
+	
 <#assign landing_page_path = "/resources/l" />
 <#assign landing_page_admin_path = "/resources/admin" />
 <#assign landing_pages_folder_id = getterUtil.getLong("159754595") />
-<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
-<#assign journal_folder_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalFolderLocalService") />
+<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
+<#assign journal_folder_local_service = serviceLocator.findService("com.liferay.journal.service.JournalFolderLocalService") />
 
 <#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 <#assign http_servlet_request = service_context.getRequest() />
@@ -75,7 +77,8 @@
 		</#if>
 	</#if>
 <#elseif title?has_content && article?has_content>
-	${journalContentUtil.getContent(groupId, article.getArticleId()?string, "", locale, xmlRequest)}
+
+	<@article_utilities.get_journal_article_content article />
 
 	<#if layoutPermission.contains(permissionChecker, layout, "UPDATE")>
 		<#assign edit_url = get_edit_url(article, request.attributes.CURRENT_COMPLETE_URL!, http_servlet_request) />

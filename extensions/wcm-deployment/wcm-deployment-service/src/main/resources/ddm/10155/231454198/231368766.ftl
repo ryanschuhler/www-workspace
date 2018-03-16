@@ -100,7 +100,7 @@
 
 		<#assign view_mode = get_view_mode()>
 
-		${journalContentUtil.getContent(groupId?long, article.getArticleId(),  view_mode, locale.getLanguage())!}
+		${journalContentUtil.getContent(groupId?long, article.getArticleId(), view_mode, locale)!} 
 
 	</#if>
 </#macro>

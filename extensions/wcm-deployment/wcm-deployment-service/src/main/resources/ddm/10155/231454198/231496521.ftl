@@ -10,7 +10,7 @@
 	<#assign lego_structure_key = "12484" />
 	<#assign region_structure_key = "223092737" />
 
-	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 	<#assign journal_article_content_search_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalContentSearchLocalService") />
 	<#assign layout_local_service = serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService") />
 

@@ -3,7 +3,7 @@
 <#if article_utilities.has_update_permissions()>
 	<#assign journal_article_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleService") />
 
-	<#assign journal_article_service_util = staticUtil["com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil"]>
+	<#assign journal_article_service_util = staticUtil["com.liferay.journal.service.JournalArticleLocalServiceUtil"]>
 
 	<#assign service_context = objectUtil("com.liferay.portal.kernel.service.ServiceContextThreadLocal").getServiceContext() />
 	<#assign http_servlet_request = service_context.getRequest() />

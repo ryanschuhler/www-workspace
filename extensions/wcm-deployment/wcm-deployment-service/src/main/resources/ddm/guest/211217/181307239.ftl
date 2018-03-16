@@ -17,7 +17,7 @@
 	<#assign url_title = paramUtil.getString(http_servlet_request, "urlTitle") />
 	<#assign article_id = paramUtil.getString(http_servlet_request, "articleId") />
 
-	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.portlet.journal.service.JournalArticleLocalService") />
+	<#assign journal_article_local_service = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 	<div class="standard-padding">
 		<h1>Web Content Search Tool</h1>
