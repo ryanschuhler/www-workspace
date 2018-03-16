@@ -58,6 +58,10 @@ public class BlogsEntrySitemapURLProvider implements SitemapURLProvider {
 		
 		for (BlogsEntry blogsEntry : blogsEntries) {
 		
+			if (blogsEntry.getStatus() != 0) {
+				continue;
+			}
+
 			String url = themeDisplay.getCDNBaseURL() + layout.getFriendlyURL() +  Portal.FRIENDLY_URL_SEPARATOR + "blogs" +
 					StringPool.SLASH + blogsEntry.getUrlTitle();
 			
