@@ -24,3 +24,5 @@ test-results
 id_rsa
 id_rsa.pub
 activation-key*.xml
+patches
+resources

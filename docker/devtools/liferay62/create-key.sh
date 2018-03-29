@@ -3,7 +3,7 @@
 echo -n "Email address: "
 read EMAIL
 
-OUTPUTDIR=liferay-plugins/ssh
+OUTPUTDIR=liferay/ssh
 mkdir -p ${OUTPUTDIR}
 ssh-keygen -t rsa -b 4096 -C "${EMAIL}" -f ${OUTPUTDIR}/id_rsa -N ''
 
