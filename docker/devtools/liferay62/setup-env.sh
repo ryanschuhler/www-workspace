@@ -2,7 +2,7 @@
 
 source file-vars.sh
 
-REPO_ROOT=~/liferay/www-workspace
+REPO_ROOT=$(git rev-parse --show-toplevel)
 
 DOCKER_BASE=${REPO_ROOT}/docker/devtools/liferay62/liferay
 MARIADB=${REPO_ROOT}/docker/devtools/liferay62/mariadb
