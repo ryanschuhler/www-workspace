@@ -8,13 +8,23 @@ clones a git repo for the plugins and builds a list of plugins that are then ins
 > From the `liferay62` folder run:
 
 1.  `./get-files.sh`
-2.  `./create-key.sh` and add it to your github.com ssh keys
-3.  In the `setup-env.sh` file ensure the `REPO_ROOT` variable is pointing to this repo's root folder
-4.  `./setup-env.sh`
-5.  `docker-compose build`
-6.  `docker-compose up`
+2.  `./create-key.sh`
+3.  `./setup-env.sh`
+4.  `docker-compose build`
+5.  `docker-compose up`
 
-## General docker cache info
+## General docker
+
+### Command tips
+
+> Creating & Starting the containers
+
+* To _run in background_ `docker-compose up -d`
+  * To _check static logs_ `docker-compose logs -f`
+* To run in foreground `docker-compose up`
+* To get into a containers shell `docker-compose exec CONTAINER_NAME bash`
+
+### Cache Info
 
 Although Docker does a nice job of caching sometimes I end up fetching the same network resources over and over again. Therefore I decided to store
 a bunch of commonly used Liferay files in my home directory ~/.liferay ala Liferay Workspace. I created a bunch of subdirectories there for various files:

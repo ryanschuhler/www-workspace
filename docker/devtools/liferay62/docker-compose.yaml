@@ -73,20 +73,20 @@ services:
     volumes:
       - "62_mariadb:/var/lib/mysql"
       - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
-  62_hubspot:
-    container_name: 62_hubspot
-    image: hubspot:www
-    networks:
-      - "www-external"
-      - "www-internal"
-    ports:
-      - "8080:80"
-    volumes:
-      - "62_httpd:/home"
+  # 62_hubspot:
+  #   container_name: 62_hubspot
+  #   image: hubspot:www
+  #   networks:
+  #     - "www-external"
+  #     - "www-internal"
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - "62_httpd:/home"
 
 volumes:
   62_elasticsearch:
   62_httpd:
-  62_hubspot:
+  # 62_hubspot:
   62_liferay:
   62_mariadb:
