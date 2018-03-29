@@ -3,6 +3,18 @@
 This is a docker environment for getting Liferay 6.2 up and running, complete with Apache and a mock HubSpot server. The dockerfile is written so that it
 clones a git repo for the plugins and builds a list of plugins that are then installed in Liferay.
 
+## Quickstart
+
+> From the `liferay62` folder run:
+
+1.  `./get-files.sh`
+2.  Generate and add a **6.2 ee license file** from your liferay.com account home to the `.liferay/licenses` folder
+3.  `./create-key.sh` and add it to your github.com ssh keys
+4.  In the `setup-env.sh` file ensure the `REPO_ROOT` variable is pointing to this repo's root folder
+5.  `./setup-env.sh`
+6.  `docker-compose build`
+7.  `docker-compose up`
+
 ## General docker cache info
 
 Although Docker does a nice job of caching sometimes I end up fetching the same network resources over and over again. Therefore I decided to store
@@ -23,10 +35,9 @@ a bunch of commonly used Liferay files in my home directory ~/.liferay ala Lifer
 * The script `get-files.sh` will setup those directories and download the files if you don't have them
 * The script `setup-env.sh` will copy files from those locations into the docker build directories and when docker builds the liferay image, it looks there instead of trying to download the files from the network.
 
-## Getting Started
+## Additional info
 
 * You can run `../upgrade/get-latest-db-image.sh` to get the latest db image to populate your database
-* Get an [XML license file](http://mirrors/files.liferay.com/private/ee/liferay-up/License/6.2/license.xml), and either put it in the cache folder above or directly in liferay/resources/image-deploy
 * Set up a github key. The script create-key.sh will create one for you and put it in the right directory. You just have to set it up in github e.g. as a deploy key for the repo that you are using. Note that this key will be copied into the first stage of the docker build but will not be copied to the final image. Best to define it as a deploy key with only read access to your repo. Here is a link for more info about setting up github and ssh: [Connecting to Github with ssh](https://help.github.com/articles/connecting-to-github-with-ssh/)
 * Configure repo and branch to pull plugins from. Currently it defaults as follows. Changes can be made in the docker-compose.yaml file
 
