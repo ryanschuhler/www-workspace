@@ -8,12 +8,11 @@ clones a git repo for the plugins and builds a list of plugins that are then ins
 > From the `liferay62` folder run:
 
 1.  `./get-files.sh`
-2.  Generate and add a **6.2 ee license file** from your liferay.com account home to the `.liferay/licenses` folder
-3.  `./create-key.sh` and add it to your github.com ssh keys
-4.  In the `setup-env.sh` file ensure the `REPO_ROOT` variable is pointing to this repo's root folder
-5.  `./setup-env.sh`
-6.  `docker-compose build`
-7.  `docker-compose up`
+2.  `./create-key.sh` and add it to your github.com ssh keys
+3.  In the `setup-env.sh` file ensure the `REPO_ROOT` variable is pointing to this repo's root folder
+4.  `./setup-env.sh`
+5.  `docker-compose build`
+6.  `docker-compose up`
 
 ## General docker cache info
 
