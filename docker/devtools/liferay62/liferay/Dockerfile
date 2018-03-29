@@ -27,18 +27,18 @@ COPY --chown=liferay:liferay ./*.zip /opt/java/
 
 RUN if [ ! -f "/opt/java/${LIFERAY_BUNDLE}" ] && [ "$LIFERAY_DOWNLOAD_URL" != "" ] \
   ; then \
-    set -x \
-    && curl -fSL "$LIFERAY_DOWNLOAD_URL" > /opt/java/${LIFERAY_BUNDLE} \
+  set -x \
+  && curl -fSL "$LIFERAY_DOWNLOAD_URL" > /opt/java/${LIFERAY_BUNDLE} \
   ; fi
 
 RUN if [[ ! -f "/opt/java/*.zip" ]] \
   ; then \
-    set -x \
-    && unzip /opt/java/${LIFERAY_BUNDLE} -d /opt/java \
-    && rm /opt/java/*.zip \
-    && find /opt/java -depth -maxdepth 1 -type d -name "liferay-*" -exec mv {} /opt/java/liferay \; \
-    && mkdir -p /opt/java/liferay/deploy \
-    && find /opt/java/liferay -depth -maxdepth 1 -type d -name "tomcat-*" -exec mv {} /opt/java/liferay/tomcat \; \
+  set -x \
+  && unzip /opt/java/${LIFERAY_BUNDLE} -d /opt/java \
+  && rm /opt/java/*.zip \
+  && find /opt/java -depth -maxdepth 1 -type d -name "liferay-*" -exec mv {} /opt/java/liferay \; \
+  && mkdir -p /opt/java/liferay/deploy \
+  && find /opt/java/liferay -depth -maxdepth 1 -type d -name "tomcat-*" -exec mv {} /opt/java/liferay/tomcat \; \
   ; fi
 
 RUN mkdir -p /opt/java/liferay/tomcat/deploy
@@ -51,6 +51,7 @@ RUN cp /opt/java/liferay/tomcat/lib/ecj* /usr/share/java/apache-ant/lib
 RUN mkdir -p /home/liferay/.ssh
 COPY --chown=liferay:liferay ssh/ /home/liferay/.ssh/
 RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+RUN chmod 400 /home/liferay/.ssh/id_rsa
 RUN git clone ${REPO} --single-branch --branch ${BRANCH} --depth=1 --progress  /opt/java/plugins-sdk
 
 # copy over build properites and portlet properties
