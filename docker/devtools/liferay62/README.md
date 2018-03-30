@@ -41,7 +41,11 @@ a bunch of commonly used Liferay files in my home directory ~/.liferay ala Lifer
 
   Liferay fix packs and hot fixes
 
+### Script Info
+
 * The script `get-files.sh` will setup those directories and download the files if you don't have them
+* The script `create-key.sh` will create and ssh key for the docker container for you and automatically save to your github account
+  * If this script isn't working try [setting it up manually](https://help.github.com/articles/connecting-to-github-with-ssh/)
 * The script `setup-env.sh` will copy files from those locations into the docker build directories and when docker builds the liferay image, it looks there instead of trying to download the files from the network.
 
 ## Additional info
