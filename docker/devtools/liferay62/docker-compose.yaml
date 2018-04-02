@@ -60,6 +60,7 @@ services:
     volumes:
       - "62_liferay:/opt/java/liferay/data"
       - "./liferay/resources/deploy:/opt/java/liferay/deploy"
+      - "~/dev/life/ee-6.2.x/bundles/deploy:/opt/java/liferay/deploy"
   62_mariadb:
     container_name: 62_mariadb
     env_file:
