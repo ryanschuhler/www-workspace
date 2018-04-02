@@ -15,6 +15,22 @@ clones a git repo for the plugins and builds a list of plugins that are then ins
 
 ## General docker
 
+### Deploying to Docker
+
+* If you want to **hot deploy** your theme make sure your wherever your `*.war` file is being outputted is bound to your docker deploy folder
+* For instance, in your `docker-compose.yaml` config, bind your liferay deploy folder to the docker deploy folder like this
+
+```yaml
+  62_liferay:
+    volumes:
+      - "62_liferay:/opt/java/liferay/data"
+      - "./liferay/resources/deploy:/opt/java/liferay/deploy"
+      - "~/dev/life/ee-6.2.x/bundles/deploy:/opt/java/liferay/deploy"
+```
+
+* The **3rd volume** is the location where my liferay instance deploys war files `~/dev/life/ee-6.2.x/bundles/deploy`
+  * So I bind that to the deploy folder for the docker instance like this `:/opt/java/liferay/deploy`
+
 ### Command tips
 
 > Creating & Starting the containers
