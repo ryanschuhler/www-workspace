@@ -21,6 +21,9 @@
 /docker/liferay/resources/osgi/war
 test-results
 /.metadata/
+liferay-bundle.zip
 id_rsa
 id_rsa.pub
 activation-key*.xml
+patches
+resources

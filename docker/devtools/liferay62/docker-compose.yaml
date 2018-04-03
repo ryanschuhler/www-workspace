@@ -45,7 +45,7 @@ services:
       context: liferay/.
     container_name: 62_liferay
     depends_on:
-     - "62_mariadb"
+      - "62_mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
     image: liferay:62
@@ -53,13 +53,14 @@ services:
       - "8000:8000"
       - "11311:11311"
       - "12345:12345"
-    user: liferay
+    user: root
     networks:
       - "www-external"
       - "www-internal"
     volumes:
       - "62_liferay:/opt/java/liferay/data"
       - "./liferay/resources/deploy:/opt/java/liferay/deploy"
+      - "~/dev/life/ee-6.2.x/bundles/deploy:/opt/java/liferay/deploy"
   62_mariadb:
     container_name: 62_mariadb
     env_file:
@@ -73,20 +74,20 @@ services:
     volumes:
       - "62_mariadb:/var/lib/mysql"
       - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
-  62_hubspot:
-    container_name: 62_hubspot
-    image: hubspot:www
-    networks:
-      - "www-external"
-      - "www-internal"
-    ports:
-      - "8080:80"
-    volumes:
-      - "62_httpd:/home"
+  # 62_hubspot:
+  #   container_name: 62_hubspot
+  #   image: hubspot:www
+  #   networks:
+  #     - "www-external"
+  #     - "www-internal"
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - "62_httpd:/home"
 
 volumes:
   62_elasticsearch:
   62_httpd:
-  62_hubspot:
+  # 62_hubspot:
   62_liferay:
   62_mariadb:
