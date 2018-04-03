@@ -41,7 +41,7 @@ services:
         JAVA_PACKAGE: openjdk7-jre
         BRANCH: ee-6.2.x
         LIFERAY_DOWNLOAD_URL: http://mirrors/files.liferay.com/private/ee/portal/6.2.10.21/liferay-portal-tomcat-6.2-ee-sp20-20170717160924965.zip
-        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/6.2.10/portal/liferay-fix-pack-portal-164-6210.zip
+        LIFERAY_FIXPACK_DOWNLOAD_URLS: http://mirrors/files.liferay.com/private/ee/fix-packs/6.2.10/portal/liferay-fix-pack-portal-165-6210.zip
       context: liferay/.
     container_name: 62_liferay
     depends_on:
