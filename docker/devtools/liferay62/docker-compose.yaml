@@ -45,7 +45,7 @@ services:
       context: liferay/.
     container_name: 62_liferay
     depends_on:
-     - "62_mariadb"
+      - "62_mariadb"
     environment:
       - "VIRTUAL_PORT=8080"
     image: liferay:62
@@ -53,7 +53,7 @@ services:
       - "8000:8000"
       - "11311:11311"
       - "12345:12345"
-    user: liferay
+    user: root
     networks:
       - "www-external"
       - "www-internal"
