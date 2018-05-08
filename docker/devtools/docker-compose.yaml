@@ -34,6 +34,17 @@ services:
       - "443:443"
     volumes:
       - "nginx"
+  hubspot_dxp:
+    build: hubspot/.
+    container_name: hubspot
+    image: hubspot:www
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8080:80"
+    volumes:
+      - "hubspot:/home"
   hubspot:
     build: hubspot/.
     container_name: hubspot
