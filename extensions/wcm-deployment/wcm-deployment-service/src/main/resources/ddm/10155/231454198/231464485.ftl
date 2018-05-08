@@ -386,15 +386,16 @@
 
 						<div class="blogs-entry-author">${lang.localize("by", "by")} ${response.userName!}</div>
 
-						<#assign date_tool = objectUtil("org.apache.velocity.tools.generic.DateTool")>
-						<#assign display_date = date_tool.toDate("yyyy-MM-dd HH:mm:ss", response.displayDate)! />
 
-						<#if !display_date?has_content>
-							<#assign display_date = date_tool.toDate("EEE MMM dd HH:mm:ss z yyyy", response.displayDate)! />
-						</#if>
+						<#attempt>
+							<#assign display_date = response.displayDate?datetime("yyyy-MM-dd HH:mm:ss")! />
+						<#recover>
+							<#assign display_date = response.displayDate?datetime("EEE MMM dd HH:mm:ss z yyyy")! />
+						</#attempt>
+
 
 						<#if display_date?has_content>
-							<div class="blogs-entry-display-date">${lang.localize("on", "on")} ${date_tool.format("long_date", display_date, locale)}</div>
+							<div class="blogs-entry-display-date">${lang.localize("on", "on")} ${display_date?string.long}</div>
 						</#if>
 					</div>
 				</div>

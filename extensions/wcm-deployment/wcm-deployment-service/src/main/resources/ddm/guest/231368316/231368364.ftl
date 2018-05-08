@@ -28,6 +28,12 @@
 <#assign servlet_request_url = request.scheme + "://" + request['server-name'] + blogs_endpoint >
 
 <#assign resource_url = request['resource-url']>
+<#assign resource_url = httpUtil.addParameter(resource_url, request["portlet-namespace"] + "mvcPath", "/view.jsp") >
+
+
+<#if request['server-name'] == 'localhost'> 
+	<#assign servlet_request_url = servlet_request_url?replace("localhost", "web.liferay.com", "r") />
+</#if>
 
 <#list paramsMap?keys as param_key>
 	<#if params?seq_contains(param_key)>
@@ -242,7 +248,7 @@
 	<#recover>
 	</#attempt>
 
-	<#assign json_response = jsonFactoryUtil.looseDeserializeSafe(response) >
+	<#assign json_response = jsonFactoryUtil.looseDeserialize(response) >
 
 	<#if !json_response?is_hash>
 		<#assign json_response = { "entries": [] }>
@@ -628,7 +634,7 @@
 	<#recover>
 	</#attempt>
 
-	<#assign json_response = jsonFactoryUtil.looseDeserializeSafe(response)>
+	<#assign json_response = jsonFactoryUtil.looseDeserialize(response)>
 
 	<#if (paramsMap.blogRequestType??)>
 		<#assign subscription_form = "">

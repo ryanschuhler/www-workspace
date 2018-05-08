@@ -37,6 +37,11 @@
 	<#assign servlet_request_url = request.scheme + "://" + request['server-name'] + blogs_endpoint >
 
 	<#assign resource_url = request['resource-url']>
+	<#assign spa_resource_url = httpUtil.addParameter(resource_url, request["portlet-namespace"] + "mvcPath", "/view.jsp") >
+
+	<#if request['server-name'] == 'localhost'> 
+		<#assign servlet_request_url = servlet_request_url?replace("localhost", "web.liferay.com", "r") />
+	</#if>
 
 	<#assign escaped_params_map = {}>
 
@@ -295,7 +300,7 @@
 		<#recover>
 		</#attempt>
 
-		<#assign json_response = jsonFactoryUtil.looseDeserializeSafe(response)>
+		<#assign json_response = jsonFactoryUtil.looseDeserialize(response)>
 
 		<#if !json_response?is_hash>
 			<#assign json_response = { "entries": [] }>
@@ -586,7 +591,7 @@
 							var queryString = A.QueryString.stringify(query);
 
 							instance._requestData(
-								"${request['resource-url']}" + '&' + queryString,
+								"${spa_resource_url}" + '&' + queryString,
 								function(obj, config, instance) {
 									instance._blogsWrapper.get('childNodes').remove();
 
@@ -673,7 +678,7 @@
 		<#attempt>
 			<#assign response = httpUtil.URLtoString(servlet_request_url)>
 
-			<#assign json_response = jsonFactoryUtil.looseDeserializeSafe(response)>
+			<#assign json_response = jsonFactoryUtil.looseDeserialize(response)>
 
 			<#if (params_map.blogRequestType??)>
 				<#if params_map.blogRequestType?first == "BLOGS_POST">
