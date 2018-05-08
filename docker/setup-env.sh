@@ -2,7 +2,7 @@
 
 LICENSE_FILE=activation-key-digitalenterprisedevelopment-7.0-liferaycom.xml
 SOURCE_BUNDLE_FILE=liferay-dxp-digital-enterprise-tomcat-7.0-sp7-20180307180151313.zip
-PATCH_FILES=liferay-fix-pack-de-44-7010.zip
+PATCH_FILES=portal/liferay-fix-pack-de-44-7010.zip
 DB_FILE=www_lportal-2018-02-01-upgraded-with-events.sql.gz
 DB_FILE=www_lportal-2018-04-22-upgraded.sql.gz
 

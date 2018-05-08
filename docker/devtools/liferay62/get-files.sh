@@ -81,4 +81,4 @@ checkFile "${DATABASE_DIR}/${DATABASE}" "curl -o ${DATABASE_DIR}/${DATABASE} -fS
 
 checkFile "${LICENSE_DIR}/${LICENSE_FILE}" "curl -o ${LICENSE_DIR}/${LICENSE_FILE} -fSL ${MIRROR}/ee/liferay-up/License/6.2/license.xml"
 
-checkFile "${PATCHES_DIR}/${PATCH_FILES}" "curl -o ${PATCHES_DIR}/${PATCH_FILES} -fSL ${MIRROR}/ee/fix-packs/6.2.10/portal/${PATCH_FILES}"
+checkFile "${PATCHES_DIR}/${PATCH_FILES}" "curl -o ${PATCHES_DIR}/${PATCH_FILES} -fSL ${MIRROR}/ee/fix-packs/6.2.10/${PATCH_FILES}"
