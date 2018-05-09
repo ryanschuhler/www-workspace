@@ -2,5 +2,6 @@
 	"/forms/v2/forms/:guid?hapikey=apikey": "/forms/:guid",
 	"/forms/v1/forms/:guid?hapikey=apikey": "/forms/:guid",
 	"/contacts/v1/forms/:guid?hapikey=apikey": "/forms/:guid",
-	"/contacts/v2/contact/utk/:utk/profile?hapikey=apikey": "/contacts/:utk"
+	"/contacts/v2/contact/utk/:utk/profile?hapikey=apikey": "/contacts/:utk",
+	"/uploads/form/v2/000000/:guid": "/forms"
 }

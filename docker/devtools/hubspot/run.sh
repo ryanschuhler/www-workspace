@@ -22,5 +22,11 @@ if [ -f $file ]; then
     args="$args file.js"
 fi
 
+file=/data/middleware.js
+if [ -f $file ]; then
+    echo "Found middleware.js"
+    args="$args --middlewares middleware.js"
+fi
+
 echo args: $args
 json-server $args
