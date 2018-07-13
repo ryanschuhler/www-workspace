@@ -79,8 +79,6 @@ services:
     networks:
       - "www-external"
       - "www-internal"
-    ports:
-      - "8080:80"
     volumes:
       - "62_httpd:/home"
 
