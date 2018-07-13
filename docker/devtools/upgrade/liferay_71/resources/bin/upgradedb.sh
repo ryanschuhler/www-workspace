@@ -8,7 +8,7 @@ cp -rv /mnt/upgradetools/* /opt/java/liferay/tools
 
 cd ${DIR}
 export JAVA_OPTS="-Xms4096m -Xmx4096m -XX:MaxNewSize=2048m -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled"
-java -jar "${DIR}/com.liferay.portal.tools.db.upgrade.client.jar" -j "${JAVA_OPTS}"
+./db_upgrade.sh -j "${JAVA_OPTS}" -l "upgrade.log"
 
 echo "grepping for errors"
 grep -i error ${DIR}/upgrade.log

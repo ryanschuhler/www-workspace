@@ -1,0 +1,52 @@
+version: '3.3'
+
+networks:
+  www-external:
+    internal: false
+  www-internal:
+    internal: true
+
+services:
+  upgrade_liferay_71:
+    container_name: upgrade_liferay_71
+    depends_on:
+     - "upgrade_mariadb"
+    command: ["echo", "done"]
+    env_file:
+      - "liferay/liferay.env"
+    environment:
+      - "CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
+    entrypoint: ["/opt/java/liferay/bin/upgradedb.sh"]
+    image: liferay:www
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+    volumes:
+      - "liferay:/opt/java/liferay/data"
+      - "./liferay_71/resources:/tmp/liferay"
+      - "./liferay_71/resources/bin/upgradedb.sh:/opt/java/liferay/bin/upgradedb.sh"
+      - "./liferay_71/resources/osgi/configs:/opt/java/liferay/osgi/configs"
+      - "./liferay_71/resources/tools:/mnt/upgradetools"
+  upgrade_mariadb:
+    container_name: upgrade_mariadb
+    env_file:
+      - "mariadb/mariadb.env"
+    image: mariadb:www
+    networks:
+      - "www-external"
+      - "www-internal"
+    ports:
+      - "3307:3306"
+    volumes:
+      - "mariadb:/var/lib/mysql"
+      - "./mariadb/resources/etc/mysql/conf.d/local.cnf:/etc/mysql/conf.d/local.cnf"
+      - "./mariadb/resources/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/"
+volumes:
+  liferay:
+  liferay-tools:
+  mariadb:
+   external:
+    name: docker_mariadb

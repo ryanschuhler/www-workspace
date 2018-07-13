@@ -4,6 +4,7 @@ OSGI_FOLDER=${LIFERAY_HOME}/osgi/marketplace
 
 remove_module () {
     zip -d "${OSGI_FOLDER}/$1" $2
+    return 0
 }
 
 remove_module Liferay\ Connected\ Services\ Client.lpkg lcs-portlet*
