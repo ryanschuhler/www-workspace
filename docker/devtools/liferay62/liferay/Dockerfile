@@ -17,7 +17,7 @@ ARG REPO=git@github.com:allen-ziegenfus/liferay-plugins-ee.git
 ARG BRANCH=ee-6.2.x
 ENV LIFERAY_HOME /opt/java/liferay
 ENV JAVA_HOME /usr/lib/jvm/java-1.7-openjdk
-ENV PLUGINS_LIST hooks/osb-www-hook hooks/portal-compat-hook portlets/osb-www-asset-publisher-portlet portlets/hubspot-portlet themes/osb-community-theme portlets/osb-www-marketing-events-portlet portlets/marketplace-portlet portlets/osb-www-portlet webs/elasticsearch-web themes/osb-www-events-theme
+ENV PLUGINS_LIST hooks/osb-www-hook hooks/portal-compat-hook portlets/osb-www-asset-publisher-portlet portlets/hubspot-portlet themes/osb-community-theme portlets/osb-www-marketing-events-portlet portlets/marketplace-portlet portlets/osb-www-portlet webs/elasticsearch-web themes/osb-www-events-theme portlets/ddl-form-portlet webs/screens-web portlets/short-link-portlet webs/skinny-web webs/sync-web
 
 RUN chmod o+w /usr/share/java/apache-ant/lib
 
